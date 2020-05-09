@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-
+import AdsImportScript from '../components/ads-import-script'
 import SEO from '../components/seo'
 import Layout from '../components/layout'
 import Post from '../components/post'
@@ -16,21 +16,24 @@ const BlogPostTemplate = ({ data, pageContext }) => {
   const { next, previous } = pageContext
 
   return (
-    <Layout>
-      <SEO title={title} description={excerpt || autoExcerpt} />
-      <Post
-        key={id}
-        title={title}
-        date={date}
-        path={path}
-        author={author}
-        coverImage={coverImage}
-        html={html}
-        tags={tags}
-        previousPost={previous}
-        nextPost={next}
-      />
-    </Layout>
+    <>
+      <AdsImportScript />
+      <Layout>
+        <SEO title={title} description={excerpt || autoExcerpt} />
+        <Post
+          key={id}
+          title={title}
+          date={date}
+          path={path}
+          author={author}
+          coverImage={coverImage}
+          html={html}
+          tags={tags}
+          previousPost={previous}
+          nextPost={next}
+        />
+      </Layout>
+    </>
   )
 }
 
@@ -49,7 +52,7 @@ export const pageQuery = graphql`
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       frontmatter {
         title
-        date(formatString: "DD MMMM YYYY")
+        date(formatString: "YYYY-MM-DD")
         path
         author
         excerpt

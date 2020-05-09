@@ -2,8 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import SEO from '../components/seo'
+import AdsImportScript from '../components/ads-import-script'
 import Layout from '../components/layout'
-import Post from '../components/post'
+import ListContent from '../components/list-content'
 import Navigation from '../components/navigation'
 
 const Index = ({ data, pageContext: { nextPagePath, previousPagePath } }) => {
@@ -14,6 +15,7 @@ const Index = ({ data, pageContext: { nextPagePath, previousPagePath } }) => {
   return (
     <>
       <SEO />
+      <AdsImportScript />
       <Layout>
         {posts.map(({ node }) => {
           const {
@@ -31,7 +33,7 @@ const Index = ({ data, pageContext: { nextPagePath, previousPagePath } }) => {
           } = node
 
           return (
-            <Post
+            <ListContent
               key={id}
               title={title}
               date={date}
@@ -43,7 +45,6 @@ const Index = ({ data, pageContext: { nextPagePath, previousPagePath } }) => {
             />
           )
         })}
-
         <Navigation
           previousPath={previousPagePath}
           previousLabel="Newer posts"
@@ -77,7 +78,7 @@ export const postsQuery = graphql`
           excerpt
           frontmatter {
             title
-            date(formatString: "DD MMMM YYYY")
+            date(formatString: "YYYY-MM-DD")
             path
             author
             excerpt

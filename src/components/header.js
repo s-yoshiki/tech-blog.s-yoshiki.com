@@ -37,6 +37,7 @@ const Header = props => {
   return (
     <>
       <Helmet>
+        <html lang="ja" />
         <body
           className={
             (userTheme || defaultTheme) === 'light'
@@ -55,7 +56,7 @@ const Header = props => {
                 <>
                   <span className={style.mark}>></span>
                   <span className={style.text}>{logoText}</span>
-                  <span className={style.cursor} />
+                  {/* <span className={style.cursor} /> */}
                 </>
               )}
             </div>

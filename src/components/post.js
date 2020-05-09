@@ -4,8 +4,10 @@ import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 import Navigation from './navigation'
 import { toKebabCase } from '../helpers'
-
+import Badge from './badge'
 import style from '../styles/post.module.css'
+import SnsShare from './sns-share'
+import Ads from './ads'
 
 const Post = ({
   title,
@@ -23,53 +25,65 @@ const Post = ({
   const previousLabel = previousPost && previousPost.frontmatter.title
   const nextPath = nextPost && nextPost.frontmatter.path
   const nextLabel = nextPost && nextPost.frontmatter.title
-
+  const pageUrl = 'https://tech-blog.s-yoshiki.com' + path
   return (
-    <div className={style.post}>
-      <div className={style.postContent}>
-        <h1 className={style.title}>
-          {excerpt ? <Link to={path}>{title}</Link> : title}
-        </h1>
-        <div className={style.meta}>
-          {date} {author && <>— Written by {author}</>}
-          {tags ? (
-            <div className={style.tags}>
-              {tags.map(tag => (
-                <Link to={`/tag/${toKebabCase(tag)}/`} key={toKebabCase(tag)}>
-                  <span className={style.tag}>#{tag}</span>
-                </Link>
-              ))}
-            </div>
-          ) : null}
+    <>
+    
+      <div className={style.childContainer}>
+        
+        {/* サイドバー */}
+        <div className={style.sidebar}>
+          <div className={style.sidebarFollow}>
+            <SnsShare url={pageUrl} title={title}></SnsShare>
+          </div>
         </div>
-
-        {coverImage && (
-          <Img
-            fluid={coverImage.childImageSharp.fluid}
-            className={style.coverImage}
+        {/* メインコンテンツ */}
+        
+        <div className={style.post}>
+          <div className={style.postContent}>
+            <h1 className={style.title}>
+              {excerpt ? <Link to={path}>{title}</Link> : title}
+            </h1>
+            <div className={style.meta}>
+              {date}
+              {/* {author && <>— Written by {author}</>} */}
+              {tags ? (
+                <div className={style.tags}>
+                  {tags.map(tag => (
+                    <Link to={`/tag/${toKebabCase(tag)}/`} key={toKebabCase(tag)}>
+                      <Badge keyword={tag} className={style.badge}></Badge>
+                    </Link>
+                  ))}
+                </div>
+              ) : null}
+              <div className={style.snsShare}>
+                <SnsShare url={pageUrl} title={title}></SnsShare>
+              </div>
+            </div>
+            {coverImage && (
+              <Img
+                fluid={coverImage.childImageSharp.fluid}
+                className={style.coverImage}
+              />
+            )}
+          </div>
+          <Ads />
+          <div dangerouslySetInnerHTML={{ __html: html }} />
+          <div className={style.snsShare}>
+            <SnsShare url={pageUrl} title={title}></SnsShare>
+          </div>
+          <Navigation
+            previousPath={previousPath}
+            previousLabel={previousLabel}
+            nextPath={nextPath}
+            nextLabel={nextLabel}
           />
-        )}
-
-        {excerpt ? (
-          <>
-            <p>{excerpt}</p>
-            <Link to={path} className={style.readMore}>
-              Read more →
-            </Link>
-          </>
-        ) : (
-          <>
-            <div dangerouslySetInnerHTML={{ __html: html }} />
-            <Navigation
-              previousPath={previousPath}
-              previousLabel={previousLabel}
-              nextPath={nextPath}
-              nextLabel={nextLabel}
-            />
-          </>
-        )}
+        </div>
+        <div className={style.sidebar}>
+          <div className={style.sidebarFollow}></div>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

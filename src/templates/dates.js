@@ -9,9 +9,9 @@ import Navigation from '../components/navigation'
 
 import '../styles/layout.css'
 
-const Tags = ({
+const Dates = ({
   data,
-  pageContext: { nextPagePath, previousPagePath, tag },
+  pageContext: { nextPagePath, previousPagePath, year, month},
 }) => {
   const {
     allMarkdownRemark: { edges: posts },
@@ -23,7 +23,7 @@ const Tags = ({
       <SEO />
       <Layout>
         <div className="infoBanner">
-          Posts with tag: <span>#{tag}</span>
+          Posts with date: <span>#{year}-{month}</span>
         </div>
 
         {posts.map(({ node }) => {
@@ -66,18 +66,20 @@ const Tags = ({
   )
 }
 
-Tags.propTypes = {
+Dates.propTypes = {
   data: PropTypes.object.isRequired,
   pageContext: PropTypes.shape({
     nextPagePath: PropTypes.string,
     previousPagePath: PropTypes.string,
+    year: PropTypes.string,
+    month: PropTypes.string,
   }),
 }
 
 export const postsQuery = graphql`
-  query($limit: Int!, $skip: Int!, $tag: String!) {
+  query($limit: Int!, $skip: Int!, $fromDate: Date, $toDate: Date) {
     allMarkdownRemark(
-      filter: { frontmatter: { tags: { in: [$tag] } } }
+      filter: { frontmatter: { date: { gte: $fromDate, lt: $toDate }  } }
       sort: { fields: [frontmatter___date], order: DESC }
       limit: $limit
       skip: $skip
@@ -107,4 +109,4 @@ export const postsQuery = graphql`
   }
 `
 
-export default Tags
+export default Dates

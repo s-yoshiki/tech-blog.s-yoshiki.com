@@ -7,56 +7,62 @@ const postCSSMixins = require('postcss-mixins')
 
 module.exports = {
   siteMetadata: {
-    title: `Hello Friend`,
-    description: `A simple starter for Gatsby. That's it.`,
+    title: `404 motivation not found`,
+    description: `結果にコミットする`,
+    siteUrl: `https://tech-blog.s-yoshiki.com`,
     copyrights: '',
     author: `@panr`,
     logo: {
       src: '',
       alt: '',
     },
-    logoText: 'hello friend',
-    defaultTheme: 'dark',
-    postsPerPage: 5,
-    showMenuItems: 2,
+    logoText: '404 motivation not found',
+    defaultTheme: 'light',
+    postsPerPage: 32,
+    showMenuItems: 1,
     menuMoreText: 'Show more',
     mainMenu: [
       {
         title: 'About',
         path: '/about',
       },
-      {
-        title: 'Showcase',
-        path: '/showcase',
-      },
-      {
-        title: 'Example',
-        path: '/example',
-      },
     ],
   },
   plugins: [
     `babel-preset-gatsby`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`,
+        path: `${__dirname}/content/images`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `posts`,
-        path: `${__dirname}/src/posts`,
+        path: `${__dirname}/content/posts`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `pages`,
-        path: `${__dirname}/src/pages`,
+        path: `${__dirname}/content/pages`,
+      },
+    },
+    // {
+    //   resolve: `gatsby-plugin-google-adsense`,
+    //   options: {
+    //     publisherId: `ca-pub-5931776908676811"`
+    //   },
+    // },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: `UA-103231688-1`
       },
     },
     {
@@ -120,7 +126,7 @@ module.exports = {
         background_color: `#292a2d`,
         theme_color: `#292a2d`,
         display: `minimal-ui`,
-        icon: `src/images/hello-icon.png`,
+        icon: `content/images/hello-icon.png`,
       },
     },
   ],

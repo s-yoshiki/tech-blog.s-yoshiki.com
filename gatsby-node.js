@@ -3,12 +3,15 @@ const { forEach, uniq, filter, not, isNil, flatMap } = require('rambdax')
 const path = require('path')
 const { toKebabCase } = require('./src/helpers')
 
-const pageTypeRegex = /src\/(.*?)\//
+const pageTypeRegex = /content\/(.*?)\//
 const getType = node => node.fileAbsolutePath.match(pageTypeRegex)[1]
 
 const pageTemplate = path.resolve(`./src/templates/page.js`)
 const indexTemplate = path.resolve(`./src/templates/index.js`)
 const tagsTemplate = path.resolve(`./src/templates/tags.js`)
+const datesTemplate = path.resolve(`./src/templates/dates.js`)
+const redirectTemplate = path.resolve(`./src/templates/redirect.js`)
+const redirectConf = require('./redirect-config.json')
 
 exports.createPages = ({ actions, graphql, getNodes }) => {
   const { createPage } = actions
@@ -18,7 +21,7 @@ exports.createPages = ({ actions, graphql, getNodes }) => {
     {
       allMarkdownRemark(
         sort: { fields: [frontmatter___date], order: DESC }
-        limit: 1000
+        limit: 2000
       ) {
         edges {
           node {
@@ -26,6 +29,7 @@ exports.createPages = ({ actions, graphql, getNodes }) => {
               path
               title
               tags
+              date(formatString: "YYYY-MM")
             }
             fileAbsolutePath
           }
@@ -113,9 +117,55 @@ exports.createPages = ({ actions, graphql, getNodes }) => {
       })
     }, tags)
 
+    // Create dates page
+    const dates = filter(
+      date => not(isNil(date)),
+      uniq(flatMap(post => post.frontmatter.date, posts)),
+    )
+
+    forEach(date => {
+      const postsWithDate = posts.filter(
+        post =>
+          post.frontmatter.date && post.frontmatter.date.indexOf(date) !== -1,
+      )
+      const [year, month] = date.split('-')
+      const fromDate = `${year}-${month}-01T00:00:00.000Z`
+      const newStartDate = new Date(fromDate)
+      const toDate = new Date(
+        new Date(newStartDate.setMonth(newStartDate.getMonth() + 1)).getTime() -
+        1
+      ).toISOString()
+      paginate({
+        createPage,
+        items: postsWithDate,
+        component: datesTemplate,
+        itemsPerPage: siteMetadata.postsPerPage,
+        pathPrefix: `/date/${year}/${month}`,
+        context: {
+          year,
+          month,
+          fromDate,
+          toDate,
+        },
+      })
+    }, dates)
+
+    // redirect
+    forEach(conf => {
+      createPage({
+        path: conf.fromPath,
+        component: redirectTemplate,
+        context: {
+          type: 'redirect',
+          toPath: conf.toPath,
+        },
+      })
+    }, redirectConf)
+
     return {
       sortedPages,
       tags,
+      dates,
     }
   })
 }

@@ -1,13 +1,15 @@
 .header {
-  background: #fafafa;
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
   padding: 20px;
+  border-bottom: inset 1px #dcdcdc;
 
   :global .dark-theme :local & {
     background: #252627;
+    border-bottom: inset 1px #656667;
   }
 
   a {
@@ -20,7 +22,7 @@
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
-  width: 760px;
+  width: 950px;
   max-width: 100%;
 }
 

@@ -17,7 +17,7 @@ body {
   padding: 0;
   font-family: 'Inter UI', -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI",  Helvetica, Arial, sans-serif;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 520;
   line-height: 1.54;
   background-color: var(--light-background);
   color: var(--light-color);
@@ -157,6 +157,7 @@ pre {
   border-radius: 8px;
   font-size: .9rem;
   overflow: auto;
+  color: #ccc;
 
   @media (--phone) {
     white-space: pre-wrap;
@@ -248,7 +249,7 @@ button, input, textarea {
   justify-content: center;
   margin: 50px auto;
   width: 100%;
-  max-width: 800px;;
+  max-width: 1250px;
 
   @media (--phone) {
     margin-top: 0;
@@ -272,6 +273,7 @@ hr {
 
 .infoBanner {
   text-align: left;
+  max-width: 950px;
   margin: 20px 0 40px;
   padding: 10px 20px;
   border-radius: 10px;
