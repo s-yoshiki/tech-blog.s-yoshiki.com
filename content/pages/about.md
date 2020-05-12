@@ -14,7 +14,7 @@ s-yoshiki
 $マークを使うことが多いエンジニア。
 色々忘れっぽいので備忘録としてこのブログを書いています。
 
-## Skill
+## Skills
 
 ![](https://img.shields.io/badge/JavaScript-2f2f2f.svg?style=flat-square&logo=javascript)
 
@@ -37,6 +37,12 @@ $マークを使うことが多いエンジニア。
 ![](https://img.shields.io/badge/-Linux-2f2f2f.svg?logo=linux&style=flat)
 
 ![](https://img.shields.io/badge/-CakePHP-9cc.svg?logo=cakephp&style=flat)
+
+
+<a href="https://www.youracclaim.com/badges/851d28e1-e75a-4ae0-9c32-fc1d9327a391/public_url">
+<img src="../images/parts/aws-certified-solutions-architect-associate.png" >
+</a>
+
 
 ## Accounts
 
