@@ -151,16 +151,16 @@ exports.createPages = ({ actions, graphql, getNodes }) => {
     }, dates)
 
     // redirect
-    forEach(conf => {
-      createPage({
-        path: conf.fromPath,
-        component: redirectTemplate,
-        context: {
-          type: 'redirect',
-          toPath: conf.toPath,
-        },
-      })
-    }, redirectConf)
+    // forEach(conf => {
+    //   createPage({
+    //     path: conf.fromPath,
+    //     component: redirectTemplate,
+    //     context: {
+    //       type: 'redirect',
+    //       toPath: conf.toPath,
+    //     },
+    //   })
+    // }, redirectConf)
 
     return {
       sortedPages,
