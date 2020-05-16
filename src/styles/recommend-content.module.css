@@ -2,6 +2,7 @@
   background-color: #fff;
   width: 100%;
   max-width: 950px;
+  border-radius: 10px;
   text-align: left;
   padding: 20px;
   margin: 0 auto 20px;
@@ -23,7 +24,6 @@
 
 .tag {
   padding-left: 5px;
-  padding-left: 5px;
   background-color: #fff;
   border: 1px solid #aaa;
   border-radius: 3px;
@@ -37,6 +37,7 @@
   transition: .2s;
   display: inline-block;
   margin-right: 10px;
+  margin-top: 8px;
 
 }
 .tagCount {
@@ -52,4 +53,38 @@
   text-align: center;
   -webkit-transition: .2s;
   transition: .2s;
+}
+
+.dates {
+  padding-top: 10px;
+  li {
+    padding-top: 8px;
+  }
+}
+
+.postImg {
+  vertical-align: top;
+  margin-bottom: 0px;
+  padding-top: 10px;
+  width: 12%;
+  
+  display: inline-block;
+}
+
+.postContent {
+  display: inline-block;
+  width:80%;
+  padding-left: 25px;
+}
+
+.postRow {
+  position: relative;
+}
+
+.postTitle {
+  font-weight: 700;
+}
+
+h3 {
+  padding-top: 20px;
 }

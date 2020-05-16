@@ -1,0 +1,77 @@
+.content {
+  background-color: #fff;
+  width: 100%;
+  max-width: 950px;
+  border-radius: 10px;
+  text-align: left;
+  padding: 20px;
+  margin: 0 auto 20px;
+  :global .dark-theme :local & {
+    background: #252627;
+  }
+  &:not(:last-of-type) {
+    border-bottom: 1px solid var(--light-border-color);
+
+    :global .dark-theme :local & {
+      border-color: var(--dark-border-color);
+    }
+  }
+
+  @media (--tablet) {
+    max-width: 660px;
+  }
+}
+
+.coverImage {
+  border-radius: 8px;
+  margin-top: 0px;
+}
+
+.postContent {
+  position: relative;
+}
+
+.icon {
+  border-radius: 100%;
+  width:50px;
+}
+
+.badge {
+  border-radius: 0px;
+  display: initial;
+  max-width: initial;
+  margin-right: 5px;
+  height:23px;
+}
+
+
+.col {
+  display: inline-block;
+  vertical-align: top;
+  width:70%;
+  padding-left: 20px;
+
+  @media (--tablet) {
+    width: 100%;
+    padding-left: 0px;
+  }
+}
+
+.authorName {
+  font-weight: 800;
+}
+
+.postImg {
+  vertical-align: top;
+  margin-bottom: 0px;
+  padding-left: 30px;
+  padding-top: 0px;
+  width: 150px;
+  
+  display: inline-block;
+  /*
+  @media (--tablet) {
+    width: 100%;
+  }
+  */
+}

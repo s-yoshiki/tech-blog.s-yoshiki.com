@@ -6,6 +6,8 @@ import AdsImportScript from '../components/ads-import-script'
 import Layout from '../components/layout'
 import ListContent from '../components/list-content'
 import Navigation from '../components/navigation'
+import RecommendContent from '../components/recommend-content'
+import Author from '../components/author'
 
 const Index = ({ data, pageContext: { nextPagePath, previousPagePath } }) => {
   const {
@@ -51,6 +53,8 @@ const Index = ({ data, pageContext: { nextPagePath, previousPagePath } }) => {
           nextPath={nextPagePath}
           nextLabel="Older posts"
         />
+        <Author />
+        <RecommendContent postTags={[]} postPath=''/>
       </Layout>
     </>
   )

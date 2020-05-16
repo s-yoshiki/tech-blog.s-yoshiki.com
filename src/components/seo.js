@@ -26,7 +26,7 @@ const SEO = ({ description, lang, meta, keywords, title }) => {
   return (
     <Helmet
       htmlAttributes={{
-        lang,
+        lang: 'ja',
       }}
       title={metaTitle}
       titleTemplate={title ? `${title} :: ${siteTitle}` : siteTitle}

@@ -6,6 +6,8 @@ import SEO from '../components/seo'
 import Layout from '../components/layout'
 import Post from '../components/list-content'
 import Navigation from '../components/navigation'
+import RecommendContent from '../components/recommend-content'
+import Author from '../components/author'
 
 import '../styles/layout.css'
 
@@ -61,6 +63,8 @@ const Dates = ({
           nextPath={nextPagePath}
           nextLabel="Older posts"
         />
+        <Author />
+        <RecommendContent postTags={[]} postPath=''/>
       </Layout>
     </>
   )

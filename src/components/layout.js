@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
-import Ads from './ads'
 import Header from './header'
 import Footer from './footer'
 import RecommendContent from './recommend-content'
+import Author from './author'
 
 import '../styles/layout.css'
 
@@ -53,11 +53,10 @@ const Layout = ({ children }) => {
         mainMenuItems={showMenuItems}
         menuMoreText={menuMoreText}
       />
-      <Ads />
       <div className="content">{children}</div>
-      <RecommendContent />
+      {/* <Author />
+      <RecommendContent>{children}</RecommendContent> */}
       <Footer copyrights={copyrights} />
-      <Ads />
     </div>
   )
 }

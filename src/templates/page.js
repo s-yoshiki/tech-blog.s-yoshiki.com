@@ -5,6 +5,8 @@ import AdsImportScript from '../components/ads-import-script'
 import SEO from '../components/seo'
 import Layout from '../components/layout'
 import Post from '../components/post'
+import RecommendContent from '../components/recommend-content'
+import Author from '../components/author'
 
 const BlogPostTemplate = ({ data, pageContext }) => {
   const {
@@ -32,6 +34,8 @@ const BlogPostTemplate = ({ data, pageContext }) => {
           previousPost={previous}
           nextPost={next}
         />
+        <Author />
+        <RecommendContent postTags={tags} postPath={path}/>
       </Layout>
     </>
   )

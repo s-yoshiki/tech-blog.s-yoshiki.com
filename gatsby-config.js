@@ -91,6 +91,7 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          `gatsby-remark-autolink-headers`,
           {
             resolve: 'gatsby-remark-embed-video',
             options: {
@@ -103,6 +104,13 @@ module.exports = {
             options: {
               maxWidth: 800,
               quality: 100,
+            },
+          },
+          {
+            resolve: 'gatsby-remark-toc',
+            options: {
+              header: '目次',
+              include: ['content/posts/**/*.md'],
             },
           },
           {

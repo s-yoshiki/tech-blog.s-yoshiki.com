@@ -7,7 +7,8 @@ import { toKebabCase } from '../helpers'
 import Badge from './badge'
 import style from '../styles/post.module.css'
 import SnsShare from './sns-share'
-import Ads from './ads'
+import DisplayAds from './ads/display-ads'
+import RelationAds from './ads/relation-ads'
 
 const Post = ({
   title,
@@ -28,17 +29,16 @@ const Post = ({
   const pageUrl = 'https://tech-blog.s-yoshiki.com' + path
   return (
     <>
-    
       <div className={style.childContainer}>
         
         {/* サイドバー */}
         <div className={style.sidebar}>
-          <div className={style.sidebarFollow}>
+          <div className={style.sidebarFollowLeft}>
             <SnsShare url={pageUrl} title={title}></SnsShare>
           </div>
         </div>
+
         {/* メインコンテンツ */}
-        
         <div className={style.post}>
           <div className={style.postContent}>
             <h1 className={style.title}>
@@ -67,11 +67,13 @@ const Post = ({
               />
             )}
           </div>
-          <Ads />
+          <DisplayAds />
           <div dangerouslySetInnerHTML={{ __html: html }} />
           <div className={style.snsShare}>
             <SnsShare url={pageUrl} title={title}></SnsShare>
           </div>
+          <RelationAds />
+          <DisplayAds />
           <Navigation
             previousPath={previousPath}
             previousLabel={previousLabel}
@@ -79,8 +81,13 @@ const Post = ({
             nextLabel={nextLabel}
           />
         </div>
+
+        {/* サイドバー */}
         <div className={style.sidebar}>
-          <div className={style.sidebarFollow}></div>
+          <div className={style.sidebarFollowRight}>
+            <div style={{'background-color':'#f0f0'}}></div>
+            {/* <RelationAds /> */}
+          </div>
         </div>
       </div>
     </>

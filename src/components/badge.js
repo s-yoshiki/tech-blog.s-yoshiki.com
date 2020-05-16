@@ -2630,7 +2630,7 @@ const Badge = ({ keyword }) => {
   keyword = encodeURI(keyword.split("-").join(" "))
   return (
     <>
-      <img src={`https://img.shields.io/badge/${keyword}-${color}.svg?style=${type}&logo=${logo}`} className={style.badge}/>
+      <img src={`https://img.shields.io/badge/${keyword}-${color}.svg?style=${type}&logo=${logo}`} className={style.badge} alt={keyword}/>
     </>
   )
 }

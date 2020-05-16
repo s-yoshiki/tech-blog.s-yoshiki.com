@@ -16,12 +16,21 @@
   }
 }
 
-.sidebarFollow{
+.sidebarFollowLeft {
   width: 50px;
   position: sticky;
   margin-bottom: 0;
   top: 200px;
   z-index: 1;
+}
+
+.sidebarFollowRight {
+  position: sticky;
+  margin-bottom: 0;
+  top: 200px;
+  z-index: 1;
+  width: 50px;
+  max-width: 200px;
 }
 
 .post {
@@ -99,4 +108,8 @@
 
 .snsShare {
   text-align: right;
+}
+
+li {
+  padding-top: 10px;
 }
