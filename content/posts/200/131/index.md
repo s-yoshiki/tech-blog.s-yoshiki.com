@@ -2,7 +2,7 @@
 title: "dockerでオリジナルのイメージを作成 外部出力まで"
 path: "/entry/131"
 date: "2019-06-09 19:32:04"
-coverImage: "../../../images/thumbnail/docker.jpg"
+coverImage: "../../../images/thumbnail/docker-logo.png"
 author: "s-yoshiki"
 tags: ["linux","docker","docker-ce","centos","コンテナ"]
 ---

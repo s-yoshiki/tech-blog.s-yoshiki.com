@@ -2,7 +2,7 @@
 title: "Ansible で Docker に LAMP環境を構築するハンズオンを作った"
 path: "/entry/182"
 date: "2020-01-12 19:16:48"
-coverImage: "../../../images/thumbnail/docker.jpg"
+coverImage: "../../../images/thumbnail/docker-logo.png"
 author: "s-yoshiki"
 tags: ["linux","docker","ansible"]
 ---

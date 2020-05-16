@@ -2,7 +2,7 @@
 title: "Macにdockerをインストール"
 path: "/entry/130"
 date: "2019-06-09 16:31:57"
-coverImage: "../../../images/thumbnail/docker.jpg"
+coverImage: "../../../images/thumbnail/docker-logo.png"
 author: "s-yoshiki"
 tags: ["linux","mac","docker","docker-ce","docker-compose","homebrew"]
 ---

@@ -43,7 +43,6 @@ $マークを使うことが多いエンジニア。
 <img src="../images/parts/aws-certified-solutions-architect-associate.png" >
 </a>
 
-
 ## Accounts
 
 [![](https://img.shields.io/badge/GitHub--lightgrey.svg?logo=github&style=social)](https://github.com/s-yoshiki)

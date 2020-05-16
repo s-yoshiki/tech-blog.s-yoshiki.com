@@ -2,7 +2,7 @@
 title: "docker-composeで起動したMySQLコンテナのmysqldumpを行うコマンド"
 path: "/entry/175"
 date: "2019-12-04 00:27:31"
-coverImage: "../../../images/thumbnail/docker.jpg"
+coverImage: "../../../images/thumbnail/docker-logo.png"
 author: "s-yoshiki"
 tags: ["docker","docker-compose"]
 ---
