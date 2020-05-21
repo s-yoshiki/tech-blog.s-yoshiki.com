@@ -333,3 +333,28 @@ footer {
     }
   }
 }
+
+li {
+  padding-top: 10px;
+}
+
+h2 {
+  margin-top: 100px;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom-style: solid;
+  border-bottom-color: #a9a9b3;
+  border-width: 3px;
+}
+
+
+h3 {
+  margin-top: 50px;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-left-style: solid;
+  border-left-color: #a9a9b3;
+  border-width: 3px;
+}

@@ -47,7 +47,7 @@
   z-index: 2;
   height: 100%;
   line-height: 22px;
-  background-color: #3498db;
+  background-color: #213f52;
   color: #fff;
   font-size: 12px;
   text-align: center;
@@ -57,8 +57,10 @@
 
 .dates {
   padding-top: 10px;
-  li {
-    padding-top: 8px;
+  span {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
   }
 }
 
@@ -85,6 +87,7 @@
   font-weight: 700;
 }
 
-h3 {
-  padding-top: 20px;
+.muted {
+  padding-top: 2px;
+  font-size: 12px;
 }

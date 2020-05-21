@@ -18,6 +18,7 @@ const RecommendContent = ({ postTags, postPath }) => {
               title
               tags
               path
+              excerpt
               date(formatString: "YYYY-MM-DD")
               coverImage {
                 childImageSharp {
@@ -27,12 +28,14 @@ const RecommendContent = ({ postTags, postPath }) => {
                 }
               }
             }
+            html
+            excerpt
           }
         }
       }
     }
   `)
-  const defaultContentLength = 5
+  const defaultContentLength = 10
   let tags = {}
   let dates = {}
   let newPosts = []
@@ -40,7 +43,10 @@ const RecommendContent = ({ postTags, postPath }) => {
   if (!Array.isArray(postTags)) {
     postTags = []
   }
-  data.allMarkdownRemark.edges.map(e => e.node.frontmatter).forEach(row => {
+  data.allMarkdownRemark.edges.map(e => e.node).forEach(e => {
+    const row = e.frontmatter
+    row.excerpt = e.excerpt
+    row.excerpt = row.excerpt.split("目次").join("").split("概要").join("")
     // new posts
     if (newPosts.length < defaultContentLength) {
       newPosts.push(row)
@@ -67,19 +73,26 @@ const RecommendContent = ({ postTags, postPath }) => {
       })
     }
     // dates
-    const date = row.date.split("-").slice(0, 2).join("/")
-    if (dates.hasOwnProperty(date) && dates.hasOwnProperty(date) >= 0) {
-      dates[date] += 1
+    const [year, month] = row.date.split("-").slice(0, 2)
+    if (!dates[year]) {
+      dates[year] = {}
+    }
+    if (dates[year][month]) {
+      dates[year][month] += 1
     } else {
-      dates[date] = 1
+      dates[year][month] = 1
     }
   })
   tags = Object.keys(tags).map((key) => {
     return { name: key, counts: tags[key] }
   }).sort((a, b) => b.counts - a.counts).slice(0, 50)
-  dates = Object.keys(dates).map((key) => {
-    return { name: key, counts: dates[key] }
-  })
+  dates = Object.keys(dates).map(year => {
+    const row = dates[year]
+    const child = Object.keys(row).map(month => {
+      return { name: month, count: row[month] }
+    }).sort((a, b) => Number(a.name) - Number(b.name))
+    return { year, month: child }
+  }).sort((a, b) => Number(b.year) - Number(a.year))
   relationPosts = relationPosts.sort((a, b) => {
     let tmp = [a.date, b.date].map(e => new Date(e))
     return tmp[1] - tmp[0]
@@ -93,9 +106,11 @@ const RecommendContent = ({ postTags, postPath }) => {
             <div className={style.postImg} >
               {
                 post.coverImage && (
-                  <Img
-                    fluid={post.coverImage.childImageSharp.fluid}
-                  />
+                  <Link to={post.path} >
+                    <Img
+                      fluid={post.coverImage.childImageSharp.fluid}
+                    />
+                  </Link>
                 )
               }
             </div>
@@ -103,6 +118,7 @@ const RecommendContent = ({ postTags, postPath }) => {
               <Link to={post.path} >
                 <span className={style.postTitle}>{post.title}</span>
               </Link>
+              <div className={style.muted} dangerouslySetInnerHTML={{ __html: post.excerpt }} />
             </div>
             <hr />
           </>
@@ -121,14 +137,16 @@ const RecommendContent = ({ postTags, postPath }) => {
           </>
         )
       }
-      <DisplayAds />
+      <div style={{width:'100%'}}>
+          <div style={{width:'49%', float:'left'}}><DisplayAds /></div>
+          <div style={{width:'49%', float:'right'}}><DisplayAds /></div>
+        </div>
       <h3>最新の投稿</h3>
       {postRows(newPosts)}
       <h3>Tags</h3>
       <div>
         {tags.map(tag => (
           <Link to={`/tag/${toKebabCase(tag.name)}/`} key={toKebabCase(tag.name)}>
-            {/* <Badge keyword={tag.name} className={style.badge}>({tag.counts})</Badge> */}
             <div className={style.tag}>{tag.name} <span className={style.tagCount}>{tag.counts}</span></div>
           </Link>
         ))}
@@ -136,18 +154,18 @@ const RecommendContent = ({ postTags, postPath }) => {
       <RelationAds />
       <h3>Dates</h3>
       <div>
-        <ul className={style.dates}>
-          {dates.map(date => {
-            const label = `${date.name.split('/')[0]}年 ${date.name.split('/')[1]}月 `
-            return (
-              <li key={date.name}>
-                <Link to={`/date/${date.name}/`} key={date.name}>
-                  {label} ({date.counts})
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
+        {dates.map(date => (
+          <>
+            <h4>{date.year}年</h4>
+            <div className={style.dates}>
+              {date.month.map(month => (
+                <span>
+                  <Link to={`date/${date.year}/${month.name}/`}>{Number(month.name)}月({month.count})</Link> /
+                </span>
+              ))}
+            </div>
+          </>
+        ))}
       </div>
     </div>
   )
