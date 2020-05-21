@@ -9,6 +9,7 @@ import style from '../styles/post.module.css'
 import SnsShare from './sns-share'
 import DisplayAds from './ads/display-ads'
 import RelationAds from './ads/relation-ads'
+import JsonLd from './json-ld'
 
 const Post = ({
   title,
@@ -29,6 +30,7 @@ const Post = ({
   const pageUrl = 'https://tech-blog.s-yoshiki.com' + path
   return (
     <>
+      <JsonLd title={title} date={date} coverImage={coverImage} author={author} path={path}/>
       <div className={style.childContainer}>
         
         {/* サイドバー */}
@@ -40,6 +42,8 @@ const Post = ({
 
         {/* メインコンテンツ */}
         <div className={style.post}>
+          <DisplayAds />
+          <br />
           <div className={style.postContent}>
             <h1 className={style.title}>
               {excerpt ? <Link to={path}>{title}</Link> : title}
@@ -67,7 +71,9 @@ const Post = ({
               />
             )}
           </div>
+          
           <DisplayAds />
+          <br />
           <div dangerouslySetInnerHTML={{ __html: html }} />
           <div className={style.snsShare}>
             <SnsShare url={pageUrl} title={title}></SnsShare>
