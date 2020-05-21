@@ -129,8 +129,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-hello-friend`,
-        short_name: `hello-friend`,
+        name: `404 motivation not found`,
+        short_name: `404 motivation not found`,
         start_url: `/`,
         background_color: `#292a2d`,
         theme_color: `#292a2d`,
@@ -138,5 +138,6 @@ module.exports = {
         icon: `content/images/hello-icon.png`,
       },
     },
+    `gatsby-plugin-offline`,
   ],
 }
