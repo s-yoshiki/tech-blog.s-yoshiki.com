@@ -20,6 +20,9 @@ const Author = () => {
             <Link to={e.link}><img className={style.badge} src={e.logo} alt={e.alt}/></Link>
           ))}
         </div>
+        <div>
+          Web作ってますが、インタラクティブなプログラミングも好きです。
+        </div>
       </div>
     </div>
   )
