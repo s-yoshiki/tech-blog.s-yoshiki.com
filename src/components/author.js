@@ -20,8 +20,9 @@ const Author = () => {
             <Link to={e.link}><img className={style.badge} src={e.logo} alt={e.alt}/></Link>
           ))}
         </div>
-        <div>
-          Web作ってますが、インタラクティブなプログラミングも好きです。
+        <div style={{'fontSize': '12px'}}>
+          Web作ってますが、インタラクティブなプログラミングも好きです。<br />
+          JavaScript / Vue / node.js / PHP / AWS / OpenCV
         </div>
       </div>
     </div>
