@@ -4,7 +4,7 @@ path: "/entry/89"
 date: "2018-12-25 00:03:57"
 coverImage: "../../../images/thumbnail/no-image.png"
 author: "s-yoshiki"
-tags: ["javascript","アルゴリズム","競技プログラミング", "AtCoder"]
+tags: ["javascript","アルゴリズム","競技プログラミング", "atcoder"]
 ---
 
 ## 深さ優先探索について

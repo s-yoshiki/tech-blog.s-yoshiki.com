@@ -4,7 +4,7 @@ path: "/entry/88"
 date: "2018-12-24 00:36:17"
 coverImage: "../../../images/thumbnail/javascript-logo.png"
 author: "s-yoshiki"
-tags: ["javascript","php","アルゴリズム","AtCoder"]
+tags: ["javascript","php","アルゴリズム","atcoder"]
 ---
 
 ## 概要

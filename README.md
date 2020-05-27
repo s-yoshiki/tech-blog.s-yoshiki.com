@@ -1,4 +1,6 @@
- # tech-blog.s-yoshiki.com
+# tech-blog.s-yoshiki.com
+
+![](https://github.com/s-yoshiki/tech-blog.s-yoshiki.com/workflows/deploy%20s3/badge.svg) 
 
 ブログです。
 
