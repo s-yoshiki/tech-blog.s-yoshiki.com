@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import SEO from '../components/seo'
-import AdsImportScript from '../components/ads-import-script'
 import Layout from '../components/layout'
 import ListContent from '../components/list-content'
 import Navigation from '../components/navigation'
@@ -17,7 +16,6 @@ const Index = ({ data, pageContext: { nextPagePath, previousPagePath } }) => {
   return (
     <>
       <SEO />
-      <AdsImportScript />
       <Layout>
         {posts.map(({ node }) => {
           const {

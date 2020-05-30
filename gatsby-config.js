@@ -54,12 +54,12 @@ module.exports = {
         path: `${__dirname}/content/pages`,
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-google-adsense`,
-    //   options: {
-    //     publisherId: `ca-pub-5931776908676811"`
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-google-adsense`,
+      options: {
+        publisherId: `ca-pub-5931776908676811`
+      },
+    },
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {

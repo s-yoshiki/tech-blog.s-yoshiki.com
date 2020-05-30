@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import AdsImportScript from '../components/ads-import-script'
 import SEO from '../components/seo'
 import Layout from '../components/layout'
 import Post from '../components/post'
@@ -19,7 +18,6 @@ const BlogPostTemplate = ({ data, pageContext }) => {
 
   return (
     <>
-      <AdsImportScript />
       <Layout>
         <SEO title={title} description={excerpt || autoExcerpt} />
         <Post

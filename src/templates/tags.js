@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import AdsImportScript from '../components/ads-import-script'
 import SEO from '../components/seo'
 import Layout from '../components/layout'
 import Post from '../components/list-content'
@@ -21,7 +20,6 @@ const Tags = ({
 
   return (
     <>
-      <AdsImportScript />
       <SEO />
       <Layout>
         <div className="infoBanner">

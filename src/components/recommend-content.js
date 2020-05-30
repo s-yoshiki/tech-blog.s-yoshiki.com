@@ -137,10 +137,7 @@ const RecommendContent = ({ postTags, postPath }) => {
           </>
         )
       }
-      <div style={{width:'100%'}}>
-          <div style={{width:'49%', float:'left'}}><DisplayAds /></div>
-          <div style={{width:'49%', float:'right'}}><DisplayAds /></div>
-        </div>
+      <DisplayAds />
       <h3>最新の投稿</h3>
       {postRows(newPosts)}
       <h3>Tags</h3>
