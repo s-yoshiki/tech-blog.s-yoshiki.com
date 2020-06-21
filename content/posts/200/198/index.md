@@ -1,7 +1,7 @@
 ---
 title: "JavaScriptでワーシャルフロイド法を実装"
 path: "/entry/198"
-date: "2020-05-27"
+date: "2020-06-21"
 coverImage: "../../../images/thumbnail/javascript-logo.png"
 author: "s-yoshiki"
 tags: ["javascript", "アルゴリズム", "競技プログラミング"]
@@ -62,7 +62,7 @@ ai と bi は座標を表しており、ti は ai と bi 間の距離である�
 
 ### 解説
 
-<iframe src="//www.slideshare.net/slideshow/embed_code/key/gBGKzx60ZPcNHu" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/chokudai/abc012" title="AtCoder Beginner Contest 012 解説" target="_blank">AtCoder Beginner Contest 012 解説</a> </strong> from <strong><a href="https://www.slideshare.net/chokudai" target="_blank">AtCoder Inc.</a></strong> </div>
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/gBGKzx60ZPcNHu?startSlide=19" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/chokudai/abc012" title="AtCoder Beginner Contest 012 解説" target="_blank">AtCoder Beginner Contest 012 解説</a> </strong> from <strong><a href="//www.slideshare.net/chokudai" target="_blank">AtCoder Inc.</a></strong> </div>
 
 ## 実装
 
