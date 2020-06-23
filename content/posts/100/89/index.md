@@ -177,10 +177,49 @@ Yes
 
 ```
 
+## 例題: AtCoder ABC015 C
+
+[https://atcoder.jp/contests/abc015/tasks/abc015_3](https://atcoder.jp/contests/abc015/tasks/abc015_3)
+
+### 解説
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/w9yU2aLrUCN8QE?startSlide=14" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/chokudai/abc015" title="AtCoder Beginner Contest 015 解説" target="_blank">AtCoder Beginner Contest 015 解説</a> </strong> from <strong><a href="//www.slideshare.net/chokudai" target="_blank">AtCoder Inc.</a></strong> </div>
+
+### ソースコード
+
+```js
+"use strict"
+function main(arg) {
+    let tmp = arg.trim().split("\n").map(e => e.split(" ").map(Number))
+    let [N,K] = tmp.shift()
+    let data = tmp.slice()
+    function dfs(i, sum) {
+        if (i + 1 === data.length) {
+            return sum === 0
+        }
+        for (let j = 0; j < K; j++) {
+            let t = dfs(i+1, data[i+1][j] ^ sum)
+            if (t) {
+                return true
+            }
+        }
+        return false
+    }
+    for (let i = 0; i < K; i++) {
+        let ans = dfs(0, data[0][i])
+        if (ans) {
+            console.log('Found')
+            return
+        }
+    }
+    console.log('Nothing')
+}
+main(require('fs').readFileSync('/dev/stdin', 'utf8'));
+```
+
 ## おまけ : 2進数を利用して
 
 こんな方法でも実装できました。
-原理的にはdfsだと思います。
 
 ```js
 main()
@@ -197,16 +236,13 @@ function main(arg) {
         for (var j = bin.length; j < a.length; j++) {
             bin += "0"
         }
-
         bin = bin.split("").map(e => Number(e))
-
         var sum = 0
         for (var j = 0; j < bin.length; j++) {
             if (bin[j] === 1) {
                 sum += a[j]
             }
         }
-
         if (sum === k) {
             ans = true
             break
