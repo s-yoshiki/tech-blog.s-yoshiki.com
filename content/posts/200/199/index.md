@@ -4,7 +4,7 @@ path: "/entry/199"
 date: "2020-07-05"
 coverImage: "../../../images/thumbnail/javascript-logo.png"
 author: "s-yoshiki"
-tags: ["javascript", "アルゴリズム", "競技プログラミング", "AtCoder"]
+tags: ["javascript", "アルゴリズム", "競技プログラミング", "atcoder"]
 ---
 
 ## 概要
