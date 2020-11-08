@@ -1,7 +1,7 @@
 ---
 title: "highlightJS + markedJS でMarkdownエディタを作ってみました"
 path: "/entry/6"
-date: "2018-02-11 12:31:57"
+date: "2018-03-11 12:31:57"
 coverImage: "../../../images/thumbnail/javascript-logo.png"
 author: "s-yoshiki"
 tags: ["html5","javascript","markedjs","highlight.js"]
