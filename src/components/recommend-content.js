@@ -157,7 +157,7 @@ const RecommendContent = ({ postTags, postPath }) => {
             <div className={style.dates}>
               {date.month.map(month => (
                 <span>
-                  <Link to={`date/${date.year}/${month.name}/`}>{Number(month.name)}月({month.count})</Link> /
+                  <Link to={`/date/${date.year}/${month.name}/`}>{Number(month.name)}月({month.count})</Link> /
                 </span>
               ))}
             </div>
