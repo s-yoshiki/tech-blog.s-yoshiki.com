@@ -213,3 +213,4 @@ export default {
 </style>
 ```
 
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">SQL整形ツール をリリースしました。<br>リアルタイムで整形してくれるやつです。<br><br>- インデント調整可能<br>- アッパーケース対応<br><br>※スマホからの閲覧は非推奨<a href="https://t.co/897X7i3pAq">https://t.co/897X7i3pAq</a> <a href="https://t.co/b4BWEMepw1">pic.twitter.com/b4BWEMepw1</a></p>&mdash; s-yoshiki | スクリプトカス 👀 (@s_yoshiki_dev) <a href="https://twitter.com/s_yoshiki_dev/status/1325374209715941377?ref_src=twsrc%5Etfw">November 8, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
