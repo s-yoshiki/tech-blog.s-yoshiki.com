@@ -2,9 +2,9 @@
 title: "Vue/Nuxt.js 触ってた人が Next.js に入門する"
 path: "/entry/212"
 date: "2021-01-03"
-coverImage: "../../../images/thumbnail/javascript-logo.png"
+coverImage: "../../../images/thumbnail/react-logo.png"
 author: "s-yoshiki"
-tags: ["javascript","react","next","typescript"]
+tags: ["javascript","react","next.js","typescript"]
 ---
 
 ## 概要
@@ -385,3 +385,12 @@ http://localhost:3000/api/hello にアクセスすると次のようなレスポ
 ## デプロイ
 
 [vercel](https://vercel.com/)が良いらしい。
+
+
+## 参考にしたサイト
+
+[Next.js Learn (Basic) を試して学んだ Next.js の基礎の基礎 - kakakakakku blog](https://kakakakakku.hatenablog.com/entry/2020/02/07/113525)
+[https://kakakakakku.hatenablog.com/entry/2020/02/07/113525](https://kakakakakku.hatenablog.com/entry/2020/02/07/113525)
+
+[Next.jsにおけるSSG（静的サイト生成）とISRについて（自分の）限界まで丁寧に説明する - Qiita](https://qiita.com/thesugar/items/47ec3d243d00ddd0b4ed)
+[https://qiita.com/thesugar/items/47ec3d243d00ddd0b4ed](https://qiita.com/thesugar/items/47ec3d243d00ddd0b4ed)
