@@ -155,7 +155,7 @@ Failed to connect to bus: Host is down
 
 これは docker 起動時に `--privileged` と `/sbin/init` を指定していないため発生すると思われます。
 
-## failed to read the acl of the socket '/run/php-fpm/www.sock'
+###  failed to read the acl of the socket '/run/php-fpm/www.sock'
 
 ```
 failed to read the acl of the socket '/run/php-fpm/www.sock'
