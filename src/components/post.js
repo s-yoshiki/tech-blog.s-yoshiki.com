@@ -42,8 +42,14 @@ const Post = ({
 
         {/* メインコンテンツ */}
         <div className={style.post}>
-          <DisplayAds />
+          
           <br />
+          {coverImage && (
+            <Img
+              fluid={coverImage.childImageSharp.fluid}
+              className={style.coverImage}
+            />
+          )}
           <div className={style.postContent}>
             <h1 className={style.title}>
               {excerpt ? <Link to={path}>{title}</Link> : title}
@@ -64,12 +70,6 @@ const Post = ({
                 <SnsShare url={pageUrl} title={title}></SnsShare>
               </div>
             </div>
-            {coverImage && (
-              <Img
-                fluid={coverImage.childImageSharp.fluid}
-                className={style.coverImage}
-              />
-            )}
           </div>
           
           <DisplayAds />

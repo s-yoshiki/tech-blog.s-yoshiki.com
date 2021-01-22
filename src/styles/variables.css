@@ -1,10 +1,13 @@
 :root {
   /* light theme color */
-  --light-background: #f6f6f6;
-  --light-background-secondary: #eaeaea;
+  --light-background: #fff;
+  --light-background-secondary: #EFF3F8;
   --light-color: #222;
   --light-color-secondary: #999;
   --light-border-color: #dcdcdc;
+  --light-accent-color: #051B4E;
+  --light-accent-color-secondary: #98A2B2;
+  --light-accent-color-focus: #0269FF;
 
   /* dark theme colors */
   --dark-background: #292a2d;
@@ -12,6 +15,8 @@
   --dark-color: #a9a9b3;
   --dark-color-secondary: #73747b;
   --dark-border-color: #4a4b50;
+  --dark-accent-color: #a9a9b3;
+  --dark-accent-color-secondry: #a9a9b3;
 
   /* variables for js, must be the same as these in @custom-media queries */
   --phoneWidth: (max-width: 684px);

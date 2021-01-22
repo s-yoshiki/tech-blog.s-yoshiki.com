@@ -15,7 +15,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Inter UI', -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI",  Helvetica, Arial, sans-serif;
+  font-family: "Sailec-Regular",system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;
   font-size: 1rem;
   font-weight: 520;
   line-height: 1.54;
@@ -23,7 +23,6 @@ body {
   color: var(--light-color);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  font-feature-settings: "liga", "tnum", "case", "calt", "zero", "ss01", "locl";
   -webkit-overflow-scrolling: touch;
   -webkit-text-size-adjust: 100%;
 
@@ -44,7 +43,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 2.625rem;
+  font-size: 2.125rem;
+  color: var(--light-accent-color);
+  .dark-theme & {
+    color: var(--dark-accent-color);
+  }
 }
 
 h2 {
@@ -79,6 +82,7 @@ h4 {
 
 a {
   color: inherit;
+  text-decoration: none;
 }
 
 img {
@@ -166,7 +170,7 @@ pre {
 
   code {
     background: none !important;
-    color: #ccc;
+    color: #EFF3F8;
     margin: 0;
     padding: 0;
     font-size: .9rem;
@@ -344,7 +348,7 @@ h2 {
   padding-top: 10px;
   padding-bottom: 10px;
   border-bottom-style: solid;
-  border-bottom-color: #a9a9b3;
+  border-bottom-color: var(--light-background-secondary);
   border-width: 3px;
 }
 
@@ -355,6 +359,6 @@ h3 {
   padding-top: 10px;
   padding-bottom: 10px;
   border-left-style: solid;
-  border-left-color: #a9a9b3;
+  border-left-color: var(--light-background-secondary);
   border-width: 3px;
 }
