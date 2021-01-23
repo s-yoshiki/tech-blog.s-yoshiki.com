@@ -13,6 +13,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
     excerpt: autoExcerpt,
     id,
     html,
+    tableOfContents
   } = data.markdownRemark
   const { next, previous } = pageContext
 
@@ -31,6 +32,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
           tags={tags}
           previousPost={previous}
           nextPost={next}
+          tableOfContents={tableOfContents}
         />
         <Author />
         <RecommendContent postTags={tags} postPath={path}/>
@@ -70,6 +72,7 @@ export const pageQuery = graphql`
       id
       html
       excerpt
+      tableOfContents(absolute: false, heading: "", pathToSlugField: "xx", maxDepth: 3)
     }
   }
 `

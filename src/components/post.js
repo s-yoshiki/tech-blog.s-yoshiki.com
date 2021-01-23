@@ -22,6 +22,7 @@ const Post = ({
   html,
   previousPost,
   nextPost,
+  tableOfContents
 }) => {
   const previousPath = previousPost && previousPost.frontmatter.path
   const previousLabel = previousPost && previousPost.frontmatter.title
@@ -33,12 +34,6 @@ const Post = ({
       <JsonLd title={title} date={date} coverImage={coverImage} author={author} path={path}/>
       <div className={style.childContainer}>
         
-        {/* サイドバー */}
-        <div className={style.sidebar}>
-          <div className={style.sidebarFollowLeft}>
-            <SnsShare url={pageUrl} title={title}></SnsShare>
-          </div>
-        </div>
 
         {/* メインコンテンツ */}
         <div className={style.post}>
@@ -92,7 +87,8 @@ const Post = ({
         <div className={style.sidebar}>
           <div className={style.sidebarFollowRight}>
             <div style={{'background-color':'#f0f0'}}></div>
-            {/* <RelationAds /> */}
+            <div dangerouslySetInnerHTML={{ __html: tableOfContents }} />
+            <RelationAds />
           </div>
         </div>
       </div>
