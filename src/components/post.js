@@ -88,7 +88,7 @@ const Post = ({
           <div className={style.sidebarFollowRight}>
             <div style={{'background-color':'#f0f0'}}></div>
             <div dangerouslySetInnerHTML={{ __html: tableOfContents }} />
-            <RelationAds />
+            <DisplayAds />
           </div>
         </div>
       </div>
