@@ -17,7 +17,6 @@ const Index = ({ data, pageContext: { nextPagePath, previousPagePath } }) => {
     <>
       <SEO />
       <Layout>
-        <div style={{'backgroud-color':'#fe1'}}>XXX</div>
         {posts.map(({ node }) => {
           const {
             id,

@@ -29,6 +29,7 @@ const Post = ({
   const nextPath = nextPost && nextPost.frontmatter.path
   const nextLabel = nextPost && nextPost.frontmatter.title
   const pageUrl = 'https://tech-blog.s-yoshiki.com' + path
+  const windowGlobal = typeof window !== 'undefined' && window
   return (
     <>
       <JsonLd title={title} date={date} coverImage={coverImage} author={author} path={path}/>
@@ -86,7 +87,7 @@ const Post = ({
           <div className={style.sidebarFollowRight}>
             <div style={{'background-color':'#f0f0'}}></div>
             <div dangerouslySetInnerHTML={{ __html: tableOfContents }} />
-            {window.innerWidth > 900 && (<DisplayAds />)}
+            {windowGlobal.innerWidth > 900 && (<DisplayAds />)}
           </div>
         </div>
       </div>
