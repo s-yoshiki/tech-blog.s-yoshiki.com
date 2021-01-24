@@ -33,8 +33,6 @@ const Post = ({
     <>
       <JsonLd title={title} date={date} coverImage={coverImage} author={author} path={path}/>
       <div className={style.childContainer}>
-        
-
         {/* メインコンテンツ */}
         <div className={style.post}>
           
@@ -88,7 +86,7 @@ const Post = ({
           <div className={style.sidebarFollowRight}>
             <div style={{'background-color':'#f0f0'}}></div>
             <div dangerouslySetInnerHTML={{ __html: tableOfContents }} />
-            <DisplayAds />
+            {window.innerWidth > 900 && (<DisplayAds />)}
           </div>
         </div>
       </div>

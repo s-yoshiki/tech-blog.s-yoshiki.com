@@ -28,16 +28,6 @@ const Post = ({
   return (
     <div className={style.post}>
       <div className={style.postContent}>
-        <Link to={path}>
-          <div className={style.postImg}>
-            {coverImage && (
-              <Img
-                fluid={coverImage.childImageSharp.fluid}
-                className={style.coverImage}
-              />
-            )}
-          </div>
-        </Link>
         <div className={style.col}>
           <h1 className={style.title}>
             <Link to={path}>{title}</Link>
