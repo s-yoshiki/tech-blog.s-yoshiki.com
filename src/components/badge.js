@@ -93,6 +93,10 @@ const icons = {
     "color": "232F3E",
     "colorIcon": false
   },
+  "aws-amplify": {
+    "color": "FF9900",
+    "colorIcon": true
+  },
   "amd": {
     "color": "ED1C24",
     "colorIcon": false
@@ -329,6 +333,10 @@ const icons = {
     "color": "00B265",
     "colorIcon": true
   },
+  "centos": {
+    "color": "262577",
+    "colorIcon": false
+  },
   "cevo": {
     "color": "1EABE2",
     "colorIcon": true
@@ -429,6 +437,10 @@ const icons = {
     "color": "B5314C",
     "colorIcon": false
   },
+  "composer": {
+    "color": "885630",
+    "colorIcon": false
+  },
   "compropago": {
     "color": "00AAEF",
     "colorIcon": true
@@ -471,6 +483,10 @@ const icons = {
   },
   "csswizardry": {
     "color": "F43059",
+    "colorIcon": false
+  },
+  "curl": {
+    "color": "073551",
     "colorIcon": false
   },
   "d3.js": {
@@ -853,6 +869,10 @@ const icons = {
     "color": "A22430",
     "colorIcon": false
   },
+  "gnu-bash": {
+    "color": "4EAA25",
+    "colorIcon": false
+  },
   "go": {
     "color": "76E1FE",
     "colorIcon": true
@@ -1019,6 +1039,10 @@ const icons = {
   },
   "hockeyapp": {
     "color": "009EE1",
+    "colorIcon": true
+  },
+  "homebrew": {
+    "color": "FBB040",
     "colorIcon": true
   },
   "homify": {
@@ -1353,6 +1377,10 @@ const icons = {
     "color": "35BF5C",
     "colorIcon": true
   },
+  "mariadb": {
+    "color": "003545",
+    "colorIcon": false
+  },
   "markdown": {
     "color": "000000",
     "colorIcon": false
@@ -1609,6 +1637,10 @@ const icons = {
     "color": "F4731C",
     "colorIcon": true
   },
+  "opencv": {
+    "color": "5C3EE8",
+    "colorIcon": false
+  },
   "open-access": {
     "color": "F68212",
     "colorIcon": true
@@ -1672,6 +1704,10 @@ const icons = {
   "periscope": {
     "color": "40A4C4",
     "colorIcon": true
+  },
+  "perl": {
+    "color": "39457E",
+    "colorIcon": false
   },
   "php": {
     "color": "777BB4",
@@ -1955,6 +1991,10 @@ const icons = {
   },
   "sega": {
     "color": "0089CF",
+    "colorIcon": true
+  },
+  "selenium": {
+    "color": "43B02A",
     "colorIcon": true
   },
   "sellfy": {

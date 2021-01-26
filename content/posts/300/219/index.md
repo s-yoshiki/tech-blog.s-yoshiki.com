@@ -4,7 +4,7 @@ path: "/entry/219"
 date: "2021-01-19 23:00"
 coverImage: "../../../images/thumbnail/ubuntu-logo.png"
 author: "s-yoshiki"
-tags: ["php","apache","ubutnu","linux"]
+tags: ["php","apache","ubuntu","linux"]
 ---
 
 ## 概要

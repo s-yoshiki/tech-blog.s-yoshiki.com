@@ -4,7 +4,7 @@ path: "/entry/169"
 date: "2019-11-16 16:58:02"
 coverImage: "../../../images/thumbnail/perl-logo.jpeg"
 author: "s-yoshiki"
-tags: ["centos","perl","centos7","cpan"]
+tags: ["centos","perl","centos","cpan"]
 ---
 
 ## 概要

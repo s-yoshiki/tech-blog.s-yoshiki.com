@@ -4,7 +4,7 @@ path: "/entry/162"
 date: "2019-08-29 00:34:15"
 coverImage: "../../../images/thumbnail/console-image.png"
 author: "s-yoshiki"
-tags: ["開発環境","vscode","ソフトウェア","ide"]
+tags: ["開発環境","visual-studio-code","ソフトウェア","ide"]
 ---
 ブラウザ上でコードの編集や、デバッグ、コマンドを実行することができるブラウザ版IDE、code-serverを使ってみました。
 

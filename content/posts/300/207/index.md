@@ -4,7 +4,7 @@ path: "/entry/207"
 date: "2020-12-13"
 coverImage: "../../../images/thumbnail/centos-logo.png"
 author: "s-yoshiki"
-tags: ["centos","redhat", "centos-stream"]
+tags: ["centos","red-hat", "centos-stream"]
 ---
 
 ## 概要

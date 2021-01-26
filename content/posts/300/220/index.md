@@ -4,7 +4,7 @@ path: "/entry/220"
 date: "2021-01-26 23:00"
 coverImage: "../../../images/thumbnail/mysql-logo.png"
 author: "s-yoshiki"
-tags: ["mysql","mariadb","centos","linux","redhat"]
+tags: ["mysql","mariadb","centos","linux","red-hat"]
 ---
 
 ## 概要

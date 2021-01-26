@@ -4,7 +4,7 @@ path: "/entry/217"
 date: "2021-01-17 00:00"
 coverImage: "../../../images/thumbnail/linux-logo.png"
 author: "s-yoshiki"
-tags: ["php","apache","centos","redhat"]
+tags: ["php","apache","centos","red-hat"]
 ---
 
 ## 概要

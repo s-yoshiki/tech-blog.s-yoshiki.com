@@ -4,7 +4,7 @@ path: "/entry/108"
 date: "2019-01-27 00:53:28"
 coverImage: "../../../images/thumbnail/linux-logo.png"
 author: "s-yoshiki"
-tags: ["linux","curl","proxy","プロキシ","git","bash","zsh","wget"]
+tags: ["linux","curl","proxy","プロキシ","git","gnu-bash","zsh","wget"]
 ---
 
 ## 概要

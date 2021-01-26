@@ -4,7 +4,7 @@ path: "/entry/121"
 date: "2019-05-06 15:55:12"
 coverImage: "../../../images/thumbnail/vscode-logo-stable.png"
 author: "s-yoshiki"
-tags: ["linux","ubuntu","ssh","node.js","mac","開発環境","vscode"]
+tags: ["linux","ubuntu","ssh","node.js","mac","開発環境","visual-studio-code"]
 ---
 
 ## 概要

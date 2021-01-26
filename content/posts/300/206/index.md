@@ -4,7 +4,7 @@ path: "/entry/206"
 date: "2020-11-30"
 coverImage: "../../../images/thumbnail/centos-logo.png"
 author: "s-yoshiki"
-tags: ["centos","redhat", "EPEL", "PowerTools", "fedora"]
+tags: ["centos","red-hat", "EPEL", "PowerTools", "fedora"]
 ---
 
 ## 概要
