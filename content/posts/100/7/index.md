@@ -4,7 +4,7 @@ path: "/entry/7"
 date: "2018-04-09 14:59:41"
 coverImage: "../../../images/thumbnail/python-logo.png"
 author: "s-yoshiki"
-tags: ["linux","ubuntu","selenium","python","chromedriver","vagrant"]
+tags: ["linux","ubuntu","selenium","python","google-chrome","vagrant"]
 ---
 ## 概要
 

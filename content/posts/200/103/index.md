@@ -4,7 +4,7 @@ path: "/entry/103"
 date: "2019-01-25 00:11:01"
 coverImage: "../../../images/thumbnail/aws-logo.png"
 author: "s-yoshiki"
-tags: ["amazon-aws","s3"]
+tags: ["amazon-aws","amazon-s3"]
 ---
 
 ## 概要

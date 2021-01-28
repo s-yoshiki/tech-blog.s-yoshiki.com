@@ -4,7 +4,7 @@ path: "/entry/180"
 date: "2019-12-21 17:27:58"
 coverImage: "../../../images/thumbnail/apple-logo.jpg"
 author: "s-yoshiki"
-tags: ["linux","データベース","mysql","mac","開発環境","oracle","docker","docker-compose","ソフトウェア","mariadb","phpmyadmin","adminer"]
+tags: ["linux","データベース","mysql","mac","oracle","docker","mariadb","phpmyadmin","adminer"]
 ---
 
 ## 概要

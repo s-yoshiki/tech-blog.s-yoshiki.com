@@ -4,7 +4,7 @@ path: "/entry/50"
 date: "2018-09-21 17:01:17"
 coverImage: "../../../images/thumbnail/no-image.png"
 author: "s-yoshiki"
-tags: ["javascript","wasm","webassembly"]
+tags: ["javascript","webassembly","google-chrome"]
 ---
 
 ## 概要

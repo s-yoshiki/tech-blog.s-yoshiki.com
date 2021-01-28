@@ -4,7 +4,7 @@ path: "/entry/135"
 date: "2019-06-12 00:04:09"
 coverImage: "../../../images/thumbnail/aws-logo.png"
 author: "s-yoshiki"
-tags: ["amazon-aws","linux","s3","開発環境","iam"]
+tags: ["amazon-aws","linux","amazon-s3","iam"]
 ---
 
 ## 概要

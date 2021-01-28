@@ -4,7 +4,7 @@ path: "/entry/176"
 date: "2019-12-07 17:20:58"
 coverImage: "../../../images/thumbnail/wordpress-logo.png"
 author: "s-yoshiki"
-tags: ["wordpress","cms","s3","wp2static"]
+tags: ["wordpress","cms","amazon-s3","wp2static","amazon-aws"]
 ---
 
 ## 概要

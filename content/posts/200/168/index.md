@@ -4,7 +4,7 @@ path: "/entry/168"
 date: "2019-11-03 19:41:26"
 coverImage: "../../../images/thumbnail/centos-logo.png"
 author: "s-yoshiki"
-tags: ["linux","開発環境","centos","rsync","unison","inotify-tools","inotifywait"]
+tags: ["linux","centos","rsync","unison","inotify-tools","inotifywait"]
 ---
 
 ## 概要

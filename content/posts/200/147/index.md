@@ -4,7 +4,7 @@ path: "/entry/147"
 date: "2019-07-07 13:09:23"
 coverImage: "../../../images/thumbnail/network-image.png"
 author: "s-yoshiki"
-tags: ["可視化","開発環境","ソフトウェア","draw.io","edraw","inkscape","cacoo","gliffy"]
+tags: ["可視化","ソフトウェア","draw.io","edraw","inkscape","cacoo","gliffy"]
 ---
 
 ## はじめに

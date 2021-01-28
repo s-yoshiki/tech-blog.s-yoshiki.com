@@ -19,7 +19,7 @@ Homebrew 2.6.2
 
 ### 表示されたエラー
 
-```sh
+```shell
 $ brew update 
 Error: 
   homebrew-core is a shallow clone.
@@ -43,12 +43,12 @@ Homebrew/homebrew-cask (git revision 5f9079; last commit 2020-12-19)
 
 表示されていたコマンドをそのまま叩きました。
 
-```sh
+```shell
 git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core fetch --unshallow
 git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask fetch --unshallow
 ```
 
-```sh
+```shell
 $ git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core fetch --unshallow
 remote: Enumerating objects: 606188, done.
 remote: Counting objects: 100% (606143/606143), done.

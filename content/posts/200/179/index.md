@@ -4,7 +4,7 @@ path: "/entry/179"
 date: "2019-12-19 00:20:37"
 coverImage: "../../../images/thumbnail/mysql-logo.png"
 author: "s-yoshiki"
-tags: ["linux","mysql","docker","docker-compose"]
+tags: ["linux","mysql","docker","mariadb"]
 ---
 
 ## 概要

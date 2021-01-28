@@ -4,7 +4,7 @@ path: "/entry/153"
 date: "2019-07-16 00:42:10"
 coverImage: "../../../images/thumbnail/code.webp"
 author: "s-yoshiki"
-tags: ["mac","開発環境","ネットワーク","ツール","hosts","switchhosts"]
+tags: ["mac","ネットワーク","ツール","hosts","switchhosts"]
 ---
 ローカル開発環境を利用して開発している際に、ローカルのIPに対してのホスト名をhostsファイルに設定するという作業をすることがあると思います。その際、環境や設定を切り替えるときにコメント化したりするのが手間になると思います。これを
 解決するツールにSwitchHostsというものがありました。

@@ -93,6 +93,21 @@ const icons = {
     "color": "232F3E",
     "colorIcon": false
   },
+  "amazon-ec2": {
+    "logo":"amazon-aws",
+    "color": "232F3E",
+    "colorIcon": false
+  },
+  "amazon-s3": {
+    "logo":"amazon-aws",
+    "color": "232F3E",
+    "colorIcon": false
+  },
+  "amazon-lightsail": {
+    "logo":"amazon-aws",
+    "color": "232F3E",
+    "colorIcon": false
+  },
   "aws-amplify": {
     "color": "FF9900",
     "colorIcon": true
@@ -319,6 +334,11 @@ const icons = {
   },
   "canva": {
     "color": "00C4CC",
+    "colorIcon": true
+  },
+  "canvas": {
+    "logo": "html5",
+    "color": "E34F26",
     "colorIcon": true
   },
   "cashapp": {
@@ -1057,6 +1077,10 @@ const icons = {
     "color": "7AC142",
     "colorIcon": true
   },
+  "html": {
+    "color": "E34F26",
+    "colorIcon": true
+  },
   "html5": {
     "color": "E34F26",
     "colorIcon": true
@@ -1348,6 +1372,11 @@ const icons = {
   "lua": {
     "color": "2C2D72",
     "colorIcon": false
+  },
+  "mac": {
+    "logo": "apple",
+    "color": "999999",
+    "colorIcon": true
   },
   "macys": {
     "color": "E21A2C",
@@ -2493,6 +2522,10 @@ const icons = {
     "color": "990000",
     "colorIcon": false
   },
+  "webassembly": {
+    "color": "654FF0",
+    "colorIcon": true
+  },
   "webcomponents.org": {
     "color": "29ABE2",
     "colorIcon": true
@@ -2636,7 +2669,12 @@ const icons = {
   "zorin": {
     "color": "0CC1F3",
     "colorIcon": true
-  }
+  },
+  "画像処理": {
+    "logo": "opencv",
+    "color": "5C3EE8",
+    "colorIcon": false
+  },
 }
 
 
@@ -2650,21 +2688,24 @@ const Badge = ({ keyword }) => {
     let key = keyword.toLowerCase()
     if (key in icons) {
       data = icons[key]
-      data.logo = key
+      data.defaultLogo = key
       break
     }
     key = keyword.replace(reg, '').toLowerCase()
     if (key in icons) {
       data = icons[key]
-      data.logo = key
+      data.defaultLogo = key
       break
     }
     break
   }
   if (data !== null) {
-    logo = data.logo
+    logo = data.defaultLogo
     if (!data.colorIcon) {
       color = data.color
+    }
+    if (data.logo) {
+      logo = data.logo
     }
   }
   keyword = encodeURI(keyword.split("-").join(" "))

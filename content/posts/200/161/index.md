@@ -4,7 +4,7 @@ path: "/entry/161"
 date: "2019-08-17 12:22:53"
 coverImage: "../../../images/thumbnail/aws-logo.png"
 author: "s-yoshiki"
-tags: ["amazon-aws","s3","cloudfront"]
+tags: ["amazon-aws","amazon-s3","cloudfront"]
 ---
 AWSのS3に公開用の設定をしたバケットを作成し、CloudFrontを介してコンテンツを配信する仕組みを作る話です。
 

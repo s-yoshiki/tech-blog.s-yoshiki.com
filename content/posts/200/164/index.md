@@ -4,7 +4,7 @@ path: "/entry/164"
 date: "2019-12-21 19:26:39"
 coverImage: "../../../images/thumbnail/aws-logo.png"
 author: "s-yoshiki"
-tags: ["amazon-aws","ec2","awsソリューションアーキテクト"]
+tags: ["amazon-aws","amazon-ec2","amazon-s3","awsソリューションアーキテクト"]
 ---
 
 ## 概要

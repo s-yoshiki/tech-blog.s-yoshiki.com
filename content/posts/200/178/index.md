@@ -4,7 +4,7 @@ path: "/entry/178"
 date: "2019-12-18 00:53:09"
 coverImage: "../../../images/thumbnail/mysql-logo.png"
 author: "s-yoshiki"
-tags: ["データベース","mysql","docker","docker-compose","phpmyadmin"]
+tags: ["データベース","mysql","docker","mariadb","phpmyadmin"]
 ---
 
 ## 概要

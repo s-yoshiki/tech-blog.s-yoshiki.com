@@ -4,7 +4,7 @@ path: "/entry/165"
 date: "2019-09-29 23:21:06"
 coverImage: "../../../images/thumbnail/aws-logo.png"
 author: "s-yoshiki"
-tags: ["amazon-aws","ec2","awsソリューションアーキテクト","資格試験"]
+tags: ["amazon-aws","amazon-ec2","amazon-s3","awsソリューションアーキテクト","資格試験"]
 ---
 2019/09/23にAWSソリューションアーキテクトアソシエイト(通称SAA)に合格しました。
 この記事はその際に行なった試験対策の話です。

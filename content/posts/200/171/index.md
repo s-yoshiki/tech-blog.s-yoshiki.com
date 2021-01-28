@@ -4,7 +4,7 @@ path: "/entry/171"
 date: "2019-12-04 01:14:11"
 coverImage: "../../../images/thumbnail/wordpress-logo.png"
 author: "s-yoshiki"
-tags: ["amazon-aws","wordpress","cms","docker","docker-compose"]
+tags: ["amazon-aws","wordpress","cms","docker"]
 ---
 
 ## 概要

@@ -4,7 +4,7 @@ path: "/entry/157"
 date: "2019-08-15 23:52:32"
 coverImage: "../../../images/thumbnail/bitnami-logo.png"
 author: "s-yoshiki"
-tags: ["amazon-aws","wordpress","ubuntu","bitnami","ツール","ec2","apache"]
+tags: ["amazon-aws","wordpress","ubuntu","bitnami","ツール","amazon-ec2","apache"]
 ---
 bitnamiはWebアプリケーションや開発ツールのインストラーやソフトウェアパッケージのライブラリです。
 提供するスタックにはWordPress、Drupal、Joomla、Redmine、AbanteCart、PrestaShop、Magento、MediaWikiなどがあります。

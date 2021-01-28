@@ -4,7 +4,7 @@ path: "/entry/156"
 date: "2019-08-14 20:03:06"
 coverImage: "../../../images/thumbnail/aws-logo.png"
 author: "s-yoshiki"
-tags: ["amazon-aws","linux","ubuntu","ssh","iam","ec2","aws-cli","aws ssm","amazon linux"]
+tags: ["amazon-aws","linux","ubuntu","ssh","iam","amazon-ec2","aws-cli","aws ssm","amazon linux"]
 ---
 AWSのEC2インスタンスに対してAWS System Manager、通称SSMでSSHポートを解放せずSSHする方法の紹介です。
 

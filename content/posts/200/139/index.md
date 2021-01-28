@@ -4,7 +4,7 @@ path: "/entry/139"
 date: "2019-06-22 18:24:30"
 coverImage: "../../../images/thumbnail/opencv-logo.png"
 author: "s-yoshiki"
-tags: ["javascript","機械学習","画像処理","opencv","wasm","opencv.js"]
+tags: ["javascript","機械学習","画像処理","opencv","webassembly"]
 ---
 
 ## 概要

@@ -4,7 +4,7 @@ path: "/entry/136"
 date: "2019-06-12 00:26:47"
 coverImage: "../../../images/thumbnail/aws-logo.png"
 author: "s-yoshiki"
-tags: ["amazon-aws","mac","s3","開発環境","iam","cyberduck"]
+tags: ["amazon-aws","mac","amazon-s3","iam","cyberduck"]
 ---
 
 ## 概要

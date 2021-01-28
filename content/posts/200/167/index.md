@@ -4,7 +4,7 @@ path: "/entry/167"
 date: "2019-11-03 13:32:02"
 coverImage: "../../../images/thumbnail/apple-logo.jpg"
 author: "s-yoshiki"
-tags: ["linux","mac","開発環境","fswatch","rsync","unison"]
+tags: ["linux","mac","fswatch","rsync","unison"]
 ---
 
 ## 概要

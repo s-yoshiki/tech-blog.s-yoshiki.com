@@ -4,7 +4,7 @@ path: "/entry/155"
 date: "2019-07-29 00:59:45"
 coverImage: "../../../images/thumbnail/ubuntu-logo.png"
 author: "s-yoshiki"
-tags: ["amazon-aws","php","linux","ubuntu","wordpress","データベース","mysql","開発環境","ec2","apache","ubuntu18.04","mariadb"]
+tags: ["amazon-aws","php","linux","ubuntu","wordpress","データベース","mysql","amazon-ec2","apache","mariadb"]
 ---
 AWS の EC2 の Ubuntu18.04 に Apache MariaDB PHP7.2 をセットアップした時のメモ。
 

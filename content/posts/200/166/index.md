@@ -4,7 +4,7 @@ path: "/entry/166"
 date: "2019-10-21 18:54:05"
 coverImage: "../../../images/thumbnail/yahoo-logo.png"
 author: "s-yoshiki"
-tags: ["selenium","python"]
+tags: ["selenium","python","google-chrome"]
 ---
 
 ## 概要

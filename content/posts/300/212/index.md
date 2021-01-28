@@ -52,7 +52,7 @@ http://localhost:3000/ を開きます。"Welcome to Next.js!" と表示され�
 
 セットアップ
 
-```sh
+```shell
 npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn-starter/tree/master/navigate-between-pages-starter"
 cd nextjs-blog
 ```
@@ -72,7 +72,7 @@ http://localhost:3000/posts/first-post にアクセス
 pagesディレクトリはルーティングも兼ねている。
 ファイル名がパスとなる。
 
-```sh
+```shell
 pages/posts/first-post.js # http://localhost:3000/posts/first-post
 pages/index.js # http://localhost:3000/
 ```
@@ -231,7 +231,7 @@ export default function App({ Component, pageProps }) {
 
 セットアップ
 
-```sh
+```shell
 npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn-starter/tree/master/data-fetching-starter"
 ```
 
@@ -314,7 +314,7 @@ function Profile() {
 
 セットアップ
 
-```sh
+```shell
 npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn-starter/tree/master/dynamic-routes-starter"
 ```
 
@@ -362,7 +362,7 @@ nextでAPIサーバを立てることも可能。
 
 セットアップ
 
-```sh
+```shell
 npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn-starter/tree/master/api-routes-starter"
 ```
 

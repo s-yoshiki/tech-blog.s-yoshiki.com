@@ -4,7 +4,7 @@ path: "/entry/138"
 date: "2019-06-19 00:19:50"
 coverImage: "../../../images/thumbnail/aws-logo.png"
 author: "s-yoshiki"
-tags: ["amazon-aws","php","s3","iam","aws-sdk"]
+tags: ["amazon-aws","php","amazon-s3","iam","aws-sdk"]
 ---
 
 ## 概要

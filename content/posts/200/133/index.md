@@ -4,7 +4,7 @@ path: "/entry/133"
 date: "2019-06-10 22:21:28"
 coverImage: "../../../images/thumbnail/docker-logo.png"
 author: "s-yoshiki"
-tags: ["linux","開発環境","docker","docker-ce"]
+tags: ["linux","docker","docker-ce"]
 ---
 
 ## 概要
