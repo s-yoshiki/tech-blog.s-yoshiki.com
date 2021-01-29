@@ -1,6 +1,6 @@
 ---
 title: "CentOS で スマートにプロキシを設定する"
-path: "/entry/220"
+path: "/entry/222"
 date: "2021-01-29 21:00"
 coverImage: "../../../images/thumbnail/mysql-logo.png"
 author: "s-yoshiki"
