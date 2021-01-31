@@ -2,7 +2,7 @@
 title: "CentOS で スマートにプロキシを設定する"
 path: "/entry/222"
 date: "2021-01-29 21:00"
-coverImage: "../../../images/thumbnail/mysql-logo.png"
+coverImage: "../../../images/thumbnail/linux-logo.png"
 author: "s-yoshiki"
 tags: ["curl","centos","linux","red-hat","gnu-bash"]
 ---
