@@ -9,45 +9,55 @@ tags: ["linux","curl"]
 
 ## 概要
 
-Proxy (プロキシ) 環境下でcurlコマンドを実行する方法のメモ。
+Proxy (プロキシ) 環境下でcurlコマンドを実行する方法のメモです。
+
+環境は以下の環境で検証しています。
+
+ - 
 
 ## コマンドオプションで設定する
 
 以下のコマンドはコマンドのオプションからプロキシ設定を有効にする例です。「-x」、「 --proxy」を利用します。
 
-```
-$ curl https://www.google.co.jp -x http://proxy.example.com:8080　
+```bash
+curl https://www.google.co.jp -x http://proxy.example.com:8080　
 ```
 
 もしくは
 
-```
-$ curl https://www.google.co.jp --proxy http://proxy.example.com:8080　
+```bash
+curl https://www.google.co.jp --proxy http://proxy.example.com:8080　
 ```
 
 ## 環境変数に設定する
 
 環境変数に設定しておくと毎度設定しなくて良いので捗ります。
 
-.bashrc や .bash_profile 等の任意のシェルの設定ファイルに記述しておけばシェルにログインする度に設定されます。
+.bash_profile 等の任意のシェルの設定ファイルに記述しておけばシェルにログインする度に設定されます。
 
-```
-$ export http_proxy=http://proxy.example.com:8080　
-$ export https_proxy=http://proxy.example.com:8080　
+```bash
+export http_proxy=http://proxy.example.com:8080　
+export https_proxy=http://proxy.example.com:8080　
 ```
 
 ## **curlrc** に記述する
 
 .curlrc は curlの設定を記述するフィイルです。パスは各Linuxユーザのホームディレクトリ以下 ~/.curlrc もしくは /etc/curlrc に記述する事ができます。以下、設定例。
 
-```
+```bash
 proxy = "http://proxy.example.com:8080"
 proxy-user = "ユーザ名:パスワード"
 ```
 
+## 参考にしたサイト
+
+ - [CentOS で スマートにプロキシを設定する](https://tech-blog.s-yoshiki.com/entry/222)
+
 ## おまけ: curlのオプション
 
-curlのオプション。いっぱいあるんですねぇ
+以下の項目はcurlのオプションです。
+
+`-x`の項目がhttpプロキシに関する項目です。いっぱいありますねぇ。。。
 
 ```
 curl --help
