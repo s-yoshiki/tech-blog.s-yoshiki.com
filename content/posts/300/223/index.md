@@ -65,6 +65,18 @@ install ok: channel://pecl.php.net/xdebug-3.0.2
 Extension xdebug enabled in php.ini
 ```
 
+## php.ini に追記
+
+まず php.ini のパスを探します。
+
+```
+/usr/local/opt/php@7.4/bin/php -r "echo phpinfo();" | grep "php.ini"
+```
+
+`/usr/local/etc/php/7.4/php.ini` と出てきたので必要な値を追記します。
+
+
+
 ## 参考にさせていただいたサイト
 
 [brewでxdebugをインストールする(PHP7.1)](https://qiita.com/suin/items/84c0479054809f058f07)
