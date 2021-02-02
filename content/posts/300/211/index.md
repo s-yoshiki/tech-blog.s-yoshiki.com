@@ -1,5 +1,5 @@
 ---
-title: "PHP-Parser で PHP5からPHP7で動くコードに自動修正するツールが作る夢をみた"
+title: "PHP-Parser で PHP5からPHP7で動くコードに自動修正するツールを作る夢をみた"
 path: "/entry/211"
 date: "2020-12-29"
 coverImage: "../../../images/thumbnail/php-logo.jpg"
