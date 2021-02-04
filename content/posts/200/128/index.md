@@ -4,7 +4,7 @@ path: "/entry/128"
 date: "2019-06-05 00:48:27"
 coverImage: "../../../images/thumbnail/git-logo.png"
 author: "s-yoshiki"
-tags: ["mac","git","gitbook"]
+tags: ["mac","git","gitbook","node.js"]
 ---
 
 ## 概要

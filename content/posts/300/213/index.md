@@ -4,7 +4,7 @@ path: "/entry/213"
 date: "2021-01-04"
 coverImage: "../../../images/thumbnail/typescript-logo.png"
 author: "s-yoshiki"
-tags: ["javascript","typescript","npm"]
+tags: ["javascript","typescript","npm","node.js"]
 ---
 
 

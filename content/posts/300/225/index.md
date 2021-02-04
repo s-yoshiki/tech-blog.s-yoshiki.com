@@ -4,7 +4,7 @@ path: "/entry/225"
 date: "2021-02-04 00:01"
 coverImage: "../../../images/thumbnail/javascript-logo.png"
 author: "s-yoshiki"
-tags: ["javascript","node-js","アルゴリズム"]
+tags: ["javascript","node.js","アルゴリズム"]
 ---
 
 ## 概要

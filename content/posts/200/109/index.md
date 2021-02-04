@@ -4,7 +4,7 @@ path: "/entry/109"
 date: "2019-02-24 01:05:33"
 coverImage: "../../../images/thumbnail/vue-logo.png"
 author: "s-yoshiki"
-tags: ["javascript","vue.js","webpack"]
+tags: ["javascript","vue.js","webpack","node.js"]
 ---
 
 ## 概要

@@ -4,7 +4,7 @@ path: "/entry/197"
 date: "2020-05-27"
 coverImage: "../../../images/thumbnail/github-logo.png"
 author: "s-yoshiki"
-tags: ["amazon-aws", "amazon-s3", "github", "gatsby"]
+tags: ["amazon-aws", "amazon-s3", "github", "gatsby","node.js"]
 ---
 
 ## 概要

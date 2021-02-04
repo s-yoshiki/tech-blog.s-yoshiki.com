@@ -4,7 +4,7 @@ path: "/entry/43"
 date: "2018-09-12 01:08:34"
 coverImage: "../../../images/thumbnail/nginx-logo.png"
 author: "s-yoshiki"
-tags: ["nginx","unit"]
+tags: ["nginx","unit","php"]
 ---
 
 ## 概要

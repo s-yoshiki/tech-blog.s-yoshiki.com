@@ -4,7 +4,7 @@ path: "/entry/214"
 date: "2021-01-07"
 coverImage: "../../../images/thumbnail/react-logo.png"
 author: "s-yoshiki"
-tags: ["javascript","react","next.js","amazon-aws","継続的インテグレーション","aws-amplify"]
+tags: ["javascript","react","next.js","amazon-aws","継続的インテグレーション","aws-amplify","node.js"]
 ---
 
 

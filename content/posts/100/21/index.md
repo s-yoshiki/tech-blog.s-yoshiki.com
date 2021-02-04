@@ -4,7 +4,7 @@ path: "/entry/21"
 date: "2018-07-23 00:10:36"
 coverImage: "../../../images/thumbnail/atcoder-logo.jpg"
 author: "s-yoshiki"
-tags: ["javascript","競技プログラミング","atcoder"]
+tags: ["javascript","競技プログラミング","atcoder","node.js"]
 ---
 <blockquote class="twitter-tweet" data-lang="ja">
 <p lang="ja" dir="ltr">初めて参加したAtCoderで惨敗した話

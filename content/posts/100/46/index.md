@@ -4,7 +4,7 @@ path: "/entry/46"
 date: "2018-09-16 19:54:44"
 coverImage: "../../../images/thumbnail/javascript-logo.png"
 author: "s-yoshiki"
-tags: ["javascript","画像処理","opencv","webassembly"]
+tags: ["javascript","画像処理","opencv","webassembly","node.js"]
 ---
 
 ## 概要
