@@ -2,7 +2,7 @@
 title: "Python + OpenCVのfillConvexPolyで複雑なポリゴンを描画する"
 path: "/entry/78"
 date: "2018-11-27 23:57:30"
-coverImage: "../../../images/thumbnail/no-image.png"
+coverImage: "../../../images/thumbnail/opencv-logo.png"
 author: "s-yoshiki"
 tags: ["python","画像処理","opencv"]
 ---
