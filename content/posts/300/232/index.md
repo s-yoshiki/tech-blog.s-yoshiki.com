@@ -4,7 +4,7 @@ path: "/entry/232"
 date: "2021-03-07 21:00"
 coverImage: "../../../images/thumbnail/centos-logo.png"
 author: "s-yoshiki"
-tags: ["oracle","centos", "redhat"]
+tags: ["oracle","centos", "red-hat"]
 ---
 
 ## 概要
