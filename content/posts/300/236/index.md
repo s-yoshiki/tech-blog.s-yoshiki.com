@@ -4,7 +4,7 @@ path: "/entry/236"
 date: "2021-05-06 23:59"
 coverImage: "../../../images/thumbnail/python-logo.png"
 author: "s-yoshiki"
-tags: ["pyhton", "codecov", "github", "pypi"]
+tags: ["python", "codecov", "github", "pypi"]
 ---
 
 ## 概要
