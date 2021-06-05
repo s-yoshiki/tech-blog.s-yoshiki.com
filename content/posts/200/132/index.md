@@ -1,5 +1,5 @@
 ---
-title: "bit全探索で動的計画法を実装する JavaScript"
+title: "JavaScript で bit全探索"
 path: "/entry/132"
 date: "2019-06-10 01:36:53"
 coverImage: "../../../images/thumbnail/javascript-logo.png"
