@@ -1,6 +1,6 @@
 ---
 title: "JavaScriptで優先度付きキューを実装する"
-path: "/entry/247"
+path: "/entry/248"
 date: "2021-08-01 01:00"
 coverImage: "../../../images/thumbnail/javascript-logo.png"
 author: "s-yoshiki"
