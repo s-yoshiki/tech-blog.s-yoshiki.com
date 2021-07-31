@@ -33,9 +33,12 @@ const Post = ({
             <Link to={path}>{title}</Link>
           </h1>
           <div className={style.meta}>
-            {date} 
             {tags ? (
               <div className={style.meta}>
+                <span>
+                {date} 
+                </span>
+                &nbsp;&nbsp;
                 {tags.map(tag => (
                   <Link to={`/tag/${toKebabCase(tag)}/`} key={toKebabCase(tag)}>
                     <Badge keyword={tag}/>
@@ -47,10 +50,8 @@ const Post = ({
 
           {excerpt ? (
             <>
-              <div>{excerpt}</div>
-              <Link to={path} className={style.readMore}>
-                Read more →
-              </Link>
+              <div style={{'font-size':'13px'}}>{excerpt}</div>
+              <br />
             </>
           ) : (
             <>

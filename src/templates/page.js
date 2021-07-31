@@ -4,6 +4,7 @@ import { graphql } from 'gatsby'
 import SEO from '../components/seo'
 import Layout from '../components/layout'
 import Post from '../components/post'
+import PostAbout from '../components/post-about'
 import RecommendContent from '../components/recommend-content'
 import Author from '../components/author'
 
@@ -16,6 +17,30 @@ const BlogPostTemplate = ({ data, pageContext }) => {
     tableOfContents
   } = data.markdownRemark
   const { next, previous } = pageContext
+
+  // パスがabou以下は広告表示させない
+  if (path.match(/\/about/g)) {
+    return (
+      <>
+        <Layout>
+          <SEO title={title} description={excerpt || autoExcerpt} />
+          <PostAbout
+            key={id}
+            title={title}
+            date={date}
+            path={path}
+            author={author}
+            coverImage={coverImage}
+            html={html}
+            tags={tags}
+            previousPost={previous}
+            nextPost={next}
+            tableOfContents={tableOfContents}
+          />
+        </Layout>
+      </>
+    )
+  }
 
   return (
     <>
@@ -34,8 +59,8 @@ const BlogPostTemplate = ({ data, pageContext }) => {
           nextPost={next}
           tableOfContents={tableOfContents}
         />
+        <RecommendContent postTags={tags} postPath={path} />
         <Author />
-        <RecommendContent postTags={tags} postPath={path}/>
       </Layout>
     </>
   )

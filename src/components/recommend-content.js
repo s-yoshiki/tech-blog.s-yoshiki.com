@@ -6,7 +6,6 @@ import Img from 'gatsby-image'
 import RelationAds from './ads/relation-ads'
 import { toKebabCase } from '../helpers'
 import style from '../styles/recommend-content.module.css'
-// import Badge from './badge'
 
 const RecommendContent = ({ postTags, postPath }) => {
   const data = useStaticQuery(graphql`

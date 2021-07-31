@@ -8,6 +8,21 @@
 
 ### DEMO - https://tech-blog.s-yoshiki.com
 
+## 操作方法
+
+開発サーバ起動
+
+```
+gatsby develop
+```
+
+ビルド
+
+```
+gatsby build
+```
+
+
 ## forked from 
 
 https://github.com/panr/gatsby-starter-hello-friend/

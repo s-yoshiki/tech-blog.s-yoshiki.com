@@ -51,8 +51,8 @@ const Index = ({ data, pageContext: { nextPagePath, previousPagePath } }) => {
           nextPath={nextPagePath}
           nextLabel="Older posts"
         />
-        <Author />
         <RecommendContent postTags={[]} postPath=''/>
+        <Author />
       </Layout>
     </>
   )

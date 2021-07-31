@@ -18,13 +18,18 @@ module.exports = {
     },
     logoText: '404 motivation not found',
     defaultTheme: 'light',
-    postsPerPage: 32,
-    showMenuItems: 1,
+    postsPerPage: 16,
+    // headerのMenuボタンの上限 
+    showMenuItems: 2,
     menuMoreText: 'Show more',
     mainMenu: [
       {
         title: 'About',
         path: '/about',
+      },
+      {
+        title: 'Portfolio',
+        path: '/about/portfolio',
       },
     ],
   },
