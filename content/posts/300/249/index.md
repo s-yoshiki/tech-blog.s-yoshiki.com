@@ -1,5 +1,5 @@
 ---
-title: "Node.js で作成した REST AP を Docker化"
+title: "Node.js で作成した REST API を Docker化"
 path: "/entry/249"
 date: "2021-08-08 01:00"
 coverImage: "../../../images/thumbnail/docker-logo.png"
@@ -9,7 +9,7 @@ tags: ["docker","node.js","javascript"]
 
 ## 概要
 
-Node.js で作成した REST AP を Docker化した際のメモです。
+Node.js で作成した REST API を Docker化した際のメモです。
 
 ## Node.jsでREST APIを作成
 
