@@ -65,8 +65,8 @@ traceroute to 8.8.8.8 (8.8.8.8), 64 hops max, 52 byte packets
 
 ## 参考文献
 
-[traceroute - Wikipedia](https://ja.wikipedia.org/wiki/Traceroute)
-[【図解】IPヘッダのフォーマット ～ToS/TTL/Protocol/IHL/Option等各フィールドの解説～](https://milestone-of-se.nesuke.com/nw-basic/ip/ip-format/)
+ - [traceroute - Wikipedia](https://ja.wikipedia.org/wiki/Traceroute)
+ - [【図解】IPヘッダのフォーマット ～ToS/TTL/Protocol/IHL/Option等各フィールドの解説～](https://milestone-of-se.nesuke.com/nw-basic/ip/ip-format/)
 
 
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=yoshiki037-22&language=ja_JP&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B08SH41SL6&linkId=2e77953c36a5ca0b5607b3f917db8be3"></iframe>
