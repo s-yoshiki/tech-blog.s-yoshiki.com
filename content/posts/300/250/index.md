@@ -4,7 +4,7 @@ path: "/entry/250"
 date: "2021-09-30 01:00"
 coverImage: "../../../images/thumbnail/javascript-logo.png"
 author: "s-yoshiki"
-tags: ["vue","javascript"]
+tags: ["vue.js","javascript"]
 ---
 
 ## 概要

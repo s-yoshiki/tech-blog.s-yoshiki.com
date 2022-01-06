@@ -4,7 +4,7 @@ path: "/entry/254"
 date: "2021-11-30 01:00"
 coverImage: "../../../images/thumbnail/javascript-logo.png"
 author: "s-yoshiki"
-tags: ["nodejs","linux","javascript"]
+tags: ["node.js","linux","javascript"]
 ---
 
 ## 初めに
