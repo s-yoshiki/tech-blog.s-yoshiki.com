@@ -1,6 +1,6 @@
 ---
 title: "AutotoolsでconfigureやMakefileの作成"
-path: "/entry/253"
+path: "/entry/255"
 date: "2022-01-10 17:00"
 coverImage: "../../../images/thumbnail/linux-logo.png"
 author: "s-yoshiki"
