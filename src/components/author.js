@@ -21,8 +21,13 @@ const Author = () => {
           ))}
         </div>
         <div style={{'fontSize': '12px'}}>
-          Web作ってますが、インタラクティブなプログラミングも好きです。<br />
-          JavaScript / Vue / node.js / PHP / AWS / OpenCV
+          ただの備忘録です。
+          <br />
+          JS/TS/node.js/PHP/AWS/OpenCV/CentOS
+          <br />
+          <span style={{'fontSize': '8px'}}>
+            ※このブログの内容は個人の見解であり、所属する組織等の見解ではありません。
+          </span>
         </div>
       </div>
     </div>
