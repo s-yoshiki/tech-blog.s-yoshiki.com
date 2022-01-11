@@ -237,3 +237,4 @@ autoreconfは以下の処理をまとめてやってくれる機能と理解。
  - [autoconf, automake - Heavy Watal](https://heavywatal.github.io/dev/autotools.html)
  - [ cやc++をビルドしたいので ./configureスクリプトの作り方調べた - Qiita](https://qiita.com/hadashiA/items/9da2b424965952707a6d)
  - [/configure,makeの流れを作るアレ - Qiita](https://qiita.com/awakia/items/e0ceeabd8faf95020cbd)
+ - [autotools  CapmNetwork](http://capm-network.com/?tag=autotools)
