@@ -2,7 +2,7 @@
 title: "[Mac]ipコマンドの導入[iproute2mac]"
 path: "/entry/256"
 date: "2022-01-16 19:00"
-coverImage: "../../../images/thumbnail/docker-logo.png"
+coverImage: "../../../images/thumbnail/linux-logo.png"
 author: "s-yoshiki"
 tags: ["linux","mac"]
 ---
