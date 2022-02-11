@@ -10,25 +10,25 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-        #reviewdogのアクション
+      #reviewdogのアクション
       - uses: reviewdog/action-setup@v1
         with:
           reviewdog_version: latest
 
-        #textlintを動かすためのnodeアクション
+      #textlintを動かすためのnodeアクション
       - uses: actions/setup-node@v2
       - uses: actions/checkout@v2
-      - name: cache-node-modules
 
-        # #stepsが失敗(文章の乱れ)した場合でもcacheを取得するようにする
-        # uses: pat-s/always-upload-cache@v2.1.3
-        # env:
-        #   cache-name: cache-node-modules
-        # with:
-        #   path: ~/.npm
-        #   key: node-${{ hashFiles('**/package-lock.json') }}
-        #   restore-keys: |
-        #     node-
+      # - name: cache-node-modules
+      #   #stepsが失敗(文章の乱れ)した場合でもcacheを取得するようにする
+      #   uses: pat-s/always-upload-cache@v2.1.3
+      #   env:
+      #     cache-name: cache-node-modules
+      #   with:
+      #     path: ~/.npm
+      #     key: node-${{ hashFiles('**/package-lock.json') }}
+      #     restore-keys: |
+      #       node-
 
       - name: Install textlint
         run:  'npm i -g textlint-rule-max-ten textlint-rule-spellcheck-tech-word textlint-rule-no-mix-dearu-desumasu'
