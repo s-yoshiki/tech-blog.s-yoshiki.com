@@ -31,7 +31,7 @@ jobs:
       #       node-
 
       - name: Install textlint
-        run:  'npm i -g textlint-rule-max-ten textlint-rule-spellcheck-tech-word textlint-rule-no-mix-dearu-desumasu'
+        run:  'npm i -g textlint textlint-rule-max-ten textlint-rule-spellcheck-tech-word textlint-rule-no-mix-dearu-desumasu'
       
       # - name: Install dependent module
       #   run: npm install
