@@ -44,6 +44,8 @@ jobs:
       
       - name: Execute textlint for ブログ記事
         run: |
+          pwd &&
+          ls -la &&
           npx textlint --rule no-mix-dearu-desumasu --rule max-ten --rule spellcheck-tech-word ./ >> .textlint.log
 
       - name: Run reviewdog
