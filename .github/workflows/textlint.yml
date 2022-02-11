@@ -45,7 +45,7 @@ jobs:
       - name: Execute textlint for ブログ記事
         # コンテンツが多すぎると exit code 1となる
         run: |
-          npx textlint --rule no-mix-dearu-desumasu --rule max-ten --rule spellcheck-tech-word ./content >> ./.textlint.log && exit 0
+          npx textlint --rule no-mix-dearu-desumasu --rule max-ten --rule spellcheck-tech-word ./content >> ./.textlint.log ; echo 0
 
       - name: Run reviewdog
         # textlintで文章上のミスがあった場合のみ、reviewdogを実行させるようにする
