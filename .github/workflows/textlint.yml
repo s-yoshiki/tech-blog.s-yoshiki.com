@@ -1,0 +1,55 @@
+name: reviewdog
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - master
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  reviewdog-github-check:
+    name: reviewdog (github-check)
+    runs-on: ubuntu-latest
+
+    steps:
+        #reviewdogのアクション
+      - uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
+
+        #textlintを動かすためのnodeアクション
+      - uses: actions/setup-node@v2
+
+      - uses: actions/checkout@v2
+
+      - name: cache-node-modules
+        #stepsが失敗(文章の乱れ)した場合でもcacheを取得するようにする
+        uses: pat-s/always-upload-cache@v2.1.3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            node-
+
+      - name: Install textlint
+        run:  'npm install --save-dev textlint textlint-rule-max-ten textlint-rule-spellcheck-tech-word textlint-rule-no-mix-dearu-desumasu'
+
+      - name: Install dependent module
+        run: npm install
+      
+      - name: Execute textlint for ブログ記事
+        run: |
+          npx textlint --rule no-mix-dearu-desumasu --rule max-ten --rule spellcheck-tech-word ./ >> .textlint.log
+
+      - name: Run reviewdog
+        # textlintで文章上のミスがあった場合のみ、reviewdogを実行させるようにする
+        if: failure()
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cat .textlint.log | reviewdog -f=checkstyle -name="textlint" -reporter="github-pr-review"
