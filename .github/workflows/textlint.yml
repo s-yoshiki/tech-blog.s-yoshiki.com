@@ -43,10 +43,9 @@ jobs:
         run: npm install
       
       - name: Execute textlint for ブログ記事
+        # コンテンツが多すぎると exit code 1となる
         run: |
-          pwd &&
-          ls -la &&
-          npx textlint --rule no-mix-dearu-desumasu --rule max-ten --rule spellcheck-tech-word ./ >> .textlint.log
+          npx textlint --rule no-mix-dearu-desumasu --rule max-ten --rule spellcheck-tech-word ./content >> ./.textlint.log && exit 0
 
       - name: Run reviewdog
         # textlintで文章上のミスがあった場合のみ、reviewdogを実行させるようにする
