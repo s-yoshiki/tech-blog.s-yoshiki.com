@@ -31,14 +31,14 @@ jobs:
       #       node-
 
       - name: Install textlint
-        run:  'npm i -g textlint textlint-rule-max-ten textlint-rule-spellcheck-tech-word textlint-rule-no-mix-dearu-desumasu'
+        run:  'npm install --save-dev textlint textlint-rule-max-ten textlint-rule-spellcheck-tech-word textlint-rule-no-mix-dearu-desumasu'
       
       # - name: Install dependent module
       #   run: npm install
       
       - name: Execute textlint for ブログ記事
         run: |
-          textlint --rule no-mix-dearu-desumasu --rule max-ten --rule spellcheck-tech-word content/posts >> .textlint.log
+          npx textlint --rule no-mix-dearu-desumasu --rule max-ten --rule spellcheck-tech-word content/posts >> .textlint.log
 
       - name: Run reviewdog
         # textlintで文章上のミスがあった場合のみ、reviewdogを実行させるようにする
