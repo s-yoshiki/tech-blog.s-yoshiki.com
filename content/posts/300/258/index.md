@@ -11,6 +11,16 @@ tags: ["linux","github","reviewdog","textlint"]
 
 GitHub で Markdownで管理しているブログに対して textlint で校正を行いレビューを自動化する CI を GitHub Actionsで構築しました。
 
+具体的には次のようなワークフローを構築しています。
+
+1. ライターが markdown で記事を書き、プルリクを行う
+2. GitHub Actions スタート
+  1. textlint で記事に対して校正を行う
+  2. reviewdog でプルリクにミス内容を記載する
+3. 問題がなかったらオーナーはプルリク承認、終了。NGだったら以下に進む。
+4. ライターがミス内容を修正して再度push
+5. 再度、GitHub Actions スタート以下略...
+
 ## 利用する技術について 
 
 ### textlint
