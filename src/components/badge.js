@@ -1586,6 +1586,10 @@ const icons = {
     "color": "008CC1",
     "colorIcon": true
   },
+  "nestjs": {
+    "color": "EA2845",
+    "colorIcon": false
+  },
   "netflix": {
     "color": "E50914",
     "colorIcon": false
