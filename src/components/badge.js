@@ -1611,8 +1611,8 @@ const icons = {
     "colorIcon": true
   },
   "nginx": {
-    "color": "269539",
-    "colorIcon": true
+    "color": "009639",
+    "colorIcon": false
   },
   "nintendo": {
     "color": "8F8F8F",
@@ -1746,6 +1746,10 @@ const icons = {
     "color": "777BB4",
     "colorIcon": true
   },
+  "phpmyadmin": {
+    "color": "6C78AF",
+    "colorIcon": true
+  },
   "picarto.tv": {
     "color": "1DA456",
     "colorIcon": true
@@ -1825,6 +1829,10 @@ const icons = {
   "prettier": {
     "color": "F7B93E",
     "colorIcon": true
+  },
+  "prisma": {
+    "color": "2D3748",
+    "colorIcon": false
   },
   "prismic": {
     "color": "484A7A",
@@ -2404,7 +2412,7 @@ const icons = {
   },
   "typescript": {
     "color": "007ACC",
-    "colorIcon": false
+    "colorIcon": true
   },
   "typo3": {
     "color": "FF8700",
@@ -2664,6 +2672,10 @@ const icons = {
   },
   "zendesk": {
     "color": "03363D",
+    "colorIcon": false
+  },
+  "zenn": {
+    "color": "3EA8FF",
     "colorIcon": false
   },
   "zerply": {

@@ -5,6 +5,7 @@ import style from '../styles/author.module.css'
 const Author = () => {
   const badges = [
     {link: 'https://github.com/s-yoshiki', alt: 'github', logo: 'https://img.shields.io/badge/GitHub--lightgrey.svg?logo=github&style=social'},
+    {link: 'https://zenn.dev/s_yoshiki', alt: 'zenn', logo: 'https://img.shields.io/badge/zenn--lightgrey.svg?logo=zenn&style=social'},
     {link: 'https://twitter.com/s_yoshiki_dev', alt: 'twitter', logo: 'https://img.shields.io/badge/Twitter--lightgrey.svg?logo=twitter&style=social'},
     {link: 'https://qiita.com/s-yoshiki', alt: 'qiita', logo: 'https://img.shields.io/badge/qiita--lightgrey.svg?logo=qiita&style=social'},
   ]
@@ -23,7 +24,7 @@ const Author = () => {
         <div style={{'fontSize': '12px'}}>
           ただの備忘録です。
           <br />
-          JS/TS/node.js/PHP/AWS/OpenCV/CentOS
+          JavaScript/TypeScript/node.js/React/Next/PHP/AWS/OpenCV
           <br />
           <span style={{'fontSize': '8px'}}>
             ※このブログの内容は個人の見解であり、所属する組織等の見解ではありません。
