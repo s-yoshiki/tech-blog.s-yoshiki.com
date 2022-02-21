@@ -1,7 +1,7 @@
 ---
 title: "JSで動的計画法を利用して部分和問題を解く"
 path: "/entry/261"
-date: "2021-02-20 23:01"
+date: "2022-02-20 23:01"
 coverImage: "../../../images/thumbnail/javascript-logo.png"
 author: "s-yoshiki"
 tags: ["javascript","typescript","アルゴリズム"]

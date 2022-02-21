@@ -2466,6 +2466,10 @@ const icons = {
     "color": "3D95CE",
     "colorIcon": true
   },
+  "vercel": {
+    "color": "000000",
+    "colorIcon": true
+  },
   "verizon": {
     "color": "CD040B",
     "colorIcon": false
