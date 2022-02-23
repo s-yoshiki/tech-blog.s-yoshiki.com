@@ -92,7 +92,53 @@ export class CdkappStack extends Stack {
 }
 ```
 
+### デプロイ
+
+次のコマンドでデプロイします。
+
+```
+cdk deploy
+```
+
 マネジメントコンソール上で関数が反映されていることを確認できたらOKです。
+
+## 削除
+
+環境をきれいにしたくなったら次のコマンドで削除します。
+
+```
+cdk destroy
+```
+
+## 付録1: CDK v2 で利用できるコマンド
+
+`cdk --help`で確認できます。
+
+- `cdk list [STACKS..]`
+  - 全てのスタックの表示
+- `cdk synthesize [STACKS..]` or `cdk synth [STACKS..]`
+  - CloudFormationファイルの生成
+- `cdk bootstrap [ENVIRONMENTS..]`
+  - CDK Toolkitを利用するAWS環境にデプロイ
+- `cdk deploy [STACKS..]`
+  - スタックのデプロイ
+- `cdk watch [STACKS..]`
+  - `deploy --watch`の省略形
+- `cdk destroy [STACKS..]`
+  - スタックの破棄
+- `cdk diff [STACKS..]`
+  - ローカルで定義しているスタックとAWS環境に展開されているものとの差分を表示
+- `cdk metadata [STACK]`
+  - スタックに関連付けられているすべてのメタデータの表示
+- `cdk init [TEMPLATE]`
+  - CDKプロジェクトの作成
+- cdk context
+  - キャッシュされたコンテキストの管理
+- `cdk docs` or `cdk doc`
+  - ブラウザでリファレンスの表示
+- `cdk doctor` 
+  - 潜在的な問題の確認
+
 
 
 ## 参考にしたサイト
