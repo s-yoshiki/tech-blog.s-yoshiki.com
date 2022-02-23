@@ -144,6 +144,4 @@ cdk destroy
 ## 参考にしたサイト
 
 - [実践！AWS CDK #26 Version 2 | DevelopersIO](https://dev.classmethod.jp/articles/cdk-practice-26-version-2/)
-<!-- - [AWS CDKでサーバーレスアプリケーションを構築する - Scrapbox](https://scrapbox.io/kentarom/AWS_CDK%E3%81%A7%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%83%AC%E3%82%B9%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E6%A7%8B%E7%AF%89%E3%81%99%E3%82%8B)
-- [Deploying Serverless API with Nestjs and AWS CDK - medium](https://medium.com/nextfaze/deploying-serverless-api-with-nestjs-and-aws-cdk-3d41063543e0) -->
-
+- [AWS Cloud Development Kit (CDK) v2](https://docs.aws.amazon.com/ja_jp/cdk/v2/guide/getting_started.html)
