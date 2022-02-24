@@ -11,8 +11,6 @@ tags: ["typescript","amazon-aws","aws-cdk"]
 
 AWS CDK v2 で TypeScriptでコードを実装し、Lambdaにデプロイする所までを行いました。
 
-検索してもv2の情報が出てこなかったので
-
 全てtypescriptで実装しています。
 
 ### 環境
