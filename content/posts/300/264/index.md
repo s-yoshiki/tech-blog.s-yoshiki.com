@@ -4,7 +4,7 @@ path: "/entry/264"
 date: "2022-02-25 22:00"
 coverImage: "../../../images/thumbnail/aws-logo.png"
 author: "s-yoshiki"
-tags: ["typescript","amazon-aws","aws-cdk","aws-amplify","next.js"]
+tags: ["git","github","amazon-aws","aws-amplify","next.js","typescript"]
 ---
 
 ## 概要
