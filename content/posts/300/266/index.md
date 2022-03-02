@@ -14,9 +14,7 @@ Lmabdaでmysqlまでの接続を確認した際のメモです
 
 CDKもアプリケーションも全てtypescriptで実装しています。
 
-## 構成
 
-todo: そのうち追加します。許して下さい。
 
 ## Stack
 
@@ -65,33 +63,13 @@ export class LambdaWithVpcStack extends Stack {
           subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
         },
       ],
-      natGateways: 2,
+      // natGateways: 2,
       maxAzs: 2,
     });
 
-    const bastionGroup = new ec2.SecurityGroup(
-      this,
-      'Bastion to DB Connection',
-      {
-        vpc,
-      }
-    );
-
-    const lambdaToRDSProxyGroup = new ec2.SecurityGroup(
-      this,
-      "Lambda to RDS Proxy Connection",
-      {
-        vpc,
-      }
-    );
-
-    const dbConnectionGroup = new ec2.SecurityGroup(
-      this,
-      "Proxy to DB Connection",
-      {
-        vpc,
-      }
-    );
+    const bastionGroup = new ec2.SecurityGroup(this, 'Bastion to DB', {vpc});
+    const lambdaToRDSProxyGroup = new ec2.SecurityGroup(this, "Lambda to RDSProxy", {vpc});
+    const dbConnectionGroup = new ec2.SecurityGroup(this, "RDSProxy to DB",{vpc});
 
     dbConnectionGroup.addIngressRule(
       dbConnectionGroup,
@@ -123,8 +101,6 @@ export class LambdaWithVpcStack extends Stack {
         subnetType: ec2.SubnetType.PUBLIC,
       },
     });
-
-    // // 踏み台サーバにmysqlとjqをインストールしておく
     host.instance.addUserData("yum -y update", "yum install -y mysql jq");
 
     // RDSの認証情報
@@ -273,7 +249,6 @@ export const handler = async (
   const response = await secretsManager.getSecretValue({
     SecretId: "LambdaWithVpcStack-rds-credentials",
   }).promise()
-  // return JSON.parse(response.SecretString)
 
   const {host, username, password} = JSON.parse(response.SecretString ?? '')
 
@@ -281,7 +256,7 @@ export const handler = async (
     host: process.env.PROXY_ENDPOINT,
     user: username,
     password,
-    database: 'rds_proxy_go',
+    database: 'app',
     // ssl: {
     //   cert: fs.readFileSync(__dirname + '/cert/AmazonRootCA1.pem', 'utf-8')
     // },
@@ -290,9 +265,7 @@ export const handler = async (
     }
   });
 
-  let result = await connection.query(
-    "select * from books"
-  )
+  let result = await connection.query("select * from user")
 
   return {
     statusCode: 200,
@@ -314,13 +287,13 @@ aws ssm start-session --target ${踏み台EC2のID}
 mysqlに接続しデータベースの中身を作成。
 
 ```
-CREATE DATABASE rds_proxy_go;
-USE rds_proxy_go;
-CREATE TABLE books(id int primary key auto_increment, name text, price int);
-INSERT INTO books (name, price) VALUES ('思い出の本', 100);
-INSERT INTO books (name, price) VALUES ('AWS Database Book', 200000);
-INSERT INTO books (name, price) VALUES ('日記帳12345', 3000000);
-INSERT INTO books (name, price) VALUES ('あいうえお', 12345);
+CREATE DATABASE app;
+USE app;
+CREATE TABLE user(id int primary key auto_increment, name text, price int);
+INSERT INTO user (name, price) VALUES ('田中', 100);
+INSERT INTO user (name, price) VALUES ('山田', 200000);
+INSERT INTO user (name, price) VALUES ('佐藤', 3000000);
+INSERT INTO user (name, price) VALUES ('鈴木', 12345);
 ```
 
 ※ 証明書
@@ -335,22 +308,22 @@ https://www.amazontrust.com/repository/AmazonRootCA1.pem
 [
     {
         "id": 1,
-        "name": "思い出の本",
+        "name": "田中",
         "price": 100
     },
     {
         "id": 2,
-        "name": "AWS Database Book",
+        "name": "山田",
         "price": 200000
     },
     {
         "id": 3,
-        "name": "日記帳12345",
+        "name": "鈴木",
         "price": 3000000
     },
     {
         "id": 4,
-        "name": "あいうえお",
+        "name": "佐藤",
         "price": 12345
     }
 ]
