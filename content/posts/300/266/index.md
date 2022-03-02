@@ -293,7 +293,7 @@ mysqlに接続しデータベースの中身を作成。
 ```
 CREATE DATABASE app;
 USE app;
-CREATE TABLE user(id int primary key auto_increment, name text, price int);
+CREATE TABLE user(id int primary key auto_increment, name text, value int);
 INSERT INTO user (name, price) VALUES ('田中', 100);
 INSERT INTO user (name, price) VALUES ('山田', 200000);
 INSERT INTO user (name, price) VALUES ('佐藤', 3000000);
@@ -313,22 +313,22 @@ https://www.amazontrust.com/repository/AmazonRootCA1.pem
     {
         "id": 1,
         "name": "田中",
-        "price": 100
+        "value": 100
     },
     {
         "id": 2,
         "name": "山田",
-        "price": 200000
+        "value": 200000
     },
     {
         "id": 3,
         "name": "鈴木",
-        "price": 3000000
+        "value": 3000000
     },
     {
         "id": 4,
         "name": "佐藤",
-        "price": 12345
+        "value": 12345
     }
 ]
 ```
