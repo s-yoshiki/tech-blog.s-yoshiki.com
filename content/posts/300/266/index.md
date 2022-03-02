@@ -20,6 +20,8 @@ CDKもアプリケーションも全てtypescriptで実装しています。
 
 以下のソースがAWS CDKのスタックです。
 
+**lib/LambdaWithVpcStack.ts**
+
 ```js
 import {
   Stack,
@@ -215,6 +217,8 @@ export class LambdaWithVpcStack extends Stack {
 ```
 
 ## Lambdaの実装
+
+**src/lambda/index.ts**
 
 ```js
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
