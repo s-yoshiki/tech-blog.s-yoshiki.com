@@ -4,7 +4,7 @@ path: "/entry/267"
 date: "2022-03-04 10:10"
 coverImage: "../../../images/thumbnail/aws-logo.png"
 author: "s-yoshiki"
-tags: ["amazon-aws", "aws-cdk", "node.js", "typescript", "mysql"]
+tags: ["amazon-aws", "aws-cdk", "node.js", "typescript"]
 ---
 
 ## 概要
