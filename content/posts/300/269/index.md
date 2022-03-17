@@ -161,7 +161,7 @@ origin: new cloudfrontOrigins.S3Origin(bucket),
 
 について反映されないという問題を耳にしました。
 
-試したところ、macだと成功しwindows(wsl)だと失敗しました。
+試したところ、macOS(v2.14.0)だと成功しwindows(wsl(v2.15.0))だと失敗しました。
 
 はっきりとした理由までは分かりませんでした。
 
