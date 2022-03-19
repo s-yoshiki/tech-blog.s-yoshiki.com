@@ -17,7 +17,7 @@ jobs:
       - name: setup node
         uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
+          node-version: '16.x'
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
