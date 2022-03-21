@@ -4,7 +4,7 @@ path: "/entry/215"
 date: "2021-01-07 18:00"
 coverImage: "../../../images/thumbnail/aws-logo.png"
 author: "s-yoshiki"
-tags: ["amazon-aws","継続的インテグレーション","aws-amplify"]
+tags: ["amazon-aws","ci/cd","aws-amplify"]
 ---
 
 ## 概要

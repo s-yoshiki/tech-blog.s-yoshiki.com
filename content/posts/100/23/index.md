@@ -27,49 +27,13 @@ scikit-learnとナイーブベイズ
 ## 対象とする文字化け
 
 #### 学習データ
-
-<table>
-<thead>
-<tr>
-<th style="text-align:left">#</th>
-<th style="text-align:left">元の文字コード</th>
-<th style="text-align:left">エンコードした文字コード</th>
-<th style="text-align:left">例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">1</td>
-<td style="text-align:left">shift-jis</td>
-<td style="text-align:left">utf-8</td>
-<td style="text-align:left">「縺薙ｌ縺ｯUTF-8縺ｮ繝・く繧ｹ繝医〒縺吶よ怙霑代・谿・←縺薙ｌ縺ｧ縺吶・縲」</td>
-</tr>
-<tr>
-<td style="text-align:left">2</td>
-<td style="text-align:left">euc-jp</td>
-<td style="text-align:left">utf-8</td>
-<td style="text-align:left">「ﾎ･ﾆ･ｭ･ｹ･ﾈ､ﾇ､ｹ｡｣､ｽ､・ﾊ､熙ﾋﾊﾘﾍ」</td>
-</tr>
-<tr>
-<td style="text-align:left">3</td>
-<td style="text-align:left">utf-8</td>
-<td style="text-align:left">shift-jis</td>
-<td style="text-align:left">「$l$O(Jiso-2022-jp$B$N%F%-%9%H$G$9!#(JJIS$B$H$b8@$C$?$j$7$^$9!#EE;R%a!<%」</td>
-</tr>
-<tr>
-<td style="text-align:left">おまけ1</td>
-<td style="text-align:left">-</td>
-<td style="text-align:left">-</td>
-<td style="text-align:left">「This is plane text」 ※英語として分類</td>
-</tr>
-<tr>
-<td style="text-align:left">おまけ2</td>
-<td style="text-align:left">-</td>
-<td style="text-align:left">-</td>
-<td style="text-align:left">「この文章は日本語で書かれています」 ※日本語として分類</td>
-</tr>
-</tbody>
-</table>
+|\#|元の文字コード|エンコードした文字コード|例|
+|:----|:----|:----|:----|
+|1|shift-jis|utf-8|「縺薙ｌ縺ｯUTF-8縺ｮ繝・く繧ｹ繝医〒縺吶よ怙霑代・谿・←縺薙ｌ縺ｧ縺吶・縲」|
+|2|euc-jp|utf-8|「ﾎ･ﾆ･ｭ･ｹ･ﾈ､ﾇ､ｹ｡｣､ｽ､・ﾊ､熙ﾋﾊﾘﾍ」|
+|3|utf-8|shift-jis|「$l$O(Jiso-2022-jp$B$N%F%-%9%H$G$9!#(JJIS$B$H$b8@$C$?$j$7$^$9!#EE;R%a!<%」|
+|おまけ1|-|-|「This is plane text」 ※英語として分類|
+|おまけ2|-|-|「この文章は日本語で書かれています」 ※日本語として分類|
 
 #### 分類するデータ
 
