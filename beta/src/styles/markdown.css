@@ -1,0 +1,30 @@
+
+.markdown {
+  max-width: 960px;
+  background-color: #FFF
+}
+
+.markdown ol {
+  @apply list-decimal pl-10;
+}
+.markdown ul {
+  @apply list-disc pl-10;
+}
+
+.markdown h1 {
+  @apply border-slate-300 border-l-4 text-2xl;
+}
+.markdown h2 {
+  @apply border-slate-100 border-b-4 text-2xl;
+  @apply p-6 m-6;
+}
+.markdown h3 {
+  @apply p-6 m-6;
+  @apply border-slate-100 border-l-4 text-2xl;
+}
+.markdown h4 {
+  @apply text-lg border-b border-black my-5;
+}
+.markdown ul {
+  @apply list-disc pl-10;
+}

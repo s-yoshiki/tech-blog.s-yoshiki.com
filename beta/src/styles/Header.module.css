@@ -1,0 +1,21 @@
+
+.header {
+  @apply bg-white ;
+}
+
+.headerContainer {
+  @apply p-6 mx-auto container ;
+}
+
+.title {
+  font-weight: 600;
+  padding-bottom: .3em;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1.25;
+  color: #98a2b2;
+}
+
+.title:hover {
+  color: blue;
+}
