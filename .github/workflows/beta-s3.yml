@@ -17,7 +17,7 @@ jobs:
       - name: setup node
         uses: actions/setup-node@v1
         with:
-          node-version: '16.x'
+          node-version: "16.x"
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -26,20 +26,24 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-1
 
+      - name: rm
+        run: rm .eslintrc.yml
+
       - name: install
         run: npm ci
-
-      - name: format
-        run: npm run format
-
-      - name: test
-        run: npm run test
+        working-directory: ./beta
 
       - name: build
         run: npm run build
+        working-directory: ./beta
+
+      - name: export
+        run: npm run export
+        working-directory: ./beta
 
       - name: Upload file to S3
-        env: 
+        env:
           S3_CONTENTS_BUCKET: ${{ secrets.S3_CONTENTS_BUCKET }}
         run: |
-          aws s3 sync ./public s3://$S3_CONTENTS_BUCKET/ --quiet
+          aws s3 sync ./out s3://$S3_CONTENTS_BUCKET/beta/ --quiet
+        working-directory: ./beta
