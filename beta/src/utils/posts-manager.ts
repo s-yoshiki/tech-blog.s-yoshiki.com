@@ -6,6 +6,9 @@ import {
   IGroupByItems,
   IGroupByYearMonthItems
 } from "types/entry.interface"
+import getConfig from "next/config";
+
+const { publicRuntimeConfig } = getConfig();
 
 // postsが格納されているディレクトリを取得する
 const postsDirectory = join(process.cwd(), "../content/posts");
@@ -15,7 +18,7 @@ const listFiles = (dir: string): string[] =>
     dirent.isFile() ? [`${dir}/${dirent.name}`] : listFiles(`${dir}/${dirent.name}`)
   )
 
-const getCoverImage = (src: string) => '/images/thumbnail/' + src.split('/').pop() 
+const getCoverImage = (src: string) => publicRuntimeConfig.basePath + '/images/thumbnail/' + src.split('/').pop() 
 
 const getYearMonthKey = (src: string): string => {
   const date = new Date(src)

@@ -43,3 +43,18 @@ jobs:
           S3_CONTENTS_BUCKET: ${{ secrets.S3_CONTENTS_BUCKET }}
         run: |
           aws s3 sync ./public s3://$S3_CONTENTS_BUCKET/ --quiet
+
+      # beta版
+      - name: init
+        run: |
+          cd beta
+          npm ci
+          npm run build
+          npm run export
+
+      - name: Upload file to S3
+        env: 
+          S3_CONTENTS_BUCKET: ${{ secrets.S3_CONTENTS_BUCKET }}
+        run: |
+          cd beta
+          aws s3 sync ./out s3://$S3_CONTENTS_BUCKET/beta/ --quiet

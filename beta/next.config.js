@@ -2,6 +2,11 @@
 const withOptimizedImages = require("next-optimized-images");
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  assetPrefix: '/beta',
+  basePath: '/beta',
+  publicRuntimeConfig: {
+    basePath: "/beta",
+  },
   reactStrictMode: true,
   trailingSlash: true,
   handleImages: ['jpeg', 'png', 'svg'],

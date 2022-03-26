@@ -91,7 +91,7 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
                 src={post.coverImage}
                 width={580}
                 height={300}
-                style={{ objectFit: 'cover', backgroundColor: 'blue' }}
+                style={{ objectFit: 'cover'}}
               />
             </div>
             <h1 className="text-3xl font-semibold" style={{ color: "#24292f" }}>{post.title}</h1>
