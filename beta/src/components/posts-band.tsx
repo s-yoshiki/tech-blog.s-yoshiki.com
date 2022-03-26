@@ -18,7 +18,7 @@ const Band = (props: EntryBandProp) => {
       justify-center
       '
     >
-      {props.posts.map((post) => (
+      {props.posts.map((post, idx) => (
         <Card
           title={post.title}
           date={post.date}
@@ -26,6 +26,7 @@ const Band = (props: EntryBandProp) => {
           description={``}
           src={post.coverImage}
           tags={post.tags}
+          key={idx}
         />
       ))}
     </div>

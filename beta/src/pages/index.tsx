@@ -65,9 +65,9 @@ const Home: NextPage<Props> = ({ allPosts, tags, dates, popular }) => {
             <div className='w-2/3'>
               <MiddleHeadding>Tags</MiddleHeadding>
               <div className='flex flex-wrap'>
-                {tags.map(el => {
+                {tags.map((el, idx) => {
                   return (
-                    <Link href={`/tags/${el.name}/1`}>
+                    <Link href={`/tags/${el.name}/1`} passHref key={idx}>
                       <div className='flex rounded-lg bg-slate-300 m-1 p-1'>
                         <Badge keyword={el.name} />
                         ({el.counts})

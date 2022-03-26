@@ -26,14 +26,15 @@ const Card = (props: CardProps) => {
           xl:block"
           >
 
-        <Link href={props.href}>
+        <Link href={props.href} passHref>
           <img
+            alt={props.title}
             className="
-                rounded-tl-lg
-                rounded-tr-lg
-                h-28
-                max-h-28
-              "
+              rounded-tl-lg
+              rounded-tr-lg
+              h-28
+              max-h-28
+            "
             src={props.src}
             width={480}
             height={200}
@@ -48,7 +49,7 @@ const Card = (props: CardProps) => {
             flex-wrap
             max-h-14
             '>
-          <Link href={props.href}>
+          <Link href={props.href} passHref>
             <span className="
                 text-gray-800 
                 font-semibold
@@ -64,8 +65,8 @@ const Card = (props: CardProps) => {
         <div className='
             flex
             flex-wrap'>
-          {tags.map((tag: string) => (
-            <Link href={`/tags/${tag}/1`}>
+          {tags.map((tag: string, idx) => (
+            <Link href={`/tags/${tag}/1`} passHref key={idx}>
               <div>
                 <Badge keyword={tag} />
               </div>

@@ -23,7 +23,7 @@ const Month = ({item, year} : MonthProps) => {
   return (
     <>
       <div className="ml-8 p-1">
-        <Link href={`/date/${year}/${key}`}>
+        <Link href={`/date/${year}/${key}`} passHref>
           <div className="hover:underline">{key} ({month.counts})</div>
         </Link>
       </div>
@@ -40,7 +40,7 @@ const Year = ({item}: YearProps) => {
         <div className="pr-3">
           {open ? '▼' : '▶︎' }
         </div>
-        <Link href={`/date/${year.name}`}>
+        <Link href={`/date/${year.name}`} passHref>
           <div className="hover:underline">
             {year.name} ({year.counts})
           </div>
@@ -48,9 +48,9 @@ const Year = ({item}: YearProps) => {
       </div>
       {open && (
         <div>
-            {year.months.map(month => {
+            {year.months.map((month, idx) => {
               return (
-                <Month item={month} year={year.name}/>
+                <Month item={month} year={year.name} key={idx}/>
               )
             })} 
         </div>
@@ -62,7 +62,7 @@ const Year = ({item}: YearProps) => {
 const YearMonthPosts = ({items}: YearMonthPostsProps) => {
   return (
     <div>
-      {items.map(year => <Year item={year} />)}
+      {items.map((year, idx) => <Year item={year} key={idx}/>)}
     </div>
   )
 }

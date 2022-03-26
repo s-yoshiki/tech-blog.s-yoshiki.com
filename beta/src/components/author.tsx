@@ -16,8 +16,8 @@ const Author = () => {
       <div className={style.col}>
         <span className={style.authorName}>s-yoshiki</span>
         <div>
-          {badges.map(e => (
-            <Link href={e.link}><img className={style.badge} src={e.logo} alt={e.alt}/></Link>
+          {badges.map((e, idx) => (
+            <Link href={e.link} passHref key={idx}><img className={style.badge} src={e.logo} alt={e.alt} /></Link>
           ))}
         </div>
         <div style={{'fontSize': '12px'}}>

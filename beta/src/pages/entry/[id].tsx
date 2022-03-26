@@ -88,6 +88,7 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
             <div className='p-6 text-7xl flex justify-center'>
               <img
                 className='rounded-lg'
+                alt={post.title}
                 src={post.coverImage}
                 width={580}
                 height={300}
@@ -106,8 +107,8 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
             </div>
             <div className='m-6'></div>
             <div className='flex flex-wrap'>
-              {post.tags?.map((tag: string) => (
-                <a href={`/tags/${tag}/1`}>
+              {post.tags?.map((tag: string, idx: number) => (
+                <a href={`/tags/${tag}/1`} key={idx}>
                   <Badge keyword={tag} />
                 </a>
               ))}
@@ -159,9 +160,9 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
               <div className='w-2/3'>
                 <MiddleHeadding>Tags</MiddleHeadding>
                 <div className='flex flex-wrap'>
-                  {tags.map(el => {
+                  {tags.map((el, idx) => {
                     return (
-                      <Link href={`/tags/${el.name}/1`}>
+                      <Link href={`/tags/${el.name}/1`} passHref key={idx}>
                         <div className='flex rounded-lg bg-slate-300 m-1 p-1'>
                           <Badge keyword={el.name} />
                           ({el.counts})
