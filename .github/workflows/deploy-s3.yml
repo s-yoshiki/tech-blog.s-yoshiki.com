@@ -47,6 +47,7 @@ jobs:
       # beta版
       - name: init
         run: |
+          rm .eslintrc.yml
           cd beta
           npm ci
           npm run build
