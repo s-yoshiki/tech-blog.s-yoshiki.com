@@ -17,7 +17,7 @@ interface YearProps {
   item: IGroupByYearMonthItems
 }
 
-const Month = ({item, year} : MonthProps) => {
+const Month = ({ item, year }: MonthProps) => {
   const month = item
   const key = month.name.split('-')[1]
   return (
@@ -31,14 +31,14 @@ const Month = ({item, year} : MonthProps) => {
   )
 }
 
-const Year = ({item}: YearProps) => {
+const Year = ({ item }: YearProps) => {
   const [open, setFlag] = useState<boolean>(false)
   const year = item
   return (
     <div>
       <div onClick={() => setFlag(!open)} className="flex flex-wrap p-1">
         <div className="pr-3">
-          {open ? '▼' : '▶︎' }
+          {open ? '▼' : '▶︎'}
         </div>
         <Link href={`/date/${year.name}`} passHref>
           <div className="hover:underline">
@@ -48,21 +48,21 @@ const Year = ({item}: YearProps) => {
       </div>
       {open && (
         <div>
-            {year.months.map((month, idx) => {
-              return (
-                <Month item={month} year={year.name} key={idx}/>
-              )
-            })} 
+          {year.months.map((month, idx) => {
+            return (
+              <Month item={month} year={year.name} key={idx} />
+            )
+          })}
         </div>
       )}
     </div>
   )
 }
 
-const YearMonthPosts = ({items}: YearMonthPostsProps) => {
+const YearMonthPosts = ({ items }: YearMonthPostsProps) => {
   return (
     <div>
-      {items.map((year, idx) => <Year item={year} key={idx}/>)}
+      {items.map((year, idx) => <Year item={year} key={idx} />)}
     </div>
   )
 }
