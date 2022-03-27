@@ -1,4 +1,4 @@
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import Header from './header';
 import Footer from './footer';
 import { ReactNode } from 'react';
@@ -17,7 +17,6 @@ interface Props {
   children: ReactNode;
   image?: string;
   description?: string;
-  // path: string;
 }
 
 const Index = (props: Props) => {
@@ -43,7 +42,6 @@ const Index = (props: Props) => {
           description={props.description || title}
           image={`${baseUrl}${props.image}`}
         />
-        <GaTag gaId={siteMetaData.gtag} />
       </HeaderMeta>
       <article>
         <header>
