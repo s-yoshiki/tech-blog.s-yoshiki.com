@@ -1,7 +1,7 @@
 
 import Script from 'next/script'
 
-const GaTag = (gaId: string) => {
+const GaTag = ({ gaId }: { gaId: string }) => {
   return (
     <>
       <Script defer src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} strategy="afterInteractive" />

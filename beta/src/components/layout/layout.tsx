@@ -10,8 +10,9 @@ import ImportAds from 'components/ads/import-ads'
 import Og from 'components/meta/og'
 import RelationAds from 'components/ads/relations-ads'
 import FullWidthAds from 'components/ads/fullwidth-ads'
+import GaTag from 'components/meta/gatag'
 
-const { siteMetaData } = getConfig().publicRuntimeConfig;
+const { siteMetaData, basePath } = getConfig().publicRuntimeConfig;
 
 interface Props {
   title?: string;
@@ -24,33 +25,34 @@ interface Props {
 const Index = (props: Props) => {
   const title = props?.title ? `${props.title} | ${siteMetaData.title}` : siteMetaData?.title
   const router = useRouter()
+  const baseUrl = `${siteMetaData.siteUrl}/${basePath}/`
   return (
     <>
       <HeaderMeta
         title={title}
       >
-        <TwitterCard
-          card='summary'
-          title={title}
-          site={`@s-yoshiki`}
-          description={props.description || ''}
-          image={props?.image || ''}
-        />
+        <ImportAds />
         <Og
           title={title}
           type={`article`}
           description={props.description || ''}
-          image={props.image}
-          url={router.asPath}
+          image={`${baseUrl}/${props.image}`}
+          url={`${baseUrl}/${router.asPath}`}
         />
-        <ImportAds />
+        <TwitterCard
+          card='summary'
+          title={title}
+          site={`@s_yoshiki_dev`}
+          description={props.description || ''}
+          image={`${baseUrl}/${props.image}`}
+        />
+        <GaTag gaId={siteMetaData.gtag}/>
       </HeaderMeta>
       <article  >
         <header>
           <Header title={siteMetaData?.title} />
         </header>
         <div className="pt-6"></div>
-        {JSON.stringify(siteMetaData)}
         <main className="">
           { props.children }
           <RelationAds />
