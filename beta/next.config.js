@@ -9,10 +9,6 @@ const siteMetaData = {
   siteUrl: `https://tech-blog.s-yoshiki.com`,
   copyrights: '',
   author: `@s-yoshiki`,
-  logo: {
-    src: '',
-    alt: '',
-  },
   logoText: '404 motivation not found',
   gtag: 'G-PJBP94L671'
 }

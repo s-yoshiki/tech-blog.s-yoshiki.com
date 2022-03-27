@@ -21,8 +21,7 @@ const Ads = (props : AdsenseProps) => {
     }
   }, [asPath]);
 
-  props.client = 'ca-pub-5931776908676811'
-  // { display: "block", textAlign: "center" }
+  const client = 'ca-pub-5931776908676811'
   return (
     <div key={asPath}>
       <ins
@@ -30,7 +29,7 @@ const Ads = (props : AdsenseProps) => {
         style={props.style}
         data-ad-layout={props.layout}
         data-ad-format={props.format}
-        data-ad-client={props.client}
+        data-ad-client={client}
         data-ad-slot={props.slot}
         data-full-width-responsive={props.fullWidthResponsive}
       />
