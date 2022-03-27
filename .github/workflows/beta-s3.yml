@@ -1,4 +1,4 @@
-name: deploy s3
+name: BETA deploy s3
 
 on:
   push:
