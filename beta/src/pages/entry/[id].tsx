@@ -1,7 +1,7 @@
 import { NextPage, InferGetStaticPropsType } from 'next';
 import PostsManager from 'utils/posts-manager';
 import markdownToHtml from 'utils/md';
-import Layout from 'components/layout'
+import Layout from 'components/layout/layout'
 import Badge from 'components/badge';
 import { search as searchEventHandler } from 'lib/inner-search'
 import Search from 'components/search'
@@ -81,7 +81,11 @@ const MiddleHeadding = ({ children }: { children: string }) => {
 
 const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommends }) => {
   return (
-    <Layout >
+    <Layout
+      title={post.title}
+      image={post.coverImage}
+      description={post.title}
+    >
       <div className="">
         <div className="container mx-auto max-w-screen-lg">
           <div className="justify-center text-center">

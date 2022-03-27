@@ -1,6 +1,6 @@
 import { NextPage, InferGetStaticPropsType } from 'next';
 import PostsManager from 'utils/posts-manager';
-import Layout from "components/layout"
+import Layout from "components/layout/layout"
 import PostsBand from "components/posts-band"
 import Search from 'components/search'
 import { search as searchEventHandler } from 'lib/inner-search'

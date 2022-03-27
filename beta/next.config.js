@@ -1,22 +1,33 @@
 // const withPlugins = require("next-compose-plugins");
 const withOptimizedImages = require("next-optimized-images");
+
+const basePath = '/beta'
+
+const siteMetaData = {
+  title: `404 motivation not found`,
+  description: `結果にコミットする`,
+  siteUrl: `https://tech-blog.s-yoshiki.com`,
+  copyrights: '',
+  author: `@s-yoshiki`,
+  logo: {
+    src: '',
+    alt: '',
+  },
+  logoText: '404 motivation not found',
+  gtag: 'G-PJBP94L671'
+}
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  assetPrefix: '/beta',
-  basePath: '/beta',
+  assetPrefix: basePath,
+  basePath,
   publicRuntimeConfig: {
-    basePath: "/beta",
+    basePath,
+    siteMetaData,
   },
   reactStrictMode: true,
   trailingSlash: true,
   handleImages: ['jpeg', 'png', 'svg'],
-  // webpack: function (config) {
-  //   config.module.rules.push({
-  //     test: /\.md$/,
-  //     use: "raw-loader",
-  //   });
-  //   return config;
-  // },
   plugins: {
     tailwindcss: {},
     autoprefixer: {},
@@ -24,7 +35,7 @@ const nextConfig = {
   images: {
     loader: 'custom',
     domains: ['img.shields.io'],
-  },
+  }
 }
 
 module.exports = withOptimizedImages(nextConfig)

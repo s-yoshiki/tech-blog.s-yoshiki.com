@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next export",
+    "export": "next export && next-sitemap --config sitemap.config.js",
     "lint": "next lint",
     "lint:fix": "next lint --fix"
   },
@@ -28,6 +28,7 @@
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "next-sitemap": "^2.5.14",
     "postcss": "^8.4.12",
     "raw-loader": "^4.0.2",
     "rehype-parse": "^8.0.4",

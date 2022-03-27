@@ -24,7 +24,7 @@ const Month = ({ item, year }: MonthProps) => {
     <>
       <div className="ml-8 p-1">
         <Link href={`/date/${year}/${key}`} passHref>
-          <div className="hover:underline">{key} ({month.counts})</div>
+          <div className="hover:underline">{Number(key)}月 ({month.counts})</div>
         </Link>
       </div>
     </>
@@ -42,7 +42,7 @@ const Year = ({ item }: YearProps) => {
         </div>
         <Link href={`/date/${year.name}`} passHref>
           <div className="hover:underline">
-            {year.name} ({year.counts})
+            {year.name} 年 ({year.counts})
           </div>
         </Link>
       </div>
