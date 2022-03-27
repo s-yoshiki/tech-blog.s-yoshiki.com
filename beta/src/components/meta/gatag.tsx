@@ -4,15 +4,18 @@ import Script from 'next/script'
 const GaTag = ({ gaId }: { gaId: string }) => {
   return (
     <>
-      <Script defer src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} strategy="afterInteractive" />
-      <Script id="ga" defer strategy="afterInteractive">
-        {`
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());    
-          gtag('config', '${gaId}');
-        `}
-      </Script>
+          gtag('js', new Date());
+          gtag('config', '${gaId}', {
+            page_path: window.location.pathname,
+          });`,
+        }}
+      />
     </>
   )
 }
