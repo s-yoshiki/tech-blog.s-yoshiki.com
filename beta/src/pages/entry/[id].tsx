@@ -139,19 +139,20 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
               lg:col-span-5
               xl:col-span-5
               markdown-body rounded-lg p-6 gap-4 shadow'  >
-
               <section className=''>
                 <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
               </section>
             </article>
             <div className='
-              flex
               lg:col-span-2
               xl:col-span-2
-              h-full
-              lg:block
-              xl:block
-              hidden
+              lg:visible
+              xl:visible
+              invisible
+              flex
+              lg:h-full
+              xl:h-full
+              h-0
             '>
               <div>
                 <div className='container justify-center mx-auto  markdown-body rounded-lg shadow p-4'>
@@ -179,10 +180,10 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
                       </ol>
                     </div>
                   </div>
-                </div>
-                <div>
-                  <div className='p-4'>
-                    <SidebarAds />
+                  <div>
+                    <div className='p-4'>
+                      <SidebarAds />
+                    </div>
                   </div>
                 </div>
               </div>
