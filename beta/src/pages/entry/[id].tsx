@@ -170,8 +170,8 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
                     <div className='flex flex-wrap'>
                       <ol>
                       {post.toc?.map((toc: string, idx: number) => (
-                        <li>
-                          <a href={`#${toc}`} key={idx}>
+                        <li key={idx}>
+                          <a href={`#${toc}`} >
                             {toc}
                           </a>
                         </li>
