@@ -1,4 +1,5 @@
 import React from "react";
+
 import Ads from './ads'
 
 const SidebarAds = () => {
@@ -7,7 +8,6 @@ const SidebarAds = () => {
       slot="6792373361"
       format="auto"
       fullWidthResponsive='true'
-      style={{display: "block", textAlign: "center"}}
      />
   );
 };

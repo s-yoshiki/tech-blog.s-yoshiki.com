@@ -12,12 +12,14 @@
   },
   "dependencies": {
     "@leafac/rehype-shiki": "^2.1.2",
+    "cheerio": "^1.0.0-rc.10",
     "gray-matter": "^4.0.3",
     "next": "12.1.0",
     "next-compose-plugins": "^2.2.1",
     "next-optimized-images": "^2.6.2",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "remark-toc": "^8.0.1"
   },
   "devDependencies": {
     "@jsdevtools/rehype-toc": "^3.0.2",

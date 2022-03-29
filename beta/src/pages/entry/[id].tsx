@@ -9,6 +9,7 @@ import PostsBand from "components/posts-band"
 import Link from "next/link"
 import YearMonthPosts from 'components/yesar-month-posts';
 import Author from 'components/author';
+import SidebarAds from 'components/ads/sidebar-ads';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -33,7 +34,7 @@ export const getStaticProps = async ({ params }: any) => {
   const dates = PostsManager.getCountsGroupYearMonth()
   const popular = PostsManager.getPopularPosts().slice(0, 10)
   const post = PostsManager.findByPath(`/entry/${params.id}`)
-  const content = await markdownToHtml({
+  const contentObj = await markdownToHtml({
     filepath: post.filepath,
     baseImagePath: post.path,
   });
@@ -42,7 +43,8 @@ export const getStaticProps = async ({ params }: any) => {
     props: {
       post: {
         ...post,
-        content,
+        content: contentObj.html,
+        toc: contentObj.toc,
       },
       allPosts,
       popular,
@@ -87,7 +89,7 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
       description={post.title}
     >
       <div className="">
-        <div className="container mx-auto max-w-screen-lg">
+        <div className=" mx-auto">
           <div className="justify-center text-center">
             <div className='p-6 text-7xl flex justify-center'>
               <img
@@ -96,7 +98,7 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
                 src={post.coverImage}
                 width={580}
                 height={300}
-                style={{ objectFit: 'cover'}}
+                style={{ objectFit: 'cover' }}
               />
             </div>
             <h1 className="text-3xl font-semibold" style={{ color: "#24292f" }}>{post.title}</h1>
@@ -110,22 +112,86 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
               </span>
             </div>
             <div className='m-6'></div>
-            <div className='flex flex-wrap'>
-              {post.tags?.map((tag: string, idx: number) => (
-                <a href={`/tags/${tag}/1`} key={idx}>
-                  <Badge keyword={tag} />
-                </a>
-              ))}
-            </div>
+
           </div>
           <div className='m-8'></div>
-          <article className='max-w-screen-lg  mx-auto markdown-body rounded-lg p-6 flex-1 shadow'  >
-            <section>
-              <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
-            </section>
-          </article>
+          <div className='
+            flex
+            grid 
+            grid-cols-1
+            sm:grid-cols-1
+            md:grid-cols-3
+            lg:grid-cols-8
+            xl:grid-cols-8
+            gap-5
+            justify-end
+            '
+          >
+            <div className='
+              md:col-span-1
+              lg:col-span-1
+              xl:col-span-1
+            '>
+            </div>
+            <article className='
+              grid-cols-3
+              md:col-span-5
+              lg:col-span-5
+              xl:col-span-5
+              markdown-body rounded-lg p-6 gap-4 shadow'  >
+
+              <section className=''>
+                <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
+              </section>
+            </article>
+            <div className='
+              flex
+              lg:col-span-2
+              xl:col-span-2
+              h-full
+              lg:block
+              xl:block
+              hidden
+            '>
+              <div>
+                <div className='container justify-center mx-auto  markdown-body rounded-lg shadow p-4'>
+                  <h3>Tags</h3>
+                  <div className='flex flex-wrap'>
+                    {post.tags?.map((tag: string, idx: number) => (
+                      <a href={`/tags/${tag}/1`} key={idx}>
+                        <Badge keyword={tag} />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+                <div className='sticky top-0 pt-6'>
+                  <div className='container justify-center mx-auto  markdown-body rounded-lg shadow p-4'>
+                    <h3>目次</h3>
+                    <div className='flex flex-wrap'>
+                      <ol>
+                      {post.toc?.map((toc: string, idx: number) => (
+                        <li>
+                          <a href={`#${toc}`} key={idx}>
+                            {toc}
+                          </a>
+                        </li>
+                      ))}
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div className='p-4'>
+                    <SidebarAds />
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
           <div className='p-6'></div>
         </div>
+
         <div className="bg-white">
           <div className='p-6'></div>
           <div className='container mx-auto'>

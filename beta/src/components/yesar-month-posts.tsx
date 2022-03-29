@@ -1,5 +1,4 @@
 import {
-  Posts,
   IGroupByItems,
   IGroupByYearMonthItems
 } from "types/entry.interface"
@@ -22,7 +21,7 @@ const Month = ({ item, year }: MonthProps) => {
   const key = month.name.split('-')[1]
   return (
     <>
-      <div className="ml-8 p-1">
+      <div className="ml-6 p-1">
         <Link href={`/date/${year}/${key}`} passHref>
           <div className="hover:underline">{Number(key)}月 ({month.counts})</div>
         </Link>
@@ -37,7 +36,7 @@ const Year = ({ item }: YearProps) => {
   return (
     <div>
       <div onClick={() => setFlag(!open)} className="flex flex-wrap p-1">
-        <div className="pr-3">
+        <div className="pr-2">
           {open ? '▼' : '▶︎'}
         </div>
         <Link href={`/date/${year.name}`} passHref>
