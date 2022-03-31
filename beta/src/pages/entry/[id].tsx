@@ -10,6 +10,7 @@ import Link from "next/link"
 import YearMonthPosts from 'components/yesar-month-posts';
 import Author from 'components/author';
 import SidebarAds from 'components/ads/sidebar-ads';
+import RelationAds from 'components/ads/relations-ads'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -181,19 +182,21 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
                     </div>
                   </div>
                   <div>
-                    <div className='p-4'>
-                      <SidebarAds />
-                    </div>
+                  </div>
+                  <div className='pt-6 h-96 min-h-full'>
+                    <SidebarAds />
                   </div>
                 </div>
               </div>
 
             </div>
           </div>
-          <div className='p-6'></div>
+          <div className='p-6'>
+          </div>
         </div>
 
         <div className="bg-white">
+        <RelationAds />
           <div className='p-6'></div>
           <div className='container mx-auto'>
             <div>

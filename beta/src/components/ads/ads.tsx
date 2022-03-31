@@ -23,7 +23,7 @@ const Ads = (props : AdsenseProps) => {
 
   const client = 'ca-pub-5931776908676811'
   return (
-    <div key={asPath}>
+    <div key={asPath} className="max-w-4xl mx-auto content-center bg-slate-500 h-full max-h-lg">
       <ins
         className="adsbygoogle"
         style={props.style}

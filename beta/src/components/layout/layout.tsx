@@ -52,7 +52,6 @@ const Index = (props: Props) => {
           {props.children}
           <RelationAds />
         </main>
-        <FullWidthAds />
         <footer>
           <Footer title="404 motivation not found" />
         </footer>
