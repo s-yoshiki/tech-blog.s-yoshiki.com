@@ -6,9 +6,10 @@ const SidebarAds = () => {
   return (
     <div className="min-h-full">
       <Ads
-        slot="6792373361"
-        format="auto"
+        slot="6653090683"
+        format="autorelaxed"
         fullWidthResponsive='true'
+        style={{display: "block", textAlign: "center"}}
         />
     </div>
   );
