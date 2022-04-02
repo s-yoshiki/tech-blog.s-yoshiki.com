@@ -122,28 +122,12 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
             grid-cols-1
             sm:grid-cols-1
             md:grid-cols-3
-            lg:grid-cols-8
-            xl:grid-cols-8
+            lg:grid-cols-9
+            xl:grid-cols-9
             gap-5
             justify-end
             '
           >
-            <div className='
-              md:col-span-1
-              lg:col-span-1
-              xl:col-span-1
-            '>
-            </div>
-            <article className='
-              grid-cols-3
-              md:col-span-5
-              lg:col-span-5
-              xl:col-span-5
-              markdown-body rounded-lg p-6 gap-4 shadow'  >
-              <section className=''>
-                <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
-              </section>
-            </article>
             <div className='
               lg:col-span-2
               xl:col-span-2
@@ -155,35 +139,66 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
               xl:h-full
               h-0
             '>
-              <div>
-                <div className='container justify-center mx-auto  markdown-body rounded-lg shadow p-4'>
-                  <h3>Tags</h3>
-                  <div className='flex flex-wrap'>
-                    {post.tags?.map((tag: string, idx: number) => (
-                      <a href={`/tags/${tag}/1`} key={idx}>
-                        <Badge keyword={tag} />
-                      </a>
-                    ))}
+              <div className='w-full'>
+                <div className='sticky top-0'>
+                  <div className='container justify-center mx-auto  markdown-body rounded-lg shadow p-4'>
+                    <h3>Tags</h3>
+                    <div className='flex flex-wrap'>
+                      {post.tags?.map((tag: string, idx: number) => (
+                        <a href={`/tags/${tag}/1`} key={idx}>
+                          <Badge keyword={tag} />
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                  <div className='pt-6 h-96 h-fit'>
+                    <SidebarAds />
                   </div>
                 </div>
-                <div className='sticky top-0 pt-6'>
+              </div>
+            </div>
+            <div className='
+              grid-cols-3
+              md:col-span-5
+              lg:col-span-5
+              xl:col-span-5'>
+              <article className='markdown-body rounded-lg p-6 gap-4 shadow'>
+                <section className=''>
+                  <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
+                </section>
+              </article>
+              <div className='pt-6'>
+                <RelationAds />
+              </div>
+            </div>
+            <div className='
+              lg:col-span-2
+              xl:col-span-2
+              lg:visible
+              xl:visible
+              invisible
+              flex
+              lg:h-full
+              xl:h-full
+              h-0
+            '>
+              <div className='w-full'>
+                <div className='sticky top-0'>
                   <div className='container justify-center mx-auto  markdown-body rounded-lg shadow p-4'>
                     <h3>目次</h3>
                     <div className='flex flex-wrap'>
                       <ol>
-                      {post.toc?.map((toc: string, idx: number) => (
-                        <li key={idx}>
-                          <a href={`#${toc}`} >
-                            {toc}
-                          </a>
-                        </li>
-                      ))}
+                        {post.toc?.map((toc: string, idx: number) => (
+                          <li key={idx}>
+                            <a href={`#${toc}`} >
+                              {toc}
+                            </a>
+                          </li>
+                        ))}
                       </ol>
                     </div>
                   </div>
-                  <div>
-                  </div>
-                  <div className='pt-6 h-96 min-h-full'>
+                  <div className='pt-6 h-96 h-fit'>
                     <SidebarAds />
                   </div>
                 </div>
@@ -196,7 +211,6 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
         </div>
 
         <div className="bg-white">
-        <RelationAds />
           <div className='p-6'></div>
           <div className='container mx-auto'>
             <div>
