@@ -3,7 +3,7 @@ name: deploy s3
 on:
   push:
     branches:
-      - master
+      - master-bak
 
 jobs:
   build:

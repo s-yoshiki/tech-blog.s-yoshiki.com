@@ -80,6 +80,137 @@ const MiddleHeadding = ({ children }: { children: string }) => {
   )
 }
 
+const Sidebar = ({ children }: any) => {
+  return (
+    <div className='w-full'>
+      <div className='sticky top-0'>
+        {children}
+        <div className='pt-6 h-96 h-fit'>
+          <SidebarAds />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const LeftSidebar = ({ tags }: any) => {
+  return (
+    <Sidebar>
+      <div className='container justify-center mx-auto  markdown-body rounded-lg shadow p-4'>
+        <h3>Tags</h3>
+        <div className='flex flex-wrap'>
+          {tags?.map((tag: string, idx: number) => (
+            <a href={`/tags/${tag}/1`} key={idx}>
+              <Badge keyword={tag} />
+            </a>
+          ))}
+        </div>
+      </div>
+    </Sidebar>
+  )
+}
+
+const RightSidebar = ({ toc }: any) => {
+  return (
+    <Sidebar>
+      <div className='container justify-center mx-auto  markdown-body rounded-lg shadow p-4'>
+        <h3>目次</h3>
+        <div className='flex flex-wrap'>
+          <ol>
+            {toc?.map((toc: string, idx: number) => (
+              <li key={idx}>
+                <a href={`#${toc}`} >
+                  {toc}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </Sidebar>
+  )
+}
+
+const RelationContents = ({ allPosts, tags, dates, popular, recommends }: any) => {
+  return (
+    <>
+      {recommends && (
+        <div className="bg-white">
+          <div className='p-6'></div>
+          <div className='container mx-auto'>
+            <div>
+              <Search onClick={searchEventHandler} />
+            </div>
+            <>
+              <MiddleHeadding>Recommends</MiddleHeadding>
+              <PostsBand posts={recommends} />
+            </>
+          </div>
+          <div className='p-8'></div>
+        </div>
+      )}
+      {allPosts && (
+        <div>
+          <div className='p-6'></div>
+          <div className='container mx-auto'>
+            <MiddleHeadding>New Posts</MiddleHeadding>
+            <PostsBand posts={allPosts} />
+          </div>
+          <div className='p-8'></div>
+        </div>
+      )}
+      {popular && (
+        <div className='bg-white'>
+          <div className='p-8'></div>
+          <div className='container mx-auto bg-white'>
+            <MiddleHeadding>Hot posts!</MiddleHeadding>
+            <PostsBand posts={popular} />
+          </div>
+          <div className='p-8'></div>
+        </div>
+      )}
+      <div className=''>
+        <div className='p-8'></div>
+        <div className='container mx-auto'>
+          <div className='flex flex-wrap flex-row'>
+            {dates && (
+              <div className='w-1/3'>
+                <MiddleHeadding>Date</MiddleHeadding>
+                <YearMonthPosts items={dates} />
+              </div>
+            )}
+            {tags && (
+              <div className='w-2/3'>
+                <MiddleHeadding>Tags</MiddleHeadding>
+                <div className='flex flex-wrap'>
+                  {tags.map((el: any, idx: number) => {
+                    return (
+                      <Link href={`/tags/${el.name}/1`} passHref key={idx}>
+                        <div className='flex rounded-lg bg-slate-300 m-1 p-1'>
+                          <Badge keyword={el.name} />
+                          ({el.counts})
+                        </div>
+                      </Link>
+                    )
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+        <div className='p-8'></div>
+      </div>
+      <div className="bg-white">
+        <div className='p-8'></div>
+        <div className='container mx-auto'>
+          <MiddleHeadding>Author</MiddleHeadding>
+          <Author />
+        </div>
+        <div className='p-8'></div>
+      </div>
+    </>
+  )
+}
 
 
 const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommends }) => {
@@ -113,7 +244,6 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
               </span>
             </div>
             <div className='m-6'></div>
-
           </div>
           <div className='m-8'></div>
           <div className='
@@ -121,7 +251,7 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
             grid 
             grid-cols-1
             sm:grid-cols-1
-            md:grid-cols-3
+            md:grid-cols-5
             lg:grid-cols-9
             xl:grid-cols-9
             gap-5
@@ -139,26 +269,10 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
               xl:h-full
               h-0
             '>
-              <div className='w-full'>
-                <div className='sticky top-0'>
-                  <div className='container justify-center mx-auto  markdown-body rounded-lg shadow p-4'>
-                    <h3>Tags</h3>
-                    <div className='flex flex-wrap'>
-                      {post.tags?.map((tag: string, idx: number) => (
-                        <a href={`/tags/${tag}/1`} key={idx}>
-                          <Badge keyword={tag} />
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                  <div className='pt-6 h-96 h-fit'>
-                    <SidebarAds />
-                  </div>
-                </div>
-              </div>
+              <LeftSidebar tags={post.tags} />
             </div>
             <div className='
-              grid-cols-3
+              grid-cols-1
               md:col-span-5
               lg:col-span-5
               xl:col-span-5'>
@@ -182,96 +296,18 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
               xl:h-full
               h-0
             '>
-              <div className='w-full'>
-                <div className='sticky top-0'>
-                  <div className='container justify-center mx-auto  markdown-body rounded-lg shadow p-4'>
-                    <h3>目次</h3>
-                    <div className='flex flex-wrap'>
-                      <ol>
-                        {post.toc?.map((toc: string, idx: number) => (
-                          <li key={idx}>
-                            <a href={`#${toc}`} >
-                              {toc}
-                            </a>
-                          </li>
-                        ))}
-                      </ol>
-                    </div>
-                  </div>
-                  <div className='pt-6 h-96 h-fit'>
-                    <SidebarAds />
-                  </div>
-                </div>
-              </div>
-
+              <RightSidebar toc={post.toc} />
             </div>
           </div>
-          <div className='p-6'>
-          </div>
-        </div>
-
-        <div className="bg-white">
           <div className='p-6'></div>
-          <div className='container mx-auto'>
-            <div>
-              <Search onClick={searchEventHandler} />
-            </div>
-            <MiddleHeadding>Recommends</MiddleHeadding>
-            <PostsBand posts={recommends} />
-          </div>
-          <div className='p-8'></div>
         </div>
-        <div>
-          <div className='p-6'></div>
-          <div className='container mx-auto'>
-            <MiddleHeadding>New Posts</MiddleHeadding>
-            <PostsBand posts={allPosts} />
-          </div>
-          <div className='p-8'></div>
-        </div>
-        <div className='bg-white'>
-          <div className='p-8'></div>
-          <div className='container mx-auto bg-white'>
-            <MiddleHeadding>Hot posts!</MiddleHeadding>
-            <PostsBand posts={popular} />
-          </div>
-          <div className='p-8'></div>
-        </div>
-        <div className=''>
-          <div className='p-8'></div>
-          <div className='container mx-auto'>
-            <div className='flex flex-wrap flex-row'>
-              <div className='w-1/3'>
-                <MiddleHeadding>Date</MiddleHeadding>
-                <YearMonthPosts items={dates} />
-              </div>
-              <div className='w-2/3'>
-                <MiddleHeadding>Tags</MiddleHeadding>
-                <div className='flex flex-wrap'>
-                  {tags.map((el, idx) => {
-                    return (
-                      <Link href={`/tags/${el.name}/1`} passHref key={idx}>
-                        <div className='flex rounded-lg bg-slate-300 m-1 p-1'>
-                          <Badge keyword={el.name} />
-                          ({el.counts})
-                        </div>
-                      </Link>
-                    )
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='p-8'></div>
-        </div>
-        <div className="bg-white">
-          <div className='p-8'></div>
-          <div className='container mx-auto'>
-            <MiddleHeadding>Author</MiddleHeadding>
-            <Author />
-          </div>
-          <div className='p-8'></div>
-        </div>
+        <RelationContents
+          allPosts={allPosts}
+          tags={tags}
+          dates={dates}
+          popular={popular}
+          recommends={recommends}
+        />
       </div>
     </Layout>
   )
