@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { MouseEventHandler } from 'react'
 
 interface ISearchPropsOnClick {
   (arg: string): void

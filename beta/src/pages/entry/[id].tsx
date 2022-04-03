@@ -11,6 +11,7 @@ import YearMonthPosts from 'components/yesar-month-posts';
 import Author from 'components/author';
 import SidebarAds from 'components/ads/sidebar-ads';
 import RelationAds from 'components/ads/relations-ads'
+import { getWindowSize } from "hooks/useWindowSize";
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -141,10 +142,8 @@ const RelationContents = ({ allPosts, tags, dates, popular, recommends }: any) =
             <div>
               <Search onClick={searchEventHandler} />
             </div>
-            <>
-              <MiddleHeadding>Recommends</MiddleHeadding>
-              <PostsBand posts={recommends} />
-            </>
+            <MiddleHeadding>Recommends</MiddleHeadding>
+            <PostsBand posts={recommends} />
           </div>
           <div className='p-8'></div>
         </div>
@@ -214,6 +213,7 @@ const RelationContents = ({ allPosts, tags, dates, popular, recommends }: any) =
 
 
 const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommends }) => {
+  const { width } = getWindowSize();
   return (
     <Layout
       title={post.title}
@@ -269,7 +269,9 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
               xl:h-full
               h-0
             '>
-              <LeftSidebar tags={post.tags} />
+              {width >= 1024 && (
+                <LeftSidebar tags={post.tags} />
+              )}
             </div>
             <div className='
               grid-cols-1
@@ -296,7 +298,9 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
               xl:h-full
               h-0
             '>
-              <RightSidebar toc={post.toc} />
+              {width >= 1024 && (
+                <RightSidebar toc={post.toc} />
+              ) }
             </div>
           </div>
           <div className='p-6'></div>
