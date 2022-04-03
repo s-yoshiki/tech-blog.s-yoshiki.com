@@ -6,20 +6,6 @@
   text-align: left;
   padding: 20px;
   margin: 0 auto 20px;
-  :global .dark-theme :local & {
-    background: #252627;
-  }
-  &:not(:last-of-type) {
-    border-bottom: 1px solid var(--light-border-color);
-
-    :global .dark-theme :local & {
-      border-color: var(--dark-border-color);
-    }
-  }
-
-  @media (--tablet) {
-    max-width: 660px;
-  }
 }
 
 .coverImage {

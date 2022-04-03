@@ -1,68 +1,21 @@
-@import "./variables.css";
 
 .header {
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  padding: 20px;
-  border-bottom: inset 1px #dcdcdc;
-
-  :global .dark-theme :local & {
-    background: #252627;
-    border-bottom: inset 1px #656667;
-  }
-
-  a {
-    text-decoration: none;
-  }
+  @apply bg-white ;
 }
 
-.inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 auto;
-  width: 950px;
-  max-width: 100%;
+.headerContainer {
+  @apply p-6 mx-auto container ;
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  font-weight: bold;
-
-  & img {
-    height: 44px;
-  }
-}
-
-.mark {
-  margin-right: 5px;
-}
-
-
-.text,
-.mark {
+.title {
+  font-weight: 600;
+  padding-bottom: .3em;
   font-size: 20px;
-  color: var(--light-accent-color-secondary);
-  font-weight: bolder;
-  &:hover {
-    color:var(--light-accent-color-focus);
-  }
-  
+  font-weight: 900;
+  line-height: 1.25;
+  color: #98a2b2;
 }
 
-.right {
-  display: flex;
-  position: relative;
-  color: var(--light-accent-color-secondary);
-}
-
-@keyframes cursor {
-  0% { opacity: 0; }
-  50% { opacity: 1; }
-  100% { opacity: 0; }
+.title:hover {
+  color: blue;
 }
