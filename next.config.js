@@ -1,6 +1,3 @@
-// const withPlugins = require("next-compose-plugins");
-const withOptimizedImages = require("next-optimized-images");
-
 const basePath = ''
 
 const siteMetaData = {
@@ -34,5 +31,4 @@ const nextConfig = {
   }
 }
 
-module.exports = withOptimizedImages(nextConfig)
-// module.exports = nextConfig
+module.exports = nextConfig
