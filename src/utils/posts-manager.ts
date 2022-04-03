@@ -73,12 +73,10 @@ class PostsManager {
    * 年月ごとソート
    */
   private dataGroupByYearMonth: Map<string, Posts[]>;
-  private yearMonths : string[] = []
   /**
    * 年ごとソート
    */
   private dataGroupByYear: Map<string, Posts[]>;
-  private years : string[] = []
   private mostOldDate : number = new Date().getFullYear()
 
   /**
