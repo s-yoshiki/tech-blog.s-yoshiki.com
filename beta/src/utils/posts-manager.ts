@@ -11,7 +11,7 @@ import getConfig from "next/config";
 const { publicRuntimeConfig } = getConfig();
 
 // postsが格納されているディレクトリを取得する
-const postsDirectory = join(process.cwd(), "../content/posts");
+const postsDirectory = join(process.cwd(), "content/posts");
 
 const listFiles = (dir: string): string[] =>
   fs.readdirSync(dir, { withFileTypes: true }).flatMap(dirent =>
