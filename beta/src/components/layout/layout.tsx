@@ -7,8 +7,6 @@ import HeaderMeta from 'components/meta/header-meta'
 import TwitterCard from 'components/meta/og-twitter-card'
 import Og from 'components/meta/og'
 import RelationAds from 'components/ads/relations-ads'
-import FullWidthAds from 'components/ads/fullwidth-ads'
-import GaTag from 'components/meta/gatag'
 
 const { siteMetaData, basePath } = getConfig().publicRuntimeConfig;
 
