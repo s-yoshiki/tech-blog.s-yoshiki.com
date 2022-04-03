@@ -11,7 +11,7 @@ interface TwitterCardProps {
 const TwitterCard = (props: TwitterCardProps) => {
   return (
     <>
-      <head prefix={`og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# ${props.type}: http://ogp.me/ns/${props.type}#`} />
+      {/* <head prefix={`og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# ${props.type}: http://ogp.me/ns/${props.type}#`} /> */}
       <meta property="og:url" content={props.url}  />
       <meta property="og:type" content={props.type}  />
       <meta property="og:title" content={props.title} />

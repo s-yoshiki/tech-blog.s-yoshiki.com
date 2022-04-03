@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import style from 'styles/Header.module.css'
+import style from 'styles/Footer.module.css'
 
 interface HeaderProp {
   title: string
