@@ -12,10 +12,6 @@ export const pageview = (path :any) => {
 
 // GAイベントを発火させる
 export const event = ({ action, category, label, value = "" }: any) => {
-  if (!existsGaId) {
-    return;
-  }
-
   window.gtag("event", action, {
     event_category: category,
     event_label: JSON.stringify(label),

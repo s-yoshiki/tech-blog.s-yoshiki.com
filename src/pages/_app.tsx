@@ -3,11 +3,18 @@ import '../styles/globals.css'
 import '../styles/gtihub-markdown.css'
 // import 'tailwindcss/tailwind.css'
 import type { AppProps } from 'next/app'
+import GaTag from 'components/meta/gatag'
+import * as gtag from 'lib/gtag'
 import usePageView from 'hooks/usePageView'
 
-function MyApp({ Component, pageProps }: AppProps) {
+const App = ({ Component, pageProps }: AppProps) => {
   usePageView()
-  return <Component {...pageProps} />
+  return (
+    <>
+      <GaTag gaId={gtag.GA_ID} />
+      <Component {...pageProps} />
+    </>
+  )
 }
 
-export default MyApp
+export default App
