@@ -47,8 +47,10 @@ const Index = (props: Props) => {
         </header>
         <div className="pt-6"></div>
         <main className="">
-          {props.children}
-          <RelationAds />
+          <div className="container mx-auto">
+            {props.children}
+            <RelationAds />
+          </div>
         </main>
         <footer>
           <Footer title="404 motivation not found" />

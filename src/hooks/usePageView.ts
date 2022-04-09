@@ -6,9 +6,6 @@ export default function usePageView() {
   const router = useRouter();
 
   useEffect(() => {
-    // 来訪時
-    pageview(window.location.pathname)
-
     const handleRouteChange = (path: string) => {
       pageview(path)
     }
