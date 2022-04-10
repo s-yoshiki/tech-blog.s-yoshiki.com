@@ -278,7 +278,6 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
               md:col-span-5
               lg:col-span-5
               xl:col-span-5'>
-              <SidebarAds />
               <article className='markdown-body rounded-lg p-6 gap-4 shadow'>
                 <section className=''>
                   <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
