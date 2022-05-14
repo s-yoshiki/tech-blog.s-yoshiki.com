@@ -1,7 +1,7 @@
 ---
 title: "[CDK]SNS＋SQS＋DynamoDBでBounceとComplaint情報を収集するスタック構築"
 path: "/entry/273"
-date: "2021-04-11 21:00"
+date: "2022-04-11 21:00"
 coverImage: "../../../images/thumbnail/aws-logo.png"
 author: "s-yoshiki"
 tags: ["amazon-aws","node.js","typescript"]
