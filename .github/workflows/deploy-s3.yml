@@ -35,6 +35,9 @@ jobs:
       - name: export
         run: npm run export
 
+      - name: Generate redirect pages
+        run: node tools/redirect/generater.js
+
       - name: Upload file to S3
         env:
           S3_CONTENTS_BUCKET: ${{ secrets.S3_CONTENTS_BUCKET }}
