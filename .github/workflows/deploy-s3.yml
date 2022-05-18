@@ -42,4 +42,5 @@ jobs:
         env:
           S3_CONTENTS_BUCKET: ${{ secrets.S3_CONTENTS_BUCKET }}
         run: |
+          aws s3 rm ./out s3://$S3_CONTENTS_BUCKET/ --quiet --recursive
           aws s3 sync ./out s3://$S3_CONTENTS_BUCKET/ --quiet
