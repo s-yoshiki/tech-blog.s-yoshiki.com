@@ -24,12 +24,12 @@ JavaScriptで優先度付きキュー (プライオリティキュー) を実装
 /**
  * 優先度付きキュー
  */
-class priorityQueue {
+class PriorityQueue {
   /**
    * コンストラクタ
    */
   constructor() {
-    this.a = []
+    this.heap = []
   }
   /**
    * キューに値を追加する
@@ -37,7 +37,7 @@ class priorityQueue {
    * @param x 
    */
   push(x) {
-    const a = this.a;
+    const a = this.heap;
     for (var i = a.length, j; i; i = j) {
       j = i - 1 >> 1
       if (a[j] <= x) {
@@ -53,7 +53,7 @@ class priorityQueue {
    * @returns 
    */
   pop() {
-    const a = this.a
+    const a = this.heap
     const r = a[0]
     const x = a.pop()
     const k = a.length >> 1;
@@ -78,7 +78,7 @@ class priorityQueue {
    * @returns 長さ
    */
   size() {
-    return this.a.length
+    return this.heap.length
   }
   /**
    * 最も高い優先度を持つ要素を取り除くことなく参照する
@@ -86,10 +86,143 @@ class priorityQueue {
    * @returns 
    */
   top() {
-    return this.a[0]
+    return this.heap[0]
   }
 }
 ```
+
+## 利用してみる
+
+実際にキューにデータを格納し値の取り出しを実施します。
+
+### 昇順で取り出し
+
+```js
+const pq = new PriorityQueue()
+const data = [7,2,1,4,8,9,6,5,3]
+data.map(e => pq.push(e))
+
+console.log(pq.heap)
+// 1,3,2,4,8,9,6,7,5
+
+
+while (pq.size() !== 0) {
+    console.log(pq.pop())
+}
+// 1
+// 2
+// 3
+// 4
+// 5
+// 6
+// 7
+// 8
+// 9
+```
+
+### 降順で取り出し
+
+負の数にすることで高順で値を取得できます。
+
+※ただし、対象のデータが全て正の数である時
+
+```js
+const pq = new PriorityQueue()
+
+const data = [7,2,1,4,8,9,6,5,3]
+data.map(e => pq.push(e * -1))
+
+console.log(pq.heap)
+// -9,-7,-8,-5,-4,-1,-6,-2,-3
+
+
+while (pq.size() !== 0) {
+    console.log(pq.pop() * -1)
+}
+// 9
+// 8
+// 7
+// 6
+// 5
+// 4
+// 3
+// 2
+// 1
+```
+
+## おまけ
+
+typescriptバージョン
+
+```js
+/**
+ * 優先度付きキュー
+ */
+class PriorityQueue {
+  private heap :number[] = [];
+  /**
+   * キューに値を追加する
+   *
+   * @param x
+   */
+  push(x) {
+    const a = this.heap;
+    let i = a.length
+    for (let j; i; i = j) {
+      j = (i - 1) >> 1;
+      if (a[j] <= x) {
+        break;
+      }
+      a[i] = a[j];
+    }
+    a[i] = x;
+  }
+  /**
+   * キューから値を取り出す
+   *
+   * @returns
+   */
+  pop(): number {
+    const a = this.heap;
+    const r = a[0];
+    const x = a.pop();
+    const k = a.length >> 1;
+    let i = 0
+    for (let j; i < k; i = j) {
+      j = (i << 1) + 1;
+      if (a[j + 1] < a[j]) {
+        j++;
+      }
+      if (x <= a[j]) {
+        break;
+      }
+      a[i] = a[j];
+    }
+    if (a.length) {
+      a[i] = x;
+    }
+    return r;
+  }
+  /**
+   * サイズを取得
+   *
+   * @returns 長さ
+   */
+  size(): number {
+    return this.heap.length;
+  }
+  /**
+   * 最も高い優先度を持つ要素を取り除くことなく参照する
+   *
+   * @returns
+   */
+  top(): number {
+    return this.heap[0];
+  }
+}
+```
+
+
 
 ## 参考
 
