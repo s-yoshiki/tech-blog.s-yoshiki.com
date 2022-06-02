@@ -4,7 +4,7 @@ path: "/entry/275"
 date: "2022-05-24 13:00"
 coverImage: "../../../images/thumbnail/nest-logo.png"
 author: "s-yoshiki"
-tags: ["amazon-aws","aws-cdk","typescript","nestjs"]
+tags: ["nestjs","amazon-aws","aws-cdk","typescript"]
 ---
 
 ## 概要
