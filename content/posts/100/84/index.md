@@ -2,7 +2,7 @@
 title: "Macでターミナルからポートスキャンを行う方法。"
 path: "/entry/84"
 date: "2018-12-09 18:58:10"
-coverImage: "../../../images/thumbnail/apple-logo.png"
+coverImage: "../../../images/thumbnail/linux-logo.png"
 author: "s-yoshiki"
 tags: ["linux","mac", "apple"]
 ---
