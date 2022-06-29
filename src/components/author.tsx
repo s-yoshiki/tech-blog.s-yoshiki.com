@@ -18,8 +18,8 @@ const AwsCertificate = () => {
   ]
   return (
     <div className='flex flex-wrap flex-row'>
-      {data.map(e => (
-        <a href={e.link}>
+      {data.map((e, idx)=> (
+        <a href={e.link} key={idx}>
           <img src={e.image} width="60" />
         </a>
       ))}
