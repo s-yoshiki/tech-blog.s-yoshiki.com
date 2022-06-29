@@ -1,6 +1,32 @@
 import Link from 'next/link'
 import style from 'styles/author.module.css'
 
+const AwsCertificate = () => {
+  const data = [
+    {
+      link: `https://www.credly.com/badges/f51acc63-04aa-44a4-b4ef-89109ea4e433/public_url`,
+      image: `https://images.credly.com/images/2d84e428-9078-49b6-a804-13c15383d0de/image.png`
+    },
+    {
+      link: `https://www.credly.com/badges/9ac240e0-3789-45ac-b743-4847bc15e509/public_url`,
+      image: `https://images.credly.com/size/680x680/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png`
+    },
+    {
+      link: `https://www.credly.com/badges/720815a7-6ead-40e5-b248-2c628417a124/public_url`,
+      image: `https://images.credly.com/size/680x680/images/b9feab85-1a43-4f6c-99a5-631b88d5461b/image.png`
+    },
+  ]
+  return (
+    <div className='flex flex-wrap flex-row'>
+      {data.map(e => (
+        <a href={e.link}>
+          <img src={e.image} width="60" />
+        </a>
+      ))}
+    </div>
+  )
+}
+
 const Author = () => {
   const badges = [
     {link: 'https://github.com/s-yoshiki', alt: 'github', logo: 'https://img.shields.io/badge/GitHub--lightgrey.svg?logo=github&style=social'},
@@ -20,6 +46,7 @@ const Author = () => {
             <Link href={e.link} passHref key={idx}><img className={style.badge} src={e.logo} alt={e.alt} /></Link>
           ))}
         </div>
+        <AwsCertificate />
         <div style={{'fontSize': '12px'}}>
           ただの備忘録です。
           <br />
