@@ -77,4 +77,8 @@ https://explore.skillbuilder.aws/learn
 
 ## 所感 & 振り返り
 
+難易度的には以下のように感じました。
 
+SAP >>> SAA > DVA 
+
+SAP・SAAを受かっている人にはなんて事のない試験だと思いました。
