@@ -1,7 +1,7 @@
 ---
 title: "AWS Certified Developer Associate に合格した"
 path: "/entry/282"
-date: "2022-01-01 01:00"
+date: "2022-06-19 01:00"
 coverImage: "../../../images/thumbnail/aws-logo.png"
 author: "s-yoshiki"
 tags: ["amazon-aws","資格試験"]

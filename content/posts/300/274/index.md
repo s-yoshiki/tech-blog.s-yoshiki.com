@@ -2,7 +2,7 @@
 title: "[AWS CDK]S3 CloudFront OAI Route53 構成 で NextJSのSSG配信環境構築"
 path: "/entry/274"
 date: "2022-05-23 17:00"
-coverImage: "../../../images/thumbnail/aws-logo.png"
+coverImage: "../../../images/thumbnail/next-logo.png"
 author: "s-yoshiki"
 tags: ["amazon-aws","aws-cdk","typescript"]
 ---
