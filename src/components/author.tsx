@@ -8,6 +8,10 @@ const AwsCertificate = () => {
       image: `https://images.credly.com/images/2d84e428-9078-49b6-a804-13c15383d0de/image.png`
     },
     {
+      link: `https://www.credly.com/badges/d5d74113-1038-4622-ad48-79af359af2bb/public_url`,
+      image: `https://images.credly.com/size/680x680/images/bd31ef42-d460-493e-8503-39592aaf0458/image.png`
+    },
+    {
       link: `https://www.credly.com/badges/9ac240e0-3789-45ac-b743-4847bc15e509/public_url`,
       image: `https://images.credly.com/size/680x680/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png`
     },
