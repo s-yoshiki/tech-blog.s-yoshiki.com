@@ -4,7 +4,7 @@ path: "/entry/284"
 date: "2022-07-03 18:00"
 coverImage: "../../../images/thumbnail/auth0-logo.png"
 author: "s-yoshiki"
-tags: ["auth0","amazon-aws","typescript"]
+tags: ["auth0","amazon-aws","aws-cdk","typescript"]
 ---
 
 ## 概要
@@ -95,10 +95,13 @@ Amazon Cognito コンソールのユーザプールのタブからアプリケ�
 
 Auth0の検証のために追加したユーザ情報でログインして動作を確認します。
 
+![](/entry/284/cognito_auth0_2.png)
 
 ## AWS CDK で構築する
 
 ここで本題である AWS CDK を利用してAuth0 + Cognitoの構成を作成していきます。
+
+### CDKプロジェクト初期化
 
 まずはプロジェクトを初期化します。
 
@@ -108,6 +111,11 @@ cd cdk-cognito-sample
 cdk init app --language=typescript
 ```
 
+### Auth0アプリケーション作成
+
+手動で作成した時と同様に、アプリケーションを作成します。
+
+### スタック更新
 
 スタックを以下のように変更します。
 
@@ -205,6 +213,10 @@ export class CdkCognitoSampleStack extends Stack {
   }
 }
 ```
+
+### Auth0 Allowed Callback URLs
+
+ドメインが払い出されるので、Auth0のAllowed Callback URLsに追加します。
 
 これで手動作成のケースと同様な環境を作成することができます。
 
