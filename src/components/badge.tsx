@@ -125,12 +125,52 @@ const iconsData: BlandColor[] = [
   },
   {
     "name": "amazon-ec2",
-    "color": "232F3E",
+    "color": "FF9900",
     "colorIcon": false
   },
   {
     "name": "amazon-s3",
-    "color": "232F3E",
+    "color": "569A31",
+    "colorIcon": false
+  },
+  {
+    "name": "amazon-ecs",
+    "color": "FF9900",
+    "colorIcon": false
+  },
+  {
+    "name": "amazon-eks",
+    "color": "FF9900",
+    "colorIcon": false
+  },
+  {
+    "name": "amazon-pay",
+    "color": "FF9900",
+    "colorIcon": false
+  },
+  {
+    "name": "amazon-rds",
+    "color": "527FFF",
+    "colorIcon": false
+  },
+  {
+    "name": "amazon-sqs",
+    "color": "FF4F8B",
+    "colorIcon": false
+  },
+  {
+    "name": "amazon-dynamodb",
+    "color": "4053D6",
+    "colorIcon": false
+  },
+  {
+    "name": "amazon-cloudwatch",
+    "color": "FF4F8B",
+    "colorIcon": false
+  },
+  {
+    "name": "amazon-api-gateway",
+    "color": "FF4F8B",
     "colorIcon": false
   },
   {
@@ -140,6 +180,16 @@ const iconsData: BlandColor[] = [
   },
   {
     "name": "aws-amplify",
+    "color": "FF9900",
+    "colorIcon": true
+  },
+  {
+    "name": "aws-fargate",
+    "color": "FF9900",
+    "colorIcon": true
+  },
+  {
+    "name": "aws-lambda",
     "color": "FF9900",
     "colorIcon": true
   },
@@ -3357,6 +3407,11 @@ const iconsData: BlandColor[] = [
     "name": "zerply",
     "color": "9DBC7A",
     "colorIcon": true
+  },
+  {
+    "name": "zig",
+    "color": "F7A41D",
+    "colorIcon": false
   },
   {
     "name": "zillow",
