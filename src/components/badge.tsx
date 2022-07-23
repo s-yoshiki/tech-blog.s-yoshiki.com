@@ -126,12 +126,12 @@ const iconsData: BlandColor[] = [
   {
     "name": "amazon-ec2",
     "color": "FF9900",
-    "colorIcon": false
+    "colorIcon": true
   },
   {
     "name": "amazon-s3",
     "color": "569A31",
-    "colorIcon": false
+    "colorIcon": true
   },
   {
     "name": "amazon-ecs",
@@ -3411,7 +3411,7 @@ const iconsData: BlandColor[] = [
   {
     "name": "zig",
     "color": "F7A41D",
-    "colorIcon": false
+    "colorIcon": true
   },
   {
     "name": "zillow",

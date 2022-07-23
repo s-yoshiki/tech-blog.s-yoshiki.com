@@ -1,3 +1,7 @@
+/**
+ * 旧ブログからのリダイレクトリンクの設定を行うツール
+ */
+
 const fs = require("fs");
 const redirectConf = require("./config.json");
 
