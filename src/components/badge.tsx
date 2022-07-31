@@ -136,7 +136,7 @@ const iconsData: BlandColor[] = [
   {
     "name": "amazon-ecs",
     "color": "FF9900",
-    "colorIcon": false
+    "colorIcon": true
   },
   {
     "name": "amazon-eks",

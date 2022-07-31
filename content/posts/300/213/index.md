@@ -1,5 +1,5 @@
 ---
-title: "Typescriptに入門した"
+title: "TypeScriptに入門した"
 path: "/entry/213"
 date: "2021-01-04"
 coverImage: "../../../images/thumbnail/typescript-logo.png"

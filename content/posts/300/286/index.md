@@ -4,7 +4,7 @@ path: "/entry/286"
 date: "2022-07-30 16:00"
 coverImage: "../../../images/thumbnail/aws-logo.png"
 author: "s-yoshiki"
-tags: ["amazon-aws","amazon-ecs"]
+tags: ["amazon-aws","amazon-ecs","雑談","ポエム"]
 ---
 
 ## はじめに
@@ -20,10 +20,10 @@ Fargate を利用するケースが多いのかなと想像します。
 
 料金形態が異なることから簡単には比較はできませんが、Lambdaは毎月リクエスト 100 万件の無料枠があることから、想定呼び出し回数次第ではLambdaの方が安く済ませられるケースが多いと考えていました。
 
-サービスを開発していく中でDBにRDSを採用したことで、LambdaをVPCに配置してRDS Proxyを噛ませる必要が発生したり、レスポン速度を上げるためにコールドスタートを止めてProvisioned Concurrencyを適用したことによりコストが高くなり、結果としてLambdaの方が圧倒的に安いと言える状況ではなくなりました。
+サービスを開発していく中でDBにRDSを採用したことで、LambdaをVPCに配置してRDS Proxyを噛ませる必要が発生したり、レスポンス速度を上げるためにコールドスタートを止めてProvisioned Concurrencyを適用したことによりコストが高くなり、結果としてLambdaの方が圧倒的に安いと言える状況ではなくなりました。
 
 もちろん、DBが不要だとかDynamoDBを利用するとかであれば問題ないので、
-コストの観点からLambdaを選択すべきかどうかは、採用するDBに依存すると思いました。
+コストの観点からLambdaを選択すべきかどうかよりは、採用するDBに依存すると思いました。
 
 ## スケーラビリティ
 
