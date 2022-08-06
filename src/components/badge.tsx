@@ -2779,6 +2779,11 @@ const iconsData: BlandColor[] = [
     "colorIcon": true
   },
   {
+    "name": "sqlite",
+    "color": "003B57",
+    "colorIcon": false
+  },
+  {
     "name": "squarespace",
     "color": "000000",
     "colorIcon": false
