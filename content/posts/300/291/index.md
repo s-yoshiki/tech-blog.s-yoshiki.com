@@ -1,7 +1,7 @@
 ---
 title: "[JS]Intl.DateTimeFormatで和暦と西暦を変換"
 path: "/entry/286"
-date: "2022-07-18 21:00"
+date: "2022-08-18 21:00"
 coverImage: "../../../images/thumbnail/javascript-logo.png"
 author: "s-yoshiki"
 tags: ["javascript"]
