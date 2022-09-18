@@ -2,7 +2,7 @@
 title: "[NestJS]少し大きな規模のRESTfull APIを構築するディレクトリ構成を考えてみる"
 path: "/entry/290"
 date: "2022-09-04 18:00"
-coverImage: "../../../images/thumbnail/nestjs-logo.png"
+coverImage: "../../../images/thumbnail/nest-logo.png"
 author: "s-yoshiki"
 tags: ["nestjs", "typescript", "アーキテクチャ", "node.js", "javascript"]
 ---
@@ -220,3 +220,4 @@ $ curl http://localhost:3000/v1/front/users/1
 1. https://ohbarye.hatenablog.jp/entry/2021/01/22/admin-feature-architecture-patterns
 1. https://docs.nestjs.com/recipes/router-module
 1. https://github.com/nestjsx/nest-router
+1. https://devblog.thebase.in/?page=1650335400
