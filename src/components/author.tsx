@@ -35,7 +35,7 @@ const Author = () => {
   const badges = [
     {link: 'https://github.com/s-yoshiki', alt: 'github', logo: 'https://img.shields.io/badge/GitHub--lightgrey.svg?logo=github&style=social'},
     {link: 'https://zenn.dev/s_yoshiki', alt: 'zenn', logo: 'https://img.shields.io/badge/zenn--lightgrey.svg?logo=zenn&style=social'},
-    {link: 'https://twitter.com/s_yoshiki_dev', alt: 'twitter', logo: 'https://img.shields.io/badge/Twitter--lightgrey.svg?logo=twitter&style=social'},
+    // {link: 'https://twitter.com/s_yoshiki_dev', alt: 'twitter', logo: 'https://img.shields.io/badge/Twitter--lightgrey.svg?logo=twitter&style=social'},
     {link: 'https://qiita.com/s-yoshiki', alt: 'qiita', logo: 'https://img.shields.io/badge/qiita--lightgrey.svg?logo=qiita&style=social'},
   ]
   return (
