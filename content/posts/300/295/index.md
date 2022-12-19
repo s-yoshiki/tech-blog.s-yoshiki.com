@@ -9,6 +9,8 @@ tags: ["node.js", "linux", "javascript", "typescript", "shell"]
 
 ## 概要
 
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ターミナルで回転する寿司を作ってたら1日が終わった <a href="https://t.co/VkA4rRC5H4">pic.twitter.com/VkA4rRC5H4</a></p>&mdash; s-yoshiki ♨️ (@s_yoshiki_dev) <a href="https://twitter.com/s_yoshiki_dev/status/1604848303237402626?ref_src=twsrc%5Etfw">December 19, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 Linuxのターミナル上で回転する寿司を作りました。
 
 発生プログラムターミナル上でフルーツが落下するコードも作りました。
