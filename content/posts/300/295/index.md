@@ -4,7 +4,7 @@ path: "/entry/295"
 date: "2022-12-18 16:00"
 coverImage: "../../../images/thumbnail/linux-logo.png"
 author: "s-yoshiki"
-tags: ["node", "linux", "javascript", "typescript", "shell"]
+tags: ["node.js", "linux", "javascript", "typescript", "shell"]
 ---
 
 ## 概要
