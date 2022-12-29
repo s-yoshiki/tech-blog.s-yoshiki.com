@@ -13,6 +13,10 @@ tags: ["node.js", "linux", "javascript", "typescript", "shell"]
 
 Linuxのターミナル上で回転する寿司を作りました。
 
+<video width="880" height="590">
+  <source src="https://video.twimg.com/ext_tw_video/1604842240933007360/pu/vid/880x590/k5yV58gN6fcvWwZy.mp4" type="video/mp4"></source>
+</video>
+
 発生プログラムターミナル上でフルーツが落下するコードも作りました。
 
 ## ターミナルで寿司を降らす
