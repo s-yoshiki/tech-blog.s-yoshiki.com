@@ -23,7 +23,9 @@ const Month = ({ item, year }: MonthProps) => {
     <>
       <div className="ml-6 p-1">
         <Link href={`/date/${year}/${key}`} passHref>
+          <a>
           <div className="hover:underline">{Number(key)}月 ({month.counts})</div>
+          </a>
         </Link>
       </div>
     </>
@@ -40,9 +42,11 @@ const Year = ({ item }: YearProps) => {
           {open ? '▼' : '▶︎'}
         </div>
         <Link href={`/date/${year.name}`} passHref>
-          <div className="hover:underline">
-            {year.name} 年 ({year.counts})
-          </div>
+          <a>
+            <div className="hover:underline">
+              {year.name} 年 ({year.counts})
+            </div>
+          </a>
         </Link>
       </div>
       {open && (

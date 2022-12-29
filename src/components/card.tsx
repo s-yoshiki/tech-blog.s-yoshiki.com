@@ -24,9 +24,9 @@ const Card = (props: CardProps) => {
           md:hidden
           lg:block
           xl:block"
-          >
+      >
 
-        <Link href={props.href} passHref>
+        <a href={props.href}>
           <img
             alt={props.title}
             className="
@@ -41,7 +41,7 @@ const Card = (props: CardProps) => {
             style={{ objectFit: 'cover' }}
             onError={() => '/images/thumbnail/no-image.png'}
           />
-        </Link>
+        </a>
       </div>
       <div className="p-2">
         <div className='
@@ -49,7 +49,7 @@ const Card = (props: CardProps) => {
             flex-wrap
             max-h-14
             '>
-          <Link href={props.href} passHref>
+          <a href={props.href}>
             <span className="
                 text-gray-800 
                 font-semibold
@@ -59,7 +59,7 @@ const Card = (props: CardProps) => {
               {props.title.slice(0, 45)}
               {props.title.length > 45 && '...'}
             </span>
-          </Link>
+          </a>
         </div>
         <div className="text-sm text-slate-500">{getYMD(props.date)}</div>
         <div className='
@@ -67,9 +67,9 @@ const Card = (props: CardProps) => {
             flex-wrap'>
           {tags.map((tag: string, idx) => (
             <Link href={`/tags/${tag}/1`} passHref key={idx}>
-              <div>
+              <a>
                 <Badge keyword={tag} />
-              </div>
+              </a>
             </Link>
           ))}
         </div>

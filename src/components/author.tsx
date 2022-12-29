@@ -40,24 +40,25 @@ const Author = () => {
   ]
   return (
     <div className={style.content}>
-      <div className={style.postImg}>
+      {/* <div className={style.postImg}>
         <img className={style.icon} src="https://ja.gravatar.com/userimage/115503673/c65df92a8b6d270c8eeb74f643b7e114.jpeg" alt="s-yoshiki"/>
-      </div>
+      </div> */}
       <div className={style.col}>
-        <span className={style.authorName}>s-yoshiki</span>
+        {/* <span className={style.authorName}>s-yoshiki</span> */}
         <div>
           {badges.map((e, idx) => (
-            <Link href={e.link} passHref key={idx}><img className={style.badge} src={e.logo} alt={e.alt} /></Link>
+            <Link href={e.link} passHref key={idx}>
+              <a>
+                <img className={style.badge} src={e.logo} alt={e.alt} />
+              </a>
+            </Link>
           ))}
         </div>
-        <AwsCertificate />
+        {/* <AwsCertificate /> */}
         <div style={{'fontSize': '12px'}}>
           ただの備忘録です。
-          <br />
-          JavaScript/TypeScript/node.js/React/AWS/OpenCV
-          <br />
           <span style={{'fontSize': '8px'}}>
-            ※このブログの内容は個人の見解であり、所属する組織等の見解ではありません。
+            ※このブログの内容は個人の見解であり、所属する組織等の見解ではないです。
           </span>
         </div>
       </div>

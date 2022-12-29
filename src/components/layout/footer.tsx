@@ -11,7 +11,9 @@ const Footer = ({title}: HeaderProp) => {
       <div className={style.headerContainer}>
         <span className={style.title}>
           <Link href="/">
-            {`> ${title}`}
+            <a>
+              {`> ${title}`}
+            </a>
           </Link>
         </span>
       </div>
