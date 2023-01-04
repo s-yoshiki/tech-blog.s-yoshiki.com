@@ -2,7 +2,7 @@
 title: "Turborepoを利用したmonorepo構成のNestJS+Prismaプロジェクトの構築"
 path: "/entry/296"
 date: "2023-01-04 16:00"
-coverImage: "../../../images/thumbnail/nestjs-logo.png"
+coverImage: "../../../images/thumbnail/nest-logo.png"
 author: "s-yoshiki"
 tags: ["turborepo", "nestjs", "prisma", "javascript", "typescript", "npm", "node.js"]
 ---

@@ -3054,6 +3054,11 @@ const iconsData: BlandColor[] = [
     "colorIcon": false
   },
   {
+    "name": "turborepo",
+    "color": "EF4444",
+    "colorIcon": true
+  },
+  {
     "name": "twilio",
     "color": "F22F46",
     "colorIcon": true
