@@ -1,7 +1,7 @@
 ---
 title: "zlibをソースビルドする"
 path: "/entry/299"
-date: "2022-07-18 21:00"
+date: "2023-01-09 21:00"
 coverImage: "../../../images/thumbnail/linux-logo.png"
 author: "s-yoshiki"
 tags: ["linux", "debian"]
