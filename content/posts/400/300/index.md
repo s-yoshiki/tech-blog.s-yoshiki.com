@@ -2,7 +2,7 @@
 title: "OpenSSL をソースビルドする"
 path: "/entry/300"
 date: "2023-01-09 01:00"
-coverImage: "../../../images/thumbnail/javascript-logo.png"
+coverImage: "../../../images/thumbnail/linux-logo.png"
 author: "s-yoshiki"
 tags: ["debian", "linux", "openssl"]
 ---
@@ -31,7 +31,7 @@ apt update
 apt install -y wget perl gcc make # ビルドに必要なツール
 apt install -y zlib1g-dev # openssl の依存関係
 wget https://www.openssl.org/source/openssl-3.0.7.tar.gz
-tar -xvf openssl-3.0.7.tar.gz
+tar -xf openssl-3.0.7.tar.gz
 cd openssl-3.0.7
 ./Configure  --prefix="$HOME/openssl" shared zlib
 make

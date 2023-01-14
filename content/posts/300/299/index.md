@@ -13,7 +13,7 @@ zlibのソースビルドした際の備忘録です。
 
 ## 環境
 
-コンテナ (debian:bullseye-slim)
+debian:bullseye-slim (dockerコンテナ)
 
 ## ビルド〜インストール
 
@@ -27,7 +27,7 @@ apt update
 apt install wget perl gcc make # ビルドに必要なツール
 # apt install zlib1g-dev # openssl の依存関係
 wget https://www.zlib.net/zlib-1.2.13.tar.gz
-tar -xvf zlib-1.2.13.tar.gz
+tar -xf zlib-1.2.13.tar.gz
 cd zlib-1.2.13
 ./configure  --prefix="$HOME/zlib"
 make
