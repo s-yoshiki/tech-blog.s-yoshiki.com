@@ -49,7 +49,7 @@ Prismaを利用するアプリケーションをDistrolessコンテナで動作�
 
 でした。
 
-ここの依存関係の調整がうまくいっていない場合は次のようなエラーが発生します。
+ここの依存関係の調整がうまくいっていない場合、次のようなエラーが発生します。
 
 ```
 /snapshot/app/node_modules/@prisma/client/runtime/index.js:27675
@@ -63,7 +63,7 @@ You may have to run prisma generate for your changes to take effect.
 
 Prismaのソースをデバッグすると、
 `packages/engine-core/src/library/LibraryEngine.ts`
-で例外が投げられていることがわかりました。。
+で例外が投げられていることがわかりました。
 
 [prisma/LibraryEngine.ts at main · prisma/prisma](https://github.com/prisma/prisma/blob/main/packages/engine-core/src/library/LibraryEngine.ts)
 
@@ -86,11 +86,13 @@ OpenSSLの存在チェックを行うためのOSのコマンドの実行に失�
 - OpenSSLが存在しない
 ```
 
-またこれ以外に、prismaエンジンの読み込みに失敗していたりもしました。
+またこれ以外にprismaエンジンの読み込みに失敗もしていました。
 
 ## 対策
 
 上記のような問題がある中でどのような対応を行い動作させたかについて書きます。
+
+実装の詳細について下記のDockerfileに記載しています。
 
 ### OpenSSLの存在チェック
 
@@ -164,9 +166,12 @@ gcr.io/distroless/nodejs18-debian11 の場合は次の内容のDockerfileを定�
 ```Dockerfile
 FROM node:18 as builder
 
+# zlibの構築に必要なものを取得
 RUN apt-get -y update && apt-get -y install -y wget perl gcc make
 
 WORKDIR /tmp
+# zlibを/optに入れて他の依存関係を壊さないようにインストールし、
+# 最終的にアプリケーションコンテナにコピーする
 RUN wget https://www.zlib.net/zlib-1.2.13.tar.gz &&\
   tar -xvf zlib-1.2.13.tar.gz &&\
   cd zlib-1.2.13 &&\
@@ -192,8 +197,12 @@ WORKDIR /app
 RUN mkdir -p /app
 COPY . /app
 RUN npm install
+# バンドルにnccを利用しました。
+# nccでコンパイルした場合、prismaエンジンがprisma実行時に参照できない場所に配置されるので
+# 調整しています。
 RUN npx ncc build src/main.ts -o dist/ && cp dist/client/libquery_engine-* dist
 
+# busyboxのイメージから /bin/sh をコピーするために定義します。
 FROM busybox:1.35.0-uclibc as busybox
 
 FROM gcr.io/distroless/nodejs18-debian11 as app
@@ -202,8 +211,9 @@ COPY --from=busybox /bin/sh /bin/sh
 COPY --from=builder --chown=nonroot:nonroot /app/dist /app
 ENV NODE_ENV production
 ENV LD_LIBRARY_PATH /opt/local/lib:/lib:/$LD_LIBRARY_PATH
+# /optの下に入れたopensslを利用する場合は有効にする。
 # ENV PATH /opt/local/bin:/$PATH
-# 任意のホスト
+# 任意のDBホスト
 ENV DATABASE_URL "mysql://docker:docker@host.docker.internal:3306/app"
 WORKDIR /app
 USER nonroot
@@ -213,8 +223,9 @@ CMD [ "/app/index.js" ]
 
 ## 所感
 
-何とかしてDistrolessでPrismaを動かすことはできましたが、
-シェル環境が必要だったことを考えるとdebianなどの通常のディレストリビューションのイメージの方が良いのではと思いました。
+強引な方法でDistrolessでPrismaを動かすことはできましたが、
+シェル環境が必要だったことを考えるとdebianなどの通常のディレストリビューションのイメージの
+方が良いのではと思いました。
 
 
 
