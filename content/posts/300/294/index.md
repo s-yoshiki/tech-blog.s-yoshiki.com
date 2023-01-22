@@ -221,6 +221,12 @@ JS版のソースです。
 
 https://github.com/s-yoshiki/node-websh/tree/8528ff6d61a2100afefba662584b3d7c306d7408
 
+## TypeScriptで書き直す
+
+TypeScriptで書き直しました。
+
+[s-yoshiki/node-websh: node-pty xterm.js websocket を利用したブラウザで動くShell](https://github.com/s-yoshiki/node-websh/tree/887080800ef58e3df74bab233a43207c5b70900a)
+
 
 ## 参考にしたサイト
 
