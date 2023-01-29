@@ -39,3 +39,6 @@ make # 5~10分くらいかかります。
 make install
 ```
 
+## 参考にしたサイト
+
+- [glibcの野良ビルド方法 - 情弱ログ](https://sugawarayusuke.hatenablog.com/entry/2015/10/28/222949)
