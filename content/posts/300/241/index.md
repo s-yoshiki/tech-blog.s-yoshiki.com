@@ -15,34 +15,34 @@ JS/TSのconstructorを利用して自分自身のクラス名を取得する際�
 
 ```js
 class BaseApp {
-    constructor() {
-        console.log('1:' + this.constructor.name)
-        console.log('2:' + this.getClassName())
-    }
+  constructor() {
+    console.log('1:' + this.constructor.name);
+    console.log('2:' + this.getClassName());
+  }
 
-    getClassName() {
-        return this.constructor.name
-    }
+  getClassName() {
+    return this.constructor.name;
+  }
 }
 
 class App extends BaseApp {
-    constructor() {
-        super()
-        console.log('3:' + this.constructor.name)
-        console.log('4:' + super.constructor.name)
-    }
+  constructor() {
+    super();
+    console.log('3:' + this.constructor.name);
+    console.log('4:' + super.constructor.name);
+  }
 }
 
 class ExApp extends App {
-    constructor() {
-        super()
-        console.log('5:' + this.constructor.name)
-        console.log('6:' + super.constructor.name)
-    }
+  constructor() {
+    super();
+    console.log('5:' + this.constructor.name);
+    console.log('6:' + super.constructor.name);
+  }
 }
 
-const app = new ExApp()
-console.log('7:'  +app.constructor.name)
+const app = new ExApp();
+console.log('7:' + app.constructor.name);
 ```
 
 このコードの結果は次のようになります。

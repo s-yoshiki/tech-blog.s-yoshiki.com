@@ -24,7 +24,6 @@ NestJSで作成したアプリケーションをAWSのLambdaへデプロイす�
 - nestjs 8.0.0
 - webpack 5.66.0
 
-
 ## 準備
 
 nest-cliをインストールします。
@@ -51,7 +50,6 @@ npm run start
 npm run build
 ```
 
-
 ## webpackでバンドル
 
 ### webpack
@@ -69,8 +67,10 @@ module.exports = {
   mode: NODE_ENV,
   externals: [
     {
-      '@nestjs/websockets/socket-module':'commonjs2 @nestjs/websockets/socket-module',
-      '@nestjs/microservices/microservices-module':'commonjs2 @nestjs/microservices/microservices-module',
+      '@nestjs/websockets/socket-module':
+        'commonjs2 @nestjs/websockets/socket-module',
+      '@nestjs/microservices/microservices-module':
+        'commonjs2 @nestjs/microservices/microservices-module',
     },
   ],
   optimization: {
@@ -85,7 +85,6 @@ externals の項目は利用するモジュールに合わせて適宜変更し�
 ### バンドル
 
 `package.json`のbuild項目を次のように変更します。
-
 
 変更前
 
@@ -111,8 +110,7 @@ externals の項目は利用するモジュールに合わせて適宜変更し�
 
 `npm run build` を行いバンドルファイルを生成します。
 
-`npm run start:prod` もしくは `node dist/main` にて実行できるか確認します。 
-
+`npm run start:prod` もしくは `node dist/main` にて実行できるか確認します。
 
 ## リンク
 

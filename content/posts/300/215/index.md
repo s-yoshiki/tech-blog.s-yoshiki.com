@@ -11,9 +11,9 @@ tags: ["amazon-aws","ci/cd","aws-amplify"]
 
 Amplify CLI のインストールから設定まで
 
- - Amplify CLI をインストール
- - 設定
- - Amplify アプリを初期化
+- Amplify CLI をインストール
+- 設定
+- Amplify アプリを初期化
 
 ## Amplify CLI のインストール
 
@@ -33,11 +33,11 @@ amplify configure
 
 ブラウザが立ち上がり、いくつかの情報を聞かれます。途中でIAMユーザを作らされます。
 
- - region:  ap-northeast-1
- - user name:  amplify-test
- - accessKeyId:  IAMユーザのアクセスキーID
- - secretAccessKey:  IAMユーザのシークレットキー
- - Profile Name:  amplify-test
+- region: ap-northeast-1
+- user name: amplify-test
+- accessKeyId: IAMユーザのアクセスキーID
+- secretAccessKey: IAMユーザのシークレットキー
+- Profile Name: amplify-test
 
 ## バックエンド環境作成
 

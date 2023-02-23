@@ -6,6 +6,7 @@ coverImage: "../../../images/thumbnail/javascript-logo.png"
 author: "s-yoshiki"
 tags: ["javascript","小ネタ","react","windows"]
 ---
+
 <blockquote class="twitter-tweet" data-lang="ja">
 <p lang="ja" dir="ltr">ブラウザ上でWindowsXPが動いているように見えるデモ
 
@@ -16,6 +17,7 @@ tags: ["javascript","小ネタ","react","windows"]
 demo<a href="https://t.co/mjBg4pkgNa">https://t.co/mjBg4pkgNa</a> <a href="https://t.co/s0bkHFyKHO">pic.twitter.com/s0bkHFyKHO</a>
 
 — s-yoshiki | スクリプトカス ? (@s_yoshiki_dev) <a href="https://twitter.com/s_yoshiki_dev/status/1111231002091749378?ref_src=twsrc%5Etfw">2019年3月28日</a></blockquote>
+
 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <a href="https://github.com/ShizukuIchi/winXP/raw/master/demo/demo.gif">

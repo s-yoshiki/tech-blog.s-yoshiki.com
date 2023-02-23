@@ -38,99 +38,98 @@ sitemap.xmlはURLがそのまま記述されているパターンのものと、
 const request = require('sync-request');
 const parser = require('xml2json');
 
-const url = "https://tech-blog.s-yoshiki.com/sitemap.xml"
-console.log(JSON.stringify(getSitemap(url)))
+const url = 'https://tech-blog.s-yoshiki.com/sitemap.xml';
+console.log(JSON.stringify(getSitemap(url)));
 
 function getSitemap(sitemap_url) {
-    var result = []
-    var response = request(
-        'GET',
-        sitemap_url
-    );
+  var result = [];
+  var response = request(
+    'GET',
+    sitemap_url,
+  );
 
-    if (response.statusCode !== 200) {
-        console.log("Status Code (function) : " + response.statusCode);
-        return;
-    }
+  if (response.statusCode !== 200) {
+    console.log('Status Code (function) : ' + response.statusCode);
+    return;
+  }
 
-    var data = JSON.parse(
-        parser.toJson(
-            response.getBody('utf8')
-        )
-    )
-    if (data["urlset"]) {
-        if (data["urlset"]["url"].length > 0) {
-            data["urlset"]["url"].forEach((v) => {
-                result.push(v)
-            })
-        } else if (data["urlset"]["url"]) {
-            result.push(data["urlset"]["url"])
-        }
+  var data = JSON.parse(
+    parser.toJson(
+      response.getBody('utf8'),
+    ),
+  );
+  if (data['urlset']) {
+    if (data['urlset']['url'].length > 0) {
+      data['urlset']['url'].forEach((v) => {
+        result.push(v);
+      });
+    } else if (data['urlset']['url']) {
+      result.push(data['urlset']['url']);
     }
+  }
 
-    if (!data["sitemapindex"] || !data["sitemapindex"]["sitemap"]) {
-        return result
-    }
+  if (!data['sitemapindex'] || !data['sitemapindex']['sitemap']) {
+    return result;
+  }
 
-    if (data["sitemapindex"]["sitemap"].length > 0) {
-        data["sitemapindex"]["sitemap"].forEach((v) => {
-            Array.prototype.push.apply(result, getSitemap(v.loc));
-        })
-    } else if (data["sitemapindex"]["sitemap"]["loc"]) {
-        result.push(getSitemap(v.loc))
-    }
-    return result
+  if (data['sitemapindex']['sitemap'].length > 0) {
+    data['sitemapindex']['sitemap'].forEach((v) => {
+      Array.prototype.push.apply(result, getSitemap(v.loc));
+    });
+  } else if (data['sitemapindex']['sitemap']['loc']) {
+    result.push(getSitemap(v.loc));
+  }
+  return result;
 }
 ```
 
 ### 非同期実行にする場合
 
 ```js
-getSitemap(url, (v)=> {
-    console.log(v)
+getSitemap(url, (v) => {
+  console.log(v);
 }, (err) => {
-    console.log(err)
-})
+  console.log(err);
+});
 
 function getSitemap(sitemap_url, success_callback, err_callback) {
-    var response = request(
-        'GET',
-        sitemap_url
-    );
+  var response = request(
+    'GET',
+    sitemap_url,
+  );
 
-    if (response.statusCode !== 200) {
-        err_callback(response)
-        return;
-    }
+  if (response.statusCode !== 200) {
+    err_callback(response);
+    return;
+  }
 
-    var data = JSON.parse(
-        parser.toJson(
-            response.getBody('utf8')
-        )
-    )
-    if (data["urlset"]) {
-        if (data["urlset"]["url"].length > 0) {
-            data["urlset"]["url"].forEach((v) => {
-                success_callback(v)
-            })
-        } else if (data["urlset"]["url"]) {
-            success_callback(data["urlset"]["url"])
-        }
+  var data = JSON.parse(
+    parser.toJson(
+      response.getBody('utf8'),
+    ),
+  );
+  if (data['urlset']) {
+    if (data['urlset']['url'].length > 0) {
+      data['urlset']['url'].forEach((v) => {
+        success_callback(v);
+      });
+    } else if (data['urlset']['url']) {
+      success_callback(data['urlset']['url']);
     }
+  }
 
-    if (!data["sitemapindex"] || !data["sitemapindex"]["sitemap"]) {
-        return;
-    }
+  if (!data['sitemapindex'] || !data['sitemapindex']['sitemap']) {
+    return;
+  }
 
-    if (data["sitemapindex"]["sitemap"].length > 0) {
-        data["sitemapindex"]["sitemap"].forEach((v) => {
-            getSitemap(v.loc, success_callback, err_callback)
-        })
-    } else if (data["sitemapindex"]["sitemap"]["loc"]) {
-        getSitemap(v.loc, success_callback, err_callback)
-    }
+  if (data['sitemapindex']['sitemap'].length > 0) {
+    data['sitemapindex']['sitemap'].forEach((v) => {
+      getSitemap(v.loc, success_callback, err_callback);
+    });
+  } else if (data['sitemapindex']['sitemap']['loc']) {
+    getSitemap(v.loc, success_callback, err_callback);
+  }
 }
-
 ```
 
 ### 出力

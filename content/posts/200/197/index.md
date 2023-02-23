@@ -15,7 +15,6 @@ Gatsbyで作った静的サイトを、GitHub Actions のワークフローで A
 
 またGatsbyで作ったサイトを「Netlifyにデプロイする」や「GitHub Pagesにアップロードする」みたいな記事はあったもののS3へのデプロイは意外となかったのでこの記事を書きました。
 
-
 ## GitHub Actions について
 
 GitHub Actionsは GitHubが提供しているCI/CDツールです。
@@ -29,11 +28,11 @@ GitHub Actionsは GitHubが提供しているCI/CDツールです。
 
 ここで紹介する方法では、次のリソースを利用します。
 
- - S3バケット
- - AWS IAM ユーザ
-   - アクセスキーID
-   - シークレットアクセスキー
- - GitHubリポジトリ (Gatsbyのコンテンツ)
+- S3バケット
+- AWS IAM ユーザ
+  - アクセスキーID
+  - シークレットアクセスキー
+- GitHubリポジトリ (Gatsbyのコンテンツ)
 
 ## AWS IAM ユーザを環境変数にセットする
 
@@ -44,11 +43,11 @@ S3にデプロイする際に、アクセスキーID & シークレットアク�
 
 ここでは、以下の値をセットします。
 
-|NAME|VALUE|
-|-|-|
-|`AWS_ACCESS_KEY_ID`| IAMユーザのアクセスキーID|
-|`AWS_SECRET_ACCESS_KEY`| IAMユーザのシークレットアクセスキー|
-|`S3_CONTENTS_BUCKET`| S3のバケット名|
+| NAME                    | VALUE                               |
+| ----------------------- | ----------------------------------- |
+| `AWS_ACCESS_KEY_ID`     | IAMユーザのアクセスキーID           |
+| `AWS_SECRET_ACCESS_KEY` | IAMユーザのシークレットアクセスキー |
+| `S3_CONTENTS_BUCKET`    | S3のバケット名                      |
 
 ## workflowの記述
 
@@ -110,7 +109,6 @@ jobs:
 ホストランナーには `ubunu-latest`を利用しています。(windowsやmacなんかも利用する事ができます)
 
 コード内にある、`secrets.AWS_ACCESS_KEY_ID` や `secrets.AWS_SECRET_ACCESS_KEY`に上で設定した環境変数が埋め込まれます。
-
 
 ## ビルド
 

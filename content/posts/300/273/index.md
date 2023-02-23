@@ -21,27 +21,25 @@ CDK の Stack の中身は以下となります。
 
 ```ts
 import {
+  aws_dynamodb as dynamodb,
   aws_iam as iam,
-  aws_sqs as sqs,
-  aws_sns as sns,
+  aws_lambda as lambda,
   aws_ses as ses,
   aws_ses_actions as sesActions,
-  aws_lambda as lambda,
-  aws_dynamodb as dynamodb,
+  aws_sns as sns,
+  aws_sqs as sqs,
+  Duration,
   Stack,
   StackProps,
-  Duration,
-} from "aws-cdk-lib";
-import { Construct } from "constructs";
+} from 'aws-cdk-lib';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
-/**
- *
- */
+import { Construct } from 'constructs';
+/** */
 export class CdkBounceStack extends Stack {
   /**
    * DB_TABLENAME
    */
-  private readonly dbTablename = `ses_notifications`
+  private readonly dbTablename = `ses_notifications`;
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
     const queues = this.addQueue();
@@ -57,14 +55,14 @@ export class CdkBounceStack extends Stack {
    * @returns
    */
   private addQueue() {
-    const bounceQueue = new sqs.Queue(this, "bounceQueue");
-    const complaintQueue = new sqs.Queue(this, "complaintQueue");
+    const bounceQueue = new sqs.Queue(this, 'bounceQueue');
+    const complaintQueue = new sqs.Queue(this, 'complaintQueue');
     [bounceQueue, complaintQueue].forEach((queue) => {
       const policy = new iam.PolicyStatement();
       policy.addActions(
-        "SQS:SendMessage",
-        "SQS:DeleteMessage",
-        "SQS:GetQueueAttributes"
+        'SQS:SendMessage',
+        'SQS:DeleteMessage',
+        'SQS:GetQueueAttributes',
       );
       policy.addResources(queue.queueArn);
       policy.addPrincipals(new iam.AnyPrincipal());
@@ -82,25 +80,25 @@ export class CdkBounceStack extends Stack {
    * @param props
    */
   private addSNS(props: { bounceQueue: sqs.Queue; complaintQueue: sqs.Queue }) {
-    const bounceTopic = new sns.Topic(this, "BounceTopic")
-    const complaintTopic = new sns.Topic(this, "ComplaintTopic")
+    const bounceTopic = new sns.Topic(this, 'BounceTopic');
+    const complaintTopic = new sns.Topic(this, 'ComplaintTopic');
     const bounceSubscription = new sns.Subscription(
       this,
-      "BounceSubscription",
+      'BounceSubscription',
       {
         endpoint: props.bounceQueue.queueArn,
         protocol: sns.SubscriptionProtocol.SQS,
         topic: bounceTopic,
-      }
+      },
     );
     const complaintSubscription = new sns.Subscription(
       this,
-      "ComplaintSubscription",
+      'ComplaintSubscription',
       {
         endpoint: props.complaintQueue.queueArn,
         protocol: sns.SubscriptionProtocol.SQS,
         topic: complaintTopic,
-      }
+      },
     );
     return {
       bounceTopic,
@@ -122,33 +120,33 @@ export class CdkBounceStack extends Stack {
     // Lambda
     const loggerLambdaPolicy = new iam.PolicyStatement();
     loggerLambdaPolicy.addActions(
-      "sqs:ReceiveMessage",
-      "sqs:DeleteMessage",
-      "dynamodb:PutItem"
+      'sqs:ReceiveMessage',
+      'sqs:DeleteMessage',
+      'dynamodb:PutItem',
     );
     loggerLambdaPolicy.addResources(
       `arn:aws:dynamodb:*:*:table/${this.dbTablename}`,
       props.bounceQueue.queueArn,
-      props.complaintQueue.queueArn
+      props.complaintQueue.queueArn,
     );
     const loggerLambda = new NodejsFunction(this, 'LoggerLambda', {
       entry: 'src/lambda-bounce-logger/index.ts',
       timeout: Duration.seconds(10),
-      handler: "index.handler",
+      handler: 'index.handler',
       runtime: lambda.Runtime.NODEJS_14_X,
       initialPolicy: [loggerLambdaPolicy],
       environment: {
         // DynamoDBテーブル名
-        DB_TABLENAME: this.dbTablename
-      }
+        DB_TABLENAME: this.dbTablename,
+      },
     });
-    new lambda.EventSourceMapping(this, "BounceEventSourceMapping", {
+    new lambda.EventSourceMapping(this, 'BounceEventSourceMapping', {
       batchSize: 10,
       enabled: true,
       eventSourceArn: props.bounceQueue.queueArn,
       target: loggerLambda,
     });
-    new lambda.EventSourceMapping(this, "ComplaintEventSourceMapping", {
+    new lambda.EventSourceMapping(this, 'ComplaintEventSourceMapping', {
       batchSize: 10,
       enabled: true,
       eventSourceArn: props.complaintQueue.queueArn,
@@ -160,14 +158,14 @@ export class CdkBounceStack extends Stack {
    * DynamoDB
    */
   private addDynamoDB() {
-    return new dynamodb.Table(this, "SesNotificationsTable", {
-      tableName: "ses_notifications",
+    return new dynamodb.Table(this, 'SesNotificationsTable', {
+      tableName: 'ses_notifications',
       partitionKey: {
-        name: "SESMessageId",
+        name: 'SESMessageId',
         type: dynamodb.AttributeType.STRING,
       },
       sortKey: {
-        name: "SnsPublishTime",
+        name: 'SnsPublishTime',
         type: dynamodb.AttributeType.STRING,
       },
     });
@@ -175,13 +173,13 @@ export class CdkBounceStack extends Stack {
 
   /**
    * SES のルール設定
-   * 
+   *
    * @see https://github.com/aws/aws-cdk/issues/2584
-   * @param props 
+   * @param props
    */
   private addSES(props: {
-    bounceTopic: sns.Topic,
-    complaintTopic: sns.Topic,
+    bounceTopic: sns.Topic;
+    complaintTopic: sns.Topic;
   }) {
     // todo:
     // ap-northeast-1では利用できない
@@ -192,45 +190,44 @@ export class CdkBounceStack extends Stack {
           recipients: ['example.com'],
           actions: [
             new sesActions.Sns({
-              topic: props.bounceTopic
+              topic: props.bounceTopic,
             }),
             new sesActions.Sns({
-              topic: props.complaintTopic
+              topic: props.complaintTopic,
             }),
-          ]
+          ],
         },
-      ]
-    })
+      ],
+    });
   }
 }
-
 ```
-
 
 ## バウンス情報を受け取るLambdaの実装
 
 バウンス情報を受け取るLambdaの実装は以下となります。
 
 ```ts
-import { SQSEvent, SQSHandler } from 'aws-lambda'
+import { SQSEvent, SQSHandler } from 'aws-lambda';
 import { AWSError, DynamoDB } from 'aws-sdk';
 
 /**
  * DynamoDB
  */
-const DynamoDBTableName = process.env.DB_TABLENAME
+const DynamoDBTableName = process.env.DB_TABLENAME;
 const dynamodb = new DynamoDB({
   params: { TableName: DynamoDBTableName },
 });
 
-
 /**
  * 通知内容からDynamoDB登録用Itemを生成する
- * 
- * @param {any} body 
- * @returns 
+ *
+ * @param {any} body
+ * @returns
  */
-const parseRecordBody = (body: any): DynamoDB.Types.PutItemInputAttributeMap | undefined => {
+const parseRecordBody = (
+  body: any,
+): DynamoDB.Types.PutItemInputAttributeMap | undefined => {
   const SESMessage = JSON.parse(body.Message);
   const SESMessageType = SESMessage.notificationType;
   let commonItem = {
@@ -240,26 +237,26 @@ const parseRecordBody = (body: any): DynamoDB.Types.PutItemInputAttributeMap | u
     SESDestinationAddress: { S: SESMessage.mail.destination.toString() },
   };
   let extendItem = {};
-  if (SESMessageType === "Bounce") {
+  if (SESMessageType === 'Bounce') {
     extendItem = {
       SESreportingMTA: { S: SESMessage.bounce.reportingMTA },
       SESbounceSummary: {
         S: JSON.stringify(SESMessage.bounce.bouncedRecipients),
       },
     };
-  } else if (SESMessageType === "Delivery") {
+  } else if (SESMessageType === 'Delivery') {
     extendItem = {
       SESsmtpResponse: { S: SESMessage.delivery.smtpResponse },
       SESreportingMTA: { S: SESMessage.delivery.reportingMTA },
     };
-  } else if (SESMessageType === "Complaint") {
+  } else if (SESMessageType === 'Complaint') {
     extendItem = {
       SESComplaintFeedbackType: {
         S: SESMessage.complaint.complaintFeedbackType,
       },
       SESFeedbackId: { S: SESMessage.complaint.feedbackId },
     };
-  } else if (SESMessageType === "AmazonSnsSubscriptionSucceeded") {
+  } else if (SESMessageType === 'AmazonSnsSubscriptionSucceeded') {
     // memo: 明示的なスコープ
     return;
   } else {
@@ -273,9 +270,9 @@ const parseRecordBody = (body: any): DynamoDB.Types.PutItemInputAttributeMap | u
 
 /**
  * handler
- * 
- * @param {any} event 
- * @param {any} context 
+ *
+ * @param {any} event
+ * @param {any} context
  */
 export const handler: SQSHandler = (event, context) => {
   for (let i = 0; i < event.Records.length; i++) {
@@ -287,7 +284,7 @@ export const handler: SQSHandler = (event, context) => {
     }
     dynamodb.putItem({
       TableName: DynamoDBTableName,
-      Item 
+      Item,
     }, (err: AWSError, data: DynamoDB.Types.PutItemOutput) => {
       if (err) {
         // context.fail(err);
@@ -298,7 +295,6 @@ export const handler: SQSHandler = (event, context) => {
     });
   }
 };
-
 ```
 
 ### Event オブジェクトの中身

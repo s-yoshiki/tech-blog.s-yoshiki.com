@@ -29,7 +29,6 @@ cloudinaryの競合サービスとして[imgix](https://www.imgix.com/)や[image
 ちなみに、Qiitaではimgixの試験利用を行っているようです。
 [Qiita Jobsにimgixを導入し、画像サイズを大幅に改善しました](https://qiita.com/hareku/items/cfa2ccef7ff9a8b9c5d2)
 
-
 ## 料金プラン
 
 cloudinaryでは利用できるリソースの量を"クレジット"という単位で提供しています。
@@ -46,7 +45,7 @@ cloudinaryでは利用できるリソースの量を"クレジット"という�
 
 さらに課金コースだと、$99/月の場合225クレジット、$249/月の場合600クレジットとなります。
 
-> * 1 credit = 1000 transformations or 1GB managed storage or 1GB net viewing bandwidth or 500 video processing seconds)
+> - 1 credit = 1000 transformations or 1GB managed storage or 1GB net viewing bandwidth or 500 video processing seconds)
 
 [Plans that scale with your growth](https://cloudinary.com/pricing)
 
@@ -90,7 +89,6 @@ cloudinaryでは利用できるリソースの量を"クレジット"という�
 
 無課金で利用する場合画像ファイルに対し月25000万以上アクセスのあるブログやサイトで利用するのは厳しいのかなと思いました。
 ただし、無課金でもクレジットの追加は可能みたいです。
-
 
 ## 参考
 

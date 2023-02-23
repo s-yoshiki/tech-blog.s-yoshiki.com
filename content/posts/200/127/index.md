@@ -30,45 +30,45 @@ npm install chart.js
 ### ヒストグラム表示クラス
 
 ```js
-import Chart from "chart.js"
+import Chart from 'chart.js';
 
 export default class Histogram {
   /**
    * ヒストグラムを描画する
-   * @param {Object} canvas 
-   * @param {Object} data 
+   * @param {Object} canvas
+   * @param {Object} data
    */
   static renderHistogram(canvas, data) {
-    let labels = new Array(data.length).fill('')
+    let labels = new Array(data.length).fill('');
     new Chart(canvas, {
       type: 'bar',
-      data:{
+      data: {
         labels,
         datasets: [
           {
             label: '画素値',
             data,
-            backgroundColor: "rgba(80,80,80,0.5)"
-          }
+            backgroundColor: 'rgba(80,80,80,0.5)',
+          },
         ],
       },
       options: {
         title: {
           display: true,
-          text: 'Histogram'
+          text: 'Histogram',
         },
         scales: {
           yAxes: [{
             ticks: {
               suggestedMin: 0,
-            }
-          }]
+            },
+          }],
         },
         animation: {
-          duration: 0
-        }
-      }
-    })
+          duration: 0,
+        },
+      },
+    });
   }
 }
 ```

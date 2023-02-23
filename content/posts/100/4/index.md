@@ -42,8 +42,9 @@ cd certbot
 ## 証明書取得
 
 現在のディレクトリでこのコマンドを実行する
-```./certbot-auto certonly --webroot -w /opt/bitnami/apps/wordpress/htdocs/ -d ドメイン```
+`./certbot-auto certonly --webroot -w /opt/bitnami/apps/wordpress/htdocs/ -d ドメイン`
 上手くいくとこのようなメッセージが出る
+
 <blockquote>IMPORTANT NOTES:
 - Congratulations! Your certificate and chain have been saved at:
 /etc/letsencrypt/live/ドメイン名/fullchain.pem
@@ -55,8 +56,8 @@ again. To non-interactively renew *all* of your certificates, run
 "certbot-auto renew"
 - If you like Certbot, please consider supporting our work by:
 
-Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
-Donating to EFF:                    https://eff.org/donate-le</blockquote>
+Donating to ISRG / Let's Encrypt: https://letsencrypt.org/donate
+Donating to EFF: https://eff.org/donate-le</blockquote>
 
 あとは細かい設定を行い、apacheを再起動します。
 
@@ -86,6 +87,7 @@ RewriteCond %{HTTPS} !=on
 RewriteRule ^/(.*) https://%{SERVER_NAME}/$1 [R,L]
 </virtualhost>
 ```
+
 apache再起動
 
 ```shell

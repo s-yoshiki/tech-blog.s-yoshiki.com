@@ -6,6 +6,7 @@ coverImage: "../../../images/thumbnail/console-image.png"
 author: "s-yoshiki"
 tags: ["linux","visual-studio-code","ソフトウェア","ide"]
 ---
+
 ブラウザ上でコードの編集や、デバッグ、コマンドを実行することができるブラウザ版IDE、code-serverを使ってみました。
 
 <img src="https://github.com/cdr/code-server/raw/master/doc/assets/ide.png">

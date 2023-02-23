@@ -1,22 +1,22 @@
-import { NextPage, InferGetStaticPropsType } from 'next';
-import PostsManager from 'utils/posts-manager';
-import markdownToHtml from 'utils/md';
-import Layout from 'components/layout/layout'
-import Badge from 'components/badge';
-import { search as searchEventHandler } from 'lib/inner-search'
-import Search from 'components/search'
-import PostsBand from "components/posts-band"
-import Link from "next/link"
-import YearMonthPosts from 'components/yesar-month-posts';
-import Author from 'components/author';
+import RelationAds from 'components/ads/relations-ads';
 import SidebarAds from 'components/ads/sidebar-ads';
-import RelationAds from 'components/ads/relations-ads'
-import { getWindowSize } from "hooks/useWindowSize";
+import Author from 'components/author';
+import Badge from 'components/badge';
+import Layout from 'components/layout/layout';
+import PostsBand from 'components/posts-band';
+import Search from 'components/search';
+import YearMonthPosts from 'components/yesar-month-posts';
+import { getWindowSize } from 'hooks/useWindowSize';
+import { search as searchEventHandler } from 'lib/inner-search';
+import { InferGetStaticPropsType, NextPage } from 'next';
+import Link from 'next/link';
+import markdownToHtml from 'utils/md';
+import PostsManager from 'utils/posts-manager';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 export const getStaticPaths = async () => {
-  const posts = PostsManager.getData()
+  const posts = PostsManager.getData();
   const result = {
     paths: posts.map((post: any) => {
       return {
@@ -27,20 +27,20 @@ export const getStaticPaths = async () => {
     }),
     fallback: false,
   };
-  return result
+  return result;
 };
 
 export const getStaticProps = async ({ params }: any) => {
-  const allPosts = PostsManager.getData().slice(0, 15)
-  const tags = PostsManager.getCountsGroupByTags().slice(0, 50)
-  const dates = PostsManager.getCountsGroupYearMonth()
-  const popular = PostsManager.getPopularPosts().slice(0, 10)
-  const post = PostsManager.findByPath(`/entry/${params.id}`)
+  const allPosts = PostsManager.getData().slice(0, 15);
+  const tags = PostsManager.getCountsGroupByTags().slice(0, 50);
+  const dates = PostsManager.getCountsGroupYearMonth();
+  const popular = PostsManager.getPopularPosts().slice(0, 10);
+  const post = PostsManager.findByPath(`/entry/${params.id}`);
   const contentObj = await markdownToHtml({
     filepath: post.filepath,
     baseImagePath: post.path,
   });
-  const recommends = PostsManager.getRecommendsPosts(post.tags, 15)
+  const recommends = PostsManager.getRecommendsPosts(post.tags, 15);
   return {
     props: {
       post: {
@@ -58,17 +58,13 @@ export const getStaticProps = async ({ params }: any) => {
 };
 
 const DateFormat = ({ value }: { value: string }) => {
-  return (
-    <>{value.split(' ')[0]}</>
-  )
-}
+  return <>{value.split(' ')[0]}</>;
+};
 
 const EstimatedReading = ({ value }: { value: string }) => {
-  const min = Math.ceil(value.length / 2000)
-  return (
-    <span>{min} min read</span>
-  )
-}
+  const min = Math.ceil(value.length / 2000);
+  return <span>{min} min read</span>;
+};
 
 const MiddleHeadding = ({ children }: { children: string }) => {
   return (
@@ -77,9 +73,11 @@ const MiddleHeadding = ({ children }: { children: string }) => {
       text-gray-900 
       font-bold
       p-2
-    '>{children}</div>
-  )
-}
+    '>
+      {children}
+    </div>
+  );
+};
 
 const Sidebar = ({ children }: any) => {
   return (
@@ -91,8 +89,8 @@ const Sidebar = ({ children }: any) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const LeftSidebar = ({ tags }: any) => {
   return (
@@ -108,8 +106,8 @@ const LeftSidebar = ({ tags }: any) => {
         </div>
       </div>
     </Sidebar>
-  )
-}
+  );
+};
 
 const RightSidebar = ({ toc }: any) => {
   return (
@@ -120,7 +118,7 @@ const RightSidebar = ({ toc }: any) => {
           <ol>
             {toc?.map((toc: string, idx: number) => (
               <li key={idx}>
-                <a href={`#${toc}`} >
+                <a href={`#${toc}`}>
                   {toc}
                 </a>
               </li>
@@ -129,14 +127,16 @@ const RightSidebar = ({ toc }: any) => {
         </div>
       </div>
     </Sidebar>
-  )
-}
+  );
+};
 
-const RelationContents = ({ allPosts, tags, dates, popular, recommends }: any) => {
+const RelationContents = (
+  { allPosts, tags, dates, popular, recommends }: any,
+) => {
   return (
     <>
       {recommends && (
-        <div className="bg-white">
+        <div className='bg-white'>
           <div className='p-6'></div>
           <div className='container mx-auto'>
             <div>
@@ -190,7 +190,7 @@ const RelationContents = ({ allPosts, tags, dates, popular, recommends }: any) =
                           ({el.counts})
                         </div>
                       </Link>
-                    )
+                    );
                   })}
                 </div>
               </div>
@@ -199,7 +199,7 @@ const RelationContents = ({ allPosts, tags, dates, popular, recommends }: any) =
         </div>
         <div className='p-8'></div>
       </div>
-      <div className="bg-white">
+      <div className='bg-white'>
         <div className='p-8'></div>
         <div className='container mx-auto'>
           <MiddleHeadding>Author</MiddleHeadding>
@@ -208,11 +208,12 @@ const RelationContents = ({ allPosts, tags, dates, popular, recommends }: any) =
         <div className='p-8'></div>
       </div>
     </>
-  )
-}
+  );
+};
 
-
-const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommends }) => {
+const Post: NextPage<Props> = (
+  { post, allPosts, tags, dates, popular, recommends },
+) => {
   const { width } = getWindowSize();
   return (
     <Layout
@@ -220,9 +221,9 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
       image={post.coverImage}
       description={post.title}
     >
-      <div className="">
-        <div className=" mx-auto">
-          <div className="justify-center text-center">
+      <div className=''>
+        <div className=' mx-auto'>
+          <div className='justify-center text-center'>
             <div className='p-6 text-7xl flex justify-center'>
               <img
                 className='rounded-lg'
@@ -233,13 +234,15 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
                 style={{ objectFit: 'cover' }}
               />
             </div>
-            <h1 className="text-3xl font-semibold" style={{ color: "#24292f" }}>{post.title}</h1>
+            <h1 className='text-3xl font-semibold' style={{ color: '#24292f' }}>
+              {post.title}
+            </h1>
             <div className='m-6'></div>
             <div className='m-6'>
               <span>
                 <DateFormat value={post.date} />
               </span>
-              <span className="ml-6">
+              <span className='ml-6'>
                 <EstimatedReading value={post.content} />
               </span>
             </div>
@@ -256,8 +259,7 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
             xl:grid-cols-9
             gap-5
             justify-end
-            '
-          >
+            '>
             <div className='
               lg:col-span-2
               xl:col-span-2
@@ -269,9 +271,7 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
               xl:h-full
               h-0
             '>
-              {width >= 1024 && (
-                <LeftSidebar tags={post.tags} />
-              )}
+              {width >= 1024 && <LeftSidebar tags={post.tags} />}
             </div>
             <div className='
               grid-cols-1
@@ -298,9 +298,7 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
               xl:h-full
               h-0
             '>
-              {width >= 1024 && (
-                <RightSidebar toc={post.toc} />
-              ) }
+              {width >= 1024 && <RightSidebar toc={post.toc} />}
             </div>
           </div>
           <div className='p-6'></div>
@@ -314,8 +312,7 @@ const Post: NextPage<Props> = ({ post, allPosts, tags, dates, popular, recommend
         />
       </div>
     </Layout>
-  )
-}
-
+  );
+};
 
 export default Post;

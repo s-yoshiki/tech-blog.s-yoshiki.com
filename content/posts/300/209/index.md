@@ -18,7 +18,7 @@ CentOS8 or CentOS Streamに Perl5.30をDNFでインストールする際の記�
 CentOS8 では Modularityという仕組みが導入されています。
 これはアプリケーションのライフサイクルをある程度独立させるための仕組みです。
 
-これについては、[こちら (RHEL 8/Fedora 28で導入されたModularity) ](https://rheb.hatenablog.com/entry/201812-modularity)で分かりやすく解説されています。
+これについては、[こちら (RHEL 8/Fedora 28で導入されたModularity)](https://rheb.hatenablog.com/entry/201812-modularity)で分かりやすく解説されています。
 
 Perlの場合は `dnf module list perl` とコマンドを打つと利用できるパッケージが表示されます。
 
@@ -31,7 +31,7 @@ Name       Stream         Profiles                  Summary
 perl       5.24           common [d], minimal       Practical Extraction and Report Language      
 perl       5.26 [d]       common [d], minimal       Practical Extraction and Report Language      
 perl       5.30           common [d], minimal       Practical Extraction and Report Language 
-Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled 
+Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
 ```
 
 デフォルトでは5.26が設定されています。
@@ -73,7 +73,6 @@ perl        5.26 [d]        common [d], minimal            Practical Extraction 
 perl        5.30 [e]        common [d] [i], minimal        Practical Extraction and Report Language       
 Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
 ```
-
 
 ## dnf module でハマったところ
 

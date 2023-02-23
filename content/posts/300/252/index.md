@@ -48,14 +48,14 @@ RHEL8及びCentOS8ではApplication Streams(AppStream)が導入され、BaseOS�
 
 特徴は以下のような物があります。
 
- - BaseOS
-   - OSの動作に不可欠であり、安定性が重視される
-   - 10年間サポートされる
- - AppStream
-   - app開発に用いるパッケージ群
-   - 段階的にバージョンアップされる
-   - 10年間のサポートは受けられない
-   - 異なるバージョンは共存出来ない
+- BaseOS
+  - OSの動作に不可欠であり、安定性が重視される
+  - 10年間サポートされる
+- AppStream
+  - app開発に用いるパッケージ群
+  - 段階的にバージョンアップされる
+  - 10年間のサポートは受けられない
+  - 異なるバージョンは共存出来ない
 
 ### Compatibility Level について
 
@@ -64,19 +64,19 @@ RHEL8及びCentOS8ではApplication Streams(AppStream)が導入され、BaseOS�
 詳しくは以下の記事に記載されています。
 
 > RHEL 7までは、以下のようになっていました。
-> 
+>
 > Compatibility Level (以下CL) 1は3つのメジャーバージョンに渡ってAPI/ABIの互換性を維持
 >
->  - CL 2では1つのメジャーバージョン内でAPI/ABIの互換性を維持
->  - CL 3は将来のため未使用
->  - CL 4は互換性を維持しません。
+> - CL 2では1つのメジャーバージョン内でAPI/ABIの互換性を維持
+> - CL 3は将来のため未使用
+> - CL 4は互換性を維持しません。
 >
 > RHEL 8では、CL 3が新しく登場し、以下のように変わります。
-> 
->  - CL 1は3つのメジャーバージョンに渡ってAPI/ABIの互換性を維持
->  - CL 2では1つのメジャーバージョン内でAPI/ABIの互換性を維持
->  - CL 3は各コンポーネントについてあらかじめ定義された期間維持し、期間が終了する前に新しいバージョンを継続的に提供
->  - CL 4は互換性を維持しません
+>
+> - CL 1は3つのメジャーバージョンに渡ってAPI/ABIの互換性を維持
+> - CL 2では1つのメジャーバージョン内でAPI/ABIの互換性を維持
+> - CL 3は各コンポーネントについてあらかじめ定義された期間維持し、期間が終了する前に新しいバージョンを継続的に提供
+> - CL 4は互換性を維持しません
 >
 > 出典 [Red Hat Enterprise Linux 8 で 10年維持されるパッケージはどれ? - 赤帽エンジニアブログ](https://rheb.hatenablog.com/entry/rhel8lifecycle)
 
@@ -84,10 +84,9 @@ RHEL8及びCentOS8ではApplication Streams(AppStream)が導入され、BaseOS�
 
 さらに詳しい情報については [Red Hat Enterprise Linux 8: Application Compatibility GUIDE - Red Hat Customer Portal](https://access.redhat.com/articles/rhel8-abi-compatibility#Appendix) に記載されています。
 
-
 ### AppStreamのサポート期間
 
-[Red Hat Enterprise Linux 8 Application Streams  Life Cycle - Red Hat Customer Portal](https://access.redhat.com/support/policy/updates/rhel8-app-streams-life-cycle)
+[Red Hat Enterprise Linux 8 Application Streams Life Cycle - Red Hat Customer Portal](https://access.redhat.com/support/policy/updates/rhel8-app-streams-life-cycle)
 
 ここで紹介されている表をもとに各種コンポーネントの保守期間は次の通りとなります。(2022/01時点での情報)
 
@@ -107,7 +106,6 @@ RHEL8及びCentOS8ではApplication Streams(AppStream)が導入され、BaseOS�
 | python 3.9         | May 2021     | May 2024        | 8.4     |
 | python 3.8         | Apr 2020     | May 2023        | 8.2.0   |
 | python 2.7         | May 2019     | Jun 2024        | 8.0.0   |
-
 
 **ruby**
 
@@ -152,7 +150,6 @@ RHEL8及びCentOS8ではApplication Streams(AppStream)が導入され、BaseOS�
 | nginx 1.16         | Nov 2019     | Nov 2021        | 8.1.0   |
 | nginx 1.14         | May 2019     | May 2021        | 8.0.0   |
 
-
 **redis**
 
 | Application Stream | Release Date | Retirement Date | Release |
@@ -169,7 +166,7 @@ v3からの変更点は次の記事に記載されています。
 
 ## リンク
 
- - [RHEL 8 の導入における検討事項 Red Hat Enterprise Linux 8 | Red Hat Customer Portal](https://access.redhat.com/documentation/ja-jp/red_hat_enterprise_linux/8/html-single/considerations_in_adopting_rhel_8/index)
- - [Red Hat Enterprise Linux 8 で 10年維持されるパッケージはどれ? - 赤帽エンジニアブログ](https://rheb.hatenablog.com/entry/rhel8lifecycle)
- - [Fedora/CentOS Stream/CentOS/RHELの関係性 - 赤帽エンジニアブログ](https://rheb.hatenablog.com/entry/202007-fedora-distribution)
- - [Changes in DNF CLI compared to YUM &mdash; dnf latest documentation](https://dnf.readthedocs.io/en/latest/cli_vs_yum.html)
+- [RHEL 8 の導入における検討事項 Red Hat Enterprise Linux 8 | Red Hat Customer Portal](https://access.redhat.com/documentation/ja-jp/red_hat_enterprise_linux/8/html-single/considerations_in_adopting_rhel_8/index)
+- [Red Hat Enterprise Linux 8 で 10年維持されるパッケージはどれ? - 赤帽エンジニアブログ](https://rheb.hatenablog.com/entry/rhel8lifecycle)
+- [Fedora/CentOS Stream/CentOS/RHELの関係性 - 赤帽エンジニアブログ](https://rheb.hatenablog.com/entry/202007-fedora-distribution)
+- [Changes in DNF CLI compared to YUM &mdash; dnf latest documentation](https://dnf.readthedocs.io/en/latest/cli_vs_yum.html)

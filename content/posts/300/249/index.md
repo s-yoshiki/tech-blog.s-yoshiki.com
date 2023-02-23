@@ -26,7 +26,6 @@ app
 
 `package.json`に次のように記載します。
 
-
 ```json
 {
   "name": "docker-nodejs-api",
@@ -54,9 +53,9 @@ const app = express();
 
 app.get('/', (req, res) => {
   const param = {
-    "msg": "Hello World!"
+    'msg': 'Hello World!',
   };
-  res.header('Content-Type', 'application/json; charset=utf-8')
+  res.header('Content-Type', 'application/json; charset=utf-8');
   res.send(param);
 });
 

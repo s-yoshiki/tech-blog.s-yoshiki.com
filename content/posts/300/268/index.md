@@ -13,18 +13,17 @@ AWS CDK で EC2のBastion(踏み台)を構築した際のメモです。
 
 ここで記載した方法は以下の内容での接続方法を想定しています。
 
- - AWS Systems Manager (Session Manager (SSM))
-   - マネジメントコンソール上で接続
-   - HTTPS: aws cli での接続
-   - SSH over HTTPS: OpenSSH経由での接続
- - EC2 Instance Connect
-   - マネジメントコンソールから接続
-   - ローカル環境から接続
+- AWS Systems Manager (Session Manager (SSM))
+  - マネジメントコンソール上で接続
+  - HTTPS: aws cli での接続
+  - SSH over HTTPS: OpenSSH経由での接続
+- EC2 Instance Connect
+  - マネジメントコンソールから接続
+  - ローカル環境から接続
 
 ### Bastion
 
 Bastion = 要塞ホスト
-
 
 ## AWS CDK Stack
 
@@ -162,7 +161,6 @@ ssh-keygen -t rsa -C "test@mail.example.com"
 
 上記のSSM(AWS CLI)で接続、もしくは後述の EC2 Instance Connect で生成した公開鍵をリモートの任意のユーザ(ssm-userやec2-user)の`~/.ssh/authorized_keys`に追記します。
 
-
 次にローカル環境の`~/.ssh/config` に次の設定を記載します。
 
 ```
@@ -193,7 +191,6 @@ https://ip-ranges.amazonaws.com/ip-ranges.json
 
 EC2 Instance Connectは60秒だけ有効です。
 
-
 ### EC2 Instance Connect でローカル接続
 
 この手順はクライアント環境から接続を許可するセキュリティグループの設定を行う必要があります。
@@ -218,13 +215,11 @@ SSMは
 - ローカル経由ならAWS CLI/Session Managerプラグイン設定が必要
 - OpenSSHを介す場合は鍵必要。他のケースは不要。
 
-
 EC2 Instance Connect
 
 - ポート解放必要
 - ローカル経由ならAWS CLI設定が必要
 - 鍵不要
-
 
 ## 参考にしたサイト
 

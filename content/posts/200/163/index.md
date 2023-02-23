@@ -6,6 +6,7 @@ coverImage: "../../../images/thumbnail/aws-logo.png"
 author: "s-yoshiki"
 tags: ["amazon-aws","iam","lambda"]
 ---
+
 AWS Lambda から EC2 の起動と停止を行う方法の紹介。
 
 ## 大まかな流れの紹介
@@ -30,17 +31,17 @@ AWSのIAMのページからポリシーを選択します。
 
 ```json
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "ec2:Start*",
-                "ec2:Stop*"
-            ],
-            "Resource": "*"
-        }
-    ]
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ec2:Start*",
+        "ec2:Stop*"
+      ],
+      "Resource": "*"
+    }
+  ]
 }
 ```
 
@@ -48,18 +49,18 @@ AWSのIAMのページからポリシーを選択します。
 
 ```json
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "logs:CreateLogGroup",
-                "logs:CreateLogStream",
-                "logs:PutLogEvents"
-            ],
-            "Resource": "arn:aws:logs:*:*:*"
-        }
-    ]
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "arn:aws:logs:*:*:*"
+    }
+  ]
 }
 ```
 
@@ -85,7 +86,6 @@ AWSのIAMのページからポリシーを選択します。
 関数名: StartStopEc2Func
 ロール: CustomEc2StartStopRoll
 ランタイム: Python3.7
-
 ```
 
 ソースコードは次のように記述しました。

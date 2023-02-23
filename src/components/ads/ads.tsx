@@ -1,5 +1,5 @@
-import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
 
 interface AdsenseProps {
   layout?: string;
@@ -10,7 +10,7 @@ interface AdsenseProps {
   fullWidthResponsive?: 'true' | 'false';
 }
 
-const Ads = (props : AdsenseProps) => {
+const Ads = (props: AdsenseProps) => {
   const { asPath } = useRouter();
 
   useEffect(() => {
@@ -21,11 +21,14 @@ const Ads = (props : AdsenseProps) => {
     }
   }, [asPath]);
 
-  const client = 'ca-pub-5931776908676811'
+  const client = 'ca-pub-5931776908676811';
   return (
-    <div key={asPath} className="max-w-4xl mx-auto content-center bg-slate-200 h-full max-h-lg">
+    <div
+      key={asPath}
+      className='max-w-4xl mx-auto content-center bg-slate-200 h-full max-h-lg'
+    >
       <ins
-        className="adsbygoogle"
+        className='adsbygoogle'
         style={props.style}
         data-ad-layout={props.layout}
         data-ad-format={props.format}
@@ -37,4 +40,4 @@ const Ads = (props : AdsenseProps) => {
   );
 };
 
-export default Ads
+export default Ads;

@@ -69,7 +69,6 @@ https://www.smarty.net/
 **index.php**
 
 ```php
-
 include_once("smarty/libs/Smarty.class.php");
 
 main();
@@ -169,7 +168,6 @@ function pagenation($p, $min, $max)
 // $items_count 全件アイテム数
 // $items_limit　1ページの上限
 $max = (int) ceil($items_count / $items_limit);　// 最後のページ番号
-
 ```
 
 ceil関数は少数を切り上げするため、ceil(51 / 10)の時は $max = 6となります。
@@ -202,5 +200,4 @@ ceil関数は少数を切り上げするため、ceil(51 / 10)の時は $max = 6
 {if $next != null}
 <a href="/?p={$next}">次へ</a>
 {/if}
-
 ```

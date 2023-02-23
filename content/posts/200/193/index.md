@@ -7,8 +7,6 @@ author: "s-yoshiki"
 tags: ["gitlab","github","git"]
 ---
 
-
-
 ## 概要
 
 GitLabのミラーリング機能によりGitHubなどの外部のリポジトリとのミラーリングを行うことができます。
@@ -36,15 +34,15 @@ GitLabのリポジトリを別の場所にミラーリングします。
 
 ## GitHubのリポジトリをGitLabに反映する
 
- - `Settings` > `Repository` を選択し `Mirroring repositories` の項目を展開する
- - ミラーするリポジトリのURLを入力する
- - `Mirror Direction` で `pull` を選択する
- - `Authentication method` から必要に応じて認証方法を選択します
- - 必要に応じてチェックボックスの項目にチェックを入れます
-   - 分岐したブランチを上書きする
-   - ミラー更新のパイプラインをトリガーします
-   - 保護されたブランチのみをミラーリングします
- - 緑の `Mirror repository` をクリックするとミラーリング開始されます
+- `Settings` > `Repository` を選択し `Mirroring repositories` の項目を展開する
+- ミラーするリポジトリのURLを入力する
+- `Mirror Direction` で `pull` を選択する
+- `Authentication method` から必要に応じて認証方法を選択します
+- 必要に応じてチェックボックスの項目にチェックを入れます
+  - 分岐したブランチを上書きする
+  - ミラー更新のパイプラインをトリガーします
+  - 保護されたブランチのみをミラーリングします
+- 緑の `Mirror repository` をクリックするとミラーリング開始されます
 
 ![](2020-05-15-00-38-36.png)
 
@@ -59,11 +57,9 @@ GitLabのリポジトリを別の場所にミラーリングします。
 
 ![](2020-05-15-00-47-04.png)
 
-
 ## その他
 
 ミラーリポジトリが更新されると、すべての新しいブランチ、タグ、コミットがプロジェクトのアクティビティフィードに表示されます。
-
 
 対象のリポジトリに対して、開発者権限以上のアクセス権限を持つユーザーは、強制で即時更新をすることもできます。
 ただし、ミラー対象リポジトリがすでに更新済みの場合と前回の更新から5分以内の場合は即時更新できません。
@@ -73,6 +69,3 @@ GitLabのリポジトリを別の場所にミラーリングします。
 ## 参考
 
 [https://docs.gitlab.com/ee/user/project/repository/repository_mirroring.html](https://docs.gitlab.com/ee/user/project/repository/repository_mirroring.html)
-
-
-

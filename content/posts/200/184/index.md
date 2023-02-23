@@ -26,7 +26,7 @@ https://qiita.com/s-yoshiki/items/51150b37153b41df1da6
 </div></figure>
 <!-- /wp:embed -->
 
-Vue.jsで作成されたプロジェクトを紹介しているサイト「<a rel="noreferrer noopener" href="https://madewithvuejs.com/" target="_blank">**made with vue.js**</a>」の中で、個人的に面白いと思ったサイトを独断と偏見で選び出し、いくつか紹介したといものです。
+Vue.jsで作成されたプロジェクトを紹介しているサイト「<a rel="noreferrer noopener" href="https://madewithvuejs.com/" target="_blank"> **made with vue.js**</a>」の中で、個人的に面白いと思ったサイトを独断と偏見で選び出し、いくつか紹介したといものです。
 サイトのスクショと簡単な紹介の一文を載せてあるだけの比較的内容薄めの記事です。
 
 ## アクセス分析
@@ -101,11 +101,12 @@ Qiitaは9:00と17:00にトレンドランキングを更新しており、17:00�
 
 まとめブログが一世を風靡したのと同じように、また、NAVERまとめが流行ったのと同じように「まとめ」というのは常に需要があります。自分の知識が溜まったときにまとめ記事を投稿してみてもいいでしょう。
 
-- イマドキのJavaScriptの書き方2018 
-- ここ数年前から2015/5までのモダンフロントエンドを総まとめしてみた 
-- 【まとめ】これ知らないプログラマって損してんなって思う汎用的なツール 100超 
+- イマドキのJavaScriptの書き方2018
+- ここ数年前から2015/5までのモダンフロントエンドを総まとめしてみた
+- 【まとめ】これ知らないプログラマって損してんなって思う汎用的なツール 100超
 - プログラミングでよく使う英単語のまとめ【随時更新】
-<cite><a href="https://qiita.com/Ancient_Scapes/items/bba0fab1e55936e7234a">https://qiita.com/Ancient_Scapes/items/bba0fab1e55936e7234a</a></cite></blockquote>
+  <cite><a href="https://qiita.com/Ancient_Scapes/items/bba0fab1e55936e7234a">https://qiita.com/Ancient_Scapes/items/bba0fab1e55936e7234a</a></cite></blockquote>
+
 <!-- /wp:quote -->
 
 他にもバズり原因は様々なサイトで考察されていますが、正直どれもしっくりきていません。
@@ -131,4 +132,3 @@ https://ytsubuku.com/buzz-on-qiita
 ## 終わりに
 
 初めて「1000いいね」をもらって嬉しく思いましたが、Qiitaにはもっといいねされるべき良質な記事が眠っている様な気がし、こんな記事がたくさん「いいね」されてしまうことについて申し訳なく思ったりしてます。そして、これはQiitaが技術情報共有サービスから初心者向けの慣れ合いのサービスに変わりつつあるといってもいいかもしれません。改めてどのメディアで何の情報収集(発信)をするか見極めて考え直すタイミングがきていると思いました。?
-

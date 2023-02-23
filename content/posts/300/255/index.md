@@ -23,7 +23,7 @@ Linuxのソフトウェアのインストールでよく行う `./configure && m
 
 以下の環境で実施します。
 
- - CentOS 8.4
+- CentOS 8.4
 
 ## 準備
 
@@ -177,8 +177,6 @@ test_app
     └── test_app.c
 ```
 
-
-
 これでconfigureファイルが生成されます。
 
 ```shell
@@ -213,12 +211,11 @@ make dist
 ## autoreconf について
 
 autoreconfは以下の処理をまとめてやってくれる機能と理解。
- 
- - autoscan
- - aclocal
- - automake
- - autoconf
 
+- autoscan
+- aclocal
+- automake
+- autoconf
 
 ## Perlの場合
 
@@ -229,12 +226,12 @@ autoreconfは以下の処理をまとめてやってくれる機能と理解。
 
 ## リンク
 
- - [Autotools - Wikipedia](https://ja.wikipedia.org/wiki/Autotools)
- - [Autotoolsについてのメモ](http://loto.sourceforge.net/feram/Autotools-memo.ja.html)
- - [GNU C/C++ - autoconf, automake で make！ - mk-mode BLOG](https://www.mk-mode.com/blog/2012/12/03/03002034/)
- - [configureファイルの書き方 - ごろねこ日記](https://hiroe-orz17.hatenadiary.org/entry/20131006/1381040379)
- - [autoreconfを使って簡単にビルド環境を作る - にたまごほうれん草アーカイブ](https://nitamago-archive.hatenablog.com/entry/20081106/1225896312)
- - [autoconf, automake - Heavy Watal](https://heavywatal.github.io/dev/autotools.html)
- - [ cやc++をビルドしたいので ./configureスクリプトの作り方調べた - Qiita](https://qiita.com/hadashiA/items/9da2b424965952707a6d)
- - [/configure,makeの流れを作るアレ - Qiita](https://qiita.com/awakia/items/e0ceeabd8faf95020cbd)
- - [autotools  CapmNetwork](http://capm-network.com/?tag=autotools)
+- [Autotools - Wikipedia](https://ja.wikipedia.org/wiki/Autotools)
+- [Autotoolsについてのメモ](http://loto.sourceforge.net/feram/Autotools-memo.ja.html)
+- [GNU C/C++ - autoconf, automake で make！ - mk-mode BLOG](https://www.mk-mode.com/blog/2012/12/03/03002034/)
+- [configureファイルの書き方 - ごろねこ日記](https://hiroe-orz17.hatenadiary.org/entry/20131006/1381040379)
+- [autoreconfを使って簡単にビルド環境を作る - にたまごほうれん草アーカイブ](https://nitamago-archive.hatenablog.com/entry/20081106/1225896312)
+- [autoconf, automake - Heavy Watal](https://heavywatal.github.io/dev/autotools.html)
+- [cやc++をビルドしたいので ./configureスクリプトの作り方調べた - Qiita](https://qiita.com/hadashiA/items/9da2b424965952707a6d)
+- [/configure,makeの流れを作るアレ - Qiita](https://qiita.com/awakia/items/e0ceeabd8faf95020cbd)
+- [autotools CapmNetwork](http://capm-network.com/?tag=autotools)

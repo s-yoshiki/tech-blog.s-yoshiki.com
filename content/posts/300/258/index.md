@@ -15,19 +15,19 @@ GitHub で Markdownで管理しているブログに対して textlint で校正
 
 1. ライターが markdown で記事を書き、プルリクを行う
 2. GitHub Actions スタート
-  1. textlint で記事に対して校正を行う
-  2. reviewdog でプルリクにミス内容を記載する
-3. 問題がなかったらオーナーはプルリク承認、終了。NGだったら以下に進む。
-4. ライターがミス内容を修正して再度push
-5. 再度、GitHub Actions スタート以下略...
+3. textlint で記事に対して校正を行う
+4. reviewdog でプルリクにミス内容を記載する
+5. 問題がなかったらオーナーはプルリク承認、終了。NGだったら以下に進む。
+6. ライターがミス内容を修正して再度push
+7. 再度、GitHub Actions スタート以下略...
 
-## 利用する技術について 
+## 利用する技術について
 
 ### textlint
 
 [textlint/textlint: The pluggable natural language linter for text and markdown.](https://github.com/textlint/textlint)
 
-markdownで書いた文章について、表現の揺れや句読点、typoなどを機械的に抽出してくれるツールです。 
+markdownで書いた文章について、表現の揺れや句読点、typoなどを機械的に抽出してくれるツールです。
 
 ### GitHub Actionsについて
 
@@ -42,7 +42,6 @@ GitHubリポジトリの`.github/workflows`ディレクトリ以下にワーク�
 [reviewdog/reviewdog: 🐶 Automated code review tool integrated with any code analysis tools regardless of programming language](https://github.com/reviewdog/reviewdog)
 
 プログラミング言語に依存しないコード分析と自動コードレビューが統合されたツールです。
-
 
 ## ワークフローの実装
 
@@ -130,7 +129,6 @@ markdownファイルに対してtextlintで自動校正を行なっています�
 ```
 
 textlintでエラーがあった場合に、PRにレビューコメントを行います。
-
 
 ## リンク
 

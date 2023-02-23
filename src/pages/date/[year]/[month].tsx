@@ -1,24 +1,23 @@
-import { NextPage, InferGetStaticPropsType } from 'next';
-import { useRouter } from "next/router";
+import Layout from 'components/layout/layout';
+import PostsBand from 'components/posts-band';
+import { InferGetStaticPropsType, NextPage } from 'next';
+import { useRouter } from 'next/router';
 import PostsManager from 'utils/posts-manager';
-import Layout from "components/layout/layout"
-import PostsBand from "components/posts-band"
-
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 export const getStaticPaths = async () => {
-  const posts = PostsManager.getCountsGroupYearMonth()
-  const paths = []
+  const posts = PostsManager.getCountsGroupYearMonth();
+  const paths = [];
   for (let i in posts) {
-    const year = posts[i]
+    const year = posts[i];
     for (let j in year.months) {
       paths.push({
         params: {
           year: year.name,
-          month: year.months[j].name.split('-')[1]
-        }
-      })
+          month: year.months[j].name.split('-')[1],
+        },
+      });
     }
   }
   return {
@@ -30,32 +29,31 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params }: any) => {
   const posts = PostsManager.findByYearMonth(
     params.year,
-    params.month
-  )
+    params.month,
+  );
   return {
     props: {
-      posts
+      posts,
     },
   };
 };
 
 const Home: NextPage<Props> = ({ posts }) => {
   const router = useRouter();
-  const { year, month } = router.query
+  const { year, month } = router.query;
 
   return (
     <Layout>
       <div className='container mx-auto'>
-        <div className="">
-
+        <div className=''>
           <div className='
             text-2xl
             text-gray-900 
             font-semibold
             p-2
             flex
-          '>  
-            Posts with date: 
+          '>
+            Posts with date:
             <span>
               # {`${year}-${month}`}
             </span>
@@ -64,7 +62,7 @@ const Home: NextPage<Props> = ({ posts }) => {
         </div>
       </div>
     </Layout>
-  )
+  );
 };
 
 export default Home;

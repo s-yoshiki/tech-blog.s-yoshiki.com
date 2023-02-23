@@ -6,6 +6,7 @@ coverImage: "../../../images/thumbnail/aws-logo.png"
 author: "s-yoshiki"
 tags: ["amazon-aws","amazon-s3","cloudfront"]
 ---
+
 AWSのS3に公開用の設定をしたバケットを作成し、CloudFrontを介してコンテンツを配信する仕組みを作る話です。
 
 <img class="alignnone size-full wp-image-1488" src="https://tech-blog.s-yoshiki.com/wp-content/uploads/2019/08/s3_cloudfront-e1566007940565.png" alt="" width="640" height="335" />
@@ -32,6 +33,7 @@ S3へ遷移したら、「バケットを作成する」ボタンを押下する
 <a href="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901250010_839hwv.jpg"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901250010_839hwv.jpg" /></a>
 
 ここで以下の4つのチェックボックスからチェックが外れていることを確認します。
+
 <ul>
  	<li>新規のパブリック ACL と、パブリックオブジェクトのアップロードをブロックする (推奨)</li>
  	<li>パブリック ACL を通じて付与されたパブリックアクセスを削除する (推奨)</li>
@@ -87,6 +89,7 @@ ACM(AWS Certificate Manager)を利用してSSL証明書を発行します。
 SSL化対象のURLをRoute53で管理できることが前提です。
 
 取得する方法をざっとまとめます。
+
 <h3 class="qb-private-ca-wizard-title">証明書のリクエスト
 
 **パブリック証明書のリクエスト **を選択して、次へ
@@ -128,6 +131,7 @@ CloudFrontに移動。
 <img class="alignnone size-full wp-image-1490" src="https://tech-blog.s-yoshiki.com/wp-content/uploads/2019/08/cloudfront2-e1566009903549.png" alt="" width="640" height="305" />
 
 ここで細かな設定を行なっていきます。
+
 <ul>
  	<li>Origin Domain Name
 <ul>

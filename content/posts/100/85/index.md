@@ -24,50 +24,51 @@ chrome 61~
 ## サンプルコード
 
 ```js
-main()
+main();
 
 function main() {
-	var canvas1 = document.getElementById("canvas1")
-	canvas1.width = 500
-	canvas1.height = 200
-	
-	setInterval((function(){
-		sandstorm1(canvas1)
-	}), 100);
-	
-	var canvas2 = document.getElementById("canvas2")
-	canvas2.width = 500
-	canvas2.height = 200
-	
-	setInterval((function(){
-		sandstorm2(canvas2)
-	}), 100);
+  var canvas1 = document.getElementById('canvas1');
+  canvas1.width = 500;
+  canvas1.height = 200;
+
+  setInterval(function() {
+    sandstorm1(canvas1);
+  }, 100);
+
+  var canvas2 = document.getElementById('canvas2');
+  canvas2.width = 500;
+  canvas2.height = 200;
+
+  setInterval(function() {
+    sandstorm2(canvas2);
+  }, 100);
 }
 
 function sandstorm1(canvas) {
-	var context = canvas.getContext("2d")
-	var src = context.getImageData(0, 0, canvas.width, canvas.height);
-	var dst = context.createImageData(canvas.width, canvas.height);
-	for (var i = 0; i < src.data.length; i += 4) {
-		dst.data[i] = Math.ceil(Math.random() * 255);
-		dst.data[i + 1] = Math.ceil(Math.random() * 255);
-		dst.data[i + 2] = Math.ceil(Math.random() * 255);
-		dst.data[i + 3] = 255;
-	}
-	context.putImageData(dst, 0, 0);
+  var context = canvas.getContext('2d');
+  var src = context.getImageData(0, 0, canvas.width, canvas.height);
+  var dst = context.createImageData(canvas.width, canvas.height);
+  for (var i = 0; i < src.data.length; i += 4) {
+    dst.data[i] = Math.ceil(Math.random() * 255);
+    dst.data[i + 1] = Math.ceil(Math.random() * 255);
+    dst.data[i + 2] = Math.ceil(Math.random() * 255);
+    dst.data[i + 3] = 255;
+  }
+  context.putImageData(dst, 0, 0);
 }
 
 function sandstorm2(canvas) {
-	var context = canvas.getContext("2d")
-	var src = context.getImageData(0, 0, canvas.width, canvas.height);
-	var dst = context.createImageData(canvas.width, canvas.height);
-	for (var i = 0; i < src.data.length; i += 4) {
-		dst.data[i] = dst.data[i + 1] = dst.data[i + 2] = Math.ceil(Math.random() * 255)
-		dst.data[i + 3] = 255;
-	}
-	context.putImageData(dst, 0, 0);
+  var context = canvas.getContext('2d');
+  var src = context.getImageData(0, 0, canvas.width, canvas.height);
+  var dst = context.createImageData(canvas.width, canvas.height);
+  for (var i = 0; i < src.data.length; i += 4) {
+    dst.data[i] = dst.data[i + 1] = dst.data[i + 2] = Math.ceil(
+      Math.random() * 255,
+    );
+    dst.data[i + 3] = 255;
+  }
+  context.putImageData(dst, 0, 0);
 }
-
 ```
 
 ちょっとだけ解説。
@@ -92,49 +93,47 @@ Math.ceil(Math.random() * 255);
 <a href="http://jsfiddle.net/s_yoshiki/k20by3zg/29/show">外部ウィンドウで開く</a>
 
 ```js
-main()
+main();
 
 function main() {
-	var canvas1 = document.getElementById("canvas1")
-	canvas1.width = 500
-	canvas1.height = 500
-	
-	setInterval((function(){
-		sandstorm1(canvas1)
-	}), 100);
+  var canvas1 = document.getElementById('canvas1');
+  canvas1.width = 500;
+  canvas1.height = 500;
+
+  setInterval(function() {
+    sandstorm1(canvas1);
+  }, 100);
 }
 
 function sandstorm1(canvas) {
-	var context = canvas.getContext("2d")
-	var src = context.getImageData(0, 0, canvas.width, canvas.height);
-	var dst = context.createImageData(canvas.width, canvas.height);
-	for (var i = 0; i < src.data.length; i += 4) {
-		if (i < src.data.length * 1 / 5) {
-			dst.data[i]     = Math.ceil(Math.random() * 255);
-			dst.data[i + 1] = Math.ceil(Math.random() * 255);
-			dst.data[i + 2] = Math.ceil(Math.random() * 255);
-			
-		} else if (i < src.data.length * 2 / 5) {
-			dst.data[i]     = Math.ceil(Math.random() * 255);
-			dst.data[i + 1] = Math.ceil(Math.random() * 255);
-			dst.data[i + 2] = 255
-			
-		} else if (i < src.data.length * 3 / 5) {
-			dst.data[i]     = 255
-			dst.data[i + 1] = Math.ceil(Math.random() * 255);
-			dst.data[i + 2] = Math.ceil(Math.random() * 255);
-			
-		} else if (i < src.data.length * 4 / 5) {
-			dst.data[i]     = Math.ceil(Math.random() * 255);
-			dst.data[i + 1] = 255
-			dst.data[i + 2] = Math.ceil(Math.random() * 255);
-		} else {
-			dst.data[i] = dst.data[i + 1] = dst.data[i + 2] = Math.ceil(Math.random() * 255)
-		}
-		dst.data[i + 3] = 255;
-	}
-	console.log(i)
-	context.putImageData(dst, 0, 0);
+  var context = canvas.getContext('2d');
+  var src = context.getImageData(0, 0, canvas.width, canvas.height);
+  var dst = context.createImageData(canvas.width, canvas.height);
+  for (var i = 0; i < src.data.length; i += 4) {
+    if (i < src.data.length * 1 / 5) {
+      dst.data[i] = Math.ceil(Math.random() * 255);
+      dst.data[i + 1] = Math.ceil(Math.random() * 255);
+      dst.data[i + 2] = Math.ceil(Math.random() * 255);
+    } else if (i < src.data.length * 2 / 5) {
+      dst.data[i] = Math.ceil(Math.random() * 255);
+      dst.data[i + 1] = Math.ceil(Math.random() * 255);
+      dst.data[i + 2] = 255;
+    } else if (i < src.data.length * 3 / 5) {
+      dst.data[i] = 255;
+      dst.data[i + 1] = Math.ceil(Math.random() * 255);
+      dst.data[i + 2] = Math.ceil(Math.random() * 255);
+    } else if (i < src.data.length * 4 / 5) {
+      dst.data[i] = Math.ceil(Math.random() * 255);
+      dst.data[i + 1] = 255;
+      dst.data[i + 2] = Math.ceil(Math.random() * 255);
+    } else {
+      dst.data[i] = dst.data[i + 1] = dst.data[i + 2] = Math.ceil(
+        Math.random() * 255,
+      );
+    }
+    dst.data[i + 3] = 255;
+  }
+  console.log(i);
+  context.putImageData(dst, 0, 0);
 }
-
 ```

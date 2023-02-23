@@ -13,15 +13,12 @@ Postfixのリレーを介して送信されたメールをMailHog(開発用SMTP�
 
 ### 環境
 
- - Docker
-   - CentOS:8.3
-
-
+- Docker
+  - CentOS:8.3
 
 ## Dockerイメージ作成
 
 Dockerイメージ作成に必要なファイルの用意を行います。
-
 
 リポジトリの構成はこのようにします。
 
@@ -92,7 +89,6 @@ smtp_tls_CAfile = /etc/pki/tls/certs/ca-bundle.crt
 smtp_tls_security_level = may
 meta_directory = /etc/postfix
 shlib_directory = /usr/lib64/postfix
-
 ```
 
 **conf/entrypoint.sh**
@@ -154,7 +150,6 @@ MailHogは http://localhost:8025 からアクセスできます。
 docker exec -it app bash
 ```
 
-
 ## telnetで送信テスト
 
 telnetでローカルホストのSMTPサーバに繋ぎに行きます。
@@ -188,7 +183,6 @@ quit
 Connection closed by foreign host.
 ```
 
-
 ## phpで送信テスト
 
 次のようにPHPファイルを作成し実行することでメールの送信を確認することができると思います。
@@ -199,5 +193,5 @@ $to = "to@example.com";
 $subject = "TEST";
 $message = "Hello World!";
 $headers = "From: from@example.com";
-mb_send_mail($to, $subject, $message, $headers); 
+mb_send_mail($to, $subject, $message, $headers);
 ```

@@ -46,7 +46,6 @@ EEバージョン(有償版)は、非JDBCデータソース（MongoDB、Cassandr
 Windows / Mac / Linux でアプリケーションが提供されています。
 また、Eclipseのプラグインとして動作させることも可能です。
 
-
 ### 利用環境
 
 DBeaverを実行するにはJavaが必要です。Open JDK 11は、すべてのDBeaverディストリビューションに含まれています。（バージョン7.3.1以降）。dbeaverインストールフォルダの
@@ -150,7 +149,7 @@ Data Base -> New Connection を選択します。
 
 ![https://github.com/dbeaver/dbeaver/wiki/images/ug/Create-new-connection-menu-item.png](https://github.com/dbeaver/dbeaver/wiki/images/ug/Create-new-connection-menu-item.png)
 
-メニューバーから  File -> New を選択します。
+メニューバーから File -> New を選択します。
 
 ![https://github.com/dbeaver/dbeaver/wiki/images/ug/Create-new-connection-menu-item1.png](https://github.com/dbeaver/dbeaver/wiki/images/ug/Create-new-connection-menu-item1.png)
 
@@ -181,4 +180,3 @@ SQLエディターは、上部にスクリプトのパネル、下部に結果�
 ### CloudBeaverについて
 
 CloudBeaver は2020年に公開された、Webインタフェースを提供するSQLデベロッパーツールです。
-

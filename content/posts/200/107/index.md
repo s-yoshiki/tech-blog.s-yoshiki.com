@@ -58,7 +58,6 @@ Smarty 3.1.33
 **index.php**
 
 ```php
-
 /**
  * ページ数計算
  * 
@@ -106,11 +105,9 @@ $min = 1; // 最初のページ番号
 $max = (int) ceil($items_count / $items_limit); // 最後のページ番号
 
 $page = pagenation($p, $min, $max);
-
 ```
 
 ```php
-
 <!DOCTYPE html>
 <html>
     <head></head>
@@ -129,7 +126,6 @@ $page = pagenation($p, $min, $max);
 // $items_count 全件アイテム数
 // $items_limit　1ページの上限
 $max = (int) ceil($items_count / $items_limit);　// 最後のページ番号
-
 ```
 
 ceil関数は少数を切り上げするため、ceil(51 / 10)の時は $max = 6となります。

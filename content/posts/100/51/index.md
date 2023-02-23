@@ -20,6 +20,7 @@ https://tech-blog.s-yoshiki.com/2018/08/435/
 ## デモ
 
 デモです。
+
 <script async="" src="//jsfiddle.net/s_yoshiki/4mkj6fav/embed/result,js,html,css/dark/"></script>
 
 https://jsfiddle.net/s_yoshiki/4mkj6fav/show
@@ -27,9 +28,11 @@ https://jsfiddle.net/s_yoshiki/4mkj6fav/show
 ## 他のJavaScript製エディタと比べて
 
 <script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1544_RC03/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"Ace Editor","geo":"","time":"today 5-y"},{"keyword":"CodeMirror","geo":"","time":"today 5-y"},{"keyword":"Monaco Editor","geo":"","time":"today 5-y"}],"category":0,"property":""}, {"exploreQuery":"date=today%205-y&q=Ace%20Editor,CodeMirror,Monaco%20Editor","guestPath":"https://trends.google.co.jp:443/trends/embed/"}); </script>
+
 Ace Editor VS CodeMirror VS Monaco Editor
 
 軽く触れた感想ですが、Monaco EditorはAce Editorなどと比べて特に優れていると感じた点は、
+
 <ul>
  	<li>インテリセンス機能が強い</li>
  	<li>日本語入力が安定している</li>

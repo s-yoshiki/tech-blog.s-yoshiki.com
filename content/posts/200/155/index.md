@@ -6,6 +6,7 @@ coverImage: "../../../images/thumbnail/ubuntu-logo.png"
 author: "s-yoshiki"
 tags: ["amazon-aws","php","linux","ubuntu","wordpress","データベース","mysql","amazon-ec2","apache","mariadb"]
 ---
+
 AWS の EC2 の Ubuntu18.04 に Apache MariaDB PHP7.2 をセットアップした時のメモ。
 
 ## 概要
@@ -174,8 +175,7 @@ Disallow root login remotely? [Y/n]
 
 Remove test database and access to it? [Y/n] 
 
-Reload privilege tables now? [Y/n] 
-
+Reload privilege tables now? [Y/n]
 ```
 
 初期セットアップが完了しました。

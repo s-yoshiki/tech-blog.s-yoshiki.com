@@ -73,7 +73,6 @@ def request(req):
 if __name__ == '__main__':
     for i in range(10):
         request(f"request: {i}")
-
 ```
 
 ## 動かしてみる
@@ -129,7 +128,6 @@ response ('127.0.0.1', 51270)
 response ('127.0.0.1', 51271)
 response ('127.0.0.1', 51272)
 ```
-
 
 ## 参考
 

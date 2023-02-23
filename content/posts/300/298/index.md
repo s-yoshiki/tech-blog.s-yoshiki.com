@@ -41,7 +41,7 @@ Prismaを利用するアプリケーションをDistrolessコンテナで動作�
 
 ## Distroless+Prismaを構築するためのポイント
 
-冒頭にも書いたとおり、Distrolessコンテナ+Prismaを動作させる際にポイントとなったのは 
+冒頭にも書いたとおり、Distrolessコンテナ+Prismaを動作させる際にポイントとなったのは
 
 - OpenSSLの調整
 - シェルコマンド依存箇所の調整
@@ -99,13 +99,15 @@ OpenSSLの存在チェックを行うためのOSのコマンドの実行に失�
 上記で触れたOpenSSLの存在チェックは次の条件で行われていました。
 
 1. `/usr/lib/{aarch64 or x86_64}-linux-gnu` or `/lib/${aarch64 or x86_64}-linux-gnu` に`libssl.so`が存在するか
-  - debian系以外のディストロでは`/lib`や`lib64`がチェックされます
+
+- debian系以外のディストロでは`/lib`や`lib64`がチェックされます
+
 1. `ldconfig -p` の結果に`ssl`が存在するか
 1. `openssl version -v`の結果が返ってくるか
 
 なので、これらのチェックの機能が動くように調整します。
 
-<!-- 
+<!--
 下手に `/usr` や `/lib` の下を弄って依存関係を壊すのも怖いので、
 `/opt`等の下に入れて、3番目のコマンドのチェックによる方式を利用する方法を試してみます。
 -->
@@ -161,7 +163,6 @@ Searched Locations:
 ### gcr.io/distroless/nodejs18-debian11
 
 gcr.io/distroless/nodejs18-debian11 の場合は次の内容のDockerfileを定義吸えうことで動作しました。
-
 
 ```Dockerfile
 FROM node:18 as builder
@@ -227,8 +228,6 @@ CMD [ "/app/index.js" ]
 シェル環境が必要だったことを考えるとdebianなどの通常のディレストリビューションのイメージの
 方が良いのではと思いました。
 
-
-
 ## 参考にしたサイト
 
 - [DistrolessイメージでPrismaを動かしてみた - ISID テックブログ](https://tech.isid.co.jp/entry/distrolessAndPrisma)
@@ -237,4 +236,3 @@ CMD [ "/app/index.js" ]
 - [M1 MacのDocker上のNestJSでPrismaを動かすまでに詰まった点](https://zenn.dev/ishiki/articles/nest-prisma-docker-m1)
 - [Error: Unknown binaryTarget linux-arm64-openssl-undefined and no custom engine files were provided · Issue #16232 · prisma/prisma](https://github.com/prisma/prisma/issues/16232)
 - [Add shell or bash to a docker image (Distroless based on Debian GNU/Linux) - Stack Overflow](https://stackoverflow.com/questions/61039877/add-shell-or-bash-to-a-docker-image-distroless-based-on-debian-gnu-linux)
-

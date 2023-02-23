@@ -34,7 +34,7 @@ When you save your TeamSQL queries, they are then available to you no matter whe
 TeamSQL allows you to save and manage Oracle, MySQL, PostgreSQL, Microsoft SQL Server, Amazon Redshift SQL files or Redis commands using the Cloud Storage area.
 
 - https://teamsql.io/</blockquote>
-と言っています。
+  と言っています。
 
 チームでSQLを共有するために、実行したSQLがクラウドに保存されるということなのでしょうか。
 その辺はもう少し調べて見ます。

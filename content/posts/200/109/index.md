@@ -13,9 +13,9 @@ Vue.jsで作ったアプリをGitHub Pagesで公開する方法について。
 
 ## 検証環境
 
- - nodejs 11.10.0
- - npm 6.7.0
- - vue@cli 3.4.0
+- nodejs 11.10.0
+- npm 6.7.0
+- vue@cli 3.4.0
 
 nodejsとnpmの導入については省略します。
 
@@ -73,17 +73,16 @@ npm run build
 
 ```js
 module.exports = {
-  outputDir:'docs',
+  outputDir: 'docs',
   publicPath: './',
   configureWebpack: {
     resolve: {
       alias: {
-        "vue$": 'vue/dist/vue.esm.js'
-      }
-    }
-  }
-}
-
+        'vue$': 'vue/dist/vue.esm.js',
+      },
+    },
+  },
+};
 ```
 
 ## 参考

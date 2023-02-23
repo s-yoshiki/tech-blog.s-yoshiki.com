@@ -13,8 +13,8 @@ tags: ["小ネタ","雑談"]
 
 ```js
 const convert = (arg) => {
-  return arg.split('ー').join('‐')
-}
+  return arg.split('ー').join('‐');
+};
 ```
 
 いざテストをしようと思って、「—」を入力したら期待値が出なかった。
@@ -46,7 +46,6 @@ const convert = (arg) => {
 ⸻(3emダッシュ)
 ```
 
-
 ※これらの文字のうち
 「フィギュアダッシュ」「全角ダッシュ」「二分ダッシュ」「ウ(ハングルの字母)」「カシーダ」「上付きマイナス」「下付きマイナス」「2emダッシュ」「3emダッシュ」
 はサロゲートペア
@@ -71,7 +70,7 @@ const convert = (arg) => {
 ー（全角長音）
 ｰ（半角長音）
 ─（罫線）
-━（罫線） 
+━（罫線）
 一（いち）
 &mdash; kenmaz (@kenmaz) <a href="https://twitter.com/kenmaz/status/1231429228769378305?ref_src=twsrc%5Etfw">February 23, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <!-- /wp:embed -->

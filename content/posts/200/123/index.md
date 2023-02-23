@@ -17,11 +17,13 @@ JavaScriptで画像のプーリング処理を行ってみました。
 画像を圧縮する役割を果たします。
 平均プーリングやmaxプーリングといったものがあります。
 平均プーリングはグリッド内を平均の値で埋めるもので、MAXプーリングはグリッド内の最大値で埋めます。
+
 <blockquote class="twitter-tweet" data-lang="ja">
 <p lang="ja" dir="ltr"><Memo> 平均プーリング [average pooling]
 プーリング関数の１つである、平均プーリングは、添付図のように、局所的な受容野 P_i,j 内に属するノードの入力値の平均を、このノードの出力として集約する（空間的にぼかす）。 <a href="https://t.co/0WxbnJ9qzO">pic.twitter.com/0WxbnJ9qzO</a>
 
 — ヤガミ (@yagami_360) <a href="https://twitter.com/yagami_360/status/916257017588719617?ref_src=twsrc%5Etfw">2017年10月6日</a></blockquote>
+
 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 ## サンプルソース
@@ -32,52 +34,52 @@ JavaScriptで画像のプーリング処理を行ってみました。
 export default class {
   /**
    * メイン
-   * @param {Object} canvas 
-   * @param {Object} image 
+   * @param {Object} canvas
+   * @param {Object} image
    */
   main(canvas, image) {
-    let w = image.width
-    let h = image.height
-    let dx = w / 16
-    let dy = h / 16
+    let w = image.width;
+    let h = image.height;
+    let dx = w / 16;
+    let dy = h / 16;
 
-    let ctx = canvas.getContext("2d");
-    ctx.drawImage(image, 0, 0, image.width, image.height)
+    let ctx = canvas.getContext('2d');
+    ctx.drawImage(image, 0, 0, image.width, image.height);
 
     const blurColor = (x, y, w, h) => {
-      let ctx = canvas.getContext('2d')
-      let r, g, b
-      r = g = b = 0
+      let ctx = canvas.getContext('2d');
+      let r, g, b;
+      r = g = b = 0;
 
       let src = ctx.getImageData(x, y, w, h);
-      let dst = ctx.createImageData(w, h)
+      let dst = ctx.createImageData(w, h);
 
       for (let i = 0; i < src.data.length; i += 4) {
-        r += src.data[i]
-        g += src.data[i + 1]
-        b += src.data[i + 2]
+        r += src.data[i];
+        g += src.data[i + 1];
+        b += src.data[i + 2];
       }
 
-      r /= src.data.length / 4
-      g /= src.data.length / 4
-      b /= src.data.length / 4
+      r /= src.data.length / 4;
+      g /= src.data.length / 4;
+      b /= src.data.length / 4;
 
-      r = Math.ceil(r)
-      g = Math.ceil(g)
-      b = Math.ceil(b)
+      r = Math.ceil(r);
+      g = Math.ceil(g);
+      b = Math.ceil(b);
 
       for (let i = 0; i < src.data.length; i += 4) {
-        dst.data[i] = r
-        dst.data[i + 1] = g
-        dst.data[i + 2] = b
-        dst.data[i + 3] = 255
+        dst.data[i] = r;
+        dst.data[i + 1] = g;
+        dst.data[i + 2] = b;
+        dst.data[i + 3] = 255;
       }
-      ctx.putImageData(dst, x, y)
-    }
+      ctx.putImageData(dst, x, y);
+    };
 
     for (let i = 0; i < canvas.width; i += dx) {
       for (let j = 0; j < canvas.height; j += dy) {
-        blurColor(i, j, dx, dy)
+        blurColor(i, j, dx, dy);
       }
     }
   }
@@ -90,44 +92,44 @@ export default class {
 export default class {
   /**
    * メイン
-   * @param {Object} canvas 
-   * @param {Object} image 
+   * @param {Object} canvas
+   * @param {Object} image
    */
   main(canvas, image) {
-    let w = image.width
-    let h = image.height
-    let dx = w / 16
-    let dy = h / 16
+    let w = image.width;
+    let h = image.height;
+    let dx = w / 16;
+    let dy = h / 16;
 
-    let ctx = canvas.getContext("2d");
-    ctx.drawImage(image, 0, 0, image.width, image.height)
+    let ctx = canvas.getContext('2d');
+    ctx.drawImage(image, 0, 0, image.width, image.height);
 
     const blurColor = (x, y, w, h) => {
-      let ctx = canvas.getContext('2d')
-      let r, g, b
-      r = g = b = 0
+      let ctx = canvas.getContext('2d');
+      let r, g, b;
+      r = g = b = 0;
 
       let src = ctx.getImageData(x, y, w, h);
-      let dst = ctx.createImageData(w, h)
+      let dst = ctx.createImageData(w, h);
 
       for (let i = 0; i < src.data.length; i += 4) {
-        r = src.data[i] > r ? src.data[i] : r
-        g = src.data[i + 1] > g ? src.data[i + 1] : g
-        b = src.data[i + 2] > b ? src.data[i + 2] : b
+        r = src.data[i] > r ? src.data[i] : r;
+        g = src.data[i + 1] > g ? src.data[i + 1] : g;
+        b = src.data[i + 2] > b ? src.data[i + 2] : b;
       }
 
       for (let i = 0; i < src.data.length; i += 4) {
-        dst.data[i] = r
-        dst.data[i + 1] = g
-        dst.data[i + 2] = b
-        dst.data[i + 3] = 255
+        dst.data[i] = r;
+        dst.data[i + 1] = g;
+        dst.data[i + 2] = b;
+        dst.data[i + 3] = 255;
       }
-      ctx.putImageData(dst, x, y)
-    }
+      ctx.putImageData(dst, x, y);
+    };
 
     for (let i = 0; i < canvas.width; i += dx) {
       for (let j = 0; j < canvas.height; j += dy) {
-        blurColor(i, j, dx, dy)
+        blurColor(i, j, dx, dy);
       }
     }
   }

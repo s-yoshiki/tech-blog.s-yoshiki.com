@@ -19,6 +19,6 @@ mysql8.0でmy.cnfなどで利用できるパラメータ一覧を出す方法。
 $ mysqld --verbose --help
 ```
 
-[ mysqld — The MySQL Server](https://dev.mysql.com/doc/refman/8.0/en/mysqld.html)
+[mysqld — The MySQL Server](https://dev.mysql.com/doc/refman/8.0/en/mysqld.html)
 
 [【MySQLパラメーター比較資料】MySQL 5.5、5.6、5.7、8.0のパラメーターを比較したExcelファイル](https://www.mysql.com/jp/why-mysql/presentations/mysql-variables-comparison-ja/)

@@ -13,7 +13,7 @@ CentOS8 に modularity を利用して PHP7.4をインストールした際の�
 
 ## 環境
 
- - CentOS8.3 (docker)
+- CentOS8.3 (docker)
 
 ```shell
 cat /etc/redhat-release 
@@ -25,7 +25,6 @@ CentOS Linux release 8.3.2011
 ## 普通にインストールしようとするとphp7.2がインストールされる
 
 dnfコマンドで `dnf install php` といった感じに普通にインストールしようとするとphp7.2がインストールされます。
-
 
 ## modularityについて
 
@@ -86,13 +85,12 @@ Install  11 Packages
 
 Total download size: 6.6 M
 Installed size: 28 M
-Is this ok [y/N]: 
+Is this ok [y/N]:
 ```
 
 `y` を 入力。
 
 インストール完了後、`dnf install php`を実施する。
-
 
 ```shell
 $ dnf install php
@@ -124,7 +122,7 @@ Install  13 Packages
 
 Total download size: 4.5 M
 Installed size: 13 M
-Is this ok [y/N]: 
+Is this ok [y/N]:
 ```
 
 再び `y` を入力。これでインストールが完了します。

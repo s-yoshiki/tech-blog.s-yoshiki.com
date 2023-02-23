@@ -27,30 +27,30 @@ async について
 
 ```js
 function load(canvas, file) {
-    return new Promise((resolve, reject) => {
-        let ctx = canvas.getContext("2d")
-        let image = new Image()
-        let reader = new FileReader()
-        reader.onload = e => {
-            image.src = e.target.result
-            image.onload = () => {
-                ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
-                resolve(image)
-            }
-        }
-        reader.readAsDataURL(file)
-    })
+  return new Promise((resolve, reject) => {
+    let ctx = canvas.getContext('2d');
+    let image = new Image();
+    let reader = new FileReader();
+    reader.onload = e => {
+      image.src = e.target.result;
+      image.onload = () => {
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+        resolve(image);
+      };
+    };
+    reader.readAsDataURL(file);
+  });
 }
 
 async function onChange(file) {
-    const canvas = document.getElementById(canvasId)
-    await load(canvas, file)
-    alert("読み込み完了!")
+  const canvas = document.getElementById(canvasId);
+  await load(canvas, file);
+  alert('読み込み完了!');
 }
 
 document.getElementById('input').addEventListener('change', (e) => {
-    onChange(e.target.files[0])
-}, false)
+  onChange(e.target.files[0]);
+}, false);
 ```
 
 **デモ**

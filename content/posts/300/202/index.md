@@ -62,7 +62,6 @@ s3にマルチパートアップロードされた際のEtagの値は通常のmd
 
 [What is the algorithm to compute the Amazon-S3 Etag for a file larger than 5GB?](https://stackoverflow.com/questions/12186993/what-is-the-algorithm-to-compute-the-amazon-s3-etag-for-a-file-larger-than-5gb)
 
-
 phpで対応する場合の実装
 
 ```php

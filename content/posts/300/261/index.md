@@ -27,27 +27,29 @@ tags: ["javascript","typescript","アルゴリズム"]
 
 [部分和問題 - Wikipedia](https://ja.wikipedia.org/wiki/%E9%83%A8%E5%88%86%E5%92%8C%E5%95%8F%E9%A1%8C)
 
-
 ## ソース
 
 **動的計画法を行う関数**
 
 ```js
 function solve(data, num) {
-    const dp = Array.from(new Array(data.length + 1), () => new Array(num + 1).fill(0))
-    for (let col = 0; col < data.length; col++) {
-        for (let row = 0; row < num + 1; row++) {
-            if (row < data[col]) {
-                dp[col + 1][row] = dp[col][row]
-            } else {
-                dp[col + 1][row] = Math.max(
-                    dp[col][row],
-                    dp[col][row - data[col]] + data[col]
-                )
-            }
-        }
+  const dp = Array.from(
+    new Array(data.length + 1),
+    () => new Array(num + 1).fill(0),
+  );
+  for (let col = 0; col < data.length; col++) {
+    for (let row = 0; row < num + 1; row++) {
+      if (row < data[col]) {
+        dp[col + 1][row] = dp[col][row];
+      } else {
+        dp[col + 1][row] = Math.max(
+          dp[col][row],
+          dp[col][row - data[col]] + data[col],
+        );
+      }
     }
-    return dp[data.length][num] === num
+  }
+  return dp[data.length][num] === num;
 }
 ```
 
@@ -59,7 +61,7 @@ function solve(data, num) {
 // 答: 存在する。[7, 8, 12]
 
 const arr = [3, 7, 8, 12, 13, 18];
-console.log(solve(arr, 27) ? '存在する' : '存在しない')
+console.log(solve(arr, 27) ? '存在する' : '存在しない');
 ```
 
 ## おまけ: TypeScript用
@@ -68,20 +70,22 @@ TypeScript用のソースです。
 
 ```ts
 const solve = (data: Array<number>, num: number) => {
-  const dp = Array.from(new Array(data.length + 1), () => new Array(num + 1).fill(0))
+  const dp = Array.from(
+    new Array(data.length + 1),
+    () => new Array(num + 1).fill(0),
+  );
   for (let col = 0; col < data.length; col++) {
-      for (let row = 0; row < num + 1; row++) {
-          if (row < data[col]) {
-              dp[col + 1][row] = dp[col][row]
-          } else {
-              dp[col + 1][row] = Math.max(
-                  dp[col][row],
-                  dp[col][row - data[col]] + data[col]
-              )
-          }
+    for (let row = 0; row < num + 1; row++) {
+      if (row < data[col]) {
+        dp[col + 1][row] = dp[col][row];
+      } else {
+        dp[col + 1][row] = Math.max(
+          dp[col][row],
+          dp[col][row - data[col]] + data[col],
+        );
       }
+    }
   }
-  return dp[data.length][num] === num
-}
+  return dp[data.length][num] === num;
+};
 ```
-

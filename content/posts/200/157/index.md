@@ -6,6 +6,7 @@ coverImage: "../../../images/thumbnail/bitnami-logo.png"
 author: "s-yoshiki"
 tags: ["amazon-aws","wordpress","ubuntu","bitnami","ツール","amazon-ec2","apache"]
 ---
+
 bitnamiはWebアプリケーションや開発ツールのインストラーやソフトウェアパッケージのライブラリです。
 提供するスタックにはWordPress、Drupal、Joomla、Redmine、AbanteCart、PrestaShop、Magento、MediaWikiなどがあります。
 ここではAWS EC2 のマーケットプレイスで公開されている Bitnami WordPress の AMI で WordPressサイトを構築するまでの方法と各種ツール・設定ファイルについて紹介します。
@@ -19,6 +20,7 @@ bitnamiはWebアプリケーションや開発ツールのインストラーや�
 これまで、自前で構築した環境 + WordPress→ Amazon Lightsail + Bitnami WordPress → AWS EC2 + Bitnami WordPressという形でWordPress環境を利用してきました。
 
 パッと思いつくBitnamiの良い点は次の3つであると思います。
+
 <ol>
  	<li>安い (無料!)</li>
  	<li>設定が簡単 & 拡張しやすい</li>
@@ -61,6 +63,7 @@ WordPress Certified by Bitnami and Automattic のAMI を例に構成と設定を
 ### サーバの構成
 
 AMIで設定されていた各種アプリケーションのバージョンは次のようになっています。
+
 <ul>
  	<li>Ubutnu 16.04</li>
  	<li>Apache 2.4</li>
@@ -75,6 +78,7 @@ AMIで設定されていた各種アプリケーションのバージョンは�
 #### MySQL
 
 このテーブルはデフォルトの状態でWordPressが利用しているテーブルです。
+
 <ul>
  	<li>ユーザ: bn_wordpress</li>
  	<li>ホスト: localhost</li>
@@ -95,6 +99,7 @@ AMIで設定されていた各種アプリケーションのバージョンは�
 ルートの設定ファイルが各種アプリケーションの設定を読み込むような配置となっています。
 
 このApacheの設定がなかなか複雑なため次の章で詳細に見ていきます。
+
 <ul>
  	<li>ルート
 <ul>
@@ -118,6 +123,7 @@ AMIで設定されていた各種アプリケーションのバージョンは�
 #### Linux
 
 デフォルトの作業ユーザは「bitnami」となっています。また、bitnamiのホームディレクトリ以下に各種設定ファイルが配置されていたり、ドキュメントルートが設定されています。
+
 <ul>
  	<li>ユーザ: bitnami</li>
  	<li>ホームディレクトリ: /home/bitnami</li>

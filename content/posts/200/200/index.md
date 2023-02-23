@@ -16,15 +16,15 @@ JSの場合、10進数から2進数への変換は`toString`メソッド。2進�
 
 ```js
 function intToBin(num) {
-    let ans = []
-    if (num === 0) {
-        return '0'
-    }
-    while (num > 0) {
-        ans.push(num%2)
-        num = Math.floor(num / 2)
-    }
-    return ans.reverse().join('')
+  let ans = [];
+  if (num === 0) {
+    return '0';
+  }
+  while (num > 0) {
+    ans.push(num % 2);
+    num = Math.floor(num / 2);
+  }
+  return ans.reverse().join('');
 }
 ```
 
@@ -32,30 +32,30 @@ function intToBin(num) {
 
 ```js
 function binToInt(str) {
-    let nums = str.split("").map(Number).reverse()
-    let ans = 0
-    for (let i = 0; i < nums.length; i++) {
-        ans += (2 ** i) * nums[i]
-    }
-    return ans
+  let nums = str.split('').map(Number).reverse();
+  let ans = 0;
+  for (let i = 0; i < nums.length; i++) {
+    ans += (2 ** i) * nums[i];
+  }
+  return ans;
 }
 ```
 
 ## テスト
 
 ```js
-const max = 10e5
+const max = 10e5;
 for (let i = 0; i < max; i++) {
-    console.log(i)
-    if (intToBin(i) !== i.toString(2)) {
-        console.log("error:1")
-        break
-    }
-    let bin = i.toString(2)
-    if (binToInt(bin) !== parseInt(bin, 2)) {
-        console.log("error:2")
-        break
-    }
+  console.log(i);
+  if (intToBin(i) !== i.toString(2)) {
+    console.log('error:1');
+    break;
+  }
+  let bin = i.toString(2);
+  if (binToInt(bin) !== parseInt(bin, 2)) {
+    console.log('error:2');
+    break;
+  }
 }
 ```
 

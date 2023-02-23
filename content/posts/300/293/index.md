@@ -169,7 +169,6 @@ agnoster cloud damoekri giddie kylewest minimal nicoulaj paradox peepcode powerl
 prompt powerlevel10k
 ```
 
-
 ## Trouble shouting
 
 インストールに際して次のようなエラーが発生しました。

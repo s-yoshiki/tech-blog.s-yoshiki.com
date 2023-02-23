@@ -19,13 +19,13 @@ CentOS8からCentOS Streamに移行する方法が公式に掲載されていた
 
 > Q7: How do I migrate my CentOS Linux 8 installation to CentOS Stream?
 > A: Instructions to convert from the CentOS Linux 8 distribution to CentOS Stream 8 are published at > https://www.centos.org/centos-stream/ and are also below for your convenience.
-> 
+>
 > root@centos-linux# dnf install centos-release-stream
-> 
+>
 > root@centos-linux# dnf swap centos-{linux,stream}-repos
-> 
+>
 > root@centos-linux# dnf distro-sync
-> 
+>
 > root@centos-stream# cat /etc/centos-release
 > CentOS Stream release 8
 > This will result in some package updates and new packages being installed, which is expected.
@@ -44,7 +44,7 @@ cd docker-centos-stream
 次のコマンドでビルドします。
 
 ```shell
-docker-compose up -d --build 
+docker-compose up -d --build
 ```
 
 イメージの確認。

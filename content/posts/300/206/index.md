@@ -42,8 +42,7 @@ Installing:
 
 EPELについての説明はFedoraprojectに記載があったので引用します。
 
->  エンタープライズ Linux 用の拡張パッケージ(EPEL) は、 Red Hat Enterprise Linux (RHEL) 向けの高品質なアドオンパッケージであり、CentOS や Scientific Linux (SL) のような RHEL からスピンオフしたディストリビューションと互換性のある、Fedora プロジェクトで有志によって作成されたパッケージになります。Fedora は RHEL のアップストリームであり、EPEL のアドオンパッケージは主に RHEL 向けにビルドされた Fedora リポジトリをソースとしています。
-
+> エンタープライズ Linux 用の拡張パッケージ(EPEL) は、 Red Hat Enterprise Linux (RHEL) 向けの高品質なアドオンパッケージであり、CentOS や Scientific Linux (SL) のような RHEL からスピンオフしたディストリビューションと互換性のある、Fedora プロジェクトで有志によって作成されたパッケージになります。Fedora は RHEL のアップストリームであり、EPEL のアドオンパッケージは主に RHEL 向けにビルドされた Fedora リポジトリをソースとしています。
 
 [EPEL/ja - Fedora Project Wiki](https://fedoraproject.org/wiki/EPEL/ja)
 
@@ -64,7 +63,9 @@ PowerToolsはデフォルトで無効になっています。この設定は `/e
 # デフォルト: 無効
 enabled=0
 ```
+
 ↓
+
 ```shell
 # 変更後: 有効
 enabled=1

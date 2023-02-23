@@ -53,19 +53,18 @@ https://www.npmjs.com/package/@tensorflow-models/coco-ssd
         });
     });
 </script>
-
 ```
 
 ### coco-ssd API
 
 ```js
-cocoSsd.load()
+cocoSsd.load();
 ```
 
 このメソッドでモデルをロードします。引数を渡さない場合は”lite_mobilenet_v2”が選択されます。
 
 ```js
-model.detect()
+model.detect();
 ```
 
 model.detect()で物体検出を行います。引数にはhtmlのimg要素canvas要素、ImageDataオブジェクトを渡すことができます。
@@ -74,18 +73,17 @@ model.detect()で物体検出を行います。引数にはhtmlのimg要素canva
 
 ```json
 [
-	{
-		"bbox": [
-			225.4661464691162,
-			21.420029640197754,
-			194.02139472961426,
-			326.7346258163452
-		],
-		"class": "person",
-		"score": 0.802341103553772
-	}
+  {
+    "bbox": [
+      225.4661464691162,
+      21.420029640197754,
+      194.02139472961426,
+      326.7346258163452
+    ],
+    "class": "person",
+    "score": 0.802341103553772
+  }
 ]
-
 ```
 
 ## デモ
@@ -106,87 +104,85 @@ https://jsfiddle.net/s_yoshiki/tn7usb9p/show
 <canvas id="canvas"></canvas>
 
 <pre id="debug">
-
 ```
 
 ラベルとかの処理はcanvasのAPIを叩いて実装しています。
 
 ```js
-const canvas = document.getElementById("canvas")
+const canvas = document.getElementById('canvas');
 
 document.getElementById('file').onchange = function() {
-    let img = this.files[0]
-    let reader = new FileReader()
-    reader.readAsDataURL(img)
-    reader.onload = function() {
-        detectObjects(reader.result)
-    }
-}
+  let img = this.files[0];
+  let reader = new FileReader();
+  reader.readAsDataURL(img);
+  reader.onload = function() {
+    detectObjects(reader.result);
+  };
+};
 
 function detectObjects(url) {
-	let ctx = canvas.getContext('2d')
-    let image = new Image()
-	let debug_dom = document.getElementById("debug")
-    image.src = url
-	
-    image.onload = () => {
-        canvas.width = image.width
-        canvas.height = image.height
-		
-        ctx.drawImage(image, 0, 0)
-		cocoSsd.load().then(model => {
-			model.detect(canvas).then(predictions => {
-				for (var i = 0; i < predictions.length; i++) {
-					var obj = predictions[i]
-					var box = obj.bbox
-					console.log(i)
-					drawRect(box[0], box[1], box[2], box[3])
-					drawLabel(
-						obj["class"] + 
-						" : " + 
-						parseInt(obj["score"] * 100 ,10) +
-						"%",
-						box[0],
-						box[1]
-					)
-				}
-				debug_dom.innerHTML = JSON.stringify(predictions, null, "\t")
-			});
-		});
-    }
+  let ctx = canvas.getContext('2d');
+  let image = new Image();
+  let debug_dom = document.getElementById('debug');
+  image.src = url;
+
+  image.onload = () => {
+    canvas.width = image.width;
+    canvas.height = image.height;
+
+    ctx.drawImage(image, 0, 0);
+    cocoSsd.load().then(model => {
+      model.detect(canvas).then(predictions => {
+        for (var i = 0; i < predictions.length; i++) {
+          var obj = predictions[i];
+          var box = obj.bbox;
+          console.log(i);
+          drawRect(box[0], box[1], box[2], box[3]);
+          drawLabel(
+            obj['class']
+              + ' : '
+              + parseInt(obj['score'] * 100, 10)
+              + '%',
+            box[0],
+            box[1],
+          );
+        }
+        debug_dom.innerHTML = JSON.stringify(predictions, null, '\t');
+      });
+    });
+  };
 }
 
 function drawRect(x, y, w, h) {
-	var ctx = canvas.getContext('2d');
-	ctx.beginPath();
-	ctx.rect(
-		parseInt(x, 10), 
-		parseInt(y, 10),
-		parseInt(w, 10),
-		parseInt(h, 10)
-	)
-	ctx.strokeStyle = "rgb(50, 240, 60)"
-	ctx.lineWidth = 8
-	ctx.stroke()
-	ctx.closePath()
+  var ctx = canvas.getContext('2d');
+  ctx.beginPath();
+  ctx.rect(
+    parseInt(x, 10),
+    parseInt(y, 10),
+    parseInt(w, 10),
+    parseInt(h, 10),
+  );
+  ctx.strokeStyle = 'rgb(50, 240, 60)';
+  ctx.lineWidth = 8;
+  ctx.stroke();
+  ctx.closePath();
 }
 
 function drawLabel(text, x, y) {
-	var ctx = canvas.getContext('2d')
-	
-	ctx.beginPath()
-	ctx.rect(x -5, y-20, 140, 20)
-	ctx.fillStyle = "rgb(50, 240, 60)"
-	ctx.fill()
-	ctx.closePath()
+  var ctx = canvas.getContext('2d');
 
-	ctx.beginPath()
-	ctx.font = "18px 'ＭＳ Ｐゴシック'"
-	ctx.fillStyle = "red"
-	ctx.fillText(text, parseInt(x, 10), parseInt(y, 10))
-	ctx.closePath()
+  ctx.beginPath();
+  ctx.rect(x - 5, y - 20, 140, 20);
+  ctx.fillStyle = 'rgb(50, 240, 60)';
+  ctx.fill();
+  ctx.closePath();
+
+  ctx.beginPath();
+  ctx.font = '18px \'ＭＳ Ｐゴシック\'';
+  ctx.fillStyle = 'red';
+  ctx.fillText(text, parseInt(x, 10), parseInt(y, 10));
+  ctx.closePath();
 }
-
 ```
 
 ## 参考

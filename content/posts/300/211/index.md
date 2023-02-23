@@ -16,16 +16,16 @@ PHP-Parser を利用して PHP5でしか動作しないコードをPHP7で動作
 
 ここで、「PHP5でしか動作しないコードをPHP7で動作するコードに再生成するためのツール」が備える機能の条件を以下としています。
 
- - 非推奨/廃止となった関数の置換
- - 関数/変数/クラス/例外クラスの置換
- - ファイルパスの修正
- - 引数の追加・変更
- - 型の判定・キャスト (例えばPHP5のcount()の場合、count(false)だと1、count(null)だと0になるがphp7ではwarning) 
+- 非推奨/廃止となった関数の置換
+- 関数/変数/クラス/例外クラスの置換
+- ファイルパスの修正
+- 引数の追加・変更
+- 型の判定・キャスト (例えばPHP5のcount()の場合、count(false)だと1、count(null)だと0になるがphp7ではwarning)
 
 ## PHP-Parser について
 
 > This is a PHP 5.2 to PHP 8.0 parser written in PHP. Its purpose is to simplify static code analysis and manipulation.
-> 
+>
 > [nikic/PHP-Parser](https://github.com/nikic/PHP-Parser)
 > [https://github.com/nikic/PHP-Parser](https://github.com/nikic/PHP-Parser)
 
@@ -33,14 +33,14 @@ PHP5.2からPHP8までに対応したパーサであり。静的解析や操作�
 
 こんな特徴があると説明されています。
 
- - PHP 5、PHP 7、およびPHP 8コードを抽象構文木（AST）に解析
- - ASTを可読形式で吐き出し
- - ASTをPHPコードに再生成
- - ASTを走査および変更するための基礎的なツール
- - 名前空間名の解決
- - 定数式の評価
- - コード生成のためのAST構築を簡素化するビルダーを備える
- - ASTをJSONに変換して戻す
+- PHP 5、PHP 7、およびPHP 8コードを抽象構文木（AST）に解析
+- ASTを可読形式で吐き出し
+- ASTをPHPコードに再生成
+- ASTを走査および変更するための基礎的なツール
+- 名前空間名の解決
+- 定数式の評価
+- コード生成のためのAST構築を簡素化するビルダーを備える
+- ASTをJSONに変換して戻す
 
 ## PHP-Parser の簡単なサンプル
 
@@ -162,7 +162,6 @@ array(1) {
   }
 }
 ```
-
 
 `PhpParser\PrettyPrinter\Standard::prettyPrintFile()`によってパースされたオブジェクトからコードを再生成することができます。
 

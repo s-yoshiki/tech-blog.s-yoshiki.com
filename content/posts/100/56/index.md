@@ -24,6 +24,7 @@ GRANT ALL ON test_database.* TO user_name@localhost
 ```
 
 を実行すると、
+
 <blockquote>Query OK, 0 rows affected, 1 warning (0.00 sec)</blockquote>
 と表示され、失敗した。
 
@@ -32,6 +33,7 @@ SHOW WARNINGS\G
 ```
 
 でエラー内容を探すと、
+
 <blockquote>MySQL is started in --skip-name-resolve mode; you must restart it without this switch for this grant to work</blockquote>
 と表示された。
 

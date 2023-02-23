@@ -30,8 +30,8 @@ NestJSで少し大きな規模のRESTfull APIを構築するディレクトリ�
 1. APIのパスにバージョン名を入れてバージョニングを行う
 1. APIは一般公開向けと管理系の2つに大きく分かれる
 1. APIはユーザ・アイテムといったリソース情報を返却する
-  1. これらのリソースを一般公開系けと管理系それぞれで利用する
-  1. 管理系のレスポンスは機微な情報が含まれることを想定し一般系の混同利用は避ける
+1. これらのリソースを一般公開系けと管理系それぞれで利用する
+1. 管理系のレスポンスは機微な情報が含まれることを想定し一般系の混同利用は避ける
 
 具体的にAPIのエンドポイントは以下となります。
 
@@ -48,7 +48,6 @@ GET /v1/admin/users
 ...略
 GET /v2/admin/users
 ```
-
 
 ## ディレクトリ構成
 
@@ -100,7 +99,6 @@ GET /v2/admin/users
     └── v2.module.ts
 ```
 
-
 ## プロジェクト作成
 
 ```shell
@@ -119,7 +117,6 @@ $ npx nest generate module v1/front
 # UPDATE src/v1/v1.module.ts (157 bytes)
 $ npx nest generate module v1/admin
 ```
-
 
 ```shell
 $ npx nest generate resource v1/front/users
@@ -163,40 +160,42 @@ $ npx nest generate resource v2/front/users
 
 ```ts
 import { Module } from '@nestjs/common';
-import { UsersModule } from './users/users.module';
-import { ProjectsModule } from './projects/projects.module';
 import { IssuesModule } from './issues/issues.module';
+import { ProjectsModule } from './projects/projects.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
-  imports: [UsersModule, ProjectsModule, IssuesModule]
+  imports: [UsersModule, ProjectsModule, IssuesModule],
 })
 export class FrontModule {}
 ```
-
 
 **変更後**
 
 ```ts
 import { Module } from '@nestjs/common';
-import { UsersModule } from './users/users.module';
-import { ProjectsModule } from './projects/projects.module';
-import { IssuesModule } from './issues/issues.module';
 import { RouterModule } from '@nestjs/core';
+import { IssuesModule } from './issues/issues.module';
+import { ProjectsModule } from './projects/projects.module';
+import { UsersModule } from './users/users.module';
 
-const path = 'v1/front'
+const path = 'v1/front';
 const modules = [
   UsersModule,
   ProjectsModule,
   IssuesModule,
 ];
+
 @Module({
   imports: [
     ...modules,
-    ...modules.map(module => RouterModule.register([{
-      path,
-      module,
-    }]))
-  ]
+    ...modules.map(module =>
+      RouterModule.register([{
+        path,
+        module,
+      }])
+    ),
+  ],
 })
 export class FrontModule {}
 ```
@@ -212,7 +211,7 @@ export class FrontModule {}
 
 ```shell
 $ curl http://localhost:3000/v1/front/users/1
-# This action returns a #1 user%  
+# This action returns a #1 user%
 ```
 
 ## 参考にしたサイト

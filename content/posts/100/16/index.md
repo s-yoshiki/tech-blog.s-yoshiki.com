@@ -34,6 +34,7 @@ JavaScriptで実装しCanvasで可視化してみた。
 - k : 計算対象に含む距離の上限
 
 クリックすると計算データを生成する。
+
 <script async src="//jsfiddle.net/s_yoshiki/dzv675o2/embed/result,js,html,css/dark/"></script>
 
 <iframe width="100%" height="500" src="//jsfiddle.net/s_yoshiki/dzv675o2/embedded/result,js" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>

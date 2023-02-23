@@ -72,7 +72,6 @@ func main() {
 	router.HandleFunc(rootPath+"/path2/{id}/", viewHandler2).Methods("GET")
 	cgi.Serve(router)
 }
-
 ```
 
 ソースの説明は後で説明
@@ -138,6 +137,4 @@ func main() {
 	http.HandleFunc("/", viewHandler)
 	cgi.Serve(nil)
 }
-
 ```
-

@@ -20,24 +20,23 @@ moveToメソッドで始点を与えることで扇型を描画することが�
 
 ```js
 context.beginPath();
-context.moveTo(150, 150)
-context.fillStyle = "#f3f3f3";
+context.moveTo(150, 150);
+context.fillStyle = '#f3f3f3';
 context.arc(150, 150, 100, 0 * Math.PI / 180, 45 * Math.PI / 180, true);
 context.fill();
-
 ```
 
 サンプルソースはデモの座標と同じように(150, 150)を中心とし、半径が100で、０度から45度の扇型を描画します。
 
 ```js
-var canvas = document.getElementById("canvas");
-canvas.width=300;
-canvas.height=300;
+var canvas = document.getElementById('canvas');
+canvas.width = 300;
+canvas.height = 300;
 
-var context = canvas.getContext("2d");
+var context = canvas.getContext('2d');
 context.beginPath();
 context.moveTo(150, 150);
-context.fillStyle = "#3f7845";
+context.fillStyle = '#3f7845';
 context.arc(150, 150, 100, 20 * Math.PI / 180, 45 * Math.PI / 180, false);
 context.fill();
 ```

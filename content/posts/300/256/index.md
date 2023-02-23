@@ -46,7 +46,7 @@ build-error: 0 (30 days)
 次のコマンドでインストールを実施します。
 
 ```
-brew info iproute2mac 
+brew info iproute2mac
 ```
 
 ### 直接インストール
@@ -58,7 +58,6 @@ $ mv ip.py /usr/local/bin/ip
 ```
 
 ## 確認
-
 
 インストールが完了したら`ip route show`を実行してみます。
 
@@ -79,44 +78,44 @@ X.X125.73/32 dev en0  scope link
 
 以下のコマンドをサポートしているようです。
 
-> * Help
->   * `ip help`
->   * `ip link help`
->   * `ip addr help`
->   * `ip route help`
->   * `ip neigh help`
-> * Link module (Interfaces)
->   * List local interfaces `ip link`
->   * Show one interface `ip link show en0`
->   * Shutdown interface `ip link set dev en0 down`
->   * Start interface `ip link set dev en0 up`
->   * Set custom MAC address `ip link set dev en0 address 00:12:34:45:78:90`
->   * Set **Random MAC** address `ip link set en0 address random`
->   * Set **Factory default MAC** address `ip link set en0 address factory`
->   * Set MTU `ip link set dev en0 mtu 9000`
-> * Neighbour module (ARP/NDP)
->   * Show all neighbours `ip neigh`
->   * Show all IPv4 (ARP) neighbours `ip -4 neigh`
->   * Show all IPv6 (NDP) neighbours `ip -6 neigh`
->   * Show all IPv4 (ARP) neighbours for a specific interface `ip -4 neigh show dev en0`
->   * IPv6 (NDP) neighbours cannot be currently shown for a specific interface
->   * Flush all neighbours (IPv4 + IPv6) for a specific interface `ip neigh flush dev en0`
->   * Flush all IPv4 (ARP) neighbours for a specific interface `ip -4 neigh flush dev en0`
->   * IPv6 (NDP) neighbours are currently flushed for all interfaces
-> * Address module
->   * List all addresses `ip addr`
->   * List IPv4 addresses `ip -4 addr`
->   * List IPv6 addresses `ip -6 addr`
->   * Add address to interface `ip addr add 10.0.0.5/24 dev en0`
->   * Remove address to interface `ip addr del 10.0.0.5 dev en0`
-> * Route module
->   * List IPv4 addresses `ip route`
->   * List IPv6 addresses `ip -6 route`
->   * Flush route cache `ip route flush cache`
->   * Get route for destination `ip route get 8.8.8.8`
->   * Add static route `ip route add 192.168.0.0/16 nexthop 10.0.0.1`
->   * Add default route `ip route add default nexthop 10.0.0.1`
->   * Replace static route `ip route replace 192.0.2.0/24 dev utun1`
->   * Remove static route `ip route del 192.168.0.0/16`
+> - Help
+> - `ip help`
+> - `ip link help`
+> - `ip addr help`
+> - `ip route help`
+> - `ip neigh help`
+> - Link module (Interfaces)
+> - List local interfaces `ip link`
+> - Show one interface `ip link show en0`
+> - Shutdown interface `ip link set dev en0 down`
+> - Start interface `ip link set dev en0 up`
+> - Set custom MAC address `ip link set dev en0 address 00:12:34:45:78:90`
+> - Set **Random MAC** address `ip link set en0 address random`
+> - Set **Factory default MAC** address `ip link set en0 address factory`
+> - Set MTU `ip link set dev en0 mtu 9000`
+> - Neighbour module (ARP/NDP)
+> - Show all neighbours `ip neigh`
+> - Show all IPv4 (ARP) neighbours `ip -4 neigh`
+> - Show all IPv6 (NDP) neighbours `ip -6 neigh`
+> - Show all IPv4 (ARP) neighbours for a specific interface `ip -4 neigh show dev en0`
+> - IPv6 (NDP) neighbours cannot be currently shown for a specific interface
+> - Flush all neighbours (IPv4 + IPv6) for a specific interface `ip neigh flush dev en0`
+> - Flush all IPv4 (ARP) neighbours for a specific interface `ip -4 neigh flush dev en0`
+> - IPv6 (NDP) neighbours are currently flushed for all interfaces
+> - Address module
+> - List all addresses `ip addr`
+> - List IPv4 addresses `ip -4 addr`
+> - List IPv6 addresses `ip -6 addr`
+> - Add address to interface `ip addr add 10.0.0.5/24 dev en0`
+> - Remove address to interface `ip addr del 10.0.0.5 dev en0`
+> - Route module
+> - List IPv4 addresses `ip route`
+> - List IPv6 addresses `ip -6 route`
+> - Flush route cache `ip route flush cache`
+> - Get route for destination `ip route get 8.8.8.8`
+> - Add static route `ip route add 192.168.0.0/16 nexthop 10.0.0.1`
+> - Add default route `ip route add default nexthop 10.0.0.1`
+> - Replace static route `ip route replace 192.0.2.0/24 dev utun1`
+> - Remove static route `ip route del 192.168.0.0/16`
 >
 > 出典: https://github.com/brona/iproute2mac/blob/master/README.md

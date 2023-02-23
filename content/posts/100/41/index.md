@@ -18,20 +18,20 @@ https://unit.nginx.org/
 
 ```json
 {
-    "applications": {
-        "test": {
-            "type": "python 3",
-            "processes": 2,
-            "path": "/var/www/app1/app/app/",
-            "module": "wsgi"
-        }
-    },
-
-    "listeners": {
-        "*:8400": {
-            "application": "test"
-        }
+  "applications": {
+    "test": {
+      "type": "python 3",
+      "processes": 2,
+      "path": "/var/www/app1/app/app/",
+      "module": "wsgi"
     }
+  },
+
+  "listeners": {
+    "*:8400": {
+      "application": "test"
+    }
+  }
 }
 ```
 
@@ -45,7 +45,7 @@ sudo curl -X PUT -d @server_env.json --unix-socket /var/run/control.unit.sock ht
 
 ```json
 {
-	"error": "Memory allocation failed."
+  "error": "Memory allocation failed."
 }
 ```
 
@@ -70,6 +70,7 @@ Linux vagrant-ubuntu-trusty-64 3.13.0-149-generic #199-Ubuntu SMP Thu May 17 10:
 
 と出てきました。
 とりあえず対策として、
+
 <ul>
 <li>カーネルのバージョンを上げる</li>
 <li>ソースからインストール</li>

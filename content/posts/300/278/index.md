@@ -77,13 +77,13 @@ console.log(BigMath.max(1n, 2n, 3n)); // 3n
 イケてる実装ではないですが、プロトタイプメソッドを使う方法も思いつきました。
 
 ```js
-BigInt.prototype.abs = function () {
+BigInt.prototype.abs = function() {
   return -this;
 };
-BigInt.prototype.pow = function (ex) {
+BigInt.prototype.pow = function(ex) {
   return this ** ex;
 };
-BigInt.prototype.min = function (...values) {
+BigInt.prototype.min = function(...values) {
   const base = this;
   for (const value of values) {
     if (value < base) {
@@ -92,7 +92,7 @@ BigInt.prototype.min = function (...values) {
   }
   return base;
 };
-BigInt.prototype.max = function (...values) {
+BigInt.prototype.max = function(...values) {
   const base = this;
   for (const value of values) {
     if (value > base) {
@@ -106,8 +106,8 @@ BigInt.prototype.max = function (...values) {
 実行例
 
 ```js
-let x = BigInt(-2)
-console.log(x.abs()) // 2n
-console.log(x.pow(2n)) // 4n
-console.log(x.max(-3n, -4n)) // -2n
+let x = BigInt(-2);
+console.log(x.abs()); // 2n
+console.log(x.pow(2n)); // 4n
+console.log(x.max(-3n, -4n)); // -2n
 ```

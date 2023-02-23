@@ -46,7 +46,6 @@ WHERE
     post_date < '2017-08-01'
 ORDER BY 
     post_date ASC
-
 ```
 
 <img src="https://pbs.twimg.com/media/Do_dv47UYAAXgkv.jpg">

@@ -6,6 +6,7 @@ coverImage: "../../../images/thumbnail/aws-logo.png"
 author: "s-yoshiki"
 tags: ["amazon-aws","雑談","awsソリューションアーキテクト","資格試験"]
 ---
+
 特に目を通すべき資料の一覧です。
 
 ## ブラックベルト

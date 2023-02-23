@@ -37,7 +37,6 @@ ServerName s-yoshiki.com
 ServerAlias www.s-yoshiki.com blog.s-yoshiki.com s-yoshiki.com www.s-yoshiki.com
 <!-- 省略 -->
 </VirtualHost>
-
 ```
 
 これが元々の設定。
@@ -64,7 +63,6 @@ ServerName s-yoshiki.com
 ServerAlias www.s-yoshiki.com blog.s-yoshiki.com s-yoshiki.com www.s-yoshiki.com
 Redirect / https://tech-blog.s-yoshiki.com
 </VirtualHost>
-
 ```
 
 Apache再起動後立ち上がらず...
@@ -92,7 +90,6 @@ ServerName tech-blog.s-yoshiki.com
 ServerName tech-blog.s-yoshiki.com
 <!-- 省略 -->
 </VirtualHost>
-
 ```
 
 これに変更したら、問題なく動いた。
@@ -102,10 +99,8 @@ ServerName tech-blog.s-yoshiki.com
 httpで来たものは問答無用でhttpsにリダイレクト
 
 ```xml
-
 <Directory "/hoge/">
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://tech-blog.s-yoshiki.com%{REQUEST_URI} [R,L]
 </Directory>
-
 ```

@@ -45,7 +45,6 @@ app.localhost.comで動かせるようにする。
 	WSGIDaemonProcess app2 user=www-data group=www-data threads=5
 	WSGIScriptAlias / /var/www/app/project/index.wsgi
 </VirtualHost>
-
 ```
 
 ## 構成
@@ -65,7 +64,6 @@ $ tree -N /var/www/app2/
     |   `-- view
     |       `-- index.html
     `-- index.wsgi
-
 ```
 
 ## ソース
@@ -98,7 +96,6 @@ def index():
 
 if __name__ == "__main__":
     app.run()
-
 ```
 
 /project/controller/view/index.htmlに適当に書いて動けばOK。

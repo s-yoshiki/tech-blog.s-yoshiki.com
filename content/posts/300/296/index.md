@@ -38,11 +38,11 @@ npx create-turbo@latest
 
 デフォルトで次のようなアプリケーション・パッケージが作成されます。
 
- - apps/web: Next.js with TypeScript
- - apps/docs: Next.js with TypeScript
- - packages/ui: Shared React component library
- - packages/eslint-config-custom: Shared configuration (ESLint)
- - packages/tsconfig: Shared TypeScript `tsconfig.json`
+- apps/web: Next.js with TypeScript
+- apps/docs: Next.js with TypeScript
+- packages/ui: Shared React component library
+- packages/eslint-config-custom: Shared configuration (ESLint)
+- packages/tsconfig: Shared TypeScript `tsconfig.json`
 
 ## Backend関連リポジトリの初期化
 
@@ -67,7 +67,6 @@ npm -w apps/nestjs-api run start  # 起動することを確認
 
 このプロジェクトではルートディレクトリで`npm run dev`を行った場合に全てのリポジトリにてnpm run devが行われるようにしたいため、`apps/nestjs-api/package.json`を調整します
 
-
 ```diff
 +    "dev": "nest start",
 -    "start": "nest start",
@@ -85,17 +84,17 @@ npm -w apps/express-api install express --save
 `apps/express-api/index.js`
 
 ```js
-const express = require('express')
-const app = express()
-const port = 3003
+const express = require('express');
+const app = express();
+const port = 3003;
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+  res.send('Hello World!');
+});
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+  console.log(`Example app listening on port ${port}`);
+});
 ```
 
 `apps/express-api/package.json`
@@ -222,8 +221,8 @@ touch packages/prisma-nestjs-plugin/tsconfig.json
 
 ```ts
 import { INestApplication, Injectable, OnModuleInit } from '@nestjs/common';
-import { PrismaClient } from 'database'
- 
+import { PrismaClient } from 'database';
+
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit {
   async onModuleInit() {
@@ -256,8 +255,8 @@ export class PrismaModule {}
 `packages/prisma-nestjs-plugin/src/index.ts`
 
 ```ts
-export * from './prisma.service'
-export * from './prisma.module'
+export * from './prisma.module';
+export * from './prisma.service';
 ```
 
 VSCodeでデコレータの警告が出力されるので、tsconfig の設定で許容させるようにします。
@@ -286,9 +285,9 @@ VSCodeでデコレータの警告が出力されるので、tsconfig の設定�
 
 ```ts
 import { Module } from '@nestjs/common';
+import { PrismaModule } from 'prisma-nestjs-plugin';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { PrismaModule } from 'prisma-nestjs-plugin'
 
 @Module({
   imports: [PrismaModule], // PrismaModuleを追加
@@ -303,7 +302,7 @@ export class AppModule {}
 ```ts
 import { Injectable } from '@nestjs/common';
 // packages/prisma-nestjs-plugin を import
-import { PrismaService } from 'prisma-nestjs-plugin'
+import { PrismaService } from 'prisma-nestjs-plugin';
 
 @Injectable()
 export class AppService {
@@ -321,33 +320,31 @@ export class AppService {
 }
 ```
 
-
 ついでに `apps/express-api/index.js` の方にも `/users`のエンドポイントを生やしておきます。
 
 ```js
-const { PrismaClient } = require("database")
-const express = require('express')
-const app = express()
-const port = 3003
+const { PrismaClient } = require('database');
+const express = require('express');
+const app = express();
+const port = 3003;
 
 const prisma = new PrismaClient();
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+  res.send('Hello World!');
+});
 
 app.get('/users', async (req, res) => {
   const users = await prisma.user.findMany();
-  res.send(users)
-})
+  res.send(users);
+});
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+  console.log(`Example app listening on port ${port}`);
+});
 ```
 
 両方のAPIで動作確認ができたら構築は完了です。
-
 
 ## 参考にしたサイト
 

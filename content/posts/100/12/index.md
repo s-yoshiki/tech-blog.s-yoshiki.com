@@ -26,6 +26,7 @@ tags: ["javascript","アルゴリズム","機械学習","可視化"]
 <a href="//jsfiddle.net/s_yoshiki/Lxdbfey3/13/" target="_blank">デモ2 Link</a>
 
 それで、クラスタ数を増やすとこうなる
+
 <iframe width="100%" height="300" src="//jsfiddle.net/s_yoshiki/Lxdbfey3/28/embedded/result,js" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 <a href="//jsfiddle.net/s_yoshiki/Lxdbfey3/28/" target="_blank">デモ3 Link</a>

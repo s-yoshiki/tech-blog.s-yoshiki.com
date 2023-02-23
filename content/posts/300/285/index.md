@@ -13,7 +13,6 @@ tags: ["zig","mac"]
 
 - zig: 0.9.1
 
-
 ## 準備
 
 homebrewでインストールします。
@@ -58,7 +57,7 @@ pub fn main() anyerror!void {
 以下のコマンドでビルドを行います。
 
 ```shell
-zig build 
+zig build
 ```
 
 `zig-out`の下に実行バイナリが生成されます。
@@ -93,4 +92,3 @@ pub fn main() anyerror!void {
     }
 }
 ```
-

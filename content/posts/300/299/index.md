@@ -41,4 +41,3 @@ export LD_LIBRARY_PATH="$HOME/zlib/lib:$LD_LIBRARY_PATH"
 ## 参考にしたサイト
 
 - [zlibをソースコードビルドする - Qiita](https://qiita.com/boscoworks/items/a27a74e5da8adc3c1be8)
-

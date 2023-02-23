@@ -17,31 +17,34 @@ C++で提供されている順列を生成する next_permutation のJS実装で
 
 ```js
 function next_permutation(arr) {
-    for (let i = arr.length - 2; i >= 0; i--) {
-        if (arr[i] < arr[i + 1]) {
-            for (let j = arr.length - 1; j > i; j--) {
-                if (arr[j] > arr[i]) {
-                    [arr[i], arr[j]] = [arr[j], arr[i]]
-                    const len = (arr.length - (i + 1)) >> 1
-                    for (let k = 0; k < len; k++) {
-                        [arr[i + 1 + k], arr[arr.length - 1 - k]] = [arr[arr.length - 1 - k], arr[i + 1 + k]]
-                    }
-                    return true
-                }
-            }
+  for (let i = arr.length - 2; i >= 0; i--) {
+    if (arr[i] < arr[i + 1]) {
+      for (let j = arr.length - 1; j > i; j--) {
+        if (arr[j] > arr[i]) {
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+          const len = (arr.length - (i + 1)) >> 1;
+          for (let k = 0; k < len; k++) {
+            [arr[i + 1 + k], arr[arr.length - 1 - k]] = [
+              arr[arr.length - 1 - k],
+              arr[i + 1 + k],
+            ];
+          }
+          return true;
         }
+      }
     }
-    return false
+  }
+  return false;
 }
 ```
 
 ## 使い方
 
 ```js
-let row = Array.from(Array(3).keys())
+let row = Array.from(Array(3).keys());
 do {
-  console.log(row)
-} while (next_permutation(row))
+  console.log(row);
+} while (next_permutation(row));
 // 0,1,2
 // 0,2,1
 // 1,0,2

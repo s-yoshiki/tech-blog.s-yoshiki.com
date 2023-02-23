@@ -29,10 +29,10 @@ rubyで書かれた寿司が落下するコードがありました。
 こちらをNode.jsで実装してみます。
 
 ```js
-const readline = require("readline");
+const readline = require('readline');
 const stdout = process.stdout;
 
-const clear = () => stdout.write("\033[2J");
+const clear = () => stdout.write('\033[2J');
 const print = (s) => stdout.write(s);
 const sleep = (m) => new Promise((resolve) => setTimeout(resolve, m));
 
@@ -88,16 +88,24 @@ main関数内では、ターミナルの画面サイズを取得し、whileル�
 上記の寿司を降らすコードをベースに果物を降らすコードを実装しました。
 
 ```js
-const readline = require("readline");
+const readline = require('readline');
 const stdout = process.stdout;
 
-const clear = () => stdout.write("\033[2J");
+const clear = () => stdout.write('\033[2J');
 const print = (s) => stdout.write(s);
 const sleep = (m) => new Promise((resolve) => setTimeout(resolve, m));
 
 const emoji = [
-  0x1f347, 0x1f348, 0x1f349, 0x1f34a, 0x1f34e, 0x1f34c, 0x1f351, 0x1f352,
-  0x1f353, 0x1fad0,
+  0x1f347,
+  0x1f348,
+  0x1f349,
+  0x1f34a,
+  0x1f34e,
+  0x1f34c,
+  0x1f351,
+  0x1f352,
+  0x1f353,
+  0x1fad0,
 ];
 
 const main = async () => {
@@ -128,7 +136,6 @@ const main = async () => {
 main();
 ```
 
-
 ## ターミナルで回転寿司
 
 ターミナル上で円周上を移動するように回転する寿司を描画するコードを実装してみました。
@@ -136,10 +143,10 @@ main();
 まずは寿司が1つだけ回転するコードです。
 
 ```js
-const readline = require("readline");
+const readline = require('readline');
 const stdout = process.stdout;
 
-const clear = () => stdout.write("\033[2J");
+const clear = () => stdout.write('\033[2J');
 const print = (s) => stdout.write(s);
 const sleep = (m) => new Promise((resolve) => setTimeout(resolve, m));
 
@@ -170,10 +177,10 @@ const main = async () => {
 これをベースに複数の寿司が回転するように、以下のように調整します。
 
 ```js
-const readline = require("readline");
+const readline = require('readline');
 const stdout = process.stdout;
 
-const clear = () => stdout.write("\033[2J");
+const clear = () => stdout.write('\033[2J');
 const print = (s) => stdout.write(s);
 const sleep = (m) => new Promise((resolve) => setTimeout(resolve, m));
 
@@ -183,7 +190,7 @@ const main = async () => {
   const centerX = w / 2;
   const centerY = h / 2;
   const k = 0.95;
-  let s = Array.from(Array(64), (v, k) => k)
+  let s = Array.from(Array(64), (v, k) => k);
   let a = centerX * k;
   let b = centerY * k;
   while (true) {

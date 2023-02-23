@@ -13,20 +13,20 @@ Proxy (プロキシ) 環境下でcurlコマンドを実行する方法のメモ�
 
 環境は以下の環境で検証しています。
 
- - 
+-
 
 ## コマンドオプションで設定する
 
 以下のコマンドはコマンドのオプションからプロキシ設定を有効にする例です。「-x」、「 --proxy」を利用します。
 
 ```bash
-curl https://www.google.co.jp -x http://proxy.example.com:8080　
+curl https://www.google.co.jp -x http://proxy.example.com:8080
 ```
 
 もしくは
 
 ```bash
-curl https://www.google.co.jp --proxy http://proxy.example.com:8080　
+curl https://www.google.co.jp --proxy http://proxy.example.com:8080
 ```
 
 ## 環境変数に設定する
@@ -37,7 +37,7 @@ curl https://www.google.co.jp --proxy http://proxy.example.com:8080　
 
 ```bash
 export http_proxy=http://proxy.example.com:8080　
-export https_proxy=http://proxy.example.com:8080　
+export https_proxy=http://proxy.example.com:8080
 ```
 
 ## **curlrc** に記述する
@@ -51,7 +51,7 @@ proxy-user = "ユーザ名:パスワード"
 
 ## 参考にしたサイト
 
- - [CentOS で スマートにプロキシを設定する](https://tech-blog.s-yoshiki.com/entry/222)
+- [CentOS で スマートにプロキシを設定する](https://tech-blog.s-yoshiki.com/entry/222)
 
 ## おまけ: curlのオプション
 
@@ -284,4 +284,3 @@ Usage: curl [options...] <url>
  -w, --write-out <format> Use output FORMAT after completion
      --xattr         Store metadata in extended file attributes
 ```
-

@@ -56,4 +56,3 @@ $ which openssl
 $ openssl version
 OpenSSL 3.0.7 1 Nov 2022 (Library: OpenSSL 3.0.7 1 Nov 2022)
 ```
-

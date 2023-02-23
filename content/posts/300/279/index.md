@@ -25,22 +25,21 @@ const randInt = (min, max) => Math.floor(Math.random() * (max + 1 - min)) + min;
 
 例えば `min=1`、`max=10`であれば1~10の間で生成します。
 
-
 ## 利用例
 
 次のコードは10万回1~10の間の整数を生成するコードです。
 
 ```js
 const randInt = (min, max) => Math.floor(Math.random() * (max + 1 - min)) + min;
-let list = {}
+let list = {};
 for (let i = 0; i < 10000; i++) {
-    const num = randInt(1,10)
-    if (!(list[num] >= 0)) {
-        list[num] = 0
-    }
-    list[num]++
+  const num = randInt(1, 10);
+  if (!(list[num] >= 0)) {
+    list[num] = 0;
+  }
+  list[num]++;
 }
-console.log(JSON.stringify(list, null , '  '))
+console.log(JSON.stringify(list, null, '  '));
 ```
 
 結果は次のとおりとなりました。

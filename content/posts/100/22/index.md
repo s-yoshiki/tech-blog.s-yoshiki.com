@@ -28,7 +28,6 @@ tesseractと関連パッケージ + 日本語の特徴量を導入します。
 ```
 !apt install tesseract-ocr libtesseract-dev tesseract-ocr-jpn
 !pip install pyocr
-
 ```
 
 これでだけで環境が完成
@@ -40,7 +39,6 @@ tesseractと関連パッケージ + 日本語の特徴量を導入します。
 ```py
 from google.colab import files
 uploaded = files.upload()
-
 ```
 
 このコマンドを叩くとファイルアップロードのダイアログが出現します。
@@ -61,7 +59,6 @@ txt = tool.image_to_string(
   lang="eng+jpn",
   builder=pyocr.builders.TextBuilder(tesseract_layout=6)
 )
-
 ```
 
 これで実行可能です。
@@ -88,7 +85,6 @@ txt = tool.image_to_string(
 )
 
 print(txt)
-
 ```
 
 ## 参考

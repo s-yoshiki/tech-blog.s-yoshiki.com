@@ -24,26 +24,26 @@ canvasに描画するのに少々手間取ったので、これをメモとし�
 Image.onloadを使えば一発だった。
 
 ```js
-const canvas = document.getElementById("canvas")
+const canvas = document.getElementById('canvas');
 
 document.querySelector('input[type="file"]').onchange = function() {
-    let img = this.files[0]
-    let reader = new FileReader()
-    reader.readAsDataURL(img)
-    reader.onload = function() {
-        drawImage(reader.result)
-    }
-}
+  let img = this.files[0];
+  let reader = new FileReader();
+  reader.readAsDataURL(img);
+  reader.onload = function() {
+    drawImage(reader.result);
+  };
+};
 
 function drawImage(url) {
-    let ctx = canvas.getContext('2d')
-    let image = new Image()
-    image.src = url
-    image.onload = () => {
-        canvas.width = image.width
-        canvas.height = image.height
-        ctx.drawImage(image, 0, 0)
-    }
+  let ctx = canvas.getContext('2d');
+  let image = new Image();
+  image.src = url;
+  image.onload = () => {
+    canvas.width = image.width;
+    canvas.height = image.height;
+    ctx.drawImage(image, 0, 0);
+  };
 }
 ```
 

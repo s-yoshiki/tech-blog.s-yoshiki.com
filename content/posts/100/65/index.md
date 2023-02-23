@@ -72,7 +72,6 @@ if __name__ == "__main__" :
     cv2.imshow('result',annotate_landmarks(im,get_landmarks(im)))
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-
 ```
 
 ### 検出結果
@@ -109,7 +108,6 @@ if __name__ == "__main__" :
 
     cap.release()
     cv2.destroyAllWindows()
-
 ```
 
 ## 他

@@ -36,74 +36,74 @@ Stackを次のコードのように実装します。
 
 ```ts
 import {
-  Stack,
-  StackProps,
+  aws_certificatemanager as acm,
   aws_ec2 as ec2,
   aws_ecs as ecs,
   aws_elasticloadbalancingv2 as elbv2,
   aws_logs as log,
-  aws_certificatemanager as acm,
   aws_route53 as route53,
   aws_route53_targets as route53Targets,
-} from "aws-cdk-lib";
-import { Construct } from "constructs";
+  Stack,
+  StackProps,
+} from 'aws-cdk-lib';
+import { Construct } from 'constructs';
 
 // todo:
 // example.com は置き換えること
-const domainName = `example.com`
+const domainName = `example.com`;
 
 export class CdkEcsFargateStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    const vpc = new ec2.Vpc(this, "VPC", {
-      cidr: "10.1.0.0/16",
+    const vpc = new ec2.Vpc(this, 'VPC', {
+      cidr: '10.1.0.0/16',
       enableDnsHostnames: true,
       enableDnsSupport: true,
       subnetConfiguration: [
         {
           cidrMask: 24,
-          name: "PublicSubnet",
+          name: 'PublicSubnet',
           subnetType: ec2.SubnetType.PUBLIC,
         },
         {
           cidrMask: 24,
-          name: "PrivateIsolatedSubnet",
+          name: 'PrivateIsolatedSubnet',
           subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
         },
       ],
     });
     // SecurityGroup
-    const securityGroupELB = new ec2.SecurityGroup(this, "SecurityGroupELB", {
+    const securityGroupELB = new ec2.SecurityGroup(this, 'SecurityGroupELB', {
       vpc,
     });
     securityGroupELB.addIngressRule(
-      ec2.Peer.ipv4("0.0.0.0/0"),
-      ec2.Port.tcp(443)
+      ec2.Peer.ipv4('0.0.0.0/0'),
+      ec2.Port.tcp(443),
     );
 
-    const securityGroupApp = new ec2.SecurityGroup(this, "SecurityGroupApp", {
+    const securityGroupApp = new ec2.SecurityGroup(this, 'SecurityGroupApp', {
       vpc,
     });
 
-    const hostedZone = route53.HostedZone.fromLookup(this, "HostedZone", {
+    const hostedZone = route53.HostedZone.fromLookup(this, 'HostedZone', {
       domainName: domainName,
     });
 
-    const cert = new acm.DnsValidatedCertificate(this, "Certificate", {
+    const cert = new acm.DnsValidatedCertificate(this, 'Certificate', {
       domainName: domainName,
       hostedZone,
       // region: "us-east-1",
-      region: "ap-northeast-1", // ALBと同じリージョンに配置
+      region: 'ap-northeast-1', // ALBと同じリージョンに配置
     });
 
     // ALB
-    const alb = new elbv2.ApplicationLoadBalancer(this, "ALB", {
+    const alb = new elbv2.ApplicationLoadBalancer(this, 'ALB', {
       vpc,
       securityGroup: securityGroupELB,
       internetFacing: true,
     });
-    const listenerHTTP = alb.addListener("ListenerHTTP", {
+    const listenerHTTP = alb.addListener('ListenerHTTP', {
       port: 443,
       certificates: [
         {
@@ -112,39 +112,39 @@ export class CdkEcsFargateStack extends Stack {
       ],
     });
     // Target Group
-    const targetGroup = new elbv2.ApplicationTargetGroup(this, "TargetGroup", {
+    const targetGroup = new elbv2.ApplicationTargetGroup(this, 'TargetGroup', {
       vpc: vpc,
       port: 3000,
       protocol: elbv2.ApplicationProtocol.HTTP,
       targetType: elbv2.TargetType.IP,
       healthCheck: {
-        path: "/",
-        healthyHttpCodes: "200",
+        path: '/',
+        healthyHttpCodes: '200',
       },
     });
 
-    listenerHTTP.addTargetGroups("DefaultHTTPSResponse", {
+    listenerHTTP.addTargetGroups('DefaultHTTPSResponse', {
       targetGroups: [targetGroup],
     });
 
     // ECS Cluster
-    const cluster = new ecs.Cluster(this, "Cluster", {
+    const cluster = new ecs.Cluster(this, 'Cluster', {
       vpc,
     });
 
     // Fargate
     const fargateTaskDefinition = new ecs.FargateTaskDefinition(
       this,
-      "TaskDef",
+      'TaskDef',
       {
         memoryLimitMiB: 1024,
         cpu: 512,
-      }
+      },
     );
-    const container = fargateTaskDefinition.addContainer("AppContainer", {
-      image: ecs.ContainerImage.fromAsset("src/ecs/app"),
+    const container = fargateTaskDefinition.addContainer('AppContainer', {
+      image: ecs.ContainerImage.fromAsset('src/ecs/app'),
       logging: ecs.LogDrivers.awsLogs({
-        streamPrefix: "nest-app",
+        streamPrefix: 'nest-app',
         logRetention: log.RetentionDays.ONE_MONTH,
       }),
     });
@@ -152,7 +152,7 @@ export class CdkEcsFargateStack extends Stack {
       containerPort: 3000,
       hostPort: 3000,
     });
-    const service = new ecs.FargateService(this, "Service", {
+    const service = new ecs.FargateService(this, 'Service', {
       cluster,
       taskDefinition: fargateTaskDefinition,
       desiredCount: 1,
@@ -165,7 +165,7 @@ export class CdkEcsFargateStack extends Stack {
       zone: hostedZone,
       recordName: `ecs.${domainName}`,
       target: route53.RecordTarget.fromAlias(
-        new route53Targets.LoadBalancerTarget(alb)
+        new route53Targets.LoadBalancerTarget(alb),
       ),
     });
   }
@@ -215,12 +215,11 @@ import { Injectable } from '@nestjs/common';
 export class AppService {
   getHello() {
     return {
-      message: 'Hello World!'
+      message: 'Hello World!',
     };
   }
 }
 ```
-
 
 `npm run start`を実行して http://localhost:3000 で `{ "message": "Hello World!" }`のレスポンスが返ってくることを確認します。
 

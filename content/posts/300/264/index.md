@@ -29,11 +29,11 @@ amplifyのプロジェクトでmonorepo化を実現しました。
 最近目にする回数が多くなったので新しい概念と思いきや、
 20年以上前からある考えであり、"shared codebase" と呼ばれています。
 
-> In version control systems, a monorepo is a software development strategy where code for many projects is stored in the same repository. 
+> In version control systems, a monorepo is a software development strategy where code for many projects is stored in the same repository.
 >
 > https://en.wikipedia.org/wiki/Monorepo
 
-Google Facebook でもこの方式を採用しています。 
+Google Facebook でもこの方式を採用しています。
 
 ## なぜmonorepoにしたのか？
 
@@ -45,14 +45,13 @@ Google Facebook でもこの方式を採用しています。
 
 といった理由があったからです。
 
-
 ## Amplify プロジェクト初期化
 
 ### 流れ
 
 1. リポジトリに2つのプロジェクトの構成を構築する
 2. Amplify上でフロントエンドアプリケーションを1つ作成しリポジトリを連携
-2. Amplify上でフロントエンドアプリケーションの2つめを作成しリポジトリを連携
+3. Amplify上でフロントエンドアプリケーションの2つめを作成しリポジトリを連携
 
 ### リポジトリの作成
 
@@ -150,9 +149,7 @@ AMPLIFY_DIFF_DEPLOY=false
 
 2つのプロジェクトの作成が完了するとマネジメントコンソール上ではこのように表示されます。
 
-
 ## 参考にしたサイト
-
 
 - [Set up continuous deployment and hosting for a monorepo with AWS Amplify Console | Front-End Web & Mobile](https://aws.amazon.com/jp/blogs/mobile/set-up-continuous-deployment-and-hosting-for-a-monorepo-with-aws-amplify-console/)
 - [メルカリShops での monorepo 開発体験記](https://engineering.mercari.com/blog/entry/20210817-8f561697cc/)

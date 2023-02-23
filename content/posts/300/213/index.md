@@ -7,7 +7,6 @@ author: "s-yoshiki"
 tags: ["javascript","typescript","npm","node.js"]
 ---
 
-
 ## 概要
 
 ## 初期作業
@@ -51,14 +50,14 @@ $ node_modules/.bin/tsc --version
 
 ```ts
 const hello = (arg: string): void => {
-    if (arg.length > 0) {
-        for (let i=0; i<10; i++) {
-            console.log(`Hello ${arg}`);
-        }
+  if (arg.length > 0) {
+    for (let i = 0; i < 10; i++) {
+      console.log(`Hello ${arg}`);
     }
-}
+  }
+};
 
-let world: string = "world";
+let world: string = 'world';
 hello(world);
 ```
 
@@ -71,14 +70,13 @@ npm run build main.ts
 `main.js`
 
 ```js
-var hello = function (arg) {
-    if (arg.length > 0) {
-        for (var i = 0; i < 10; i++) {
-            console.log("Hello " + arg);
-        }
+var hello = function(arg) {
+  if (arg.length > 0) {
+    for (var i = 0; i < 10; i++) {
+      console.log('Hello ' + arg);
     }
+  }
 };
-var world = "world";
+var world = 'world';
 hello(world);
 ```
-

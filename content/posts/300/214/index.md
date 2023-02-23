@@ -7,7 +7,6 @@ author: "s-yoshiki"
 tags: ["javascript","react","next.js","amazon-aws","ci/cd","aws-amplify","node.js"]
 ---
 
-
 ## 概要
 
 この記事では、React / Next.js アプリケーションを作成し、AWS Amplify のウェブホスティングサービスを使ってそれをデプロイする方法を説明します。
@@ -24,10 +23,10 @@ tags: ["javascript","react","next.js","amazon-aws","ci/cd","aws-amplify","node.j
 
 やること
 
- - React アプリケーションを作成
- - Git リポジトリに追加
- - AWS Amplify でデプロイ
- - 変更を加えて再デプロイ
+- React アプリケーションを作成
+- Git リポジトリに追加
+- AWS Amplify でデプロイ
+- 変更を加えて再デプロイ
 
 ## 操作
 
@@ -47,11 +46,11 @@ npm run dev
 この設定は静的ファイルをoutディレクトリに吐く設定です。
 
 ```
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build && next export",
-    "start": "next start"
-  },
+"scripts": {
+  "dev": "next dev",
+  "build": "next build && next export",
+  "start": "next start"
+},
 ```
 
 ここまで作成できたら GitHub にリポジトリを作成しコミットします。
@@ -108,7 +107,6 @@ frontend:
 ![aws amplify](./aws_amplify3.png)
 
 再び変更を commit & push するとビルドが始まるのが確認できると思います。
-
 
 ## 参考にしたサイト
 

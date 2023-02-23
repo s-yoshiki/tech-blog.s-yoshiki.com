@@ -7,8 +7,6 @@ author: "s-yoshiki"
 tags: ["vue.js","nuxt.js"]
 ---
 
-
-
 ## 概要
 
 Vue.jsで作成されたプロジェクトを紹介しているサイト 「[**made with vue.js**](https://madewithvuejs.com/) 」があります。
@@ -29,7 +27,6 @@ Vue.jsで作成されたプロジェクトを紹介しているサイト 「[**m
 
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/82419/44e2f418-cee3-747c-0885-b44e6e12cf37.png)
 
-
 ### [Vue.Draggable](https://github.com/SortableJS/Vue.Draggable)
 
 ドラッグ&ドロップのコンポーネント
@@ -41,7 +38,6 @@ Vue.jsで作成されたプロジェクトを紹介しているサイト 「[**m
 データテーブルのコンポーネント。[demo](http://jsfiddle.net/CristiJ/z11fe07p/1318/embedded/result/)
 
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/82419/015d3b9f-0c64-40ca-63aa-3e56e33400bb.png)
-
 
 ### [vuejs-datepicker](https://github.com/charliekassel/vuejs-datepicker)
 
@@ -61,7 +57,6 @@ SVGベースのグラフ可視化コンポーネント
 
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/82419/7d5e2fd5-9217-6fc4-8c67-cda0926a8d9e.png)
 
-
 ### [Vue.js Google Charts](https://github.com/devstark-com/vue-google-charts)
 
 VueのGoogle Charts
@@ -80,8 +75,6 @@ VSCode風WebIDE
 
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/82419/5e9e9b0b-1ded-a990-8e3f-dfae2a2805ab.png)
 
-
-
 ### [vue-github-activity](https://github.com/lexmartinez/vue-github-activity)
 
 GitHubのアクティビティを表示するアプリ
@@ -93,8 +86,6 @@ GitHubのアクティビティを表示するアプリ
 時間系の処理を行うライブラリのmoment.js のVue版
 
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/82419/91cd5a21-6a07-487f-e027-d5b624ddb2c4.png)
-
-
 
 ## テーマ系ライブラリ
 
@@ -122,7 +113,6 @@ SPAのCRUDアプリのテンプレート
 
 ![](https://madewithnetwork.ams3.cdn.digitaloceanspaces.com//spatie-space-production/2819/vue-crud.gif)
 
-
 ## サイト・サービス
 
 ### [MyOngoingsCalendar](https://myongoingscalendar.eu/)
@@ -137,13 +127,11 @@ SPAのCRUDアプリのテンプレート
 
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/82419/ffa6f0a6-c0c1-272b-2c71-821759de343b.png)
 
-
 ### [Metal Map](https://metal-map.com/)
 
 世界各国にいるメタルバンドを地域ごとに紹介しているサービス
 
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/82419/9b6af7a7-7fc1-5ece-5c97-f20e23978754.png)
-
 
 ### [Playlister.me](https://playlist.kaoz.space/)
 
@@ -175,9 +163,6 @@ Vue関連の動画を集めたサイト
 
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/82419/a9ee92d0-6521-ae92-042f-81b177ad7a6c.png)
 
-
-
-
 ## ツール
 
 ### [Postwomen](https://postwoman.io/)
@@ -193,7 +178,6 @@ Postmanのブラウザバージョン的なやつ。
 データベースの関連図を可視化するサービス
 
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/82419/dd056583-7d36-06c1-dd07-125b0891e99c.png)
-
 
 ### [Labnotebook](https://github.com/henripal/labnotebook)
 
@@ -231,12 +215,9 @@ Vueで作られた周期表。マウスホバーすると元素の詳細情報�
 
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/82419/d0d1c40a-d63a-b9f3-975d-fbc22c4aefe4.png)
 
-
 ### [DBFS-Explorer](https://datathirst.net/projects/dbfs-explorer/)
 
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/82419/03275fff-fce9-1390-8606-c19ec7431afe.png)
-
-
 
 ### [vue-s3-dropzone](https://github.com/kfei/vue-s3-dropzone)
 
@@ -255,8 +236,6 @@ AWS S3にコンテンツをアップロードするサービス
 3Dモデルなどのデータを可視化してくれるサービス
 
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/82419/83a38bed-622a-ac2a-bbe7-e0fb10711495.png)
-
-
 
 ## CMS
 
@@ -290,21 +269,17 @@ Headless CMS
 
 ![](https://madewithnetwork.ams3.cdn.digitaloceanspaces.com//spatie-space-production/8359/directus2-k.gif)
 
-
 ## ゲーム
-
 
 ### [vue-tetris](https://binaryify.github.io/vue-tetris/)
 
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/82419/022a5774-f4fe-cde0-2c4e-52ab142351cf.png)
-
 
 ### [Space Snake](https://github.com/ilyagru/Space-Snake)
 
 デスクトップで遊べるゲームアプリ。Vue + Electron製
 
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/82419/f7070e52-b35c-799e-f490-293979a49a0d.png)
-
 
 ### [Defuse](https://connexo.de/defuse/)
 
@@ -317,5 +292,3 @@ Headless CMS
 ローグライクなゲーム
 
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/82419/20e59d7c-33e9-b1b1-72c0-4db94b749fa7.png)
-
-

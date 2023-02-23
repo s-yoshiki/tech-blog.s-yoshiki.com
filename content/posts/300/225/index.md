@@ -36,23 +36,24 @@ IPv4アドレスの文字列、例えば `192.168.0.1` といった形式の文�
 
 ```js
 // IPv4 to binary string
-const ip2bin = (ip) => ip.split(".").map(e => Number(e).toString(2).padStart(8, '0')).join('')
+const ip2bin = (ip) =>
+  ip.split('.').map(e => Number(e).toString(2).padStart(8, '0')).join('');
 // IPv4 to Number
-const ip2long = (ip) => parseInt(ip2bin(ip), 2)
+const ip2long = (ip) => parseInt(ip2bin(ip), 2);
 // Number to IPv4
 const long2ip = (num) => {
-    let bin = Number(num).toString(2).padStart(32, '0')
-    return [
-        bin.slice(0, 8),
-        bin.slice(8, 16),
-        bin.slice(16, 24),
-        bin.slice(24, 32),
-    ].map(e => parseInt(e, 2)).join('.')
-}
+  let bin = Number(num).toString(2).padStart(32, '0');
+  return [
+    bin.slice(0, 8),
+    bin.slice(8, 16),
+    bin.slice(16, 24),
+    bin.slice(24, 32),
+  ].map(e => parseInt(e, 2)).join('.');
+};
 
-console.log(ip2bin("192.0.34.166")) // 11000000000000000010001010100110
-console.log(ip2long("192.0.34.166")) // 3221234342
-console.log(long2ip(ip2long("192.0.34.166"))) // 192.0.34.166
+console.log(ip2bin('192.0.34.166')); // 11000000000000000010001010100110
+console.log(ip2long('192.0.34.166')); // 3221234342
+console.log(long2ip(ip2long('192.0.34.166'))); // 192.0.34.166
 ```
 
 余談ですが、ip2long/long2ipはPHPで同じ名前の関数が存在します。
@@ -79,14 +80,15 @@ CIDRは2進数で表示された場合の先頭からの1の数を表してお�
 
 ```js
 // CIDR to Number
-const cidr2long = (cidr) => parseInt(String("").padStart(cidr, '1').padEnd(32, '0'), 2)
+const cidr2long = (cidr) =>
+  parseInt(String('').padStart(cidr, '1').padEnd(32, '0'), 2);
 // CIDR to SubnetMask
-const cidr2subnetmask = (num) => long2ip(cidr2long(num))
+const cidr2subnetmask = (num) => long2ip(cidr2long(num));
 // SubnetMask to CIDR
-const subnetmask2cidr = (ip) => ip2bin(ip).split('1').length - 1
+const subnetmask2cidr = (ip) => ip2bin(ip).split('1').length - 1;
 
-console.log(cidr2subnetmask(26)) // 255.255.255.192
-console.log(subnetmask2cidr("255.255.255.192")) // 26
+console.log(cidr2subnetmask(26)); // 255.255.255.192
+console.log(subnetmask2cidr('255.255.255.192')); // 26
 ```
 
 ### ネットワークアドレス と ブロードキャストアドレス
@@ -103,43 +105,43 @@ console.log(subnetmask2cidr("255.255.255.192")) // 26
 
 ```js
 // ネットワークアドレス
-const getNetworkAddr = (ip, subnetmask) => (ip & subnetmask) >>> 0
+const getNetworkAddr = (ip, subnetmask) => (ip & subnetmask) >>> 0;
 // ブロードキャストアドレス
-const getBroadcastAddr = (ip, subnetmask) => (ip | ~subnetmask) >>> 0
+const getBroadcastAddr = (ip, subnetmask) => (ip | ~subnetmask) >>> 0;
 ```
 
 ### クラス
 
 IPアドレスは使用するネットワークの規模によってクラスA〜C + 特殊用としての「D」や実験用の「E」に分かれています。
 
- - **クラスA** 0.0.0.0 ～ 127.255.255.255
- - **クラスB** 128.0.0.0 ～ 191.255.255.255
- - **クラスC** 192.0.0.0 ～ 223.255.255.255
- - **クラスD** 224.0.0.0 ～ 239.255.255.255
- - **クラスE** 240.0.0.0 ～ 255.255.255.255
+- **クラスA** 0.0.0.0 ～ 127.255.255.255
+- **クラスB** 128.0.0.0 ～ 191.255.255.255
+- **クラスC** 192.0.0.0 ～ 223.255.255.255
+- **クラスD** 224.0.0.0 ～ 239.255.255.255
+- **クラスE** 240.0.0.0 ～ 255.255.255.255
 
 これを次のようにコードに落としました。
 
 ```js
 const getClass = (ip) => {
-    if (ip2long("0.0.0.0") <= ip && ip <= ip2long("127.255.255.255")) {
-        return 'A'
-    }
-    if (ip2long("128.0.0.0") <= ip && ip <= ip2long("191.255.255.255")) {
-        return 'B'
-    }
-    if (ip2long("192.0.0.0") <= ip && ip <= ip2long("223.255.255.255")) {
-        return 'C'
-    }
-    if (ip2long("224.0.0.0") <= ip && ip <= ip2long("239.255.255.255")) {
-        return 'D'
-    }
-    if (ip2long("240.0.0.0") <= ip && ip <= ip2long("255.255.255.255")) {
-        return 'E'
-    }
-    return false;
-}
-console.log(getClass(ip2long("192.168.0.1"))) // C
+  if (ip2long('0.0.0.0') <= ip && ip <= ip2long('127.255.255.255')) {
+    return 'A';
+  }
+  if (ip2long('128.0.0.0') <= ip && ip <= ip2long('191.255.255.255')) {
+    return 'B';
+  }
+  if (ip2long('192.0.0.0') <= ip && ip <= ip2long('223.255.255.255')) {
+    return 'C';
+  }
+  if (ip2long('224.0.0.0') <= ip && ip <= ip2long('239.255.255.255')) {
+    return 'D';
+  }
+  if (ip2long('240.0.0.0') <= ip && ip <= ip2long('255.255.255.255')) {
+    return 'E';
+  }
+  return false;
+};
+console.log(getClass(ip2long('192.168.0.1'))); // C
 ```
 
 ## 改めて計算方法を整理する
@@ -147,61 +149,67 @@ console.log(getClass(ip2long("192.168.0.1"))) // C
 改めて整理してサブネットマスク関連の一連の計算を行います。コード全て載せます。
 
 ```js
-const ip2bin = (ip) => ip.split(".").map(e => Number(e).toString(2).padStart(8, '0')).join('')
+const ip2bin = (ip) =>
+  ip.split('.').map(e => Number(e).toString(2).padStart(8, '0')).join('');
 
-const ip2long = (ip) => parseInt(ip2bin(ip), 2)
+const ip2long = (ip) => parseInt(ip2bin(ip), 2);
 
 const long2ip = (num) => {
-    let bin = Number(num).toString(2).padStart(32, '0')
-    return [
-        bin.slice(0, 8),
-        bin.slice(8, 16),
-        bin.slice(16, 24),
-        bin.slice(24, 32),
-    ].map(e => parseInt(e, 2)).join('.')
-}
+  let bin = Number(num).toString(2).padStart(32, '0');
+  return [
+    bin.slice(0, 8),
+    bin.slice(8, 16),
+    bin.slice(16, 24),
+    bin.slice(24, 32),
+  ].map(e => parseInt(e, 2)).join('.');
+};
 
-const cidr2long = (cidr) => parseInt(String("").padStart(cidr, '1').padEnd(32, '0'), 2)
+const cidr2long = (cidr) =>
+  parseInt(String('').padStart(cidr, '1').padEnd(32, '0'), 2);
 
-const cidr2subnetmask = (num) => long2ip(cidr2long(Number(num)))
+const cidr2subnetmask = (num) => long2ip(cidr2long(Number(num)));
 
-const subnetmask2cidr = (ip) => ip2bin(ip).split('1').length - 1
+const subnetmask2cidr = (ip) => ip2bin(ip).split('1').length - 1;
 
-const getNetworkAddr = (ip, subnetmask) => (ip & subnetmask) >>> 0
+const getNetworkAddr = (ip, subnetmask) => (ip & subnetmask) >>> 0;
 
-const getBroadcastAddr = (ip, subnetmask) => (ip | ~subnetmask) >>> 0
+const getBroadcastAddr = (ip, subnetmask) => (ip | ~subnetmask) >>> 0;
 
 const getClass = (ip) => {
-    if (ip2long("0.0.0.0") <= ip && ip <= ip2long("127.255.255.255")) {
-        return 'A'
-    }
-    if (ip2long("128.0.0.0") <= ip && ip <= ip2long("191.255.255.255")) {
-        return 'B'
-    }
-    if (ip2long("192.0.0.0") <= ip && ip <= ip2long("223.255.255.255")) {
-        return 'C'
-    }
-    if (ip2long("224.0.0.0") <= ip && ip <= ip2long("239.255.255.255")) {
-        return 'D'
-    }
-    if (ip2long("240.0.0.0") <= ip && ip <= ip2long("255.255.255.255")) {
-        return 'E'
-    }
-    return false;
-}
+  if (ip2long('0.0.0.0') <= ip && ip <= ip2long('127.255.255.255')) {
+    return 'A';
+  }
+  if (ip2long('128.0.0.0') <= ip && ip <= ip2long('191.255.255.255')) {
+    return 'B';
+  }
+  if (ip2long('192.0.0.0') <= ip && ip <= ip2long('223.255.255.255')) {
+    return 'C';
+  }
+  if (ip2long('224.0.0.0') <= ip && ip <= ip2long('239.255.255.255')) {
+    return 'D';
+  }
+  if (ip2long('240.0.0.0') <= ip && ip <= ip2long('255.255.255.255')) {
+    return 'E';
+  }
+  return false;
+};
 
-const ipLong = ip2long("192.168.0.1")
-const cidr = cidr2long(24)
+const ipLong = ip2long('192.168.0.1');
+const cidr = cidr2long(24);
 console.log(`
 IPアドレス: ${long2ip(ipLong)}
-サブネットマスク: /${subnetmask2cidr("255.255.255.0")} (${cidr2subnetmask(24)})
+サブネットマスク: /${subnetmask2cidr('255.255.255.0')} (${cidr2subnetmask(24)})
 ネットワークアドレス: ${long2ip(getNetworkAddr(ipLong, cidr))}
-使用可能IP: ${long2ip(getNetworkAddr(ipLong, cidr) + 1)} 〜 ${long2ip(getBroadcastAddr(ipLong, cidr) - 1)}
+使用可能IP: ${long2ip(getNetworkAddr(ipLong, cidr) + 1)} 〜 ${
+  long2ip(getBroadcastAddr(ipLong, cidr) - 1)
+}
 ブロードキャストアドレス: ${long2ip(getBroadcastAddr(ipLong, cidr))}
 アドレス数: ${getBroadcastAddr(ipLong, cidr) - getNetworkAddr(ipLong, cidr) + 1}
-ホストアドレス数: ${getBroadcastAddr(ipLong, cidr) - getNetworkAddr(ipLong, cidr) - 1}
+ホストアドレス数: ${
+  getBroadcastAddr(ipLong, cidr) - getNetworkAddr(ipLong, cidr) - 1
+}
 IPアドレスクラス: ${getClass(ipLong)}
-`)
+`);
 ```
 
 そして出力結果がこちらになります。サブネット計算サイトの結果と一致しました。

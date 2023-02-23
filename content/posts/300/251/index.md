@@ -23,7 +23,6 @@ RPM(Fedora/CentOS系)を作成する際に利用するspecファイルで利用�
 
 詳細は[パッケージ命名ガイドライン](https://docs.fedoraproject.org/en-US/packaging-guidelines/Naming/)を参照してください。
 
-
 - `Version`
 
 アップストリームのバージョン番号を定義します。バージョンに数値以外のタグが含まれている場合は、`Release`タグに数値以外の文字を含める必要がある場合があります。
@@ -45,7 +44,7 @@ RPM(Fedora/CentOS系)を作成する際に利用するspecファイルで利用�
 - `Summary`
 
   パッケージの簡単な要約を入力します。
-  
+
 - `Group`
 
 このタグは廃止されました。
@@ -61,7 +60,7 @@ RPM(Fedora/CentOS系)を作成する際に利用するspecファイルで利用�
 - `URL`
 
 例えばプロジェクトのWebサイトやGitHubのREADMEなどプログラムの詳細を説明しているサイトのURLを定義します。
-  
+
 ※元のソースコードへのリンク(Web上に配置されたtarやzipのリンク)を追加しないでください。これは`Source0`タグにて定義します。
 
 - `Source0`
@@ -77,7 +76,6 @@ RPM(Fedora/CentOS系)を作成する際に利用するspecファイルで利用�
 ソースファイルをダウンロードするときのタイムスタンプを利用することができ、
 詳細については、[Fedora Packaging Guidelines(timestamps)](https://docs.fedoraproject.org/en-US/packaging-guidelines/#_timestamps)参照してください。
 
-
 その他、特殊なケースについては、[Referencing Source](https://docs.fedoraproject.org/en-US/packaging-guidelines/SourceURL/)参照してください。
 
 - `Patch0`
@@ -87,8 +85,6 @@ RPM(Fedora/CentOS系)を作成する際に利用するspecファイルで利用�
 複数パッチがある場合は Patch1,Patch2...と定義できます。
 
 パッチは、`.patch`ファイルとして`~/rpmbuild/SOURCES`ディレクトリに保存します。
-
-
 
 - `BuildArch`
 
@@ -115,7 +111,6 @@ BuildRequires: ocaml = 3.08
 ```
 
 と定義します。
-
 
 - `Requires`
 
@@ -144,7 +139,6 @@ rm -rf ${RPM_BUILD_ROOT}
 ```
 
 などのクリーンアップ的な操作を行う場合が多いです。
-
 
 ※**RPM_BUILD_ROOT** : BuildRootで設定された仮想インストールのためのディレクトリ
 
@@ -186,14 +180,13 @@ rpmに追加するファイルを定義します。
 
 コメントについて
 
- - 先頭に`#`文字を付けてコメントを挿入します。
- - 複数行になる可能性のあるマクロ（`%`で始まる）に注意します。
- - 行をコメントアウトするとき`%%`は、の後に表示されるマクロのパーセント記号（`#`）を2つにします。
- - スクリプトコマンドと同じ行にインラインコメントを付けることは避けます。
-
+- 先頭に`#`文字を付けてコメントを挿入します。
+- 複数行になる可能性のあるマクロ（`%`で始まる）に注意します。
+- 行をコメントアウトするとき`%%`は、の後に表示されるマクロのパーセント記号（`#`）を2つにします。
+- スクリプトコマンドと同じ行にインラインコメントを付けることは避けます。
 
 ## 参考文献
 
- - [Creating RPM packages :: Fedora Docs](https://docs.fedoraproject.org/en-US/quick-docs/creating-rpm-packages/index.html)
- - [SPECファイルの記述](https://vinelinux.org/docs/vine6/making-rpm/make-spec.html)
- - [3.4. SPEC ファイルの概要 Red Hat Enterprise Linux 8 | Red Hat Customer Portal](https://access.redhat.com/documentation/ja-jp/red_hat_enterprise_linux/8/html/packaging_and_distributing_software/what-is-a-spec-file_packaging-software)
+- [Creating RPM packages :: Fedora Docs](https://docs.fedoraproject.org/en-US/quick-docs/creating-rpm-packages/index.html)
+- [SPECファイルの記述](https://vinelinux.org/docs/vine6/making-rpm/make-spec.html)
+- [3.4. SPEC ファイルの概要 Red Hat Enterprise Linux 8 | Red Hat Customer Portal](https://access.redhat.com/documentation/ja-jp/red_hat_enterprise_linux/8/html/packaging_and_distributing_software/what-is-a-spec-file_packaging-software)

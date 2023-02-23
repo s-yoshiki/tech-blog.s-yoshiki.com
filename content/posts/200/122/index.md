@@ -116,7 +116,6 @@ npm ERR! not ok code 0
 $ npm config set strict-ssl false
 # npm install n -g # インストールしたいパッケージ
 $ npm config set strict-ssl true
-
 ```
 
 ## 参考

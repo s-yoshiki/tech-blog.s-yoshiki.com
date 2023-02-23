@@ -30,8 +30,8 @@ Failed to connect to bus: Host is down
 
 ## 環境
 
- - CentOS Linux release 8.3.2011
- - mysql  Ver 8.0.21 for Linux on x86_64 (Source distribution)
+- CentOS Linux release 8.3.2011
+- mysql Ver 8.0.21 for Linux on x86_64 (Source distribution)
 
 ## 起動
 
@@ -69,7 +69,7 @@ $ /usr/sbin/mysqld --user=mysql --initialize
 2021-01-26T15:07:27.283529Z 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 8.0.21) initializing of server in progress as process 179
 2021-01-26T15:07:27.291551Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
 2021-01-26T15:07:27.750767Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
-2021-01-26T15:07:28.971631Z 6 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: PASSWORD # ← ランダムな文字列が表示される 
+2021-01-26T15:07:28.971631Z 6 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: PASSWORD # ← ランダムな文字列が表示される
 ```
 
 rootユーザのpasswordが表示される(PASSWORD)ので控えます。これでrootユーザでログインできるようになります。

@@ -16,13 +16,13 @@ JavaScript(ES2015)で多次元配列を任意の値で初期化する方法に�
 例えば、
 
 ```js
-let arr = new Array(5)
+let arr = new Array(5);
 ```
 
 と宣言した場合
 
 ```js
-console.log(arr[0])
+console.log(arr[0]);
 // undefined
 ```
 
@@ -31,11 +31,11 @@ console.log(arr[0])
 ここでfillメソッドを使うことで初期化することができます。
 
 ```js
-let arr = new Array(5).fill(0)
+let arr = new Array(5).fill(0);
 ```
 
 ```js
-console.log(JSON.stringify(arr))
+console.log(JSON.stringify(arr));
 // [0,0,0,0,0]
 ```
 
@@ -48,7 +48,7 @@ Array.from(new Array(3), () => new Array(3).fill(0));
 ```
 
 ```js
-console.log(JSON.stringify(arr))
+console.log(JSON.stringify(arr));
 // [[0,0,0],[0,0,0],[0,0,0]]
 ```
 
@@ -58,13 +58,12 @@ console.log(JSON.stringify(arr))
 期待とは異なる配列が生成されるようです。
 
 ```js
-let arr = new Array(3).fill(new Array(3).fill(0))
-console.log(JSON.stringify(arr))
+let arr = new Array(3).fill(new Array(3).fill(0));
+console.log(JSON.stringify(arr));
 // [[0,0,0],[0,0,0],[0,0,0]]
-arr[0][0] = 1
-console.log(JSON.stringify(arr))
+arr[0][0] = 1;
+console.log(JSON.stringify(arr));
 // [[1,0,0],[1,0,0],[1,0,0]]
-
 ```
 
 ## 3次元配列
@@ -74,19 +73,17 @@ console.log(JSON.stringify(arr))
 
 ```js
 let arr = Array.from(new Array(3), () => {
-    return Array.from(new Array(3), () => new Array(3).fill(0))
-})
-
+  return Array.from(new Array(3), () => new Array(3).fill(0));
+});
 ```
 
 ```js
-console.log(JSON.stringify(arr))
+console.log(JSON.stringify(arr));
 // [
 //     [[0,0,0],[0,0,0],[0,0,0]],
 //     [[0,0,0],[0,0,0],[0,0,0]],
 //     [[0,0,0],[0,0,0],[0,0,0]]
 // ]
-
 ```
 
 ## 参考

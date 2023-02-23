@@ -62,8 +62,6 @@ Gatsbyを1~2年利用しましたが、とても優れたツールだと思っ�
 
 ### ディレクトリ構成
 
-
-
 ### NextJSでmarkdownファイルを扱う
 
 NextJSでMarkdownファイルを表示する大まかな仕組みについて、基本的な実装はこちらを参考にしました。
@@ -78,7 +76,7 @@ NextJSでMarkdownファイルを表示する大まかな仕組みについて、
 ファイルをmarkdownからHTMLへ変換する部分については
 remark, rehype, unified, grey-matter 等のパッケージ及びそれらのプラグインを利用して変換を行なっています。
 
-この部分については 
+この部分については
 [Remark・Rehype プラグインで文書の見出しに自動で ID を振り目次リストを自動生成する](https://neos21.net/blog/2020/11/13-01.html)
 を参考にしました。
 
@@ -97,14 +95,11 @@ remark, rehype, unified, grey-matter 等のパッケージ及びそれらのプ�
 `utils/posts-manager.ts`
 
 ```ts
-import fs from 'fs'
-import { join } from "path";
-import matter from "gray-matter";
-import {
-  Posts,
-  IGroupByItems,
-} from "types/entry.interface"
-import getConfig from "next/config";
+import fs from 'fs';
+import matter from 'gray-matter';
+import getConfig from 'next/config';
+import { join } from 'path';
+import { IGroupByItems, Posts } from 'types/entry.interface';
 
 export interface Posts {
   title: string;
@@ -113,170 +108,168 @@ export interface Posts {
   coverImage: string;
   tags: string[];
   filepath: string;
-};
+}
 
 export interface IGroupByItems {
   name: string;
   counts: number;
 }
 
-const { publicRuntimeConfig } = getConfig(); //後述
+const { publicRuntimeConfig } = getConfig(); // 後述
 
 const listFiles = (dir: string): string[] =>
   fs.readdirSync(dir, { withFileTypes: true }).flatMap(dirent =>
-    dirent.isFile() ? [`${dir}/${dirent.name}`] : listFiles(`${dir}/${dirent.name}`)
-  )
+    dirent.isFile()
+      ? [`${dir}/${dirent.name}`]
+      : listFiles(`${dir}/${dirent.name}`)
+  );
 
 class PostsManager {
   /**
    * 付属情報格納
    */
-  private data: Array<Posts>
+  private data: Array<Posts>;
   /**
    * タグごとにソートした記事
    */
   private dataGroupByTag: Map<string, Posts[]>;
   // 利用しているタグ名
-  private tagNames:  string[] = []
+  private tagNames: string[] = [];
 
   /**
-   * 
-   * @param basePath 
+   * @param basePath
    */
   constructor(basePath: string) {
-    const files = listFiles(basePath)
-    const result = []
+    const files = listFiles(basePath);
+    const result = [];
     for (let i = 0; i < files.length; i++) {
-      if (!files[i].endsWith("/index.md")) {
-        continue
+      if (!files[i].endsWith('/index.md')) {
+        continue;
       }
-      const fileContents = fs.readFileSync(files[i], "utf8");
+      const fileContents = fs.readFileSync(files[i], 'utf8');
       const { data } = matter(fileContents);
-      data.filepath = files[i]
-      result.push(<Posts>data)
+      data.filepath = files[i];
+      result.push(<Posts> data);
     }
-    const dataGroupByTag = new Map<string, Posts[]>()
+    const dataGroupByTag = new Map<string, Posts[]>();
     this.data = result.map(post => {
       //
       // tag集計
       //
-      post.tags = Array.from(new Set(post.tags))
-      this.tagNames = Array.from(new Set(this.tagNames.concat(post.tags)))
+      post.tags = Array.from(new Set(post.tags));
+      this.tagNames = Array.from(new Set(this.tagNames.concat(post.tags)));
       post.tags.forEach(tag => {
-        let tmp = dataGroupByTag.get(tag)
+        let tmp = dataGroupByTag.get(tag);
         if (!tmp) {
-          tmp = []
+          tmp = [];
         }
-        tmp.unshift(post)
-        dataGroupByTag.set(tag, tmp)
-      })
-      return post
-    })
-    this.dataGroupByTag = dataGroupByTag
+        tmp.unshift(post);
+        dataGroupByTag.set(tag, tmp);
+      });
+      return post;
+    });
+    this.dataGroupByTag = dataGroupByTag;
     // path:/entry/${id} でソート
     this.data = this.data.sort((a: Posts, b: Posts): number => {
-      let ai = Number(a.path.split('/').pop())
-      let bi = Number(b.path.split('/').pop())
-      return bi - ai
-    })
+      let ai = Number(a.path.split('/').pop());
+      let bi = Number(b.path.split('/').pop());
+      return bi - ai;
+    });
   }
 
   /**
-   * 
-   * @returns 
+   * @returns
    */
   public getData() {
-    return this.data
+    return this.data;
   }
 
   /**
-   * 
-   * @param path 
-   * @returns 
+   * @param path
+   * @returns
    */
   public findByPath(path: string): Posts | undefined {
-    const data = this.data
+    const data = this.data;
     for (let i = 0; i < data.length; i++) {
-      const row = data[i]
+      const row = data[i];
       if (path === row.path) {
-        return row
+        return row;
       }
     }
-    return
+    return;
   }
 
   /**
    * タグで一覧検索
-   * @param tag 
-   * @returns 
+   * @param tag
+   * @returns
    */
   public findByTag(tag: string): Posts[] {
-    const data = this.getAllGroupByTags().get(tag)
+    const data = this.getAllGroupByTags().get(tag);
     if (!data) {
-      return []
+      return [];
     }
-    return  data
+    return data;
   }
 
   /**
    * tagでソートして取得
-   * @returns 
+   * @returns
    */
   public getAllGroupByTags(): Map<string, Posts[]> {
-    return this.dataGroupByTag
+    return this.dataGroupByTag;
   }
 
   /**
    * tagでソートして取得
-   * @returns 
+   * @returns
    */
   public getCountsGroupByTags(sort: 'desc' | 'asc' = 'desc'): IGroupByItems[] {
-    const tagNames = this.getAllTagNames()
-    const tagsCounts = []
+    const tagNames = this.getAllTagNames();
+    const tagsCounts = [];
     for (let i = 0; i < tagNames.length; i++) {
-      const tag = tagNames[i]
+      const tag = tagNames[i];
       tagsCounts.push({
         name: tag,
-        counts: this.findByTag(tag).length
-      })
+        counts: this.findByTag(tag).length,
+      });
     }
     return tagsCounts.sort((prev, next) => {
       if (sort === 'asc') {
-        return prev.counts - next.counts
+        return prev.counts - next.counts;
       }
-      return next.counts - prev.counts
-    })
+      return next.counts - prev.counts;
+    });
   }
 }
 
 // postsが格納されているディレクトリを取得する
-const postsDirectory = join(process.cwd(), "content/posts");
+const postsDirectory = join(process.cwd(), 'content/posts');
 
-export default new PostsManager(postsDirectory)
+export default new PostsManager(postsDirectory);
 ```
-
 
 `utils/md.ts`
 
 ```ts
-import fs from "fs";
-import matter from "gray-matter";
-import { unified } from "unified";
-import remarkParse from "remark-parse";
-import remarkRehype from "remark-rehype";
-import rehypeStringify from "rehype-stringify";
-import rehypeShiki from "@leafac/rehype-shiki";
-import * as shiki from "shiki";
-import remarkGfm from "remark-gfm";
-import remarkHtml from "remark-html";
-import remarkSlug from "remark-slug";
+import rehypeShiki from '@leafac/rehype-shiki';
+import fs from 'fs';
+import matter from 'gray-matter';
+import rehypeStringify from 'rehype-stringify';
+import remarkGfm from 'remark-gfm';
+import remarkHtml from 'remark-html';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import remarkSlug from 'remark-slug';
+import * as shiki from 'shiki';
+import { unified } from 'unified';
 
 interface Props {
   filepath: string;
 }
 
 const markdownToHtml = async (opt: Props) => {
-  const fileContents = fs.readFileSync(opt.filepath, "utf8");
+  const fileContents = fs.readFileSync(opt.filepath, 'utf8');
   const { data, content } = matter(fileContents);
   const result = await unified()
     .use(remarkParse)
@@ -286,22 +279,22 @@ const markdownToHtml = async (opt: Props) => {
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeShiki, {
       highlighter: await shiki.getHighlighter({
-	      theme: 'github-dark',
+        theme: 'github-dark',
       }),
     })
     .processSync(content);
-  return result.toString()
+  return result.toString();
 };
 ```
 
 呼び出し側の例
 
 ```ts
-import PostsManager from 'utils/posts-manager';
 import markdownToHtml from 'utils/md';
+import PostsManager from 'utils/posts-manager';
 
 export const getStaticPaths = async () => {
-  const posts = PostsManager.getData()
+  const posts = PostsManager.getData();
   const result = {
     paths: posts.map((post: any) => {
       return {
@@ -312,14 +305,14 @@ export const getStaticPaths = async () => {
     }),
     fallback: false,
   };
-  return result
+  return result;
 };
 
 export const getStaticProps = async ({ params }: any) => {
-  const tags = PostsManager.getCountsGroupByTags().slice(0, 50)
-  const post = PostsManager.findByPath(`/entry/${params.id}`)
+  const tags = PostsManager.getCountsGroupByTags().slice(0, 50);
+  const post = PostsManager.findByPath(`/entry/${params.id}`);
   const contentObj = await markdownToHtml({
-    filepath: post.filepath
+    filepath: post.filepath,
   });
   return {
     props: {
@@ -332,7 +325,6 @@ export const getStaticProps = async ({ params }: any) => {
   };
 };
 ```
-
 
 ## コンテンツの変換項目洗い出し・変換・移動
 
@@ -382,7 +374,6 @@ hello world
 ![](./image1.png)
 
 ![](/entry/image2.jpg)
-
 ```
 
 これについては、画像ファイルをpublicディレクトリに移動することで解決しました。
@@ -427,24 +418,24 @@ metaタグは`next/head`を用いることで利用できます。
 実装例
 
 ```tsx
-import Head from 'next/head'
+import Head from 'next/head';
 
 const Ogp = (props) => {
   return (
     <Head>
       <title>{props.title}</title>
-      <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-      <meta name="description" content={props.description} />
-      <meta property="og:url" content={props.url} />
-      <meta property="og:title" content={props.title} />
-      <meta property="og:site_name" content={props.title} />
-      <meta property="og:description" content={props.description} />
-      <meta property="og:type" content="website" />
-      <meta property="og:image" content={props.imgUrl} />
-      <link rel="canonical" href={props.url} />
+      <meta name='viewport' content='width=device-width,initial-scale=1.0' />
+      <meta name='description' content={props.description} />
+      <meta property='og:url' content={props.url} />
+      <meta property='og:title' content={props.title} />
+      <meta property='og:site_name' content={props.title} />
+      <meta property='og:description' content={props.description} />
+      <meta property='og:type' content='website' />
+      <meta property='og:image' content={props.imgUrl} />
+      <link rel='canonical' href={props.url} />
     </Head>
-  )
-}
+  );
+};
 ```
 
 twitter用のogpも同様に設定できました。
@@ -471,15 +462,15 @@ CI/CDにはGitHub Actionsを利用しています。
 Nextでサブディレクトリを利用したい場合は次の様に設定を行うことでサブディレクトリで利用できます。
 
 ```js
-const basePath = '/subdir'
+const basePath = '/subdir';
 
 const nextConfig = {
   basePath, // アプリケーションのパスprefix
   publicRuntimeConfig: {
-    basePath
-  }
-}
-module.exports = nextConfig
+    basePath,
+  },
+};
+module.exports = nextConfig;
 ```
 
 `publicRuntimeConfig`はSSR,SSGでも利用できるランタイムの設定を定義できる領域です。
@@ -491,7 +482,7 @@ module.exports = nextConfig
 import getConfig from 'next/config';
 
 const { publicRuntimeConfig } = getConfig();
-const { basePath } = publicRuntimeConfig
+const { basePath } = publicRuntimeConfig;
 ```
 
 ## 検討したけどやらなかったこと
@@ -516,4 +507,3 @@ next-optimized-imagesの導入も手こずったため、画像はimgタグを�
 - Chakra, MUI, 他UIフレームワーク (vs Tailwind)
 
 何となく...
-

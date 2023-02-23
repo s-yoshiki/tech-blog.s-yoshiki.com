@@ -27,24 +27,37 @@ JavaScriptを用いて、3次元の回転行列で画像を回転させるサン
 ### 回転行列のサンプルコード
 
 ```js
-const sin = (x) => { return Math.sin(x); }
-const cos = (x) => { return Math.cos(x); }
-const tan = (x) => { return Math.tan(x); }
+const sin = (x) => {
+  return Math.sin(x);
+};
+const cos = (x) => {
+  return Math.cos(x);
+};
+const tan = (x) => {
+  return Math.tan(x);
+};
 
 function rotation(x, y, z, a, b, c) {
-	var R = [
-		[cos(b) * cos(c) - sin(a) * sin(b) * sin(c), -cos(a) * sin(c), sin(b) * cos(c) + sin(a) * cos(b) * sin(c)],
-		[cos(b) * sin(c) + sin(a) * sin(b) * cos(c), cos(a) * cos(c), sin(c) * sin(b) - sin(c) * cos(b) * cos(c)],
-		[-cos(a) * sin(b), sin(a), cos(a) * cos(b)]
-	]
+  var R = [
+    [
+      cos(b) * cos(c) - sin(a) * sin(b) * sin(c),
+      -cos(a) * sin(c),
+      sin(b) * cos(c) + sin(a) * cos(b) * sin(c),
+    ],
+    [
+      cos(b) * sin(c) + sin(a) * sin(b) * cos(c),
+      cos(a) * cos(c),
+      sin(c) * sin(b) - sin(c) * cos(b) * cos(c),
+    ],
+    [-cos(a) * sin(b), sin(a), cos(a) * cos(b)],
+  ];
 
-	var _x = x * R[0][0] + y * R[0][1] + z * R[0][2];
-	var _y = x * R[1][0] + y * R[1][1] + z * R[1][2];
-	var _z = x * R[2][0] + y * R[2][1] + z * R[2][2];
+  var _x = x * R[0][0] + y * R[0][1] + z * R[0][2];
+  var _y = x * R[1][0] + y * R[1][1] + z * R[1][2];
+  var _z = x * R[2][0] + y * R[2][1] + z * R[2][2];
 
-	return [_x, _y, _z];
+  return [_x, _y, _z];
 }
-
 ```
 
 ## 画像を回転させるデモ

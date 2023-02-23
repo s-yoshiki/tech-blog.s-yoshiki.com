@@ -15,11 +15,7 @@ tags: ["データベース"]
 
 <a href="https://tableplus.io/"><br /><img src="https://pbs.twimg.com/media/DoVnfd0UwAIPnnf.jpg" /><br /></a>
 
- 
-
 https://tableplus.io/
-
- 
 
 WindowsおよびMacに対応しています。
 
@@ -123,7 +119,6 @@ TablePlusで利用できるショートカットキーを掲載しておきま�
 ⌘+テーブルリストをクリック：新しいタブで開く - ワークスペース
 ⌥+フィールドをクリック：クイック編集メニューを開く - ワークスペース - テーブルデータ
 タブ：編集中にフォーカスを移動する - ワークスペース - テーブルデータ
-
 ```
 
 ## その他

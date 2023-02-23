@@ -68,7 +68,6 @@ if __name__ == "__main__" :
     cv2.imshow('result', im)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-
 ```
 
 OpenCVではマスク画像を扱うためにbitwise_and(bitwise_and ...)が用意されていますが、ちょっと使い勝手が悪く好き勝手実装できるようにピクセル操作を行う方法を利用しました。
@@ -84,5 +83,4 @@ bitwise_andを使う場合は下記に書き換えます。
     img_masked = cv2.bitwise_and(im, im, mask=mask )
 
     # 略
-
 ```

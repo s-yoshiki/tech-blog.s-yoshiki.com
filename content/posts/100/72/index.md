@@ -14,30 +14,29 @@ JSでiOSかAndroidかの判定を行う方法。
 ## サンプルソース
 
 ```js
-document.getElementById("result").innerHTML = getUserType()
+document.getElementById('result').innerHTML = getUserType();
 
 function getUserType() {
-	var ua = [
-		"iPod",
-		"iPad",
-		"iPhone",
-		"Android"
-	]
-	
-	for (var i = 0; i < ua.length; i++) {
-		if (navigator.userAgent.indexOf(ua[i]) > 0) {
-			return ua[i]
-		}
-	}
-	return "Other"
-}
+  var ua = [
+    'iPod',
+    'iPad',
+    'iPhone',
+    'Android',
+  ];
 
+  for (var i = 0; i < ua.length; i++) {
+    if (navigator.userAgent.indexOf(ua[i]) > 0) {
+      return ua[i];
+    }
+  }
+  return 'Other';
+}
 ```
 
 やっていることは、UAに特定の文字列が含まれているかどうかという方法で端末を判断しています。
 
 ```js
-navigator.userAgent.indexOf("iPhone")
+navigator.userAgent.indexOf('iPhone');
 ```
 
 で返り値が1以上であれば、iPhoneということにしています。
@@ -57,7 +56,6 @@ Mozilla/5.0 (iPad; U; CPU OS 4_2 like Mac OS X; zh-cn) AppleWebKit/533.17.9 (KHT
 
 # Android (Nexus7)
 Mozilla/5.0 (Linux; Android 4.1.1; Nexus 7 Build/JRO03S) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Safari/535.19
-
 ```
 
 ## 参考

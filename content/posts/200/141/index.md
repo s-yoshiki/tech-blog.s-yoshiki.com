@@ -24,7 +24,6 @@ Vue + MonacoEditorでJSのデバッガを作ってみました。
 
 ## セットアップ
 
-
 ### Vue
 
 Vueプロジェクトのセットアップはこの辺りを参考にしてください。
@@ -41,12 +40,9 @@ Vueプロジェクトのセットアップはこの辺りを参考にしてく�
 yarn add vue-monaco
 ```
 
-
 ## Usage
 
-
 ### サンプルコード
-
 
 ```html
 <template>
@@ -75,16 +71,14 @@ export default {
   height: 800px;
 }
 </style>
-
 ```
 
-
 ### ポイント
-
 
 #### テーマカラーについて
 
 themeに指定できるのは以下の3種類である。
+
 <ul>
  	<li>'vs' (白)</li>
  	<li>'vs-dark' (黒)</li>
@@ -98,10 +92,9 @@ windowのリサイズを検知した瞬間に以下のようなメソッドを�
 
 ```js
 window.addEventListener('resize', (e) => {
-    this.$refs.editor.getMonaco().layout()
-})
+  this.$refs.editor.getMonaco().layout();
+});
 ```
-
 
 #### エディタの変更の検知
 
@@ -110,20 +103,20 @@ window.addEventListener('resize', (e) => {
 変更を検知した瞬間に alert するサンプル
 
 ```js
-import MonacoEditor from 'vue-monaco'
+import MonacoEditor from 'vue-monaco';
 export default {
-    components: {
-        MonacoEditor,
+  components: {
+    MonacoEditor,
+  },
+  data() {
+    return {
+      code: '',
+    };
+  },
+  watch: {
+    code() {
+      alert(this.code);
     },
-    data() {
-        return {
-            code: '',
-        }
-    },
-    watch: {
-        code() {
-            alert(this.code)
-        }
-    },
-}
+  },
+};
 ```

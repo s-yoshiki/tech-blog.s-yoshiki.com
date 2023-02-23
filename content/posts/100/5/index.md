@@ -6,6 +6,7 @@ coverImage: "../../../images/thumbnail/wordpress-logo.png"
 author: "s-yoshiki"
 tags: ["amazon-aws","amazon-lightsail","wordpress","php"]
 ---
+
 ## 概要
 
 SSL対応化の際に設定ページからURLを設定を変更できなかったので、ソースコードから編集してhttps対応URLに変更した。
@@ -33,4 +34,3 @@ define('WP_HOME', 'https://' . $_SERVER['HTTP_HOST'] . '/');
 - WordPress 4.9.4
 - Amazon Lightsail
 - Ubuntu 14.04.5 LTS, Trusty Tahr
-

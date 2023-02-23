@@ -6,13 +6,16 @@ coverImage: "../../../images/thumbnail/no-image.png"
 author: "s-yoshiki"
 tags: ["雑談","ブログ"]
 ---
+
 つい最近、日間100PVを達成したと思ったら月間の方も1500PVを超えました。
+
 <blockquote class="twitter-tweet" data-lang="ja">
 <p lang="ja" dir="ltr">書きました！
 
 カスみたいな技術ブログが1日100PVを超えてしまいました。<a href="https://t.co/wYGZp2kzas">https://t.co/wYGZp2kzas</a>
 
 — s-yoshiki | スクリプトカス (@s_yoshiki_dev) <a href="https://twitter.com/s_yoshiki_dev/status/1067810532676096000?ref_src=twsrc%5Etfw">2018年11月28日</a></blockquote>
+
 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 便所の落書きレベルのカスみたいな技術ブログを書き始めて1年が経とうとしていますが、
@@ -78,7 +81,7 @@ https://tech-blog.s-yoshiki.com/2018/05/92/
 
 https://tech-blog.s-yoshiki.com/2018/02/27/
 
-Amazon LightsailのWordPressで証明書を導入 &  SSL化を行なった記事の紹介です。
+Amazon LightsailのWordPressで証明書を導入 & SSL化を行なった記事の紹介です。
 
 ### 【Python】Django2.0 + Python3 + ApacheでWebアプリケーション構築
 

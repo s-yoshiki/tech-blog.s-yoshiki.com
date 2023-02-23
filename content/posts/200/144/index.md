@@ -17,33 +17,33 @@ tags: ["javascript","アルゴリズム","競技プログラミング","順列",
 
 ```js
 const permutation = (nums, k) => {
-    let ans = []
-    if (nums.length < k) {
-        return []
+  let ans = [];
+  if (nums.length < k) {
+    return [];
+  }
+  if (k === 1) {
+    for (let i = 0; i < nums.length; i++) {
+      ans[i] = [nums[i]];
     }
-    if (k === 1) {
-        for (let i = 0; i < nums.length; i++) {
-            ans[i] = [nums[i]]
-        }
-    } else {
-        for (let i = 0; i < nums.length; i++) {
-            let parts = nums.slice(0)
-            parts.splice(i, 1)[0]
-            let row = permutation(parts, k - 1)
-            for (let j = 0; j < row.length; j++) {
-                ans.push([nums[i]].concat(row[j]))
-            }
-        }
+  } else {
+    for (let i = 0; i < nums.length; i++) {
+      let parts = nums.slice(0);
+      parts.splice(i, 1)[0];
+      let row = permutation(parts, k - 1);
+      for (let j = 0; j < row.length; j++) {
+        ans.push([nums[i]].concat(row[j]));
+      }
     }
-    return ans;
-}
+  }
+  return ans;
+};
 ```
 
 ### Usage
 
 ```js
-let arr = permutation(['a', 'b', 'c'], 2)
-console.log(JSON.stringify(arr))
+let arr = permutation(['a', 'b', 'c'], 2);
+console.log(JSON.stringify(arr));
 // [["a","b"],["a","c"],["b","a"],["b","c"],["c","a"],["c","b"]]
 ```
 
@@ -53,30 +53,30 @@ console.log(JSON.stringify(arr))
 
 ```js
 const combination = (nums, k) => {
-    let ans = [];
-    if (nums.length < k) {
-        return []
+  let ans = [];
+  if (nums.length < k) {
+    return [];
+  }
+  if (k === 1) {
+    for (let i = 0; i < nums.length; i++) {
+      ans[i] = [nums[i]];
     }
-    if (k === 1) {
-        for (let i = 0; i < nums.length; i++) {
-            ans[i] = [nums[i]];
-        }
-    } else {
-        for (let i = 0; i < nums.length - k + 1; i++) {
-            let row = combination(nums.slice(i + 1), k - 1);
-            for (let j = 0; j < row.length; j++) {
-                ans.push([nums[i]].concat(row[j]));
-            }
-        }
+  } else {
+    for (let i = 0; i < nums.length - k + 1; i++) {
+      let row = combination(nums.slice(i + 1), k - 1);
+      for (let j = 0; j < row.length; j++) {
+        ans.push([nums[i]].concat(row[j]));
+      }
     }
-    return ans;
-}
+  }
+  return ans;
+};
 ```
 
 ### Usage
 
 ```js
-let arr = combination(['a', 'b', 'c'], 2)
-console.log(JSON.stringify(arr))
+let arr = combination(['a', 'b', 'c'], 2);
+console.log(JSON.stringify(arr));
 // [["a","b"],["a","c"],["b","c"]]
 ```

@@ -1,4 +1,4 @@
-const basePath = ''
+const basePath = '';
 
 const siteMetaData = {
   title: `404 motivation not found`,
@@ -7,8 +7,8 @@ const siteMetaData = {
   copyrights: '',
   author: `@s-yoshiki`,
   logoText: '404 motivation not found',
-  gtag: 'G-PJBP94L671'
-}
+  gtag: 'G-PJBP94L671',
+};
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -28,7 +28,7 @@ const nextConfig = {
   images: {
     loader: 'custom',
     domains: ['img.shields.io'],
-  }
-}
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

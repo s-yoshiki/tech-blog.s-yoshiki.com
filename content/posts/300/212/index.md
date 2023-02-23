@@ -17,7 +17,6 @@ React / Next.jsに入門しました。一番最初のHelloWorldから、簡単�
 `Vue`は学習して行く上でつまづく部分が少なく、データバインディング(Vueのmodel)も扱いやすかったです。
 しかしながら、「VueよりもReact」論が多く見られたため、Next.js を触ってみることにしました。(React要素は省略)
 
-
 ### 実施環境
 
 ```
@@ -47,7 +46,6 @@ npm run dev
 
 http://localhost:3000/ を開きます。"Welcome to Next.js!" と表示されます。
 
-
 ## Navigate Between Pages
 
 セットアップ
@@ -63,7 +61,7 @@ cd nextjs-blog
 
 ```js
 export default function FirstPost() {
-  return <h1>First Post</h1>
+  return <h1>First Post</h1>;
 }
 ```
 
@@ -86,17 +84,16 @@ pages/index.js # http://localhost:3000/
 `pages/index.js`
 
 ```js
-import Link from 'next/link'
+import Link from 'next/link';
 
-export default function () {
-    return (
-        <Link href="/posts/first-post">
-          <a>this page!</a>
-        </Link>
-    )
+export default function() {
+  return (
+    <Link href='/posts/first-post'>
+      <a>this page!</a>
+    </Link>
+  );
 }
 ```
-
 
 ## Assets, Metadata, and CSS
 
@@ -118,7 +115,7 @@ cd nextjs-blog
 例
 
 ```js
-import Head from 'next/head'
+import Head from 'next/head';
 ```
 
 ```html
@@ -146,7 +143,7 @@ import Head from 'next/head'
 
 ```js
 export default function Layout({ children }) {
-  return <div>{children}</div>
+  return <div>{children}</div>;
 }
 ```
 
@@ -155,9 +152,9 @@ export default function Layout({ children }) {
 `pages/posts/first-post.js`
 
 ```js
-import Head from 'next/head'
-import Link from 'next/link'
-import Layout from '../../components/layout'
+import Head from 'next/head';
+import Link from 'next/link';
+import Layout from '../../components/layout';
 
 export default function FirstPost() {
   return (
@@ -167,12 +164,12 @@ export default function FirstPost() {
       </Head>
       <h1>First Post</h1>
       <h2>
-        <Link href="/">
+        <Link href='/'>
           <a>Back to home</a>
         </Link>
       </h2>
     </Layout>
-  )
+  );
 }
 ```
 
@@ -191,10 +188,10 @@ cssモジュールを作成する場合は
 `components/layout.js`
 
 ```js
-import styles from './layout.module.css'
+import styles from './layout.module.css';
 
 export default function Layout({ children }) {
-  return <div className={styles.container}>{children}</div>
+  return <div className={styles.container}>{children}</div>;
 }
 ```
 
@@ -218,10 +215,10 @@ body {
 `pages/_app.js`
 
 ```js
-import '../styles/global.css'
+import '../styles/global.css';
 
 export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return <Component {...pageProps} />;
 }
 ```
 
@@ -237,8 +234,8 @@ npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/n
 
 ### プリレンダリングの2つの方式
 
- - Static Generation (SSG): ビルド時にHTMLを生成する事前レンダリング方法
- - Server Side Rendering (SSR): クエストごとにHTMLを生成する事前レンダリングする方法
+- Static Generation (SSG): ビルド時にHTMLを生成する事前レンダリング方法
+- Server Side Rendering (SSR): クエストごとにHTMLを生成する事前レンダリングする方法
 
 その他にも、Client Side Rendering(CSR)やIncremental Static Regeneration(ISR)が存在します。
 
@@ -247,7 +244,7 @@ npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/n
 
 その他特徴
 
- - ページごとレンダリング方式を選択できる
+- ページごとレンダリング方式を選択できる
 
 ![](https://nextjs.org/static/images/learn/data-fetching/per-page-basis.png)
 
@@ -291,8 +288,8 @@ export async function getServerSideProps(context) {
   return {
     props: {
       // props for your component
-    }
-  }
+    },
+  };
 }
 ```
 
@@ -300,15 +297,14 @@ export async function getServerSideProps(context) {
 SEOが関係しないプライベートなユーザー固有のページではクライアントサイドでのレンダリングが向いている。
 
 ```js
-import useSWR from 'swr'
+import useSWR from 'swr';
 function Profile() {
-  const { data, error } = useSWR('/api/user', fetcher)
-  if (error) return <div>failed to load</div>
-  if (!data) return <div>loading...</div>
-  return <div>hello {data.name}!</div>
+  const { data, error } = useSWR('/api/user', fetcher);
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
+  return <div>hello {data.name}!</div>;
 }
 ```
-
 
 ## 動的ルート
 
@@ -372,7 +368,7 @@ npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/n
 
 ```js
 export default function handler(req, res) {
-  res.status(200).json({ text: 'Hello' })
+  res.status(200).json({ text: 'Hello' });
 }
 ```
 
@@ -385,7 +381,6 @@ http://localhost:3000/api/hello にアクセスすると次のようなレスポ
 ## デプロイ
 
 [vercel](https://vercel.com/)が良いらしい。
-
 
 ## 参考にしたサイト
 

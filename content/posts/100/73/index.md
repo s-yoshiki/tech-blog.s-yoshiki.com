@@ -49,7 +49,6 @@ _log("SUCCESS3");
 endProc();
 _log("END");
 exit;
-
 ```
 
 正しく実行されれば
@@ -60,7 +59,6 @@ SUCCESS1
 SUCCESS2
 SUCCESS3
 END
-
 ```
 
 func2でエラーが発生した場合は
@@ -70,7 +68,6 @@ START
 SUCCESS1
 ERROR2
 END
-
 ```
 
 このような出力を期待値とします。
@@ -119,7 +116,6 @@ function _sub() {
 
     return true;
 }
-
 ```
 
 個人的には問題ないと思っておりましたが、「関数の途中でreturnを書くな」と指摘されたことがあります。
@@ -173,7 +169,6 @@ function main() {
     _log("END");
     return $result;
 }
-
 ```
 
 キレイに書けました。
@@ -227,7 +222,6 @@ function main() {
     _log("END");
     return $result;
 }
-
 ```
 
 https://stackoverflow.com/questions/243967/do-you-consider-this-technique-bad
@@ -274,7 +268,6 @@ function main() {
 
     _log("END");
 }
-
 ```
 
 ## try ~ catchを使う
@@ -319,7 +312,6 @@ function main() {
         return $result;
     }
 }
-
 ```
 
 ## その他

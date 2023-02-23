@@ -14,17 +14,16 @@ AWSのマイグレーション関連で出てくる、「DataSync」「Storage G
 
 また、それぞれのユースケースをまとめました。
 
-
 ※本記事に記載している内容は2022/05時点のものです。
 
-<!-- 
+<!--
 ## 比較表
 
 ||DataSync|Storage Gateway|Transfer Family|Snowball|
 |-|-|-|-|-|
 |プロトコル|SMB/NFS|SMB|STFP/FTPS/FTP|-|
 |オンプレ→AWS|SMB/NFS|SMB|STFP/FTPS/FTP|-|
-|AWS→AWS|SMB/NFS|SMB|STFP/FTPS/FTP|-| 
+|AWS→AWS|SMB/NFS|SMB|STFP/FTPS/FTP|-|
 -->
 
 ## どちらのサービスを使った方が良いか
@@ -61,12 +60,10 @@ DataSync とファイルゲートウェイを組み合わせて利用するこ�
 - アプリケーションが既に Amazon S3 API に統合されていて、大きなファイルを S3 に転送するために高いスループットが必要な場合 → S3 Transfer Acceleration
 - 既存のストレージシステム (ネットワーク接続ストレージなど) や変更できない機器 (DNA シーケンサー、ビデオカメラなど) からデータを転送する場合や複数の転送先が必要な場合 → DataSync
 
-### AWS Storage Gateway と AWS Transfer Family 
+### AWS Storage Gateway と AWS Transfer Family
 
-- 既にSFTPを利用している場合 → AWS Transfer Family 
+- 既にSFTPを利用している場合 → AWS Transfer Family
 - NFS/SMBやS3などのDataSync対応サービスの場合 → DataSync
-
-
 
 ## AWS DataSync
 
@@ -142,14 +139,13 @@ S3もしくはEFSへのFTP/FTPS/SFTP接続を可能にするサービス。
   - テープゲートウェイ
   - Amazon FSx ファイルゲートウェイ
 
-
 分類ごとの特徴
 
 - ファイルゲートウェイ
   - プロトコル: NFS
   - 出力先: S3
     - ライフサイクルポリシー、バージョニング、クロ
-スリージョンレプリケーション等が利用可能
+      スリージョンレプリケーション等が利用可能
   - 更新データは非同期で転送
   - S3をバックエンドストレージとして利用
 - ボリュームゲートウェイ
@@ -171,17 +167,14 @@ S3もしくはEFSへのFTP/FTPS/SFTP接続を可能にするサービス。
   - Amazon FSx for OpenZFS
   - Amazon FSx for NetApp ONTAP
 
-
-
-|Type|利用用途|動作環境環境|
-|-|-|-|
-|ファイルゲートウェイ|NFSを通してオンプレのファイルをAWSへ移行し活用|AWS/オンプレ|
-|ボリュームゲートウェイ(Stored)|オンプレからAWSへのDRを目的とし、オンプレの特定ディスクボリュームを自動でAWSに複製|オンプレ|
-|ボリュームゲートウェイ(Cached)|1ボリューム最大32TBが実現できるローカルキャッシュスとして利用|オンプレ/AWS|
-|テープゲートウェイ|物理テープライブラリの代替として、バックアップSWと組み合わせたクラウドデータバックアップとして利用|オンプレ/AWS|
+| Type                           | 利用用途                                                                                           | 動作環境環境 |
+| ------------------------------ | -------------------------------------------------------------------------------------------------- | ------------ |
+| ファイルゲートウェイ           | NFSを通してオンプレのファイルをAWSへ移行し活用                                                     | AWS/オンプレ |
+| ボリュームゲートウェイ(Stored) | オンプレからAWSへのDRを目的とし、オンプレの特定ディスクボリュームを自動でAWSに複製                 | オンプレ     |
+| ボリュームゲートウェイ(Cached) | 1ボリューム最大32TBが実現できるローカルキャッシュスとして利用                                      | オンプレ/AWS |
+| テープゲートウェイ             | 物理テープライブラリの代替として、バックアップSWと組み合わせたクラウドデータバックアップとして利用 | オンプレ/AWS |
 
 より詳細な情報は[blackbelt](https://d1.awsstatic.com/webinars/jp/pdf/services/20170125_AWS-BlackBelt-StorageGateway_20170223Update.pdf)を参照ください。
-
 
 ### ユースケース
 
@@ -199,7 +192,7 @@ S3もしくはEFSへのFTP/FTPS/SFTP接続を可能にするサービス。
   - ストレージ: Amazon FSx利用料金
 - ボリュームゲートウェイ
   - ボリュームストレージ: 0.025USD/1GB + EBSスナップショット料金
-  - リクエスト:  0.01USD/1GB
+  - リクエスト: 0.01USD/1GB
 - テープゲートウェイ
   - ストレージ
     - VTL: 0.025USD
@@ -207,7 +200,6 @@ S3もしくはEFSへのFTP/FTPS/SFTP接続を可能にするサービス。
     - VTL(S3 Glacier Deep Archive ): 0.002USD
 
 [詳細](https://aws.amazon.com/jp/storagegateway/pricing/)
-
 
 ## 参考サイト
 

@@ -14,8 +14,6 @@ Lmabdaでmysqlまでの接続を確認した際のメモです
 
 CDKもアプリケーションも全てtypescriptで実装しています。
 
-
-
 ## Stack
 
 以下のソースがAWS CDKのスタックです。
@@ -213,7 +211,6 @@ export class LambdaWithVpcStack extends Stack {
     });
   }
 }
-
 ```
 
 ## Lambdaの実装
@@ -310,29 +307,28 @@ https://www.amazontrust.com/repository/AmazonRootCA1.pem
 
 ```json
 [
-    {
-        "id": 1,
-        "name": "田中",
-        "value": 100
-    },
-    {
-        "id": 2,
-        "name": "山田",
-        "value": 200000
-    },
-    {
-        "id": 3,
-        "name": "鈴木",
-        "value": 3000000
-    },
-    {
-        "id": 4,
-        "name": "佐藤",
-        "value": 12345
-    }
+  {
+    "id": 1,
+    "name": "田中",
+    "value": 100
+  },
+  {
+    "id": 2,
+    "name": "山田",
+    "value": 200000
+  },
+  {
+    "id": 3,
+    "name": "鈴木",
+    "value": 3000000
+  },
+  {
+    "id": 4,
+    "name": "佐藤",
+    "value": 12345
+  }
 ]
 ```
-
 
 ## 参考にしたサイト
 

@@ -1,49 +1,48 @@
-import {
-  IGroupByItems,
-  IGroupByYearMonthItems
-} from "types/entry.interface"
+import Link from 'next/link';
 import { useState } from 'react';
-import Link from 'next/link'
+import { IGroupByItems, IGroupByYearMonthItems } from 'types/entry.interface';
 
 interface YearMonthPostsProps {
-  items: IGroupByYearMonthItems[]
+  items: IGroupByYearMonthItems[];
 }
 interface MonthProps {
   item: IGroupByItems;
   year: string;
 }
 interface YearProps {
-  item: IGroupByYearMonthItems
+  item: IGroupByYearMonthItems;
 }
 
 const Month = ({ item, year }: MonthProps) => {
-  const month = item
-  const key = month.name.split('-')[1]
+  const month = item;
+  const key = month.name.split('-')[1];
   return (
     <>
-      <div className="ml-6 p-1">
+      <div className='ml-6 p-1'>
         <Link href={`/date/${year}/${key}`} passHref>
           <a>
-          <div className="hover:underline">{Number(key)}月 ({month.counts})</div>
+            <div className='hover:underline'>
+              {Number(key)}月 ({month.counts})
+            </div>
           </a>
         </Link>
       </div>
     </>
-  )
-}
+  );
+};
 
 const Year = ({ item }: YearProps) => {
-  const [open, setFlag] = useState<boolean>(false)
-  const year = item
+  const [open, setFlag] = useState<boolean>(false);
+  const year = item;
   return (
     <div>
-      <div onClick={() => setFlag(!open)} className="flex flex-wrap p-1">
-        <div className="pr-2">
+      <div onClick={() => setFlag(!open)} className='flex flex-wrap p-1'>
+        <div className='pr-2'>
           {open ? '▼' : '▶︎'}
         </div>
         <Link href={`/date/${year.name}`} passHref>
           <a>
-            <div className="hover:underline">
+            <div className='hover:underline'>
               {year.name} 年 ({year.counts})
             </div>
           </a>
@@ -52,22 +51,20 @@ const Year = ({ item }: YearProps) => {
       {open && (
         <div>
           {year.months.map((month, idx) => {
-            return (
-              <Month item={month} year={year.name} key={idx} />
-            )
+            return <Month item={month} year={year.name} key={idx} />;
           })}
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
 const YearMonthPosts = ({ items }: YearMonthPostsProps) => {
   return (
     <div>
       {items.map((year, idx) => <Year item={year} key={idx} />)}
     </div>
-  )
-}
+  );
+};
 
-export default YearMonthPosts
+export default YearMonthPosts;

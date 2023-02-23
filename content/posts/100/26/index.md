@@ -6,10 +6,12 @@ coverImage: "../../../images/thumbnail/no-image.png"
 author: "s-yoshiki"
 tags: ["小ネタ"]
 ---
+
 <blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">確かにこれは最悪だ。どんなサービスに使われてたのか気になる。<a href="https://t.co/vhSBieJ6EU">https://t.co/vhSBieJ6EU</a>
 &mdash; s-yoshiki | スクリプトカス (@s_yoshiki_dev) <a href="https://twitter.com/s_yoshiki_dev/status/1028297331345485824?ref_src=twsrc%5Etfw">2018年8月11日</a></blockquote>
 
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 そして、これがソースコード。
 <img src="https://i.redd.it/auvi7ijfursy.png">
 SELECT *...が目に入った瞬間に、「おおこれは...」と思ったが、他にも酷い部分がたくさんある。

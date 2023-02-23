@@ -17,7 +17,7 @@ https://dev-toys-web.vercel.app/
 
 ## 説明
 
-- [DevToys](https://github.com/veler/DevToys) 
+- [DevToys](https://github.com/veler/DevToys)
 - [DevToysMac](https://github.com/ObuchiYuki/DevToysMac)
 - [DevBox](https://www.dev-box.app/)
 - [DevUtils](https://devutils.app/)
@@ -53,7 +53,6 @@ Vercelでホスティングしています。
   - hash
   - password
   - uuid
-
 
 また現在進行形で機能を追加しています。
 

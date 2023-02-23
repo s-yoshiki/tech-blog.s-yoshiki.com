@@ -33,48 +33,48 @@ OriginAccessIdentityを利用することで、S3に直接アクセスされる�
 
 ```ts
 import {
-  Stack,
-  StackProps,
-  RemovalPolicy,
-  Duration,
   aws_cloudfront as cloudfront,
   aws_cloudfront_origins as cloudfrontOrigins,
   aws_iam as iam,
   aws_s3 as s3,
   aws_s3_deployment as s3deploy,
-} from "aws-cdk-lib";
-import { Construct } from "constructs";
+  Duration,
+  RemovalPolicy,
+  Stack,
+  StackProps,
+} from 'aws-cdk-lib';
+import { Construct } from 'constructs';
 
 export class AppStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    const bucket = new s3.Bucket(this, "StaticContentsBucket", {
-      bucketName: "cloudfront-s3-test-20220309",
+    const bucket = new s3.Bucket(this, 'StaticContentsBucket', {
+      bucketName: 'cloudfront-s3-test-20220309',
       removalPolicy: RemovalPolicy.DESTROY,
     });
 
     const oai = new cloudfront.OriginAccessIdentity(
       this,
-      "OriginAccessIdentity"
+      'OriginAccessIdentity',
     );
 
     bucket.addToResourcePolicy(
       new iam.PolicyStatement({
-        actions: ["s3:GetObject"],
+        actions: ['s3:GetObject'],
         effect: iam.Effect.ALLOW,
         principals: [
           new iam.CanonicalUserPrincipal(
-            oai.cloudFrontOriginAccessIdentityS3CanonicalUserId
+            oai.cloudFrontOriginAccessIdentityS3CanonicalUserId,
           ),
         ],
         resources: [`${bucket.bucketArn}/*`],
-      })
+      }),
     );
 
-    new cloudfront.Distribution(this, "Distribution", {
-      comment: "distribution for website",
-      defaultRootObject: "index.html",
+    new cloudfront.Distribution(this, 'Distribution', {
+      comment: 'distribution for website',
+      defaultRootObject: 'index.html',
       defaultBehavior: {
         allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD,
         cachedMethods: cloudfront.CachedMethods.CACHE_GET_HEAD,
@@ -87,13 +87,13 @@ export class AppStack extends Stack {
           ttl: Duration.seconds(300),
           httpStatus: 403,
           responseHttpStatus: 403,
-          responsePagePath: "/error.html",
+          responsePagePath: '/error.html',
         },
         {
           ttl: Duration.seconds(300),
           httpStatus: 404,
           responseHttpStatus: 404,
-          responsePagePath: "/error.html",
+          responsePagePath: '/error.html',
         },
       ],
       priceClass: cloudfront.PriceClass.PRICE_CLASS_ALL,
@@ -110,17 +110,17 @@ Origin Access Identityが適用されており、直接バケットを参照で�
 
 ```json
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Principal": {
-                "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity XXXXXXXXXXXXX"
-            },
-            "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::cloudfront-s3-test-20220309/*"
-        }
-    ]
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity XXXXXXXXXXXXX"
+      },
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::cloudfront-s3-test-20220309/*"
+    }
+  ]
 }
 ```
 
@@ -149,7 +149,6 @@ None     XXXXXXXXX.cloudfront.net   origin-access-identity/cloudfront/E31XXXXXXX
 None     YYYYYYYYY.cloudfront.net   origin-access-identity/cloudfront/E31YYYYYYYYYYY  None    None
 None     XXXXXXXXX.cloudfront.net   origin-access-identity/cloudfront/EHNXXXXXXXXXXX  None    None
 ```
-
 
 ### origin access identtity が反映されない件について
 

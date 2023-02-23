@@ -24,7 +24,6 @@ homebrewでffmpegをインストールします。
 brew install ffmpeg --with-fdk-aac --with-ffplay --with-freetype \
   --with-libass --with-libquvi --with-libvorbis --with-libvpx --with-opus \
   --with-x265 --with-webp
-
 ```
 
 brew install ffmpegでも問題ないとは思いますが、色々なオプションがあるのでとりあえずつけときました。
@@ -125,7 +124,6 @@ video:1802kB audio:11kB subtitle:0kB other streams:0kB global headers:0kB muxing
 [libx264 @ 0x7ff9b98b0200] ref B L1: 97.4%  2.6%
 [libx264 @ 0x7ff9b98b0200] kb/s:332.30
 [aac @ 0x7ff9b98b0e00] Qavg: 65536.000
-
 ```
 
 無事sample.mp4が生成されました。

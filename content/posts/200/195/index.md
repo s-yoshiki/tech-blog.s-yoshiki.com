@@ -19,7 +19,7 @@ JavaScriptで2分探索(バイナリサーチ)を実装してみました。
 
 また、wikipediaではこのように説明されています。
 
->ソート済みのリストや配列に入ったデータ（同一の値はないものとする）に対する検索を行うにあたって、 中央の値を見て、検索したい値との大小関係を用いて、検索したい値が中央の値の右にあるか、左にあるかを判断して、片側には存在しないことを確かめながら検索していく。
+> ソート済みのリストや配列に入ったデータ（同一の値はないものとする）に対する検索を行うにあたって、 中央の値を見て、検索したい値との大小関係を用いて、検索したい値が中央の値の右にあるか、左にあるかを判断して、片側には存在しないことを確かめながら検索していく。
 >
 > 大小関係を用いるため、未ソートのリストや大小関係の定義されない要素を含むリストには二分探索を用いることはできない。
 >
@@ -39,7 +39,6 @@ https://ja.wikipedia.org/wiki/%E4%BA%8C%E5%88%86%E6%8E%A2%E7%B4%A2
 
 このサンプルでは検索結果のインデックスとともに探索時の最後に絞った探索範囲の最小値と最大値を返しています。
 
-
 ```js
 /**
  * 2分探索
@@ -48,31 +47,31 @@ https://ja.wikipedia.org/wiki/%E4%BA%8C%E5%88%86%E6%8E%A2%E7%B4%A2
  * @return Array 探索結果の添字 見つからなかった場合は-1を返す
  */
 function binarySearch(arr, target) {
-    let idx = -1;
-    let iMin = 0;
-    let iMax = arr.length - 1;
-    while (iMin <= iMax) {
-        let iMid = Math.floor((iMin + iMax) / 2);
-        if (arr[iMid] === target) {
-            idx = iMid;
-            break;
-        } else if (arr[iMid] < target) {
-            iMin = iMid + 1;
-        } else {
-            iMax = iMid - 1;
-        }
+  let idx = -1;
+  let iMin = 0;
+  let iMax = arr.length - 1;
+  while (iMin <= iMax) {
+    let iMid = Math.floor((iMin + iMax) / 2);
+    if (arr[iMid] === target) {
+      idx = iMid;
+      break;
+    } else if (arr[iMid] < target) {
+      iMin = iMid + 1;
+    } else {
+      iMax = iMid - 1;
     }
-    return [idx, iMin, iMax]
+  }
+  return [idx, iMin, iMax];
 }
 
 //
 // sample
 //
-let data = [0,9,1,8,2,7,3,6,4,5,10].sort((a,b) => a-b)
-console.log(data)
+let data = [0, 9, 1, 8, 2, 7, 3, 6, 4, 5, 10].sort((a, b) => a - b);
+console.log(data);
 // 0,1,2,3,4,5,6,7,8,9,10
-let [idx, iMin, iMax] = binarySearch(data, 4)
-console.log([idx, iMin, iMax])
+let [idx, iMin, iMax] = binarySearch(data, 4);
+console.log([idx, iMin, iMax]);
 // 4,4,4
 ```
 

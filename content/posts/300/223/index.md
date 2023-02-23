@@ -11,7 +11,6 @@ tags: ["php","xdebug","mac","homebrew"]
 
 phpunitのカバレッジを算出を行うためにMacにHomebrewでphp7.4をインストールしようとした際の記録です。
 
-
 ## php7.4のインストール
 
 php7.4のインストールは次のコマンドで実施します。
@@ -74,8 +73,6 @@ Extension xdebug enabled in php.ini
 ```
 
 `/usr/local/etc/php/7.4/php.ini` と出てきたので必要な値を追記します。
-
-
 
 ## 参考にさせていただいたサイト
 

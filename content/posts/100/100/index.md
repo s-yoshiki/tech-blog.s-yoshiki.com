@@ -16,9 +16,9 @@ PythonとOpenCVで簡単に実装出来そうでした。
 
 ## 環境
 
- - OpenCV 3.4.3
- - Python 3.7.1
- - Mac OS X
+- OpenCV 3.4.3
+- Python 3.7.1
+- Mac OS X
 
 ## 説明
 
@@ -93,6 +93,7 @@ python3 compress_image.py ./path/to/src.jpg -o ./path/to/dst.jpg -q 80
 ## 実験
 
 元画像サイズを527KBとした時
+
 <table>
 <tbody>
 <tr>

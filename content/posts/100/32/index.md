@@ -6,12 +6,14 @@ coverImage: "../../../images/thumbnail/javascript-logo.png"
 author: "s-yoshiki"
 tags: ["javascript","semantic ui","競技プログラミング","atcoder","aceeditor"]
 ---
+
 <blockquote class="twitter-tweet" data-lang="ja">
 
 AtCoderとかで使いたいブラウザで動くJS用のエディタ + デバッグ環境を作りました。AceEditor とか使ってます。
 来週からこれ使って頑張ります。<a href="https://t.co/KWI5MGDEnS">https://t.co/KWI5MGDEnS</a> <a href="https://t.co/xPXAV38YKk">pic.twitter.com/xPXAV38YKk</a>
 
 — s-yoshiki | スクリプトカス (@s_yoshiki_dev) <a href="https://twitter.com/s_yoshiki_dev/status/1034472982901448704?ref_src=twsrc%5Etfw">2018年8月28日</a></blockquote>
+
 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 ## 概要
@@ -24,9 +26,10 @@ JSのみです。
 ## デモ
 
 こちらから、
+
 <script async="" src="//jsfiddle.net/s_yoshiki/g2pde37z/embed/result,js,html,css/dark/"></script>
 
-<a href="//jsfiddle.net/s_yoshiki/g2pde37z/show">デモ  ※外部ウィンドウが開きます。</a>
+<a href="//jsfiddle.net/s_yoshiki/g2pde37z/show">デモ ※外部ウィンドウが開きます。</a>
 
 ## ソース
 
@@ -34,42 +37,42 @@ JSのみです。
 
 ```js
 (() => {
-    var src = document.getElementById("src")
-    var dst = document.getElementById("dst")
-    var run = document.getElementById("run")
+  var src = document.getElementById('src');
+  var dst = document.getElementById('dst');
+  var run = document.getElementById('run');
 
-    const editor = ace.edit("editor")
-    editor.setTheme("ace/theme/monokai")
-    editor.getSession().setMode("ace/mode/javascript")
+  const editor = ace.edit('editor');
+  editor.setTheme('ace/theme/monokai');
+  editor.getSession().setMode('ace/mode/javascript');
 
-    console.log = (v) => {
-        dst.value += String(v) + "\n"
-    }
+  console.log = (v) => {
+    dst.value += String(v) + '\n';
+  };
 
-    function getStdio() {
-        return `
+  function getStdio() {
+    return `
         let require = (arg)  => {
             return {
                 readFileSync : (type, string_type) => {
                     return \`` + src.value + `\`
                 }
             }
-        }`
+        }`;
+  }
+
+  run.addEventListener('click', () => {
+    dst.value = '';
+
+    let f = getStdio() + '\n';
+    f += editor.getValue();
+    try {
+      let tmp = new Function(f);
+      tmp();
+    } catch (e) {
+      dst.value = String(e);
     }
-
-    run.addEventListener("click", () => {
-        dst.value = ""
-
-        let f = getStdio() + "\n"
-        f += editor.getValue();
-        try {
-            let tmp = new Function(f)
-            tmp()
-        } catch (e) {
-            dst.value = String(e)
-        }
-    })
-})()
+  });
+})();
 ```
 
 ### 解説
@@ -77,7 +80,7 @@ JSのみです。
 簡単に解説すると、実行イベントが呼ばれるたびに、
 
 ```js
-require.readFileSync
+require.readFileSync;
 ```
 
 の返り値を
@@ -86,7 +89,7 @@ require.readFileSync
 さらに、
 
 ```js
-let tmp = new Function(f)
+let tmp = new Function(f);
 ```
 
 の箇所でJS文字列を式として評価して実行しています。
@@ -98,7 +101,7 @@ https://qiita.com/To_BB/items/bf4d6384f7dce47bb216
 また、このソースに関してはFunctionではなくeval()でも問題ないと思います。
 
 ```js
-console.log()
+console.log();
 ```
 
 は強引に書き換えています。

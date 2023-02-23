@@ -23,6 +23,7 @@ Gravは早くて簡単でフレキシブルなファイルベースのCMSです�
 Flat-File CMSで、もう一つ人気の高い <a href="http://picocms.org/">Pico</a> と最も人気のあるCMSであるWordPressをGitHubのWatch Star数で比較しました。
 
 **GitHubのWatch Starの比較**
+
 <table>
 <thead>
 <tr>
@@ -66,6 +67,7 @@ GravのStar数はWordPressに迫る勢いです。
 ## 環境
 
 以下の環境で試しました。
+
 <ul>
  	<li>PHP 7.1.19 (cli) (built: Aug 17 2018 20:10:18) ( NTS )</li>
  	<li>Mac OS X 10.14.2</li>
@@ -201,7 +203,6 @@ remote: Total 194 (delta 3), reused 81 (delta 0), pack-reused 0
 Receiving objects: 100% (194/194), 1.23 MiB | 528.00 KiB/s, done.
 Resolving deltas: 100% (3/3), done.
 SUCCESS cloned https://github.com/getgrav/grav-theme-quark -> /path/to/grav/user/themes/quark
-
 ```
 
 これでインストールが完了します。

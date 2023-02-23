@@ -48,9 +48,8 @@ services:
 ファイル設定後、起動します。
 
 ```
-docker-compose up -d 
+docker-compose up -d
 ```
-
 
 ## prisma スキーマ定義
 
@@ -107,17 +106,17 @@ model User {
 次に、実行ファイルである`main.ts`を作成します。
 
 ```typescript
-import { PrismaClient, Prisma } from "@prisma/client";
+import { Prisma, PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 async function main() {
   await prisma.user.create({
     data: {
-      name: "あああ",
+      name: 'あああ',
       email: `alice-${new Date().getTime()}@example.com`,
       posts: {
-        create: { title: "Hello World" },
+        create: { title: 'Hello World' },
       },
     },
   });
@@ -167,4 +166,3 @@ npx ts-node ./main.ts
   }
 ]
 ```
-

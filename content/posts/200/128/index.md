@@ -32,9 +32,9 @@ GitBookを使ってドキュメントを生成するまでをやってみまし�
 
 ## 検証した環境
 
- - macOS mojava
- - nodejs 12.1.0
- - npm 6.9.0
+- macOS mojava
+- nodejs 12.1.0
+- npm 6.9.0
 
 nodejs npm の紹介&導入は省きます。
 
@@ -48,7 +48,6 @@ $ npm install -g gitbook-cli
 /usr/local/bin/gitbook -> /usr/local/lib/node_modules/gitbook-cli/bin/gitbook.js
 + gitbook-cli@2.3.2
 added 578 packages from 672 contributors in 18.22s
-
 ```
 
 これを導入することによりgitbookコマンドが使えるようになります。
@@ -70,7 +69,6 @@ Installing GitBook 3.2.3
 $ mkdir gitbook_test
 $ cd gitbook_test
 $ gitbook init
-
 ```
 
 すると REAME.md と SUMMARY.md が作成されます。
@@ -110,7 +108,7 @@ imgに適当な画像を置き、
 ```md
 # Hello World
 
-* 最初の投稿
+- 最初の投稿
 
 ![](/img/test.png)
 ```
@@ -124,7 +122,7 @@ imgに適当な画像を置き、
 ```md
 # Introduction
 
-* 概要のページです
+- 概要のページです
 
 test
 ```
@@ -134,13 +132,11 @@ test
 **SUMMARY.md**
 
 ```md
-
 # 概要
 
 [Introduction](./README.md)
 
 [Hello World!](./docs/hello.md)
-
 ```
 
 ## 日本語化
@@ -150,7 +146,7 @@ book.jsonに次のよう記述します。
 
 ```json
 {
-    "language": "ja"
+  "language": "ja"
 }
 ```
 

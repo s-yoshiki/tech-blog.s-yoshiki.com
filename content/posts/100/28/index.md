@@ -10,11 +10,11 @@ tags: ["amazon-lightsail","php","apache","wordpress","amazon-aws","bitnami"]
 ## はじめに
 
 <img src="https://qiita-image-store.s3.amazonaws.com/0/82419/005b02cf-baf5-eb5f-9e83-ab2059e0fc61.png" alt="lightsail_logo.png">AWS
-Lightsailでbitnami WordPressのイメージを選択してインスタンスを立てた場合、 デフォルトのアプリケーションとしてWordPressとphpmyadminが利用できるようになっています。 
+Lightsailでbitnami WordPressのイメージを選択してインスタンスを立てた場合、 デフォルトのアプリケーションとしてWordPressとphpmyadminが利用できるようになっています。
 
 これに加え、
 `http://設定したドメイン/` (場合によっては`http://設定したドメイン/wordpress/`)でwordpressに、
-`http://設定したドメイン/phpmyadmin/` でphpmyadminに リクエストが行くようになっています。 
+`http://設定したドメイン/phpmyadmin/` でphpmyadminに リクエストが行くようになっています。
 
 デフォルトの設定を流用した場合、同じインスタンス内で複数のアプリケーションを建てると、 URLがサブディレクトリを切る形になります。
 
@@ -83,7 +83,6 @@ confはApacheの設定ファイルをおきます。 htdocsは公開するコン
 ```php
 <?php
 echo('Hello World');
-
 ```
 
 次にApacheの設定を行います。
@@ -184,7 +183,6 @@ PHP-FPMの設定
 	SSLCertificateKeyFile '/opt/bitnami/apps/myapp/conf/certs/server.key'
 	Include '/opt/bitnami/apps/myapp/conf/httpd-app.conf'
 </VirtualHost>
-
 ```
 
 ##### php-settings.conf

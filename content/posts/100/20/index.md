@@ -35,7 +35,6 @@ import urllib.request, urllib.parse
 from urllib.parse import urlparse
 import bs4
 import re
-
 ```
 
 ### リクエストURL
@@ -52,6 +51,7 @@ http://www.google.co.jp/search?safe=off&client=ubuntu&channel=fs&hl=ja&biw=1920&
 ### クエリ作成
 
 ↓この関数でリクエストURLを作成し、パースしたhtmlオブジェクトを返却します。
+
 <div style="font-size:13px !important;">
 
 ```py
@@ -60,7 +60,6 @@ headers = {'User-agent':'Mozilla/11.0'}
   url = "http://www.google.co.jp/search?safe=off&channel=fs&hl=ja&tbm=nws&tbs=qdr:"+term+"&q="+urllib.parse.quote(search)+"&oq="+urllib.parse.quote(search)
   req = urllib.request.Request(url,None,headers)
   return bs4.BeautifulSoup(urllib.request.urlopen(req).read(), "html.parser")
-
 ```
 
 </div>
@@ -110,7 +109,6 @@ for val in d_list :
   result.append(news)
 
 return result
-
 ```
 
 ### 実行
@@ -120,7 +118,6 @@ if __name__ == "__main__" :
   query = urllib.parse.quote("keyword")
   html = getGoogleNewsSite(query)
   result  = getNewsList(html)
-
 ```
 
 こんな感じで使います。
@@ -144,7 +141,6 @@ if __name__ == "__main__" :
     print('publisher : ' + j['publisher'])
     print('date      : ' + j['date'])
     print('content   : ' + j['content'])
-
 ```
 
 12行目の
@@ -197,7 +193,6 @@ title     : マイクロソフト、4  6月業績は予想上回る クラウド
 publisher : ロイター
 date      : 1日前
 content   : ［１９日 ロイター］ - 米マイクロソフト(MSFT.O)の第４・四半期（４─６月）決算は、クラウドコンピューティングサービス「アジュール」やクラウド型業務ソフト「オフィス３６５」に対する企業の需要が拡大し、売上高と利益が市場予想を上回った。
-
 ```
 
 ## 他
@@ -209,5 +204,4 @@ proxies = {'http' : 'hogehoge.co.jp'}
 proxy = urllib.request.ProxyHandler(proxies)
 opener = urllib.request.build_opener(proxy)
 urllib.request.install_opener(opener)
-
 ```

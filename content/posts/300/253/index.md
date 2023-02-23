@@ -17,13 +17,13 @@ RPMパッケージについて簡単に触れておきます。
 
 **特徴**
 
- - コンポーネントが必要なファイルやメタデータ(RPMヘッダー)をパッケージ化したもの
- - cpioアーカイブで構成されている
+- コンポーネントが必要なファイルやメタデータ(RPMヘッダー)をパッケージ化したもの
+- cpioアーカイブで構成されている
 
 **パッケージの種類**
 
- - ソースRPM(SRPM): ソースコードと SPEC ファイルが含まれる
- - バイナリRPM: ソースおよびパッチから構築されたバイナリーが含まれる
+- ソースRPM(SRPM): ソースコードと SPEC ファイルが含まれる
+- バイナリRPM: ソースおよびパッチから構築されたバイナリーが含まれる
 
 ## step1.環境構築からRPMパッケージングまで
 
@@ -67,16 +67,16 @@ rpmdev-setuptree
 
 各ディレクトリの役割は以下の通りとなります。
 
- - BUILD
-   - パッケージを構築すると、ここにさまざまな `%buildroot` ディレクトリーが作成されます。これは、ログ出力で十分な情報を得られない場合に、失敗したビルドを調べるのに場合に便利です
- - RPMS
-   - バイナリー RPM は、さまざまなアーキテクチャーのサブディレクトリー (例: `x86_64` および `noarch`) に作成されます
- - SOURCES
-   - ここでは、このパッケージャーは、圧縮したソースコードアーカイブとパッチを配置します。`rpmbuild` コマンドは、これらを検索します
- - SPECS
-   - SPECファイルを配置
- - SRPMS
-   - `rpmbuild` を使用してバイナリー RPM の代わりに SRPM を構築すると、生成される SRPM がここに作成されます
+- BUILD
+  - パッケージを構築すると、ここにさまざまな `%buildroot` ディレクトリーが作成されます。これは、ログ出力で十分な情報を得られない場合に、失敗したビルドを調べるのに場合に便利です
+- RPMS
+  - バイナリー RPM は、さまざまなアーキテクチャーのサブディレクトリー (例: `x86_64` および `noarch`) に作成されます
+- SOURCES
+  - ここでは、このパッケージャーは、圧縮したソースコードアーカイブとパッチを配置します。`rpmbuild` コマンドは、これらを検索します
+- SPECS
+  - SPECファイルを配置
+- SRPMS
+  - `rpmbuild` を使用してバイナリー RPM の代わりに SRPM を構築すると、生成される SRPM がここに作成されます
 
 ### プログラム配置
 
@@ -118,7 +118,6 @@ chmod 755 -R %{buildroot}/%{_bindir}
 
 詳細なspecの記述については、[こちらを参照してください](/entry/251)
 
-
 ### rpmbuild
 
 次のコマンドでbuildを行います。
@@ -152,11 +151,10 @@ $ which helloworld
 /usr/bin/helloworld
 ```
 
-
 ## リンク
 
- - [RPM（Red Hat Package Manager）とは - IT用語辞典 e-Words](https://e-words.jp/w/RPM-2.html)
- - [Available Repositories for CentOS](https://wiki.centos.org/AdditionalResources/Repositories)
- - [Packaging/Guidelines/ja - Fedora Project Wiki](https://fedoraproject.org/wiki/Packaging/Guidelines/ja)
- - [ソフトウェアのパッケージ化および配布 Red Hat Enterprise Linux 8 | Red Hat Customer Portal](https://access.redhat.com/documentation/ja-jp/red_hat_enterprise_linux/8/html/packaging_and_distributing_software/index)
- - [Write toolchain-agnostic RPM spec files for GCC and Clang | Red Hat Developer](https://developers.redhat.com/articles/2021/07/28/write-toolchain-agnostic-rpm-spec-files-gcc-and-clang)
+- [RPM（Red Hat Package Manager）とは - IT用語辞典 e-Words](https://e-words.jp/w/RPM-2.html)
+- [Available Repositories for CentOS](https://wiki.centos.org/AdditionalResources/Repositories)
+- [Packaging/Guidelines/ja - Fedora Project Wiki](https://fedoraproject.org/wiki/Packaging/Guidelines/ja)
+- [ソフトウェアのパッケージ化および配布 Red Hat Enterprise Linux 8 | Red Hat Customer Portal](https://access.redhat.com/documentation/ja-jp/red_hat_enterprise_linux/8/html/packaging_and_distributing_software/index)
+- [Write toolchain-agnostic RPM spec files for GCC and Clang | Red Hat Developer](https://developers.redhat.com/articles/2021/07/28/write-toolchain-agnostic-rpm-spec-files-gcc-and-clang)

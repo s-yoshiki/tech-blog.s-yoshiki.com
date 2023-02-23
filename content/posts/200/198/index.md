@@ -12,7 +12,6 @@ tags: ["javascript", "アルゴリズム", "競技プログラミング"]
 AtCoder ABC012 の D問題でワーシャルフロイド法が利用できる問題が出てきたので、
 JavaScriptで実装しました。
 
-
 ## AtCoder ABC012 D問題
 
 ### [D - バスと避けられない運命](https://atcoder.jp/contests/abc012/tasks/abc012_4)
@@ -51,14 +50,9 @@ ai と bi は座標を表しており、ti は ai と bi 間の距離である�
 2 3 10
 ```
 
-
 1から2までの距離は10、1から3までの距離は20、2から3までの距離は10となる。
 
 よって2を選択したときに最大の距離が10となるため、10を出力する。
-
-
-
-
 
 ### 解説
 
@@ -67,55 +61,55 @@ ai と bi は座標を表しており、ti は ai と bi 間の距離である�
 ## 実装
 
 ```js
-"use strict"
+'use strict';
 function main(arg) {
-    let tmp = arg.trim().split("\n").map(e => e.split(" ").map(Number))
-    const V = tmp[0][0]
-    const E = tmp[0][1]
-    tmp.shift()
-    let data = tmp
+  let tmp = arg.trim().split('\n').map(e => e.split(' ').map(Number));
+  const V = tmp[0][0];
+  const E = tmp[0][1];
+  tmp.shift();
+  let data = tmp;
 
-    const MAX = 10e9;
-    let graph = Array.from(new Array(V), () => new Array(V).fill(MAX));
+  const MAX = 10e9;
+  let graph = Array.from(new Array(V), () => new Array(V).fill(MAX));
 
-    for (let i = 0; i < data.length; i++) {
-        let a = data[i][0] - 1
-        let b = data[i][1] - 1
-        let t = data[i][2]
-        graph[a][b] = t
-        graph[b][a] = t
-    }
-    
-    // ワーシャルフロイド
-    for (let k = 0; k < V; k++) {
-        for (let i = 0; i < V; i++) {
-            for (let j = 0; j < V; j++) {
-                graph[i][j] = Math.min(graph[i][j], graph[i][k] + graph[k][j])
-                if (i === j) {
-                    graph[i][j] = 0
-                }
-            }
-        }
-    }
+  for (let i = 0; i < data.length; i++) {
+    let a = data[i][0] - 1;
+    let b = data[i][1] - 1;
+    let t = data[i][2];
+    graph[a][b] = t;
+    graph[b][a] = t;
+  }
 
-    // console.log(JSON.stringify(graph,null,' '));
-
-    let ans = 10e9;
-    let max_temp = 0;
-
+  // ワーシャルフロイド
+  for (let k = 0; k < V; k++) {
     for (let i = 0; i < V; i++) {
-        for (let j = 0; j < V; j++) {
-            if (max_temp < graph[i][j]) {
-                max_temp = graph[i][j];
-            }
+      for (let j = 0; j < V; j++) {
+        graph[i][j] = Math.min(graph[i][j], graph[i][k] + graph[k][j]);
+        if (i === j) {
+          graph[i][j] = 0;
         }
-        if (ans > max_temp) {
-            ans = max_temp;
-        }
-        max_temp = 0;
+      }
     }
+  }
 
-    console.log(ans);
+  // console.log(JSON.stringify(graph,null,' '));
+
+  let ans = 10e9;
+  let max_temp = 0;
+
+  for (let i = 0; i < V; i++) {
+    for (let j = 0; j < V; j++) {
+      if (max_temp < graph[i][j]) {
+        max_temp = graph[i][j];
+      }
+    }
+    if (ans > max_temp) {
+      ans = max_temp;
+    }
+    max_temp = 0;
+  }
+
+  console.log(ans);
 }
 main(require('fs').readFileSync('/dev/stdin', 'utf8'));
 ```
@@ -132,7 +126,7 @@ main(require('fs').readFileSync('/dev/stdin', 'utf8'));
 ワーシャルフロイドで計算された変数`graph`は次のようになる。
 
 ```json
-[[20,10,20],[10,20,10],[20,10,20]]
+[[20, 10, 20], [10, 20, 10], [20, 10, 20]]
 ```
 
 この2次元配列の行の中の最大値が一番小さいものを求めればOK

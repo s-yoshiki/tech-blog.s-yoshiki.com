@@ -19,7 +19,7 @@ mac上で検証しました。全てhomebrewでセットアップしています
 
 <!-- wp:heading {"level":3} -->
 
-### fswatch 
+### fswatch
 
 <!-- wp:embed {"url":"https://github.com/emcrisostomo/fswatch"} -->
 <figure class="wp-block-embed"><div class="wp-block-embed__wrapper">
@@ -43,21 +43,18 @@ fswatch
 
 ```
 $ brew install fswatch
-
 ```
 
 rsync
 
 ```
 $ brew install rsync
-
 ```
 
 unison
 
 ```
 $ brew install unison
-
 ```
 
 ## fswatch + rsync で同期する
@@ -68,7 +65,6 @@ fswatch + rsync を利用する方法は 例えばsrc1/ ディレクトリでフ
 
 ```
 $ fswatch -o /path/to/src1 | xargs -I{} rsync -r /path/to/src1/ /path/to/src2/
-
 ```
 
 rsyncは双方間の同期に向いていません。双方間の同期を実現するにはunisonが必要になります。
@@ -98,7 +94,6 @@ root=/path/to/src2/
 
 # 同期するパスの定義
 path=./
-
 ```
 
 <!-- wp:heading {"level":3} -->
@@ -107,7 +102,6 @@ path=./
 
 ```
 $ fswatch -o /path/to/src1 /path/to/src2 | xargs -I{} unison -batch sync
-
 ```
 
 上手くいくと次のようにログが出力されます。
@@ -132,7 +126,6 @@ UNISON 2.51.2 (OCAML 4.08.1) started propagating changes at 18:56:19.92 on 02 No
 [END] Updating file .DS_Store
 [BGN] Updating file test2.txt from /path/to/src2 to /path/to/src1
 [END] Updating file test2.txt
-
 ```
 
 ## 参考

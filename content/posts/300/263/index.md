@@ -39,7 +39,7 @@ cdk bootstrap
 次のように表示されれば成功です。
 
 ```
- ✅  Environment aws://790131586983/ap-northeast-1 bootstrapped.
+✅  Environment aws://790131586983/ap-northeast-1 bootstrapped.
 ```
 
 ## プロジェクト作成〜Lambdaデプロイ
@@ -60,11 +60,11 @@ cdk init app --language typescript
 これがLambdaで動くコードとなります。
 
 ```typescript
-import { Handler } from 'aws-lambda'
+import { Handler } from 'aws-lambda';
 
 export const handler: Handler = async () => {
-  console.log('Hello Lambda!')
-}
+  console.log('Hello Lambda!');
+};
 ```
 
 ### Stack作成
@@ -72,12 +72,9 @@ export const handler: Handler = async () => {
 `lib/cdkapp-stack.ts`に次の内容を記載します。
 
 ```typescript
-import { 
-  Stack,
-  StackProps
-} from 'aws-cdk-lib';
+import { Stack, StackProps } from 'aws-cdk-lib';
+import * as lambdaNodejs from 'aws-cdk-lib/aws-lambda-nodejs';
 import { Construct } from 'constructs';
-import * as lambdaNodejs from 'aws-cdk-lib/aws-lambda-nodejs'
 
 export class CdkappStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -85,7 +82,7 @@ export class CdkappStack extends Stack {
 
     new lambdaNodejs.NodejsFunction(this, 'HelloFunction', {
       entry: 'src/lambda/index.ts',
-    })
+    });
   }
 }
 ```
@@ -134,10 +131,8 @@ cdk destroy
   - キャッシュされたコンテキストの管理
 - `cdk docs` or `cdk doc`
   - ブラウザでリファレンスの表示
-- `cdk doctor` 
+- `cdk doctor`
   - 潜在的な問題の確認
-
-
 
 ## 参考にしたサイト
 

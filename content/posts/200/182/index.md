@@ -108,4 +108,3 @@ docker-compose exec ansible /bin/bash # ansibleコンテナにログイン
 ansible-playbook -i inventry.ini site-db.yml # dbサーバ プロビジョニング
 ansible-playbook -i inventry.ini site-web.yml # webサーバ プロビジョニング
 ```
-

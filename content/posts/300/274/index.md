@@ -11,11 +11,9 @@ tags: ["amazon-aws","aws-cdk","typescript"]
 
 AWS CDK で S3 CloudFront OAI Route53 を利用し SSGでビルドしたNextJSの配信環境を構築しました。
 
-
 ## 構成のポイント
 
 CDKでは以下の構成を実装しています。
-
 
 - NextJSで実装した静的コンテンツ・アプリケーションのホスティング環境としてS3を利用
 - コンテンツを配信するCDNとしてCloudFrontを利用
@@ -33,7 +31,6 @@ CDKでは以下の構成を実装しています。
 
 **bin/cdk.ts**
 
-
 ```ts
 #!/usr/bin/env node
 /**
@@ -42,20 +39,23 @@ CDKでは以下の構成を実装しています。
  */
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { WebDistributionStack, WebDistributionStackProps } from '../lib/stacks/stack.ts';
+import {
+  WebDistributionStack,
+  WebDistributionStackProps,
+} from '../lib/stacks/stack.ts';
 
 const app = new cdk.App();
 
 const env = {
   account: 'XXXXXXXXXXXX',
   region: 'ap-northeast-1',
-}
+};
 
 new WebDistributionStack(app, `WebDistributionStack`, {
   env,
   bucketName: 's3.example.com',
   rootDomain: 'example.com',
-  fqdn: [`www.example.com`, `example.com`, 'test.example.com']
+  fqdn: [`www.example.com`, `example.com`, 'test.example.com'],
 });
 ```
 
@@ -63,19 +63,19 @@ new WebDistributionStack(app, `WebDistributionStack`, {
 
 ```ts
 import {
-  Stack,
-  StackProps,
-  RemovalPolicy,
-  Duration,
+  aws_certificatemanager as acm,
   aws_cloudfront as cloudfront,
   aws_cloudfront_origins as cloudfrontOrigins,
   aws_iam as iam,
-  aws_s3 as s3,
-  aws_certificatemanager as acm,
   aws_route53 as route53,
   aws_route53_targets as route53targets,
-} from "aws-cdk-lib";
-import { Construct } from "constructs";
+  aws_s3 as s3,
+  Duration,
+  RemovalPolicy,
+  Stack,
+  StackProps,
+} from 'aws-cdk-lib';
+import { Construct } from 'constructs';
 
 export interface WebDistributionStackProps extends StackProps {
   readonly bucketName: string;
@@ -87,36 +87,36 @@ export class WebDistributionStack extends Stack {
   constructor(scope: Construct, id: string, props: WebDistributionStackProps) {
     super(scope, id, props);
 
-    const bucket = new s3.Bucket(this, "StaticContentsBucket", {
+    const bucket = new s3.Bucket(this, 'StaticContentsBucket', {
       bucketName: props.bucketName,
       removalPolicy: RemovalPolicy.DESTROY,
     });
 
     bucket.addToResourcePolicy(
       new iam.PolicyStatement({
-        actions: ["s3:GetObject"],
+        actions: ['s3:GetObject'],
         effect: iam.Effect.ALLOW,
         resources: [`${bucket.bucketArn}/*`],
         principals: [
           new iam.CanonicalUserPrincipal(
             new cloudfront.OriginAccessIdentity(
               this,
-              "OriginAccessIdentity"
-            ).cloudFrontOriginAccessIdentityS3CanonicalUserId
+              'OriginAccessIdentity',
+            ).cloudFrontOriginAccessIdentityS3CanonicalUserId,
           ),
         ],
-      })
+      }),
     );
 
     const addHeaderFunction = new cloudfront.Function(
       this,
-      "CloudFrontFunctionsRedirectIndex",
+      'CloudFrontFunctionsRedirectIndex',
       {
         functionName: `redirect`,
         code: cloudfront.FunctionCode.fromFile({
-          filePath: "src/cloudfront-function/redirect/index.js",
+          filePath: 'src/cloudfront-function/redirect/index.js',
         }),
-      }
+      },
     );
 
     const defaultBehavior = {
@@ -138,36 +138,36 @@ export class WebDistributionStack extends Stack {
         ttl: Duration.seconds(300),
         httpStatus: 403,
         responseHttpStatus: 200,
-        responsePagePath: "/index.html",
+        responsePagePath: '/index.html',
       },
       {
         ttl: Duration.seconds(300),
         httpStatus: 404,
         responseHttpStatus: 404,
-        responsePagePath: "/error.html",
+        responsePagePath: '/error.html',
       },
     ];
 
-    const hostedZone = route53.HostedZone.fromLookup(this, "HostedZone", {
+    const hostedZone = route53.HostedZone.fromLookup(this, 'HostedZone', {
       domainName: props.rootDomain,
     });
 
     // TLS証明書を作る
-    const domains = props.fqdn.slice()
-    const cert = new acm.DnsValidatedCertificate(this, "Certificate", {
+    const domains = props.fqdn.slice();
+    const cert = new acm.DnsValidatedCertificate(this, 'Certificate', {
       domainName: domains[0],
       subjectAlternativeNames: domains,
       hostedZone,
-      region: "us-east-1",
+      region: 'us-east-1',
     });
 
-    const distribution = new cloudfront.Distribution(this, "Distribution", {
-      defaultRootObject: "index.html",
+    const distribution = new cloudfront.Distribution(this, 'Distribution', {
+      defaultRootObject: 'index.html',
       priceClass: cloudfront.PriceClass.PRICE_CLASS_ALL,
       defaultBehavior,
       errorResponses,
       domainNames: props.fqdn,
-      certificate: cert
+      certificate: cert,
     });
 
     for (let i = 0; i < props.fqdn.length; i++) {
@@ -175,13 +175,12 @@ export class WebDistributionStack extends Stack {
         zone: hostedZone,
         recordName: props.fqdn[i],
         target: route53.RecordTarget.fromAlias(
-          new route53targets.CloudFrontTarget(distribution)
+          new route53targets.CloudFrontTarget(distribution),
         ),
       });
     }
   }
 }
-
 ```
 
 **src/cloudfront-function/redirect/index.js**
@@ -190,11 +189,11 @@ export class WebDistributionStack extends Stack {
 function handler(event) {
   var request = event.request;
   var uri = request.uri;
-  if (uri.endsWith("/")) {
-    request.uri += "index.html";
+  if (uri.endsWith('/')) {
+    request.uri += 'index.html';
   } else {
-    if (!uri.includes(".")) {
-      request.uri += "/index.html";
+    if (!uri.includes('.')) {
+      request.uri += '/index.html';
     }
   }
   return request;

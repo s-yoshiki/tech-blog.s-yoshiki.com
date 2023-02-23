@@ -1,24 +1,23 @@
-import { NextPage, InferGetStaticPropsType } from 'next';
+import Layout from 'components/layout/layout';
+import PostsBand from 'components/posts-band';
+import { InferGetStaticPropsType, NextPage } from 'next';
 import Link from 'next/link';
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 import PostsManager from 'utils/posts-manager';
-import Layout from "components/layout/layout"
-import PostsBand from "components/posts-band"
-
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
-const perPage = 20
+const perPage = 20;
 
 export const getStaticPaths = async () => {
-  const posts = PostsManager.getCountsGroupYearMonth()
-  const paths = []
+  const posts = PostsManager.getCountsGroupYearMonth();
+  const paths = [];
   for (let i in posts) {
-    const year = posts[i]
+    const year = posts[i];
     paths.push({
       params: {
         year: year.name,
-      }
-    })
+      },
+    });
   }
   return {
     paths: paths,
@@ -28,31 +27,31 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }: any) => {
   const posts = PostsManager.findByYear(
-    params.year
-  )
+    params.year,
+  );
   return {
     props: {
-      posts
+      posts,
     },
   };
 };
 
 const Home: NextPage<Props> = ({ posts }) => {
   const router = useRouter();
-  const { year, month } = router.query
+  const { year, month } = router.query;
 
   return (
     <Layout>
       <div className='container mx-auto'>
-        <div className="">
+        <div className=''>
           <div className='
             text-2xl
             text-gray-900 
             font-semibold
             p-2
             flex
-          '>  
-            Posts with date: 
+          '>
+            Posts with date:
             <span>
               # {year}
             </span>
@@ -61,7 +60,7 @@ const Home: NextPage<Props> = ({ posts }) => {
         </div>
       </div>
     </Layout>
-  )
+  );
 };
 
 export default Home;

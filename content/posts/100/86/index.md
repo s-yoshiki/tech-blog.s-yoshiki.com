@@ -14,6 +14,7 @@ Python + OpenCV の saliencymap で顕著性マップを表示するサンプル
 ## 顕著性マップ
 
 ざっくり言うと、
+
 <blockquote>
 人が視覚的注意の仕組からすると、画像・映像の中でどの部分を注視しやすいかを画像情報から計算するもの</blockquote>
 です。
@@ -26,6 +27,7 @@ Python + OpenCV の saliencymap で顕著性マップを表示するサンプル
 OpenCVに用意されているsaliency機能　※ 画像をクリックで拡大</a>
 
 OpenCVのsaliencyモジュールには3つの形態があります。
+
 <ul>
  	<li>Static saliency : 画像から検出するもの</li>
  	<li>Motion saliency : 動画のフレームに依存するもの</li>
@@ -61,7 +63,6 @@ if __name__ == "__main__" :
         cv2.imshow("Image", image)
         cv2.imshow("Output", saliencyMap)
         cv2.waitKey(0)
-
 ```
 
 <img src="https://pbs.twimg.com/media/DuTndZgUwAAXdxt.jpg">
@@ -81,7 +82,6 @@ if __name__ == "__main__" :
         cv2.imshow("Image", image)
         cv2.imshow("Output", saliencyMap)
         cv2.waitKey(0)
-
 ```
 
 <img src="https://pbs.twimg.com/media/DuTn2_1V4AcyspK.jpg">

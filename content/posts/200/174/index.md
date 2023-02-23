@@ -16,5 +16,7 @@ tags: ["アルゴリズム","雑談","コーディング規約","コーディン
 <!-- /wp:embed -->
 
 <!-- wp:embed -->
+
 <a href="https://gist.github.com/s-yoshiki/9e446d69cf388703a4711f7e69cba173">https://gist.github.com/s-yoshiki/9e446d69cf388703a4711f7e69cba173</a>
+
 <!-- /wp:embed -->

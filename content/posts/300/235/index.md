@@ -72,7 +72,6 @@ print $hash_ref;
 #         };
 ```
 
-
 ## 参考にしたサイト
 
 [Is there any way to use a “constant” as hash key in Perl?](https://stackoverflow.com/questions/96848/is-there-any-way-to-use-a-constant-as-hash-key-in-perl)

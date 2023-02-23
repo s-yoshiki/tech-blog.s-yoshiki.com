@@ -15,8 +15,8 @@ JavaScriptで優先度付きキュー (プライオリティキュー) を実装
 
 具体的には次のような機能があります。
 
- - キューに対して要素を優先度付きで追加 (push)
- - 最も高い優先度を持つ要素をキューから取り除きそれを返す (pop)
+- キューに対して要素を優先度付きで追加 (push)
+- 最も高い優先度を持つ要素をキューから取り除きそれを返す (pop)
 
 ## ソース
 
@@ -29,64 +29,64 @@ class PriorityQueue {
    * コンストラクタ
    */
   constructor() {
-    this.heap = []
+    this.heap = [];
   }
   /**
    * キューに値を追加する
-   * 
-   * @param x 
+   *
+   * @param x
    */
   push(x) {
     const a = this.heap;
     for (var i = a.length, j; i; i = j) {
-      j = i - 1 >> 1
+      j = i - 1 >> 1;
       if (a[j] <= x) {
-        break
+        break;
       }
-      a[i] = a[j]
+      a[i] = a[j];
     }
-    a[i] = x
+    a[i] = x;
   }
   /**
    * キューから値を取り出す
-   * 
-   * @returns 
+   *
+   * @returns
    */
   pop() {
-    const a = this.heap
-    const r = a[0]
-    const x = a.pop()
+    const a = this.heap;
+    const r = a[0];
+    const x = a.pop();
     const k = a.length >> 1;
     for (var i = 0, j; i < k; i = j) {
-      j = (i << 1) + 1
+      j = (i << 1) + 1;
       if (a[j + 1] < a[j]) {
-        j++
+        j++;
       }
       if (x <= a[j]) {
-        break
+        break;
       }
-      a[i] = a[j]
+      a[i] = a[j];
     }
     if (a.length) {
-      a[i] = x
+      a[i] = x;
     }
-    return r
+    return r;
   }
   /**
    * サイズを取得
-   * 
+   *
    * @returns 長さ
    */
   size() {
-    return this.heap.length
+    return this.heap.length;
   }
   /**
    * 最も高い優先度を持つ要素を取り除くことなく参照する
-   * 
-   * @returns 
+   *
+   * @returns
    */
   top() {
-    return this.heap[0]
+    return this.heap[0];
   }
 }
 ```
@@ -98,16 +98,15 @@ class PriorityQueue {
 ### 昇順で取り出し
 
 ```js
-const pq = new PriorityQueue()
-const data = [7,2,1,4,8,9,6,5,3]
-data.map(e => pq.push(e))
+const pq = new PriorityQueue();
+const data = [7, 2, 1, 4, 8, 9, 6, 5, 3];
+data.map(e => pq.push(e));
 
-console.log(pq.heap)
+console.log(pq.heap);
 // 1,3,2,4,8,9,6,7,5
 
-
 while (pq.size() !== 0) {
-    console.log(pq.pop())
+  console.log(pq.pop());
 }
 // 1
 // 2
@@ -127,17 +126,16 @@ while (pq.size() !== 0) {
 ※ただし、対象のデータが全て正の数である時
 
 ```js
-const pq = new PriorityQueue()
+const pq = new PriorityQueue();
 
-const data = [7,2,1,4,8,9,6,5,3]
-data.map(e => pq.push(e * -1))
+const data = [7, 2, 1, 4, 8, 9, 6, 5, 3];
+data.map(e => pq.push(e * -1));
 
-console.log(pq.heap)
+console.log(pq.heap);
 // -9,-7,-8,-5,-4,-1,-6,-2,-3
 
-
 while (pq.size() !== 0) {
-    console.log(pq.pop() * -1)
+  console.log(pq.pop() * -1);
 }
 // 9
 // 8
@@ -221,8 +219,6 @@ class PriorityQueue {
   }
 }
 ```
-
-
 
 ## 参考
 

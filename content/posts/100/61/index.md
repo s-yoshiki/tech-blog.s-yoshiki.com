@@ -29,10 +29,10 @@ setコマンドでシェル変数一覧を表示することができる。
 $ test=123
 $ set | grep test
 test=123
-
 ```
 
 主なシェル変数として以下のものが存在する。
+
 <table>
 <tbody>
 <tr>
@@ -67,5 +67,4 @@ envコマンドまたはprintenvで一覧を表示することができる。
 $ export test=123
 $ env | grep test
 test=123
-
 ```

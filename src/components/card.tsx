@@ -1,5 +1,5 @@
-import Link from "next/link"
-import Badge from "./badge"
+import Link from 'next/link';
+import Badge from './badge';
 
 interface CardProps {
   src: string;
@@ -11,30 +11,28 @@ interface CardProps {
 }
 
 const getYMD = (arg: string) => {
-  return arg.split(' ')[0]
-}
+  return arg.split(' ')[0];
+};
 
 const Card = (props: CardProps) => {
-  const tags = props.tags.slice(0, 3)
+  const tags = props.tags.slice(0, 3);
   return (
-    <div className="mx-auto bg-white shadow-md border border-gray-200 rounded-lg items-stretch w-full">
-      <div className="
+    <div className='mx-auto bg-white shadow-md border border-gray-200 rounded-lg items-stretch w-full'>
+      <div className='
           hidden
           sm:hidden
           md:hidden
           lg:block
-          xl:block"
-      >
-
+          xl:block'>
         <a href={props.href}>
           <img
             alt={props.title}
-            className="
+            className='
               rounded-tl-lg
               rounded-tr-lg
               h-28
               max-h-28
-            "
+            '
             src={props.src}
             width={480}
             height={200}
@@ -43,25 +41,25 @@ const Card = (props: CardProps) => {
           />
         </a>
       </div>
-      <div className="p-2">
+      <div className='p-2'>
         <div className='
             flex
             flex-wrap
             max-h-14
             '>
           <a href={props.href}>
-            <span className="
+            <span className='
                 text-gray-800 
                 font-semibold
                 text-sm
                 tracking-tight
-                mb-1">
+                mb-1'>
               {props.title.slice(0, 45)}
               {props.title.length > 45 && '...'}
             </span>
           </a>
         </div>
-        <div className="text-sm text-slate-500">{getYMD(props.date)}</div>
+        <div className='text-sm text-slate-500'>{getYMD(props.date)}</div>
         <div className='
             flex
             flex-wrap'>
@@ -75,7 +73,7 @@ const Card = (props: CardProps) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;

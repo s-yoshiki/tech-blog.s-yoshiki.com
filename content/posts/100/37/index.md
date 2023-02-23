@@ -6,6 +6,7 @@ coverImage: "../../../images/thumbnail/atcoder-logo.jpg"
 author: "s-yoshiki"
 tags: ["競技プログラミング","atcoder"]
 ---
+
 <blockquote class="twitter-tweet" data-lang="ja">今日のABCは比較的に楽だったからレート落ちそう。最悪<a href="https://twitter.com/hashtag/atcoder?src=hash&ref_src=twsrc%5Etfw">#atcoder</a>
 — s-yoshiki | スクリプトカス (@s_yoshiki_dev) <a href="https://twitter.com/s_yoshiki_dev/status/1038429484297244672?ref_src=twsrc%5Etfw">2018年9月8日</a>
 </blockquote>
@@ -34,6 +35,7 @@ ABはいつも通り通過。Dはまあいいや。問題はC。
 あなたの目的は、これら全ての都市を 1 度以上訪れることです。あなたは、はじめに正整数 D を設定します。
 
 その後、あなたは座標 X から出発し、以下の移動 1、移動 2 を好きなだけ行います。
+
 <ul>
 <li>移動 1: 座標 y から座標 y+D に移動する</li>
 <li>移動 2: 座標 y から座標 y−D に移動する</li>
@@ -49,7 +51,6 @@ ABはいつも通り通過。Dはまあいいや。問題はC。
 ```
 3 3
 1 7 11
-
 ```
 
 出力
@@ -99,65 +100,67 @@ https://beta.atcoder.jp/contests/abc109/tasks/abc109_c
 
 ```js
 function gcd(a, b) {
-    if (b === 0)
-        return a;
+  if (b === 0) {
+    return a;
+  }
 
-    return gcd(b, a % b);
+  return gcd(b, a % b);
 }
 
 function main(arg) {
-    arg = arg.split("\n")
-    var tmp = arg[0].split(" ")
-    var N = tmp[0]
-    var X = tmp[1]
-    var xi = arg[1].split(" ")
-    
-    xi.push(X)
-    xi = xi.map(function(e){return parseInt(e,10)})
-    
-    xi.sort(function(a,b) {
-        if (a > b) {
-            return 1
-        }
-        return -1
-    })
-    
-    if (xi.length === 2) {
-        console.log(xi[1] - xi[0])
-        return
+  arg = arg.split('\n');
+  var tmp = arg[0].split(' ');
+  var N = tmp[0];
+  var X = tmp[1];
+  var xi = arg[1].split(' ');
+
+  xi.push(X);
+  xi = xi.map(function(e) {
+    return parseInt(e, 10);
+  });
+
+  xi.sort(function(a, b) {
+    if (a > b) {
+      return 1;
     }
-    
-    
-    var result = []
-    
-    for (var i = 1; i < xi.length; i++ ){
-        result.push(xi[i] - xi[i-1])
+    return -1;
+  });
+
+  if (xi.length === 2) {
+    console.log(xi[1] - xi[0]);
+    return;
+  }
+
+  var result = [];
+
+  for (var i = 1; i < xi.length; i++) {
+    result.push(xi[i] - xi[i - 1]);
+  }
+
+  result = result.filter(function(x, i, self) {
+    return self.indexOf(x) === i;
+  });
+
+  if (result.length === 1) {
+    console.log(result[0]);
+    return;
+  } else {
+    while (1) {
+      var _tmp = [];
+      for (var j = 1; j < result.length; j++) {
+        _tmp.push(gcd(
+          result[j],
+          result[j - 1],
+        ));
+      }
+      if (_tmp.length === 1) {
+        break;
+      } else {
+        result = _tmp;
+      }
     }
-    
-    result = result.filter(function (x, i, self) {
-        return self.indexOf(x) === i;
-    });
-    
-    if (result.length === 1) {
-        console.log(result[0])
-        return
-    } else {
-        while(1) {
-            var _tmp = [];
-            for (var j = 1; j < result.length;j++) {
-                _tmp.push(gcd(
-                    result[j],
-                    result[j-1]
-                ))
-            }
-            if (_tmp.length === 1) {
-                break;
-            } else{
-                result = _tmp
-            }
-        }
-        console.log(result[0])
-    }
+    console.log(result[0]);
+  }
 }
 main(require('fs').readFileSync('/dev/stdin', 'utf8'));
 ```
@@ -245,10 +248,11 @@ main(require('fs').readFileSync('/dev/stdin', 'utf8'));
 
 ```js
 function gcd(a, b) {
-    if (b === 0)
-        return a;
+  if (b === 0) {
+    return a;
+  }
 
-    return gcd(b, a % b);
+  return gcd(b, a % b);
 }
 ```
 

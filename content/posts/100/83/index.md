@@ -19,25 +19,24 @@ tags: ["javascript","アルゴリズム"]
 
 ```js
 function convertBasedRepr(x, n) {
-	var result = []
-	
-	do {
-		var t = x % n
-		result.push(t)
-		var m = Math.floor(x / n)
+  var result = [];
 
-		if (m < n) {
-			if (m !== 0) {
-				result.push(m)
-			}
-			break
-		}
-		x = (x - t) /n
-	} while(1)
+  do {
+    var t = x % n;
+    result.push(t);
+    var m = Math.floor(x / n);
 
-	return result
+    if (m < n) {
+      if (m !== 0) {
+        result.push(m);
+      }
+      break;
+    }
+    x = (x - t) / n;
+  } while (1);
+
+  return result;
 }
-
 ```
 
 ### 実行すると...
@@ -46,38 +45,21 @@ function convertBasedRepr(x, n) {
 main(20);
 
 function main(max) {
-	for (var i = 0; i < max; i++) {
-		console.log(JSON.stringify(convertBasedRepr(i ,2).reverse()))
-	}
+  for (var i = 0; i < max; i++) {
+    console.log(JSON.stringify(convertBasedRepr(i, 2).reverse()));
+  }
 }
-//配列の0要素が1桁目と成るので反転して出力しています。
-
+// 配列の0要素が1桁目と成るので反転して出力しています。
 ```
 
 これを実行すると以下のように実行されます。
 
 ```js
-[0]
-[1]
-[1,0]
-[1,1]
-[1,0,0]
-[1,0,1]
-[1,1,0]
-[1,1,1]
-[1,0,0,0]
-[1,0,0,1]
-[1,0,1,0]
-[1,0,1,1]
-[1,1,0,0]
-[1,1,0,1]
-[1,1,1,0]
-[1,1,1,1]
-[1,0,0,0,0]
-[1,0,0,0,1]
-[1,0,0,1,0]
-[1,0,0,1,1]
-
+[0][1][1, 0][1, 1][1, 0, 0][1, 0, 1][1, 1, 0][1, 1, 1][1, 0, 0, 0][1, 0, 0, 1][
+  1, 0, 1, 0
+][1, 0, 1, 1][1, 1, 0, 0][1, 1, 0, 1][1, 1, 1, 0][1, 1, 1, 1][1, 0, 0, 0, 0][
+  1, 0, 0, 0, 1
+][1, 0, 0, 1, 0][1, 0, 0, 1, 1];
 ```
 
 これを応用し
@@ -86,19 +68,18 @@ function main(max) {
 main(50);
 
 function main(max) {
-	var  based_strings = "0123456789abcdefghijklmnoqrstuvwxyz".split("") // 0-zの文字列の配列
-	for (var i = 0; i < max; i++) {
-		var based_n = convertBasedRepr(i ,16);
-		var dst = "";
-		for (var j = 0; j < based_n.length; j++) {
-			dst = based_strings[
-				based_n[j]
-			] + dst
-		}
-		console.log(dst)
-	}
+  var based_strings = '0123456789abcdefghijklmnoqrstuvwxyz'.split(''); // 0-zの文字列の配列
+  for (var i = 0; i < max; i++) {
+    var based_n = convertBasedRepr(i, 16);
+    var dst = '';
+    for (var j = 0; j < based_n.length; j++) {
+      dst = based_strings[
+        based_n[j]
+      ] + dst;
+    }
+    console.log(dst);
+  }
 }
-
 ```
 
 ```
@@ -152,7 +133,6 @@ f
 2f
 30
 31
-
 ```
 
 と出力されます。

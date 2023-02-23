@@ -14,7 +14,7 @@ Ubuntu20.04 に PHP7.4 + Apache2.4 をインストールしてWebサーバを構
 
 ## 環境
 
- - Ubuntu20.04 (docker)
+- Ubuntu20.04 (docker)
 
 ```shell
 $ cat /etc/os-release
@@ -71,11 +71,10 @@ Server version: Apache/2.4.41 (Ubuntu)
 Server built:   2020-08-12T19:46:17
 ```
 
-
 ## Apache のサービスを開始する
 
 ```shell
-$ service apache2 start 
+$ service apache2 start
 ```
 
 動作状況を確認
@@ -89,13 +88,12 @@ $ service apache2 status
 
 ```shell
 $ echo '<?php' > /var/www/html/index.php 
-$ echo 'phpinfo();' >> /var/www/html/index.php 
+$ echo 'phpinfo();' >> /var/www/html/index.php
 ```
 
 以下のURLから動作を確認。
 
 http://localhost:8080/index.php
-
 
 ## 参考にしたサイト
 

@@ -41,42 +41,41 @@ https://ja.wikipedia.org/wiki/%E9%83%A8%E5%88%86%E5%92%8C%E5%95%8F%E9%A1%8C
 ### サンプルコード
 
 ```js
-main()
+main();
 
 function main(arg) {
-    const k = 21
-    const a = [1,3,7,10,13]
+  const k = 21;
+  const a = [1, 3, 7, 10, 13];
 
-    function dfs(i, sum) {
-        if (i === a.length) {
-            return sum === k
-        }
-
-        if (dfs(i + 1, sum)) {
-            return true
-        }
-
-        if (dfs(i + 1, sum + a[i])) {
-            return true
-        }
-
-        return false
+  function dfs(i, sum) {
+    if (i === a.length) {
+      return sum === k;
     }
 
-    if (dfs(0, 0)) {
-        console.log("Yes")
-    } else{
-        console.log("No")
+    if (dfs(i + 1, sum)) {
+      return true;
     }
+
+    if (dfs(i + 1, sum + a[i])) {
+      return true;
+    }
+
+    return false;
+  }
+
+  if (dfs(0, 0)) {
+    console.log('Yes');
+  } else {
+    console.log('No');
+  }
 }
 ```
 
 Yesと出力されます。
 
 ```js
-const k = 19
-const a = [2,4,6,8,10]
-
+const k = 19;
+const a = [2, 4, 6, 8, 10];
 ```
 
 とした時は「No」と出力されました。
@@ -86,95 +85,93 @@ const a = [2,4,6,8,10]
 関数dfsにデバッグを入れて動きをみてみました。
 
 ```js
-main()
+main();
 
 function main(arg) {
-    const k = 21
-    const a = [1,3,7,10,13]
+  const k = 21;
+  const a = [1, 3, 7, 10, 13];
 
-    function dfs(i, sum) {
-        console.log([i, sum])
-        if (i === a.length) {
-            return sum === k
-        }
-
-        if (dfs(i + 1, sum)) {
-            console.log(`dfs(${i}, ${sum})`)
-            return true
-        }
-
-        if (dfs(i + 1, sum + a[i])) {
-            console.log(`dfs(${i} + 1, ${sum} + a[i])`)
-            return true
-        }
-
-        return false
+  function dfs(i, sum) {
+    console.log([i, sum]);
+    if (i === a.length) {
+      return sum === k;
     }
 
-    if (dfs(0, 0)) {
-        console.log("Yes")
-    } else{
-        console.log("No")
+    if (dfs(i + 1, sum)) {
+      console.log(`dfs(${i}, ${sum})`);
+      return true;
     }
+
+    if (dfs(i + 1, sum + a[i])) {
+      console.log(`dfs(${i} + 1, ${sum} + a[i])`);
+      return true;
+    }
+
+    return false;
+  }
+
+  if (dfs(0, 0)) {
+    console.log('Yes');
+  } else {
+    console.log('No');
+  }
 }
-
 ```
 
 以下のように出力されました。
 
 ```js
-0,0
-1,0
-2,0
-3,0
-4,0
-5,0
-5,13
-4,10
-5,10
-5,23
-3,7
-4,7
-5,7
-5,20
-4,17
-5,17
-5,30
-2,3
-3,3
-4,3
-5,3
-5,16
-4,13
-5,13
-5,26
-3,10
-4,10
-5,10
-5,23
-4,20
-5,20
-5,33
-1,1
-2,1
-3,1
-4,1
-5,1
-5,14
-4,11
-5,11
-5,24
-3,8
-4,8
-5,8
-5,21
-dfs(4 + 1, 8 + a[i])
-dfs(3, 8)
-dfs(2 + 1, 1 + a[i])
-dfs(1, 1)
-dfs(0 + 1, 0 + a[i])
-Yes
-
+0, 0;
+1, 0;
+2, 0;
+3, 0;
+4, 0;
+5, 0;
+5, 13;
+4, 10;
+5, 10;
+5, 23;
+3, 7;
+4, 7;
+5, 7;
+5, 20;
+4, 17;
+5, 17;
+5, 30;
+2, 3;
+3, 3;
+4, 3;
+5, 3;
+5, 16;
+4, 13;
+5, 13;
+5, 26;
+3, 10;
+4, 10;
+5, 10;
+5, 23;
+4, 20;
+5, 20;
+5, 33;
+1, 1;
+2, 1;
+3, 1;
+4, 1;
+5, 1;
+5, 14;
+4, 11;
+5, 11;
+5, 24;
+3, 8;
+4, 8;
+5, 8;
+5, 21;
+dfs(4 + 1, 8 + a[i]);
+dfs(3, 8);
+dfs(2 + 1, 1 + a[i]);
+dfs(1, 1);
+dfs(0 + 1, 0 + a[i]);
+Yes;
 ```
 
 ## 例題: AtCoder ABC015 C
@@ -188,31 +185,31 @@ Yes
 ### ソースコード
 
 ```js
-"use strict"
+'use strict';
 function main(arg) {
-    let tmp = arg.trim().split("\n").map(e => e.split(" ").map(Number))
-    let [N,K] = tmp.shift()
-    let data = tmp.slice()
-    function dfs(i, sum) {
-        if (i + 1 === data.length) {
-            return sum === 0
-        }
-        for (let j = 0; j < K; j++) {
-            let t = dfs(i+1, data[i+1][j] ^ sum)
-            if (t) {
-                return true
-            }
-        }
-        return false
+  let tmp = arg.trim().split('\n').map(e => e.split(' ').map(Number));
+  let [N, K] = tmp.shift();
+  let data = tmp.slice();
+  function dfs(i, sum) {
+    if (i + 1 === data.length) {
+      return sum === 0;
     }
-    for (let i = 0; i < K; i++) {
-        let ans = dfs(0, data[0][i])
-        if (ans) {
-            console.log('Found')
-            return
-        }
+    for (let j = 0; j < K; j++) {
+      let t = dfs(i + 1, data[i + 1][j] ^ sum);
+      if (t) {
+        return true;
+      }
     }
-    console.log('Nothing')
+    return false;
+  }
+  for (let i = 0; i < K; i++) {
+    let ans = dfs(0, data[0][i]);
+    if (ans) {
+      console.log('Found');
+      return;
+    }
+  }
+  console.log('Nothing');
 }
 main(require('fs').readFileSync('/dev/stdin', 'utf8'));
 ```
@@ -222,38 +219,37 @@ main(require('fs').readFileSync('/dev/stdin', 'utf8'));
 こんな方法でも実装できました。
 
 ```js
-main()
+main();
 
 function main(arg) {
-    const k = 21
-    const a = [1,3,7,10,13]
+  const k = 21;
+  const a = [1, 3, 7, 10, 13];
 
-    var ans = false
+  var ans = false;
 
-    for (var i = 0; i < 32; i++) {
-        //2進数作成
-        var bin = i.toString(2)
-        for (var j = bin.length; j < a.length; j++) {
-            bin += "0"
-        }
-        bin = bin.split("").map(e => Number(e))
-        var sum = 0
-        for (var j = 0; j < bin.length; j++) {
-            if (bin[j] === 1) {
-                sum += a[j]
-            }
-        }
-        if (sum === k) {
-            ans = true
-            break
-        }
+  for (var i = 0; i < 32; i++) {
+    // 2進数作成
+    var bin = i.toString(2);
+    for (var j = bin.length; j < a.length; j++) {
+      bin += '0';
     }
-
-    if (ans) {
-        console.log("Yes")
-    } else {
-        console.log("No")
+    bin = bin.split('').map(e => Number(e));
+    var sum = 0;
+    for (var j = 0; j < bin.length; j++) {
+      if (bin[j] === 1) {
+        sum += a[j];
+      }
     }
+    if (sum === k) {
+      ans = true;
+      break;
+    }
+  }
+
+  if (ans) {
+    console.log('Yes');
+  } else {
+    console.log('No');
+  }
 }
-
 ```

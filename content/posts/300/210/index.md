@@ -26,15 +26,14 @@ PHP7では大幅な機能追加やパフォーマンス向上といった対応�
 
 まずは使えそうなツールを洗い出してみました。
 
- - [PHPStan](https://github.com/phpstan/phpstan)
- - [phan](https://github.com/phan/phan)
- - [php7cc](https://github.com/sstalle/php7cc)
- - [php7mar](https://github.com/Alexia/php7mar)
- - [php-to-7-aid](https://github.com/gisostallenberg/php-to-7-aid)
- - [Rector](https://github.com/rectorphp/rector)
- - [php-ast](https://github.com/nikic/php-ast)
- - [PHP-Parser](https://github.com/nikic/PHP-Parser)
-
+- [PHPStan](https://github.com/phpstan/phpstan)
+- [phan](https://github.com/phan/phan)
+- [php7cc](https://github.com/sstalle/php7cc)
+- [php7mar](https://github.com/Alexia/php7mar)
+- [php-to-7-aid](https://github.com/gisostallenberg/php-to-7-aid)
+- [Rector](https://github.com/rectorphp/rector)
+- [php-ast](https://github.com/nikic/php-ast)
+- [PHP-Parser](https://github.com/nikic/PHP-Parser)
 
 ### PHPStan
 
@@ -42,10 +41,9 @@ PHP7では大幅な機能追加やパフォーマンス向上といった対応�
 
 > PHPStanは、PHP静的解析ツールの大御所です。composerなどのautoloadファイルを解釈し、一部のコードを実行することで解析の高速化を実現しています。静的解析ですが、PHPを一部実行します。実行環境は、PHP7.1以上です。
 >
->
 > Komiyama Taki.
 > ["5千ファイル超のレガシープロジェクトにPHPStan継続的静的解析を導入"](https://note.com/komi_yama/n/ncfe9a73ce374).
-> note. 
+> note.
 > 2020-06-30.
 > [https://note.com/komi_yama/n/ncfe9a73ce374](https://note.com/komi_yama/n/ncfe9a73ce374),
 > (2020-12-28)
@@ -68,7 +66,6 @@ PHP7では大幅な機能追加やパフォーマンス向上といった対応�
 
 `php-to-7-aid` も下位互換のチェックを行うツールですが、メンテナンスは止まっています。
 
-
 ### Rector
 
 `Rector` は既存のPHPコードのリファクタリングやアップグレードを自動実行するツールです。
@@ -78,7 +75,6 @@ PHP7では大幅な機能追加やパフォーマンス向上といった対応�
 使用感についてはこちらに記載されていたものを引用します。
 
 > まだまだ発展途上という感じですが、裏側の仕組みをみると PHP-CS-Fixerと比べて柔軟なことができそうな予感がしたのでまた時間を見つけて触ってみようと思います。
->
 >
 > fortkle.
 > ["PHPアプリケーションのアップグレードとリファクタリングを楽にするrectorphp/rectorを試す"](https://fortkle.hatenablog.com/entry/2018/12/16/235830).
@@ -90,7 +86,7 @@ PHP7では大幅な機能追加やパフォーマンス向上といった対応�
 
 ### php-ast
 
-`php-ast` はPHPコードをAST(=抽象構文木)に分解するphpの拡張モジュールです。上で触れた`phan` も `php-ast` に依存しています。 
+`php-ast` はPHPコードをAST(=抽象構文木)に分解するphpの拡張モジュールです。上で触れた`phan` も `php-ast` に依存しています。
 
 こちらのスライドで詳しく解説しています。
 
@@ -121,7 +117,5 @@ PHP-Parserを利用して自動で置換する方法を考えてみました。
 [PHP5.6からPHP7.2へアップデート時の互換性チェックツール、ハマった体験談へのリンク](https://qiita.com/suin/items/db7a9bc3b11039346977)
 [https://qiita.com/suin/items/db7a9bc3b11039346977](https://qiita.com/suin/items/db7a9bc3b11039346977)
 
-
 [下位互換性のない変更点 (PHP 5.6.x から PHP 7.0.x への移行)](https://www.php.net/manual/ja/migration70.incompatible.php)
 [https://www.php.net/manual/ja/migration70.incompatible.php](https://www.php.net/manual/ja/migration70.incompatible.php)
-

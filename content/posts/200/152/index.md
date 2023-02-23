@@ -6,6 +6,7 @@ coverImage: "../../../images/thumbnail/wordpress-logo.png"
 author: "s-yoshiki"
 tags: ["wordpress","ブログ","seo"]
 ---
+
 技術ブログを書き始めて1年半が経過しましたが、やっと1万PVに達することができました。
 この達成までに書いた記事数は156件となります。
 記事の傾向や、データアクセス数などを紹介していきます。

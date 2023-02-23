@@ -6,6 +6,7 @@ coverImage: "../../../images/thumbnail/atcoder-logo.jpg"
 author: "s-yoshiki"
 tags: ["javascript","競技プログラミング","atcoder","node.js"]
 ---
+
 <blockquote class="twitter-tweet" data-lang="ja">
 <p lang="ja" dir="ltr">初めて参加したAtCoderで惨敗した話
 
@@ -17,6 +18,7 @@ tags: ["javascript","競技プログラミング","atcoder","node.js"]
 敗因と対策を書きます。<a href="https://twitter.com/hashtag/AtCoder?src=hash&ref_src=twsrc%5Etfw">#AtCoder</a> <a href="https://twitter.com/hashtag/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0?src=hash&ref_src=twsrc%5Etfw">#プログラミング</a><a href="https://twitter.com/hashtag/javascript?src=hash&ref_src=twsrc%5Etfw">#javascript</a> <a href="https://t.co/klmEb4bDZq">https://t.co/klmEb4bDZq</a>
 
 — s_yoshiki (@s_yoshiki_dev) <a href="https://twitter.com/s_yoshiki_dev/status/1021050983097368576?ref_src=twsrc%5Etfw">2018年7月22日</a></blockquote>
+
 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 ## 概要
@@ -41,15 +43,15 @@ AtCoderに初めて参戦しました。
 
 ## 結果
 
- - 順位 1810/2188 位
- - 得点 300/1000点
- - パフォーマンス 346
- - レーティング 17
+- 順位 1810/2188 位
+- 得点 300/1000点
+- パフォーマンス 346
+- レーティング 17
 
- - A :100 :○
- - B :200 :○
- - C :300 :×
- - D :400 :×
+- A :100 :○
+- B :200 :○
+- C :300 :×
+- D :400 :×
 
 2完。
 しかもB問題に少し手間取ったため、レーティングも伸びず。
@@ -114,11 +116,10 @@ AtCoderの問題形式は必ず標準入出力で変数の受け取り、回答�
 
 ```js
 function main(arg) {
-    // 処理
-    console.log(arg)
+  // 処理
+  console.log(arg);
 }
 main(require('fs').readFileSync('/dev/stdin', 'utf8'));
-
 ```
 
 ### 配列操作等の基本操作を完璧にする
@@ -129,14 +130,13 @@ pop push shift unshift あたりの基本操作は完璧にする。
 加えて、jsの場合
 
 ```js
-arr.sort((a,b) => {
-    if (a > b) {
-        return 1
-    } else {
-        return -1
-    }
-})
-
+arr.sort((a, b) => {
+  if (a > b) {
+    return 1;
+  } else {
+    return -1;
+  }
+});
 ```
 
 で簡単にソートができます。

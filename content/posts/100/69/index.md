@@ -93,7 +93,6 @@ if __name__ == "__main__" :
     k = cv2.waitKey(0)
 
     cv2.destroyAllWindows()
-
 ```
 
 #### 説明

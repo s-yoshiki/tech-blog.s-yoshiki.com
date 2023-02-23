@@ -41,7 +41,6 @@ https://docs.opencv.org/3.3.0/d8/d19/tutorial_stitcher.html
 ## ソース
 
 ```py
-
 import argparse
 import cv2
 
@@ -65,13 +64,12 @@ if __name__ == "__main__":
         stitcher = cv2.createStitcher(True)
         stitched = stitcher.stitch(input_images)
         cv2.imwrite(args.output, stitched[1])
-
 ```
 
 呼び出す場合のコマンド例
 
 ```
-python3 main.py --output ./dst.jpg ./src1.jpg  ./src2.jpg ./src3.jpg  
+python3 main.py --output ./dst.jpg ./src1.jpg  ./src2.jpg ./src3.jpg
 ```
 
 ## 他の画像でも試してみた

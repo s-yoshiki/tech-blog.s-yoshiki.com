@@ -24,7 +24,7 @@ javascriptで累積和を実装した際のメモです。
 例えば
 
 ```js
-A = [1,3,5,9,11,13,15,17,19,21]
+A = [1, 3, 5, 9, 11, 13, 15, 17, 19, 21];
 ```
 
 と定義された配列の中で`i`が`3`〜`6`の区間の合計値を求めたい場合、通常のカウント方法であれば
@@ -40,7 +40,7 @@ ans = A[3] + A[4] + A[5] + A[6]
 累積和の場合は、この配列について初項から現在の項までの合計値を計算するという前処理を行います。
 
 ```js
-A = [1,3,5,9,11,13,15,17,19,21]
+A = [1, 3, 5, 9, 11, 13, 15, 17, 19, 21];
 ```
 
 ↓
@@ -75,25 +75,25 @@ ans = A[6] - A[2]
 コード
 
 ```js
-let data = [1,3,5,9,11,13,15,17,19,21]
-let sums = new Array(data.length).fill(0)
-sums[0] = data[0]
+let data = [1, 3, 5, 9, 11, 13, 15, 17, 19, 21];
+let sums = new Array(data.length).fill(0);
+sums[0] = data[0];
 for (let i = 1; i < data.length; i++) {
-    sums[i] = data[i] + sums[i - 1]
+  sums[i] = data[i] + sums[i - 1];
 }
 
 // 課題
 let query = [
-    [3,6],
-    [1,6],
-    [2,6],
-    [5,9],
-    [2,4],
-    [3,8],
+  [3, 6],
+  [1, 6],
+  [2, 6],
+  [5, 9],
+  [2, 4],
+  [3, 8],
 ].forEach(e => {
-    let [l, r] = e
-    console.log(sums[r] - sums[l - 1])
-})
+  let [l, r] = e;
+  console.log(sums[r] - sums[l - 1]);
+});
 ```
 
 結果
@@ -108,7 +108,6 @@ let query = [
 ```
 
 ## 参考にしたサイト
-
 
 - [累積和を何も考えずに書けるようにする！](https://qiita.com/drken/items/56a6b68edef8fc605821)
 - [累積和手法 - sataniC++](https://satanic0258.hatenablog.com/entry/2016/04/10/151315)

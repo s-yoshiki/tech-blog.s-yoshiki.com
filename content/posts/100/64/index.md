@@ -30,17 +30,15 @@ HTML
 <div id="app">
   <mavon-editor></mavon-editor>
 </div>
-
 ```
 
 JavaScript
 
 ```js
-Vue.use(window['mavon-editor'])
+Vue.use(window['mavon-editor']);
 var app = new Vue({
-    el: '#app'
-})
-
+  el: '#app',
+});
 ```
 
 ## カスタマイズ
@@ -67,33 +65,32 @@ var app = new Vue({
 ```
 
 ```js
-Vue.use(window['mavon-editor'])
+Vue.use(window['mavon-editor']);
 
 var app = new Vue({
-    el: '#app',
-    data() {
-        return {
-            //mavon-editor
-            toolbars: {
-                bold: false,
-            },
-            //other
-            message: ''
-        }
+  el: '#app',
+  data() {
+    return {
+      // mavon-editor
+      toolbars: {
+        bold: false,
+      },
+      // other
+      message: '',
+    };
+  },
+  methods: {
+    $imgAdd(pos, $file) {
+      alert('upload image');
     },
-    methods: {
-        $imgAdd(pos, $file) {
-            alert('upload image');
-        },
-        $change(value, reader) {
-            this.message = value
-        },
-        getMsg() {
-            console.log(this.message)
-        }
+    $change(value, reader) {
+      this.message = value;
     },
-})
-
+    getMsg() {
+      console.log(this.message);
+    },
+  },
+});
 ```
 
 ## APIの紹介
@@ -104,6 +101,7 @@ var app = new Vue({
 
 プロパティ一覧。
 <a href="https://github.com/hinesboy/mavonEditor/blob/master/README-EN.md">ここから引用</a>
+
 <table>
 <thead>
 <tr>
@@ -255,12 +253,12 @@ toolbars: {
       subfield: true,
       preview: true
   }
-
 ```
 
 ### イベントメソッド
 
 イベントメソッドには次のようなものが用意されています。
+
 <table>
 <thead>
 <tr>
@@ -340,5 +338,4 @@ cssに以下のような属性を適用させたことで、ウィンドウサ�
     max-height: 600px;
     height: 600px;
 }
-
 ```

@@ -38,17 +38,16 @@ parser.parseFromString()を使うことでdocumentオブジェクトを返り血
 
 ```js
 var parser = new DOMParser();
-var doc = parser.parseFromString(stringContainingXMLSource, "application/xml");
+var doc = parser.parseFromString(stringContainingXMLSource, 'application/xml');
 // SVGDocument でも HTMLDocument でもなく、Document が返る
 
 parser = new DOMParser();
-doc = parser.parseFromString(stringContainingXMLSource, "image/svg+xml");
+doc = parser.parseFromString(stringContainingXMLSource, 'image/svg+xml');
 // SVGDocument (Document) が返る
 
 parser = new DOMParser();
-doc = parser.parseFromString(stringContainingHTMLSource, "text/html");
+doc = parser.parseFromString(stringContainingHTMLSource, 'text/html');
 // HTMLDocument (Document) が返る
-
 ```
 
 ### aタグLinkの取得
@@ -57,18 +56,16 @@ doc = parser.parseFromString(stringContainingHTMLSource, "text/html");
 
 ```js
 Array.from(doc.links, (e) => {
-    return e.getAttribute("href").toString()
-})
-
+  return e.getAttribute('href').toString();
+});
 ```
 
 <a href="https://developer.mozilla.org/ja/docs/Web/API/Document/links">document.links - Web API インターフェイス | MDN</a>
 
 ```js
 Array.from(doc.images, (e) => {
-    return e.getAttribute("src").toString()
-})
-
+  return e.getAttribute('src').toString();
+});
 ```
 
 <a href="https://developer.mozilla.org/ja/docs/Web/API/Document/images">document.images - Web API インターフェイス | MDN</a>
@@ -140,74 +137,71 @@ Array.from(doc.images, (e) => {
     <div style="font-family: Impact;">html Parser</div>hmtlをパースします
   </div>
 </footer>
-
 ```
 
 ### JS
 
 ```js
 (() => {
-  "use stricts"
+  'use stricts';
 
-  document.getElementById("run").addEventListener("click", () => {
+  document.getElementById('run').addEventListener('click', () => {
     try {
-      let src = document.getElementById("text").value
-      let parsed_obj = getParsedObject(src)
+      let src = document.getElementById('text').value;
+      let parsed_obj = getParsedObject(src);
 
-      let type_csv = document.getElementById("type:csv").checked
-      let dst = {}
-      let mode = document.getElementById("select").value
+      let type_csv = document.getElementById('type:csv').checked;
+      let dst = {};
+      let mode = document.getElementById('select').value;
 
       if (mode === '1') {
-        dst = getHrefs(parsed_obj)
+        dst = getHrefs(parsed_obj);
       } else if (mode === '2') {
-        dst = getImgSrcs(parsed_obj)
+        dst = getImgSrcs(parsed_obj);
       }
 
       if (type_csv) {
-        document.getElementById("result").value = putList(dst)
+        document.getElementById('result').value = putList(dst);
       } else {
-        document.getElementById("result").value = JSON.stringify(dst)
+        document.getElementById('result').value = JSON.stringify(dst);
       }
-
     } catch (e) {
-      alert(e)
+      alert(e);
     }
-  })
+  });
 
   function getParsedObject(str_html) {
-    let parser = new DOMParser()
-    let doc = parser.parseFromString(str_html, "text/html")
-    return doc
+    let parser = new DOMParser();
+    let doc = parser.parseFromString(str_html, 'text/html');
+    return doc;
   }
 
   function getHrefs(doc) {
     return Array.from(
       doc.links,
       (e) => {
-        return e.getAttribute("href").toString()
-      }
-    )
+        return e.getAttribute('href').toString();
+      },
+    );
   }
 
   function getImgSrcs(doc) {
     return Array.from(
       doc.images,
       (e) => {
-        return e.getAttribute("src").toString()
-      }
-    )
+        return e.getAttribute('src').toString();
+      },
+    );
   }
 
   function putList(src) {
-    var result = ""
+    var result = '';
     src.forEach((e) => {
-      result += e + "\n"
-    })
-    return result
+      result += e + '\n';
+    });
+    return result;
   }
-})()
-
+})();
 ```
 
 何かしら役に立つ場面はあると思います。

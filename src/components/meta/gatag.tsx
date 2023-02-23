@@ -1,10 +1,12 @@
-
-import Script from 'next/script'
+import Script from 'next/script';
 
 const GaTag = ({ gaId }: { gaId: string }) => {
   return (
     <>
-      <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
+      <script
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+      />
       <script
         dangerouslySetInnerHTML={{
           __html: `
@@ -17,7 +19,7 @@ const GaTag = ({ gaId }: { gaId: string }) => {
         }}
       />
     </>
-  )
-}
+  );
+};
 
-export default GaTag
+export default GaTag;

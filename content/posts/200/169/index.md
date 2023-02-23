@@ -148,7 +148,7 @@ Transaction Summary
 Install  3 Packages (+102 Dependent packages)
 ```
 
- インストールが完了するとPerlが利用できるようになります。
+インストールが完了するとPerlが利用できるようになります。
 
 ```
 $ perl --version

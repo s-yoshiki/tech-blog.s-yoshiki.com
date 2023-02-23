@@ -21,19 +21,18 @@ JavaScriptで UTF-16 を文字列に変換するサンプルコードのメモ�
 
 と MDNのサイトでは説明されています。
 
-
 ## 実装
 
 ASCIIから文字列への変換は `String.fromCharCode` を利用します。
 
 ```js
-console.log(String.fromCharCode(65)) // A
+console.log(String.fromCharCode(65)); // A
 ```
 
 こんなこともできます。
 
 ```js
-console.log(String.fromCharCode(65, 66, 67, 68, 69, 70, 71)) // ABCDEFG
+console.log(String.fromCharCode(65, 66, 67, 68, 69, 70, 71)); // ABCDEFG
 ```
 
 ## サンプル
@@ -41,8 +40,9 @@ console.log(String.fromCharCode(65, 66, 67, 68, 69, 70, 71)) // ABCDEFG
 サンプルコード
 
 ```js
-for (let i = 32; i <= 126; i++) 
-  console.log([i, String.fromCharCode(i)])
+for (let i = 32; i <= 126; i++) {
+  console.log([i, String.fromCharCode(i)]);
+}
 ```
 
 結果
@@ -147,7 +147,6 @@ for (let i = 32; i <= 126; i++)
 
 期待通りの結果となりました。
 
-
 ## 余談
 
 「JavaScriptでASCIIコードを文字列に変換」というタイトルで投稿しようと思いましたが、
@@ -156,7 +155,6 @@ for (let i = 32; i <= 126; i++)
 [UTF-16 - Wikipedia](https://ja.wikipedia.org/wiki/UTF-16)
 
 > UTF-8、UTF-32と比較して、一般的な日本語が主体の文章ではUnicode符号化方式の中では最小サイズとなる。追加面の文字が含まれる場合、バイト順にソートしても符号位置順とはならない。また、UTF-8と違いASCII互換ではない。
-
 
 ## 参考サイト
 

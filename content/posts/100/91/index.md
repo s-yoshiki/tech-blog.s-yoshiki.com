@@ -42,78 +42,78 @@ tags: ["html5","javascript"]
         </div>
     </div>
 </div>
-
 ```
 
 ### JS
 
 ```js
-
 const KANA = {
-  "normal": {
-    "src": {
-      "hiragana":"あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんぁぃぅぇぉヵヶっゃゅょゎ。、「」ー",
-      "katakana":"アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンァィゥェォヵヶッャュョヮ。、「」ー",
+  'normal': {
+    'src': {
+      'hiragana':
+        'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんぁぃぅぇぉヵヶっゃゅょゎ。、「」ー',
+      'katakana':
+        'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンァィゥェォヵヶッャュョヮ。、「」ー',
     },
-    "dst": "ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜｦﾝｧｨｩｪｫヵヶｯｬｭｮﾜ｡､｢｣-",
-    "suffix" : ""
+    'dst': 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜｦﾝｧｨｩｪｫヵヶｯｬｭｮﾜ｡､｢｣-',
+    'suffix': '',
   },
-  "dakuon": {
-    "src" : {
-            "hiragana": "がぎぐげござじずぜぞだぢづでどばびぶべぼゔ",
-      "katakana": "ガギグゲゴザジズゼゾダヂヅデドバビブベボヴ",
+  'dakuon': {
+    'src': {
+      'hiragana': 'がぎぐげござじずぜぞだぢづでどばびぶべぼゔ',
+      'katakana': 'ガギグゲゴザジズゼゾダヂヅデドバビブベボヴ',
     },
-    "dst":"ｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾊﾋﾌﾍﾎｳ",
-    "suffix" : "ﾞ"
+    'dst': 'ｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾊﾋﾌﾍﾎｳ',
+    'suffix': 'ﾞ',
   },
-  "handakuon": {
-    "src": {
-      "hiragana": "ぱぴぷぺぽ",
-      "katakana": "パピプペポ",
+  'handakuon': {
+    'src': {
+      'hiragana': 'ぱぴぷぺぽ',
+      'katakana': 'パピプペポ',
     },
-    "dst" : "ﾊﾋﾌﾍﾎ",
-    "suffix" : "ﾟ"
-  }
+    'dst': 'ﾊﾋﾌﾍﾎ',
+    'suffix': 'ﾟ',
+  },
 };
 
-document.getElementById("run").addEventListener("click", (e) => {
-  var input = document.getElementById("src")
-  var output = document.getElementById("dst")
-  var type = document.getElementById("kana-type")
-  
-  output.value = ""
-  
-  var zenkaku = []
-  var hankaku = []
+document.getElementById('run').addEventListener('click', (e) => {
+  var input = document.getElementById('src');
+  var output = document.getElementById('dst');
+  var type = document.getElementById('kana-type');
+
+  output.value = '';
+
+  var zenkaku = [];
+  var hankaku = [];
 
   for (var key1 in KANA) {
-    var src = KANA[key1].src
-    var dst = KANA[key1].dst
-    var suffix = ""
+    var src = KANA[key1].src;
+    var dst = KANA[key1].dst;
+    var suffix = '';
 
     if (KANA[key1].suffix) {
-      suffix = KANA[key1].suffix
+      suffix = KANA[key1].suffix;
     }
 
     for (var key2 in src) {
-      if (type.value === "all" || key2 === type.value) {
-        var row = src[key2]
+      if (type.value === 'all' || key2 === type.value) {
+        var row = src[key2];
         for (var j = 0; j < row.length; j++) {
-          zenkaku.push(row[j] + suffix)
-          hankaku.push(dst[j] + suffix)
+          zenkaku.push(row[j] + suffix);
+          hankaku.push(dst[j] + suffix);
         }
       }
     }
   }
 
-  input.value.split("").forEach((e) => {
+  input.value.split('').forEach((e) => {
     for (var i = 0; i < zenkaku.length; i++) {
       if (zenkaku[i] == e) {
-        output.value += hankaku[i]
-        return
+        output.value += hankaku[i];
+        return;
       }
     }
-    output.value += e
-  })
-})
+    output.value += e;
+  });
+});
 ```

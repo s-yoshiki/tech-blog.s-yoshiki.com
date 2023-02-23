@@ -1,6 +1,6 @@
 # tech-blog.s-yoshiki.com
 
-![](https://github.com/s-yoshiki/tech-blog.s-yoshiki.com/workflows/deploy%20s3/badge.svg) 
+![](https://github.com/s-yoshiki/tech-blog.s-yoshiki.com/workflows/deploy%20s3/badge.svg)
 
 ブログです。
 
@@ -22,8 +22,7 @@ gatsby develop
 gatsby build
 ```
 
-
-## forked from 
+## forked from
 
 https://github.com/panr/gatsby-starter-hello-friend/
 

@@ -24,7 +24,6 @@ Amazon Lightsailを半年利用して掛かった費用を算出してみまし�
 1 vCPU
 20GB SSD
 1TB データ転送
-
 ```
 
 <img src="https://media.amazonwebservices.com/blog/2016/ls_pricing_dots_2.png">

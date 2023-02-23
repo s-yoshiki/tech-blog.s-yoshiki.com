@@ -46,7 +46,6 @@ Lambdaの制約を理解していれば、コードの実装は進められる�
 
 ただし、Fargateもコンテナ周りの知識は必要となります。
 
-
 ## デプロイ
 
 Lambdaのデプロイについては、Serverless Framework(以下、sls)等様々な手段がある中で、AWS CDK を利用していました。

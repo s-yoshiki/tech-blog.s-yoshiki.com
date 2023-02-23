@@ -47,7 +47,6 @@ if __name__ == "__main__" :
     cv2.imshow('result', img_masked)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-
 ```
 
 これを実行した時のエラーがこちら、
@@ -57,7 +56,6 @@ Traceback (most recent call last):
   File "main4.py", line 46, in <module>
     img_masked = cv2.bitwise_and(im, im, mask=mask )
 cv2.error: OpenCV(3.4.3) /tmp/opencv-20181001-41572-id0soo/opencv-3.4.3/modules/core/src/arithm.cpp:241: error: (-215:Assertion failed) (mtype == CV_8U || mtype == CV_8S) && _mask.sameSize(*psrc1) in function 'binary_op'
-
 ```
 
 エラーコードから、チャンネル数の違いによりエラーが発生しているのではないかと推測しました。

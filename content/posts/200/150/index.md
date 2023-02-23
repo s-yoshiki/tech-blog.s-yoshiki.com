@@ -16,12 +16,14 @@ shields.ioを用いてテック系アイコンを量産しました。
 これでスキルマップを作ってみたらいい感じになりました。
 
 アイコンジェネレータも作りました。
+
 <blockquote class="twitter-tweet" data-lang="ja">
 <p lang="ja" dir="ltr"><a href="https://t.co/6Xv6XIuzRm">https://t.co/6Xv6XIuzRm</a> で技術系アイコンを作るジェネレータを作りました。
 
 デモはここに置いてます。<a href="https://t.co/Xua8v7WEwi">https://t.co/Xua8v7WEwi</a> <a href="https://t.co/SYzZY6lejb">pic.twitter.com/SYzZY6lejb</a>
 
 — s-yoshiki | スクリプトカス ? (@s_yoshiki_dev) <a href="https://twitter.com/s_yoshiki_dev/status/1150040884106285062?ref_src=twsrc%5Etfw">2019年7月13日</a></blockquote>
+
 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 ## shields.ioについて
@@ -38,7 +40,6 @@ URLのパターンでカスタムバッジを作ることができます。
 
 ```shell
 https://img.shields.io/badge/${subject}-${status}-${color}.svg
-
 ```
 
 subject : バッジの左側に入る文言
@@ -126,4 +127,3 @@ color : 色
 <a href="https://tech-blog.s-yoshiki.com/2019/07/1406/">https://tech-blog.s-yoshiki.com/2019/07/1406/</a>
 
 <a href="https://qiita.com/s-yoshiki/items/436bbe1f7160b610b05c">https://qiita.com/s-yoshiki/items/436bbe1f7160b610b05c</a>
-

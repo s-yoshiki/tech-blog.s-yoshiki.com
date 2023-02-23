@@ -10,7 +10,7 @@ tags: ["amazon-aws","wordpress","cms","docker"]
 ## 概要
 
 AmazonS3 + CloudFront を用いて WordPressを静的サイト化して、ハイパフォーマンスなサイトを構成する方法の紹介です。
-実はこのブログ https://tech-blog.s-yoshiki.com もS3 + CloudFront 構成で運用しており、月額のAWS使用料が200円少々で運用できています。 
+実はこのブログ https://tech-blog.s-yoshiki.com もS3 + CloudFront 構成で運用しており、月額のAWS使用料が200円少々で運用できています。
 ここでは具体的に利用しているサービスや構成の設定、プラグインを紹介します。
 
 ## システム全体の概要
@@ -100,7 +100,6 @@ services:
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress_user
       MYSQL_PASSWORD: wordpress_pass
-
 ```
 
 ## まとめ

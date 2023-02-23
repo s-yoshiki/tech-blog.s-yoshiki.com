@@ -14,7 +14,7 @@ CentOS8 に PHP7.4 + Apache2.4 をインストールしてWebサーバを構築�
 
 ## 環境
 
- - CentOS8.3 (docker)
+- CentOS8.3 (docker)
 
 ```shell
 cat /etc/redhat-release 
@@ -26,7 +26,6 @@ docker は次のオプションで起動する。
 ```shell
 $ docker run --detach --name test -p 8080:80 --privileged  -it centos:8 /sbin/init
 ```
-
 
 ※ ここで紹介している操作は全てrootユーザで実施しています。
 
@@ -42,7 +41,6 @@ $ dnf module install php:7.4
 $ dnf install php
 ```
 
-
 ## apacheのインストール
 
 以下のコマンドを実施します。
@@ -55,7 +53,6 @@ $ dnf install httpd
 
 php-fpmの設定を変更します。
 設定ファイルは、 `/etc/php-fpm.d/www.conf` にあります。
-
 
 ```diff
 +listen.owner = apache
@@ -94,7 +91,6 @@ Jan 17 07:28:31 9cd225d5a0b6 systemd[1]: Starting The PHP FastCGI Process Manage
 Jan 17 07:28:31 9cd225d5a0b6 systemd[1]: Started The PHP FastCGI Process Manager.
 ```
 
-
 ## apacheの起動
 
 以下のコマンドで apache を起動します。
@@ -123,7 +119,7 @@ systemctl status httpd
            ├─282 /usr/sbin/httpd -DFOREGROUND
            ├─283 /usr/sbin/httpd -DFOREGROUND
 lines 1-14...skipping...
-● httpd.service - The Apache 
+● httpd.service - The Apache
 ```
 
 ## 確認
@@ -138,7 +134,6 @@ phpinfo();
 ```
 
 [http://localhost:8080/](http://localhost:8080/) にアクセスして画面が表示されていればApacheの設定は完了です。
-
 
 ## おまけ: エラーと解決方法
 
@@ -155,7 +150,7 @@ Failed to connect to bus: Host is down
 
 これは docker 起動時に `--privileged` と `/sbin/init` を指定していないため発生すると思われます。
 
-###  failed to read the acl of the socket '/run/php-fpm/www.sock'
+### failed to read the acl of the socket '/run/php-fpm/www.sock'
 
 ```
 failed to read the acl of the socket '/run/php-fpm/www.sock'
@@ -172,7 +167,6 @@ failed to read the acl of the socket '/run/php-fpm/www.sock'
 ```
 
 の設定を追加したら、`/run/php-fpm/www.sock`が作成され、php-fpmのstatusもactiveになりました。
-
 
 ## 参考にしたサイト
 

@@ -1,28 +1,27 @@
-import { NextPage, InferGetStaticPropsType } from 'next';
+import Badge from 'components/badge';
+import Layout from 'components/layout/layout';
+import PostsBand from 'components/posts-band';
+import { InferGetStaticPropsType, NextPage } from 'next';
 import Link from 'next/link';
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 import PostsManager from '../../../utils/posts-manager';
-import Layout from "components/layout/layout"
-import PostsBand from "components/posts-band"
-import Badge from "components/badge"
-
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
-const perPage = 20
+const perPage = 20;
 
 export const getStaticPaths = async () => {
-  const allPosts = PostsManager.getAllGroupByTags()
-  const perPagePosts = []
+  const allPosts = PostsManager.getAllGroupByTags();
+  const perPagePosts = [];
   for (let key of PostsManager.getAllTagNames()) {
-    const posts = allPosts.get(key)
-    if (!posts) continue
+    const posts = allPosts.get(key);
+    if (!posts) continue;
     for (let i = 1; i <= Math.ceil(posts.length / perPage); i++) {
       perPagePosts.push({
         params: {
           tag: key,
           page: String(i),
-        }
-      })
+        },
+      });
     }
   }
   return {
@@ -32,27 +31,33 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }: any) => {
-  const allPosts = PostsManager.findByTag(params.tag)
-  const pageIdx = params.page
-  const pageMax = Math.ceil(allPosts.length / perPage)
-  let posts: any = []
+  const allPosts = PostsManager.findByTag(params.tag);
+  const pageIdx = params.page;
+  const pageMax = Math.ceil(allPosts.length / perPage);
+  let posts: any = [];
   if (pageIdx <= pageMax) {
     posts = allPosts.slice(
       (pageIdx - 1) * perPage,
-      pageIdx * perPage
-    )
+      pageIdx * perPage,
+    );
   }
   return {
     props: {
       pageMax,
-      posts
+      posts,
     },
   };
 };
 
-const PageIndex = ({ basePath, pageIdx, pageMax }: { basePath: string, pageIdx: number, pageMax: number }) => {
-  let prev = <></>
-  let next = <></>
+const PageIndex = (
+  { basePath, pageIdx, pageMax }: {
+    basePath: string;
+    pageIdx: number;
+    pageMax: number;
+  },
+) => {
+  let prev = <></>;
+  let next = <></>;
   if (pageIdx > 1) {
     prev = (
       <Link href={`${basePath}/${pageIdx - 1}`} passHref>
@@ -60,7 +65,7 @@ const PageIndex = ({ basePath, pageIdx, pageMax }: { basePath: string, pageIdx: 
           Prev
         </button>
       </Link>
-    )
+    );
   }
   if (pageIdx < pageMax) {
     next = (
@@ -69,29 +74,31 @@ const PageIndex = ({ basePath, pageIdx, pageMax }: { basePath: string, pageIdx: 
           Next
         </button>
       </Link>
-    )
+    );
   }
   return (
     <div className='flex flex-wrap p-2'>
       <div className='w-20'>
         {prev}
       </div>
-      <div className='m-2 w-20 text-center font-semibold'>{pageIdx} / {pageMax}</div>
+      <div className='m-2 w-20 text-center font-semibold'>
+        {pageIdx} / {pageMax}
+      </div>
       <div className='w-20'>
         {next}
       </div>
     </div>
-  )
-}
+  );
+};
 
 const Home: NextPage<Props> = ({ posts, pageMax }) => {
   const router = useRouter();
-  const { tag, page } = router.query
+  const { tag, page } = router.query;
 
   return (
     <Layout>
       <div className='container mx-auto'>
-        <div className="">
+        <div className=''>
           <div className='
             text-2xl
             text-gray-900 
@@ -99,7 +106,7 @@ const Home: NextPage<Props> = ({ posts, pageMax }) => {
             p-2
             flex
           '>
-            Posts with tag: <Badge classNmae="m-2" keyword={String(tag)} />
+            Posts with tag: <Badge classNmae='m-2' keyword={String(tag)} />
           </div>
           <div className='flex justify-center m-2'>
             <PageIndex
@@ -119,7 +126,7 @@ const Home: NextPage<Props> = ({ posts, pageMax }) => {
         </div>
       </div>
     </Layout>
-  )
+  );
 };
 
 export default Home;

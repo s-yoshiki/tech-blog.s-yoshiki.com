@@ -38,7 +38,6 @@ line-heightはこだわりがあったので、1.5としています。
     font-family: Consolas, Monaco, monospace;
     line-height: 1.5;
 }
-
 ```
 
 ビフォー

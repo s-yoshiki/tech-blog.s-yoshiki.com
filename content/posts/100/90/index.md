@@ -24,36 +24,33 @@ canvas上のマウス座標 = window上のマウス座標 - canvasの左上の�
 
 ```html
 <canvas id="canvas"></canvas>
-
 ```
 
 マウスが動いた時にcanvas上の座標が出力されます。
 getBoundingClientRectでDOM要素の座標とサイズが取得できます。
 
 ```js
-const canvas = document.getElementById("canvas")
+const canvas = document.getElementById('canvas');
 
-canvas.addEventListener("mousemove", (e) => {
-    var rect = e.target.getBoundingClientRect()
-    var x = e.clientX - rect.left
-    var y = e.clientY - rect.top
-    console.log(`${x}:${y}`)
+canvas.addEventListener('mousemove', (e) => {
+  var rect = e.target.getBoundingClientRect();
+  var x = e.clientX - rect.left;
+  var y = e.clientY - rect.top;
+  console.log(`${x}:${y}`);
 });
-
 ```
 
 クリックした時の座標の取得は以下のように実装することで実現できます。
 
 ```js
-const canvas = document.getElementById("canvas")
+const canvas = document.getElementById('canvas');
 
-canvas.addEventListener("click", (e) => {
-    var rect = e.target.getBoundingClientRect()
-    var x = e.clientX - rect.left
-    var y = e.clientY - rect.top
-    console.log(`${x}:${y}`)
+canvas.addEventListener('click', (e) => {
+  var rect = e.target.getBoundingClientRect();
+  var x = e.clientX - rect.left;
+  var y = e.clientY - rect.top;
+  console.log(`${x}:${y}`);
 });
-
 ```
 
 ## デモ
@@ -79,53 +76,51 @@ canvas.addEventListener("click", (e) => {
 </pre>
 
 <textarea id="textarea"></textarea>
-
 ```
 
 ```js
 const canvas = document.getElementById('canvas');
 
-document.getElementById("file").addEventListener("change", function (e) {
-	var file = e.target.files;
-	var reader = new FileReader();
+document.getElementById('file').addEventListener('change', function(e) {
+  var file = e.target.files;
+  var reader = new FileReader();
 
-	reader.readAsDataURL(file[0]);
+  reader.readAsDataURL(file[0]);
 
-	reader.onload = function () {
-		var src = reader.result;
-		drawCanvas(src);
-	};
+  reader.onload = function() {
+    var src = reader.result;
+    drawCanvas(src);
+  };
 }, false);
 
-canvas.addEventListener("mousemove", function(e){
-	var borderWidth = 1;
-	var rect = e.target.getBoundingClientRect();
-	var x = e.clientX - rect.left - borderWidth;
-	var y = e.clientY - rect.top - borderWidth;
-	document.getElementById("debug").innerHTML = `${x}:${y}`
+canvas.addEventListener('mousemove', function(e) {
+  var borderWidth = 1;
+  var rect = e.target.getBoundingClientRect();
+  var x = e.clientX - rect.left - borderWidth;
+  var y = e.clientY - rect.top - borderWidth;
+  document.getElementById('debug').innerHTML = `${x}:${y}`;
 });
 
-canvas.addEventListener("click", function(e){
-	var borderWidth = 1;
-	var rect = e.target.getBoundingClientRect();
-	var x = e.clientX - rect.left - borderWidth;
-	var y = e.clientY - rect.top - borderWidth;
-	document.getElementById("textarea").value += `${x}:${y}\n`
+canvas.addEventListener('click', function(e) {
+  var borderWidth = 1;
+  var rect = e.target.getBoundingClientRect();
+  var x = e.clientX - rect.left - borderWidth;
+  var y = e.clientY - rect.top - borderWidth;
+  document.getElementById('textarea').value += `${x}:${y}\n`;
 });
 
 function drawCanvas(source) {
-	if (canvas.getContext('2d')) {
-		var context = canvas.getContext('2d');
-		var image = new Image();
-		image.src = source;
-		image.onload = function () {
-			canvas.width = image.width;
-			canvas.height = image.height;
-			context.drawImage(image, 0, 0);
-		};
-	}
+  if (canvas.getContext('2d')) {
+    var context = canvas.getContext('2d');
+    var image = new Image();
+    image.src = source;
+    image.onload = function() {
+      canvas.width = image.width;
+      canvas.height = image.height;
+      context.drawImage(image, 0, 0);
+    };
+  }
 }
-
 ```
 
 ## 参考

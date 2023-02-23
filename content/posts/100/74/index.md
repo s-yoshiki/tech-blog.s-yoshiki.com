@@ -6,10 +6,12 @@ coverImage: "../../../images/thumbnail/no-image.png"
 author: "s-yoshiki"
 tags: ["アルゴリズム","競技プログラミング","雑談"]
 ---
+
 <blockquote class="twitter-tweet" data-lang="ja">
 <p lang="en" dir="ltr">Performances of yoshiki1123  (2018-07-21〜2018-11-24) <a href="https://t.co/CY3NktJtde">https://t.co/CY3NktJtde</a> <a href="https://twitter.com/hashtag/AtCoder_Performances?src=hash&ref_src=twsrc%5Etfw">#AtCoder_Performances</a> <a href="https://t.co/eXzYu4lVtm">pic.twitter.com/eXzYu4lVtm</a>
 
 — s-yoshiki | スクリプトカス (@s_yoshiki_dev) <a href="https://twitter.com/s_yoshiki_dev/status/1066348147969060864?ref_src=twsrc%5Etfw">2018年11月24日</a></blockquote>
+
 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 ## はじめに
@@ -46,11 +48,13 @@ https://tech-blog.s-yoshiki.com/2018/08/421/
 <p lang="ja" dir="ltr">「AtCoderのレーティングは10回以上参加しないと信用できない」はちょっと嘘で、「10回程度までは低く出てる可能性が高い」という感じ。表示されるレーティングは常に「99%の確率でこのレーティング以上の実力がある」という基準なので、上側はともかく下側は気にしないでいいよ。
 
 — chokudai(高橋 直大) (@chokudai) <a href="https://twitter.com/chokudai/status/829601624502919168?ref_src=twsrc%5Etfw">2017年2月9日</a></blockquote>
+
 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <blockquote class="twitter-tweet" data-lang="ja">
 <p lang="ja" dir="ltr">AtCoderは、初回のレーティング補正が-1200とかかかってるから、かなり初回のレーティング厳しいサイトなんだけど、これくらい補正かけないと、リセマラみたいな手が有効になっちゃうのよね。（一応、100回に1回くらいはリセマラで本来の実力より高いレートが出せます）
 
 — chokudai(高橋 直大) (@chokudai) <a href="https://twitter.com/chokudai/status/914048306661138433?ref_src=twsrc%5Etfw">2017年9月30日</a></blockquote>
+
 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 ## レートの上がり方について
@@ -93,6 +97,7 @@ https://tech-blog.s-yoshiki.com/2018/09/585/
 （多分PaizaのSランクみたいにちょっと箔をつけてあげないとダメなんだろうなって思ってる）
 
 — chokudai(高橋 直大) (@chokudai) <a href="https://twitter.com/chokudai/status/950891657007779840?ref_src=twsrc%5Etfw">2018年1月10日</a></blockquote>
+
 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 プログラマとしては最低、緑くらいなきゃ厳しいのかな...がんばろ

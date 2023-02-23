@@ -39,7 +39,7 @@ http://ユーザ名:パスワード@ホスト名:ポート番号
 Windows 10 + WSL (Ubuntu)
 としていますが、下記の設定はMacおよびLinuxどの環境でも流用できる部分が多いかと思います。
 
-##  Linux / Unix 環境 + WSL環境
+## Linux / Unix 環境 + WSL環境
 
 ### bash / zsh
 

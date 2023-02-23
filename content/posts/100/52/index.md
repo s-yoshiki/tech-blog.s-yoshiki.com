@@ -33,36 +33,35 @@ c1, c2 を選び、S に含まれる全ての c1 を c2 に、c2 を c1 に置�
 
 ```js
 function main(arg) {
-    arg  = arg.split("\n")
-    var s = arg[0]
-    var t = arg[1]
+  arg = arg.split('\n');
+  var s = arg[0];
+  var t = arg[1];
 
-    for (var i  = 0; i < t.length; i++) {
-        var si = s[i].slice()
-        var ti = t[i].slice()
-    
-        if (si === ti) {
-            continue
-        }
+  for (var i = 0; i < t.length; i++) {
+    var si = s[i].slice();
+    var ti = t[i].slice();
 
-        if (s === t) {
-            break
-        }
-
-        s = s.split(si).join(ti.toUpperCase())
-        s = s.split(ti).join(si.toUpperCase())
-
-        s = s.toLowerCase()
+    if (si === ti) {
+      continue;
     }
-    
-    if (s.toLowerCase() === t) {
-        console.log('Yes')
-    } else {
-        console.log('No')
+
+    if (s === t) {
+      break;
     }
+
+    s = s.split(si).join(ti.toUpperCase());
+    s = s.split(ti).join(si.toUpperCase());
+
+    s = s.toLowerCase();
+  }
+
+  if (s.toLowerCase() === t) {
+    console.log('Yes');
+  } else {
+    console.log('No');
+  }
 }
 main(require('fs').readFileSync('/dev/stdin', 'utf8'));
-
 ```
 
 全ての例題で与えられていたテストケースをクリアすることができたので、
@@ -84,27 +83,26 @@ JSじゃなかったらループゴリ押しで片付けられてたのかもし
 
 ```js
 function main(arg) {
-    arg  = arg.split("\n")
-    var s = arg[0]
-    var t = arg[1]
+  arg = arg.split('\n');
+  var s = arg[0];
+  var t = arg[1];
 
-    while (1) {
-        if (s === "") {
-            break
-        } 
-
-        s = s.split(s[0]).join("")
-        t = t.split(t[0]).join("")
-
-        if (s.length !== t.length) {
-            console.log('No')
-            return;
-        }
+  while (1) {
+    if (s === '') {
+      break;
     }
-    console.log('Yes')
+
+    s = s.split(s[0]).join('');
+    t = t.split(t[0]).join('');
+
+    if (s.length !== t.length) {
+      console.log('No');
+      return;
+    }
+  }
+  console.log('Yes');
 }
 main(require('fs').readFileSync('/dev/stdin', 'utf8'));
-
 ```
 
 なんていうか、目から鱗だった。

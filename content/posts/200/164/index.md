@@ -178,10 +178,10 @@ tags: ["amazon-aws","amazon-ec2","amazon-s3","awsソリューションアーキ�
 </ul>
 <!-- /wp:list -->
 
-**Amazon EC2 (2019/03/05)** 
+**Amazon EC2 (2019/03/05)**
 
-<a href="https://www.slideshare.net/AmazonWebServicesJapan/20190305-aws-black-belt-online-seminar-amazon-ec2">Slideshare</a> 
+<a href="https://www.slideshare.net/AmazonWebServicesJapan/20190305-aws-black-belt-online-seminar-amazon-ec2">Slideshare</a>
 
-<a href="https://d1.awsstatic.com/webinars/jp/pdf/services/20190305_AWS-Blackbelt-EC2.pdf">PDF</a> 
+<a href="https://d1.awsstatic.com/webinars/jp/pdf/services/20190305_AWS-Blackbelt-EC2.pdf">PDF</a>
 
 <a href="https://youtu.be/P5zX4DdlYOE">YouTube</a>

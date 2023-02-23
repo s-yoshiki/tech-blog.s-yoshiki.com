@@ -6,6 +6,7 @@ coverImage: "../../../images/thumbnail/opencv-logo.png"
 author: "s-yoshiki"
 tags: ["opencv","mac","opencv4"]
 ---
+
 macOS (MacBook Pro 2018 13 inchi)にhomebrewを用いてOpenCVをインストールする方法。
 
 ## パッケージの情報

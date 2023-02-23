@@ -9,7 +9,7 @@ tags: ["perl","centos","cpan"]
 
 ## 概要
 
-CentOS7  に Perl + CPAN 環境を構築する。\nPerl は CentOS7 標準 (5.16.3 ) を利用する。
+CentOS7 に Perl + CPAN 環境を構築する。\nPerl は CentOS7 標準 (5.16.3 ) を利用する。
 
 ## 環境
 
@@ -54,7 +54,6 @@ What approach do you want?  (Choose 'local::lib', 'sudo' or 'manual')
 各種設定が終わるとCPANが利用できるようになります。
 
 ```
-
 cpan[1]> i MD5
 Fetching with HTTP::Tiny:
 http:&#47;&#47;cpan.mirror.cdnetworks.com/authors/01mailrc.txt.gz
@@ -88,4 +87,3 @@ Module id = MD5
 
 cpan[2]> exit
 ```
-

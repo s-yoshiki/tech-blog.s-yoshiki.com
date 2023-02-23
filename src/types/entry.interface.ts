@@ -1,5 +1,3 @@
-
-
 export interface Posts {
   title: string;
   path: string;
@@ -7,7 +5,7 @@ export interface Posts {
   coverImage: string;
   tags: string[];
   filepath: string;
-};
+}
 
 export interface IGroupByItems {
   name: string;

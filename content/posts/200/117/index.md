@@ -42,58 +42,56 @@ tags: ["javascript","canvas","画像処理","画像処理100本ノック"]
  */
 export default class {
   /**
-   * @param {Object} canvas 
-   * @param {Object} image 
+   * @param {Object} canvas
+   * @param {Object} image
    */
   main(canvas, image) {
-    let ctx = canvas.getContext("2d");
-    ctx.drawImage(image, 0, 0, image.width, image.height)
-    let src = ctx.getImageData(0, 0, image.width, image.height)
-    let dst = ctx.createImageData(image.width, image.height)
+    let ctx = canvas.getContext('2d');
+    ctx.drawImage(image, 0, 0, image.width, image.height);
+    let src = ctx.getImageData(0, 0, image.width, image.height);
+    let dst = ctx.createImageData(image.width, image.height);
 
-    let thresholds = [32, 96, 160, 224]
+    let thresholds = [32, 96, 160, 224];
 
     for (let i = 0; i < src.data.length; i++) {
       if (i % 4 === 3) {
-        dst.data[i] = src.data[i]
-        continue
+        dst.data[i] = src.data[i];
+        continue;
       }
 
-      let neer = Number.MAX_SAFE_INTEGER
-      let _j = 0
+      let neer = Number.MAX_SAFE_INTEGER;
+      let _j = 0;
 
       for (let j in thresholds) {
-        let d = Math.abs(src.data[i] - thresholds[j])
+        let d = Math.abs(src.data[i] - thresholds[j]);
         if (d < neer) {
-          neer = d
-          _j = j
+          neer = d;
+          _j = j;
         }
       }
 
-      dst.data[i] = thresholds[_j]
+      dst.data[i] = thresholds[_j];
     }
-    ctx.putImageData(dst, 0, 0)
+    ctx.putImageData(dst, 0, 0);
   }
 }
-
 ```
 
 **main.js**
 
 ```js
-import CV from '/path/to/cv.js'
-const canvas = document.getElementById("canvas")
-let image = new Image()
-image.crossOrigin = "Anonymous";
-image.src = "path/to/image.png"
+import CV from '/path/to/cv.js';
+const canvas = document.getElementById('canvas');
+let image = new Image();
+image.crossOrigin = 'Anonymous';
+image.src = 'path/to/image.png';
 
 image.onload = function() {
-  canvas.width = image.width
-  canvas.height = image.height
-  let cv = new CV()
-  cv.main(canvas, image)
-}
-
+  canvas.width = image.width;
+  canvas.height = image.height;
+  let cv = new CV();
+  cv.main(canvas, image);
+};
 ```
 
 参考に知ったソースはこちら。

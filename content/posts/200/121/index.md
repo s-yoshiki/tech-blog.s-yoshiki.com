@@ -14,6 +14,7 @@ VSCode(2019/05/05時点ではInsider版のみ)でリモートサーバ上のフ�
 これをちょっとだけ試してみました。
 
 また、初期のセットアップでハマったところがあったのでそれについても触れます。
+
 <blockquote class="twitter-tweet" data-lang="ja">
 <p dir="ltr" lang="en">Introducing Remote Development for <a href="https://twitter.com/code?ref_src=twsrc%5Etfw">@code</a> ???️
 
@@ -22,6 +23,7 @@ A new set of extensions that enable you to open any folder in a container, on a 
 ? <a href="https://t.co/ChYGQ89Y5f">https://t.co/ChYGQ89Y5f</a>
 
 — Visual Studio Code (@code) <a href="https://twitter.com/code/status/1124016109076799488?ref_src=twsrc%5Etfw">2019年5月2日</a></blockquote>
+
 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <a href="https://code.visualstudio.com/blogs/2019/05/02/remote-development">https://code.visualstudio.com/blogs/2019/05/02/remote-development</a>
@@ -61,6 +63,7 @@ ARMv7l Raspbian 8+（32ビット）も実験的にサポート。
 ### 環境
 
 **ローカル**
+
 <ul>
  	<li>macOS Mojava 10.14</li>
 </ul>
@@ -100,7 +103,6 @@ Host test.my-server1  # 任意のホスト名
     User your_name  # ユーザネーム 
     Port 22  # ポート番号
     IdentityFile ~/.ssh/xxxx_key.pem  # 鍵のパス
-
 ```
 
 ## VSCodeからの接続
@@ -147,14 +149,12 @@ esac
 ROOT="$(dirname "$(realpath "$0")")"
 
 "$ROOT/node" ${INSPECT:-} "$ROOT/out/remoteExtensionHostAgent.js" "$@"
-
 ```
 
 リモート環境に realpath と node がなかったのでインストールしました。
 
 ```
 sudo apt install realpath
-
 ```
 
 aptでインストールしたnodejsは動かなかったのでこの辺りを参考にしました。

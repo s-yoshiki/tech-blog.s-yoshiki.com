@@ -13,7 +13,6 @@ CentOS8 で標準で提供されているパッケージで Python + OpenCV 環�
 
 検証した環境は CentOS8.3 (Docker) です。
 
-
 ## インストール
 
 まず opencv のパッケージを探します。
@@ -31,7 +30,6 @@ $ dnf search opencv
 ```
 
 `opencv-core` と `opencv-contrib` をインストールします。
-
 
 ```shell
 dnf install opencv-core opencv-contrib
@@ -60,7 +58,7 @@ $ python3
 >>> import cv2
 >>> cv2.__version__
 '4.5.2'
->>> 
+>>>
 ```
 
 ## テスト
@@ -75,4 +73,3 @@ im = cv2.imread('src.png')
 im[:, :, (0, 1)] = 0
 cv2.imwrite('dst.png', im)
 ```
-

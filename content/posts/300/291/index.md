@@ -15,9 +15,9 @@ tags: ["javascript"]
 
 ```js
 let formatter = new Intl.DateTimeFormat('ja-JP-u-ca-japanese', {
-  year: 'numeric'
-})
-console.log(formatter.format(new Date(2022, 0, 1)))
+  year: 'numeric',
+});
+console.log(formatter.format(new Date(2022, 0, 1)));
 ```
 
 例えば次のコードは`令和4年`と出力されます。
@@ -28,16 +28,16 @@ console.log(formatter.format(new Date(2022, 0, 1)))
 
 ```js
 let formatter = new Intl.DateTimeFormat('ja-JP-u-ca-japanese', {
-    year: 'numeric'
-})
-for (let i = 1800; i <= 2022; i+=1) {
-    let era0 = formatter.format(new Date(i, 0, 1))
-    let era1 = formatter.format(new Date(i, 11, 31))
-    if (era1.endsWith('元年') && era0 !== era1) {
-        console.log(
-            [i, era0, era1]
-        );
-    }
+  year: 'numeric',
+});
+for (let i = 1800; i <= 2022; i += 1) {
+  let era0 = formatter.format(new Date(i, 0, 1));
+  let era1 = formatter.format(new Date(i, 11, 31));
+  if (era1.endsWith('元年') && era0 !== era1) {
+    console.log(
+      [i, era0, era1],
+    );
+  }
 }
 ```
 

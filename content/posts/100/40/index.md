@@ -47,7 +47,6 @@ make
 sudo make install
 
 sudo ldconfig
-
 ```
 
 <a href="https://gist.github.com/fideloper/f72997d2e2c9fbe66459"> 参照元 https://gist.github.com/fideloper/f72997d2e2c9fbe66459</a>

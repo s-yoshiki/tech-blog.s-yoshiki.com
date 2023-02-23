@@ -6,6 +6,7 @@ coverImage: "../../../images/thumbnail/aws-logo.png"
 author: "s-yoshiki"
 tags: ["amazon-aws","linux","ubuntu","ssh","iam","amazon-ec2","aws-cli","aws ssm","amazon linux"]
 ---
+
 AWSのEC2インスタンスに対してAWS System Manager、通称SSMでSSHポートを解放せずSSHする方法の紹介です。
 
 ## 環境
@@ -71,7 +72,6 @@ curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/mac/sessi
 unzip sessionmanager-bundle.zip
 # インストールシェルの実行
 sudo ./sessionmanager-bundle/install -i /usr/local/sessionmanagerplugin -b /usr/local/bin/session-manager-plugin
-
 ```
 
 これで完了です。
@@ -118,6 +118,7 @@ Linuxの場合もmacと同様にsession-manager-pluginコマンドでインス�
 SSMエージェントのインストールは<a href="https://docs.aws.amazon.com/ja_jp/systems-manager/latest/userguide/sysman-manual-agent-install.html"> awsの公式ドキュメント </a>にも記載されており、また、試した時点(2019/08/01)ではインスタンスにすでにインストールされていたので今後、新規に作成したインスタンスに対して改めてインストールする作業は不要になると思います。
 ※ 古いAMIから作成したインスタンスにはインストールされていないようです。
 ちなみに公式ドキュメントでは次のように触れています。
+
 <blockquote>
 
 SSM エージェント は、デフォルトでは、2017 年 9 月以降の Amazon Linux 基本 AMI にインストールされます。SSM エージェント は、デフォルトで、Amazon Linux 2 AMI にもインストールされます。
@@ -153,6 +154,7 @@ sudo systemctl start amazon-ssm-agent
 #### Ubuntu 18.04 へのインストール
 
 UbuntuもAmazon Linuxと同様にamazon-ssm-agentの手動インストールは不要でした。
+
 <blockquote>デフォルトでは、SSM エージェント は、20180627 以降の識別子のある Ubuntu Server 18.04 および 16.04 LTS 64 ビット AMI にインストールされます。バージョン 16.04 AMI の詳細については、64 ビット Ubuntu Server 16.04 インスタンスでの SSM エージェント のインストールについて を参照してください。
 
 SSM エージェント オンプレミスサーバーにインストールする場合やエージェントを再インストールする場合は、次のスクリプトを使用できます。ダウンロードの URL を指定する必要はありません。snap コマンドでは、エージェントが Snap アプリストア https://snapcraft.io から自動的にダウンロードされます。</blockquote>
@@ -183,6 +185,7 @@ sudo snap services amazon-ssm-agent
 ### IAMロール作成
 
 SSMからの接続を許可するIAMロールを作成しEC2に割り当てます。
+
 <ul>
  	<li>IAM(https://console.aws.amazon.com/iam/home#/home)に移動</li>
  	<li>EC2用のロール作成</li>

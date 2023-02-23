@@ -6,6 +6,7 @@ coverImage: "../../../images/thubnail/javascript-logo.png"
 author: "s-yoshiki"
 tags: ["html5","javascript","アルゴリズム","機械学習"]
 ---
+
 <!--Ads1-->
 
 ## 概要
@@ -30,6 +31,7 @@ tags: ["html5","javascript","アルゴリズム","機械学習"]
 <a href="//jsfiddle.net/s_yoshiki/Lxdbfey3/21/">デモ3 Link</a>
 
 クラスタ重心を大きく描画するとこんな感じ
+
 <iframe width="100%" height="300" src="//jsfiddle.net/s_yoshiki/Lxdbfey3/25/embedded/result,js" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 <a href="//jsfiddle.net/s_yoshiki/Lxdbfey3/25/">デモ4 Link</a>
 

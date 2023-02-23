@@ -22,15 +22,15 @@ AtCoderとかをやっていると、
 
 ```js
 function main(n) {
-    for (let bit = 0; bit < (1 << n); bit++) {
-        let row = []
-        for (let i = 0; i < n; i++) {
-            if (bit & (1 << i)) {
-                row.push(i)
-            }
-        }
-        console.log(row)
+  for (let bit = 0; bit < (1 << n); bit++) {
+    let row = [];
+    for (let i = 0; i < n; i++) {
+      if (bit & (1 << i)) {
+        row.push(i);
+      }
     }
+    console.log(row);
+  }
 }
 main(4);
 ```
@@ -39,21 +39,21 @@ main(4);
 **結果**
 
 ```js
-0
-1
-0,1
-2
-0,2
-1,2
-0,1,2
-3
-0,3
-1,3
-0,1,3
-2,3
-0,2,3
-1,2,3
-0,1,2,3
+0;
+1;
+0, 1;
+2;
+0, 2;
+1, 2;
+0, 1, 2;
+3;
+0, 3;
+1, 3;
+0, 1, 3;
+2, 3;
+0, 2, 3;
+1, 2, 3;
+0, 1, 2, 3;
 ```
 
 部分和の問題を解いてみます。
@@ -64,38 +64,38 @@ main(4);
 // 答: 存在する。[7, 8, 12]
 
 function fetchBitPattern(n, f) {
-    for (let bit = 0; bit < (1 << n); bit++) {
-        let row = []
-        for (let i = 0; i < n; i++) {
-            if (bit & (1 << i)) {
-                row.push(i)
-            }
-        }
-        f(row)
+  for (let bit = 0; bit < (1 << n); bit++) {
+    let row = [];
+    for (let i = 0; i < n; i++) {
+      if (bit & (1 << i)) {
+        row.push(i);
+      }
     }
+    f(row);
+  }
 }
 
 function main() {
-    const Q = [3, 7, 8, 12, 13, 18]
-    const A = 27
-    fetchBitPattern(Q.length, (bit) => {
-        let s = 0
-        let tmp = []
-        for (let i = 0; i < bit.length; i++) {
-            s += Q[bit[i]]
-            tmp.push(Q[bit[i]])
-        }
-        if (s === A) {
-            console.log(tmp)
-        }
-    })
+  const Q = [3, 7, 8, 12, 13, 18];
+  const A = 27;
+  fetchBitPattern(Q.length, (bit) => {
+    let s = 0;
+    let tmp = [];
+    for (let i = 0; i < bit.length; i++) {
+      s += Q[bit[i]];
+      tmp.push(Q[bit[i]]);
+    }
+    if (s === A) {
+      console.log(tmp);
+    }
+  });
 }
 
-main()
+main();
 ```
 
 ```js
-[7,8,12]
+[7, 8, 12];
 ```
 
 と表示されます。
@@ -106,43 +106,42 @@ toStringメソッドで実装する。
 
 ```js
 function main(n) {
-    for (let i = 0; i < Math.pow(2, n); i++) {
-        let row = []
-        let t = i.toString(2)
-        for (let j = t.length; j < n; j++) {
-            t = '0' + t
-        }
-        t = t.split('').map(Number)
-        for (let j = 0; j < t.length; j++) {
-            if (t[j] === 1) {
-                row.push(j)
-            }
-        }
-        console.log(row)
+  for (let i = 0; i < Math.pow(2, n); i++) {
+    let row = [];
+    let t = i.toString(2);
+    for (let j = t.length; j < n; j++) {
+      t = '0' + t;
     }
+    t = t.split('').map(Number);
+    for (let j = 0; j < t.length; j++) {
+      if (t[j] === 1) {
+        row.push(j);
+      }
+    }
+    console.log(row);
+  }
 }
-main(4)
+main(4);
 ```
 
 このコードの結果は次のようになります。
 
 ```js
-3
-2
-2,3
-1
-1,3
-1,2
-1,2,3
-0
-0,3
-0,2
-0,2,3
-0,1
-0,1,3
-0,1,2
-0,1,2,3
-
+3;
+2;
+2, 3;
+1;
+1, 3;
+1, 2;
+1, 2, 3;
+0;
+0, 3;
+0, 2;
+0, 2, 3;
+0, 1;
+0, 1, 3;
+0, 1, 2;
+0, 1, 2, 3;
 ```
 
 同じく部分和問題を解いてみます。
@@ -153,43 +152,43 @@ main(4)
 // 答: 存在する。[7, 8, 12]
 
 function fetchBitPattern(n, f) {
-    for (let i = 0; i < Math.pow(2, n); i++) {
-        let row = []
-        let t = i.toString(2)
-        for (let j = t.length; j < n; j++) {
-            t = '0' + t
-        }
-        t = t.split('').map(Number)
-        for (let j = 0; j < t.length; j++) {
-            if (t[j] === 1) {
-                row.push(j)
-            }
-        }
-        f(row)
+  for (let i = 0; i < Math.pow(2, n); i++) {
+    let row = [];
+    let t = i.toString(2);
+    for (let j = t.length; j < n; j++) {
+      t = '0' + t;
     }
+    t = t.split('').map(Number);
+    for (let j = 0; j < t.length; j++) {
+      if (t[j] === 1) {
+        row.push(j);
+      }
+    }
+    f(row);
+  }
 }
 
 function main() {
-    const Q = [3, 7, 8, 12, 13, 18]
-    const A = 27
-    fetchBitPattern(Q.length, (bit) => {
-        let s = 0
-        let tmp = []
-        for (let i = 0; i < bit.length; i++) {
-            s += Q[bit[i]]
-            tmp.push(Q[bit[i]])
-        }
-        if (s === A) {
-            console.log(tmp)
-        }
-    })
+  const Q = [3, 7, 8, 12, 13, 18];
+  const A = 27;
+  fetchBitPattern(Q.length, (bit) => {
+    let s = 0;
+    let tmp = [];
+    for (let i = 0; i < bit.length; i++) {
+      s += Q[bit[i]];
+      tmp.push(Q[bit[i]]);
+    }
+    if (s === A) {
+      console.log(tmp);
+    }
+  });
 }
 
 main();
 ```
 
 ```js
-[7,8,12]
+[7, 8, 12];
 ```
 
 と表示されます。

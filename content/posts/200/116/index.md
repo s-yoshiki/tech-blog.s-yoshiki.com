@@ -37,7 +37,7 @@ tags: ["javascript","canvas","画像処理","画像処理100本ノック","hsv"]
 export default class {
   /**
    * rgb to hsv
-   * @param {Array} rgb 
+   * @param {Array} rgb
    */
   rgb2hsv(rgb) {
     let r = rgb[0] / 255;
@@ -51,10 +51,18 @@ export default class {
     let h = 0;
 
     switch (min) {
-      case max: h = 0; break;
-      case r: h = (60 * ((b - g) / diff)) + 180; break;
-      case g: h = (60 * ((r - b) / diff)) + 300; break;
-      case b: h = (60 * ((g - r) / diff)) + 60; break;
+      case max:
+        h = 0;
+        break;
+      case r:
+        h = (60 * ((b - g) / diff)) + 180;
+        break;
+      case g:
+        h = (60 * ((r - b) / diff)) + 300;
+        break;
+      case b:
+        h = (60 * ((g - r) / diff)) + 60;
+        break;
     }
 
     let s = max == 0 ? 0 : diff / max;
@@ -64,23 +72,23 @@ export default class {
   }
   /**
    * hsv to rgb
-   * @param {Array} hsv 
+   * @param {Array} hsv
    */
   hsv2rgb(hsv) {
-    let h = hsv[0]
-    let s = hsv[1]
-    let v = hsv[2]
+    let h = hsv[0];
+    let s = hsv[1];
+    let v = hsv[2];
     let c = v * s;
     let hp = h / 60;
     let x = c * (1 - Math.abs(hp % 2 - 1));
 
     let r, g, b;
-    if (0 <= hp && hp < 1) { [r, g, b] = [c, x, 0] }
-    if (1 <= hp && hp < 2) { [r, g, b] = [x, c, 0] }
-    if (2 <= hp && hp < 3) { [r, g, b] = [0, c, x] }
-    if (3 <= hp && hp < 4) { [r, g, b] = [0, x, c] }
-    if (4 <= hp && hp < 5) { [r, g, b] = [x, 0, c] }
-    if (5 <= hp && hp < 6) { [r, g, b] = [c, 0, x] }
+    if (0 <= hp && hp < 1) [r, g, b] = [c, x, 0];
+    if (1 <= hp && hp < 2) [r, g, b] = [x, c, 0];
+    if (2 <= hp && hp < 3) [r, g, b] = [0, c, x];
+    if (3 <= hp && hp < 4) [r, g, b] = [0, x, c];
+    if (4 <= hp && hp < 5) [r, g, b] = [x, 0, c];
+    if (5 <= hp && hp < 6) [r, g, b] = [c, 0, x];
 
     let m = v - c;
     [r, g, b] = [r + m, g + m, b + m];
@@ -93,52 +101,50 @@ export default class {
   }
   /**
    * メイン
-   * @param {Object} canvas 
-   * @param {Object} image 
+   * @param {Object} canvas
+   * @param {Object} image
    */
   main(canvas, image) {
-    let ctx = canvas.getContext("2d");
-    ctx.drawImage(image, 0, 0, image.width, image.height)
+    let ctx = canvas.getContext('2d');
+    ctx.drawImage(image, 0, 0, image.width, image.height);
 
-    let src = ctx.getImageData(0, 0, image.width, image.height)
-    let dst = ctx.createImageData(image.width, image.height)
+    let src = ctx.getImageData(0, 0, image.width, image.height);
+    let dst = ctx.createImageData(image.width, image.height);
 
     for (let i = 0; i < src.data.length; i += 4) {
-      let r = src.data[i]
-      let g = src.data[i + 1]
-      let b = src.data[i + 2]
+      let r = src.data[i];
+      let g = src.data[i + 1];
+      let b = src.data[i + 2];
 
-      let hsv = this.rgb2hsv([r, g, b])
-      hsv[0] = (hsv[0] + 180) % 360
-      let rgb = this.hsv2rgb(hsv)
+      let hsv = this.rgb2hsv([r, g, b]);
+      hsv[0] = (hsv[0] + 180) % 360;
+      let rgb = this.hsv2rgb(hsv);
 
-      dst.data[i] = rgb[0]
-      dst.data[i + 1] = rgb[1]
-      dst.data[i + 2] = rgb[2]
-      dst.data[i + 3] = src.data[i + 3]
+      dst.data[i] = rgb[0];
+      dst.data[i + 1] = rgb[1];
+      dst.data[i + 2] = rgb[2];
+      dst.data[i + 3] = src.data[i + 3];
     }
-    ctx.putImageData(dst, 0, 0)
+    ctx.putImageData(dst, 0, 0);
   }
 }
-
 ```
 
 **main.js**
 
 ```js
-import HSV from '/path/to/hsv.js'
-const canvas = document.getElementById("canvas")
-let image = new Image()
-image.crossOrigin = "Anonymous";
-image.src = "path/to/image.png"
+import HSV from '/path/to/hsv.js';
+const canvas = document.getElementById('canvas');
+let image = new Image();
+image.crossOrigin = 'Anonymous';
+image.src = 'path/to/image.png';
 
 image.onload = function() {
-  canvas.width = image.width
-  canvas.height = image.height
-  let hsv = new HSV()
-  hsv.main(canvas, image)
-}
-
+  canvas.width = image.width;
+  canvas.height = image.height;
+  let hsv = new HSV();
+  hsv.main(canvas, image);
+};
 ```
 
 参考にしたソース

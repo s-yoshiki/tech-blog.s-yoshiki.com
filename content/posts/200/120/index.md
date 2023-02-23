@@ -18,29 +18,29 @@ asyncを使った方がベターですが、ここでは使いません。
 
 ```js
 let imagesUrl = [
-  "/path/to/image/a.png",
-  "/path/to/image/b.png",
-  "/path/to/image/c.png",
+  '/path/to/image/a.png',
+  '/path/to/image/b.png',
+  '/path/to/image/c.png',
   // ...
-]
-let images = new Array(imagesUrl.length)
-let loadingCount = 0
+];
+let images = new Array(imagesUrl.length);
+let loadingCount = 0;
 
 const mainEvent = () => {
-　　// 画像読み込み完了時の処理を書く
-  console.log('complete')
-}
+  // 画像読み込み完了時の処理を書く
+  console.log('complete');
+};
 
 for (let i = 0; i < imagesUrl.length; i++) {
-  images[i] = new Image()
-  images[i].src = imagesUrl[i]
-  images[i].crossOrigin = "Anonymous";
+  images[i] = new Image();
+  images[i].src = imagesUrl[i];
+  images[i].crossOrigin = 'Anonymous';
   images[i].addEventListener('load', () => {
-    loadingCount++
+    loadingCount++;
     if (loadingCount === images.length - 1) {
-      mainEvent()
+      mainEvent();
     }
-  })
+  });
 }
 ```
 

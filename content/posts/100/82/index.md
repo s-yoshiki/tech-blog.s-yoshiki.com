@@ -16,8 +16,7 @@ AtCoder Beginner Contest、 通称ABCはAtCoderのコンテストの1つで初�
 ABCDの問題を難易度順に並べると、
 
 ```
-A < B <<< 壁 <<< C <= D 
-
+A < B <<< 壁 <<< C <= D
 ```
 
 といった難易度じゃないかと思います。
@@ -84,44 +83,43 @@ AtCoder ABC C - 755</blockquote>
 
 ```js
 function main(arg) {
-    arg = Number(arg.split("\n")[0])
+  arg = Number(arg.split('\n')[0]);
 
-    var master = [0, 3, 5, 7]
-    var counter = 0;
+  var master = [0, 3, 5, 7];
+  var counter = 0;
 
-    for (var i = 0; ; i++) {
-        var tmp = String(i.toString(4))
-        var _tmp = "";
+  for (var i = 0;; i++) {
+    var tmp = String(i.toString(4));
+    var _tmp = '';
 
-        if (tmp.length < 3) {
-            continue;
-        }
-
-        if (tmp.indexOf('0') !== -1) {
-            continue;
-        }
-
-        var b = tmp.split("").filter(function (x, i, self) {
-            return self.indexOf(x) === i;
-        });
-
-        if (b.length < 3) {
-            continue;
-        }
-
-        for (var j = 0; j < tmp.length; j++) {
-            _tmp += master[tmp[j]]
-        }
-
-        if (_tmp > arg) {
-            break;
-        }
-        counter++
+    if (tmp.length < 3) {
+      continue;
     }
-    console.log(counter)
+
+    if (tmp.indexOf('0') !== -1) {
+      continue;
+    }
+
+    var b = tmp.split('').filter(function(x, i, self) {
+      return self.indexOf(x) === i;
+    });
+
+    if (b.length < 3) {
+      continue;
+    }
+
+    for (var j = 0; j < tmp.length; j++) {
+      _tmp += master[tmp[j]];
+    }
+
+    if (_tmp > arg) {
+      break;
+    }
+    counter++;
+  }
+  console.log(counter);
 }
 main(require('fs').readFileSync('/dev/stdin', 'utf8'));
-
 ```
 
 考え方的には、3,5,7から成り立つ3進数に変換して総当たりで解くという方法を考えました。
@@ -133,4 +131,5 @@ main(require('fs').readFileSync('/dev/stdin', 'utf8'));
 <p lang="ja" dir="ltr">AtCoderの時間(21:00)になったからAtCoderやろうと思って、臨戦態勢で待ってたら開始が24時間後だった
 
 — s-yoshiki | スクリプトカス (@s_yoshiki_dev) <a href="https://twitter.com/s_yoshiki_dev/status/1068837979437690881?ref_src=twsrc%5Etfw">2018年12月1日</a></blockquote>
+
 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

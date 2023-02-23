@@ -6,14 +6,15 @@ coverImage: "../../../images/thumbnail/javascript-logo.png"
 author: "s-yoshiki"
 tags: ["html5","javascript","markedjs","highlight.js"]
 ---
+
 ## 概要
 
 highlightJS + markedJS でマークダウンエディタを作りました。
-	
 
 ## アプリケーション
 
 <a href="http://jsrun.it/s.yoshiki1123/StQb" target="blank">リンク</a>
+
 <script type="text/javascript" src="http://jsdo.it/blogparts/StQb/js?width=465&height=496&view=play"></script>
 
 ## ソース

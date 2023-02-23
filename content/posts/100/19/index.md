@@ -27,7 +27,7 @@ axios.jsでAPIを叩く
 - Ubutnu 16.04
 - Python + Flask
 - OpenCV 3.2
-など
+  など
 
 ## アプリケーション
 
@@ -73,58 +73,56 @@ html
 js
 
 ```js
-(function(){
+(function() {
+  document.getElementById('run').addEventListener('click', function() {
+    var params = new FormData();
+    var file = document.getElementById('image').files[0];
 
-    document.getElementById("run").addEventListener("click", function(){
-        var params = new FormData();
-        var file = document.getElementById("image").files[0]
-
-        params.append('image', file)
-        axios.post('/api', params).then(function(response) {
-            response.data.forEach((e) => {
-                var v = e.face
-                drawRect(v.x, v.y, v.w, v.h)
-                e.eyes.forEach((eye) => {
-                    eye.x += v.x
-                    eye.y += v.y
-                    drawRect(eye.x, eye.y, eye.w, eye.h)
-                })
-            })
-        }).catch(function(error) {
-            alert("error")
+    params.append('image', file);
+    axios.post('/api', params).then(function(response) {
+      response.data.forEach((e) => {
+        var v = e.face;
+        drawRect(v.x, v.y, v.w, v.h);
+        e.eyes.forEach((eye) => {
+          eye.x += v.x;
+          eye.y += v.y;
+          drawRect(eye.x, eye.y, eye.w, eye.h);
         });
-    })
+      });
+    }).catch(function(error) {
+      alert('error');
+    });
+  });
 
-    document.getElementById("image").addEventListener("change", function(e) {
-        var file = e.target.files;
-        var reader = new FileReader();
-        reader.readAsDataURL(file[0]);
-        reader.onload = function() {
-            var source = reader.result;
-            drawImage(reader.result)
-        }
-    }, false);
+  document.getElementById('image').addEventListener('change', function(e) {
+    var file = e.target.files;
+    var reader = new FileReader();
+    reader.readAsDataURL(file[0]);
+    reader.onload = function() {
+      var source = reader.result;
+      drawImage(reader.result);
+    };
+  }, false);
 
-    function drawImage(src) {
-        var canvas = document.getElementById("canvas")
-        var context = canvas.getContext('2d')
-        var image = new Image()
-        image.src = src;
-        image.onload = function() {
-            canvas.width = image.width
-            canvas.height = image.height
-            context.drawImage(image, 0, 0)
-        }
-    }
+  function drawImage(src) {
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    var image = new Image();
+    image.src = src;
+    image.onload = function() {
+      canvas.width = image.width;
+      canvas.height = image.height;
+      context.drawImage(image, 0, 0);
+    };
+  }
 
-    function drawRect(x, y, w, h) {
-        var canvas = document.getElementById("canvas")
-        var context = canvas.getContext('2d')
-        context.rect(x, y, w, h);
-        context.stroke();
-    }
-})()
-
+  function drawRect(x, y, w, h) {
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    context.rect(x, y, w, h);
+    context.stroke();
+  }
+})();
 ```
 
 ## サーバ
@@ -160,7 +158,6 @@ def face_detect():
     img.save(path)
     face_pos = get_facepos(path)
     return jsonify(face_pos)
-
 ```
 
 face_detect.py
@@ -201,7 +198,6 @@ def get_facepos(img_path):
             "eyes": eyes_dst
         })
     return result
-
 ```
 
 ディレクトリ構成
@@ -212,7 +208,7 @@ def get_facepos(img_path):
 ├── templates
 │   └── index.html
 └── tmp
-    └── lenna.jpg 
+    └── lenna.jpg
 ```
 
 ## 参考

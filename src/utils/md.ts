@@ -1,16 +1,16 @@
-import fs from "fs";
-import matter from "gray-matter";
-import { unified } from "unified";
-import remarkParse from "remark-parse";
-import remarkRehype from "remark-rehype";
-import rehypeStringify from "rehype-stringify";
-import rehypeShiki from "@leafac/rehype-shiki";
-import * as shiki from "shiki";
-import remarkGfm from "remark-gfm";
-import remarkHtml from "remark-html";
-import remarkSlug from "remark-slug";
+import rehypeShiki from '@leafac/rehype-shiki';
+import fs from 'fs';
+import matter from 'gray-matter';
+import rehypeStringify from 'rehype-stringify';
+import remarkGfm from 'remark-gfm';
+import remarkHtml from 'remark-html';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import remarkSlug from 'remark-slug';
+import * as shiki from 'shiki';
+import { unified } from 'unified';
 
-import * as cheerio from "cheerio";
+import * as cheerio from 'cheerio';
 
 interface Props {
   filepath: string;
@@ -20,17 +20,17 @@ interface Props {
 const getToc = (html: string) => {
   const dom = cheerio.load(html);
   const h2 = new Array<string>();
-  dom("h2").each((idx, ref) => {
-    const id = ref.attribs["id"];
+  dom('h2').each((idx, ref) => {
+    const id = ref.attribs['id'];
     h2.push(id);
   });
-  const tocHead = "目次";
+  const tocHead = '目次';
   let toc = `<h2 id="${tocHead}">${tocHead}</h2>\n`;
-  toc += "<ol>";
+  toc += '<ol>';
   h2.forEach((e) => {
     toc += `<li><a href="#${e}">${e}</a></li>`;
   });
-  toc += "</ol>";
+  toc += '</ol>';
   return {
     html: toc + html,
     toc: h2,
@@ -43,7 +43,7 @@ const getToc = (html: string) => {
  * @returns 変換結果をString化したもの
  */
 const markdownToHtml = async (opt: Props) => {
-  const fileContents = fs.readFileSync(opt.filepath, "utf8");
+  const fileContents = fs.readFileSync(opt.filepath, 'utf8');
   const { data, content } = matter(fileContents);
   const result = await unified() // unifiedライブラリの処理をまとめる
     .use(remarkParse) // Markdownをmdast(Markdownの抽象構文木)に変換
@@ -57,7 +57,7 @@ const markdownToHtml = async (opt: Props) => {
     .use(rehypeShiki, {
       highlighter: await shiki.getHighlighter({
         // theme: 'nord',
-        theme: "github-dark",
+        theme: 'github-dark',
       }),
     }) // shikiハイライターでコードブロックをハイライト
     .use(rehypeStringify, { allowDangerousHtml: true }) // hastをHTMLに変換

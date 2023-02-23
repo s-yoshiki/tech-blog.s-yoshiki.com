@@ -41,7 +41,9 @@ link属性として
 wordpressのテーマを見るとベタで書くのが厳しかったので、JSで動的に属性を追加することにしました。
 
 ```js
-(function(){document.body.classList.add("markdown-body");})();
+(function() {
+  document.body.classList.add('markdown-body');
+})();
 ```
 
 これによってgithub-markdown-cssが反映されます。

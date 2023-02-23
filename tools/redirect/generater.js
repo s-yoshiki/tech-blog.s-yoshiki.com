@@ -2,8 +2,8 @@
  * 旧ブログからのリダイレクトリンクの設定を行うツール
  */
 
-const fs = require("fs");
-const redirectConf = require("./config.json");
+const fs = require('fs');
+const redirectConf = require('./config.json');
 
 const getHtml = (toPath) => {
   return `
@@ -18,21 +18,21 @@ const getHtml = (toPath) => {
 };
 
 redirectConf.forEach((row) => {
-  const generateBaseDir = "./out";
+  const generateBaseDir = './out';
   const fromPath = row.fromPath;
   const toPath = row.toPath;
   const html = getHtml(toPath);
   const path = generateBaseDir + fromPath;
 
-  fs.mkdirSync(path + "/amp", { recursive: true }, (err) => {
+  fs.mkdirSync(path + '/amp', { recursive: true }, (err) => {
     if (err) throw err;
   });
 
-  fs.writeFile(path + "/index.html", html, (err) => {
+  fs.writeFile(path + '/index.html', html, (err) => {
     if (err) throw err;
   });
 
-  fs.writeFile(path + "/amp/index.html", html, (err) => {
+  fs.writeFile(path + '/amp/index.html', html, (err) => {
     if (err) throw err;
   });
 });

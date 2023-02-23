@@ -16,25 +16,25 @@ JavaScriptで 0埋め / ゼロ埋め / zero埋め 処理を行うサンプルコ
 ### コード
 
 ```js
-const pad = (num, length, str='0') => {
-    return (new Array(length).fill(str).join('') + num).slice(-length);
-}
+const pad = (num, length, str = '0') => {
+  return (new Array(length).fill(str).join('') + num).slice(-length);
+};
 ```
 
 ### 呼び出す
 
 ```js
-console.log(pad(5, 2))
+console.log(pad(5, 2));
 // 05
 ```
 
 ```js
-console.log(pad(5, 10))
+console.log(pad(5, 10));
 // 0000000005
 ```
 
 ```js
-console.log(pad(5, 10, x))
+console.log(pad(5, 10, x));
 // xxxxxxxxx5
 ```
 

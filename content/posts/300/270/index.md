@@ -107,14 +107,14 @@ export class LambdaAppStack extends Stack {
 ### Lambda(Reader)
 
 ```ts
-import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
-import * as AWS from "aws-sdk";
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
+import * as AWS from 'aws-sdk';
 
 const getContent = async () => {
   const s3 = new AWS.S3();
   const params = {
     Bucket: process.env.S3_BUCKET_NAME,
-    Key: "test.txt",
+    Key: 'test.txt',
   };
   const res = await s3.getObject(params).promise();
   return res.Body?.toString();
@@ -134,14 +134,14 @@ export const handler = async (
 ### Lambda(Writer)
 
 ```ts
-import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
-import * as AWS from "aws-sdk";
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
+import * as AWS from 'aws-sdk';
 
 const putContent = async (arg: string) => {
   const s3 = new AWS.S3();
   const params = {
     Bucket: process.env.S3_BUCKET_NAME,
-    Key: "test.txt",
+    Key: 'test.txt',
     Body: arg,
   };
   await s3.putObject(params).promise();
@@ -154,7 +154,7 @@ export const handler = async (
   await putContent(new Date().toString());
   return {
     statusCode: 200,
-    body: "",
+    body: '',
   };
 };
 ```
@@ -167,7 +167,6 @@ export const handler = async (
 S3にオブジェクトである`test.txt`が作成されます。
 
 次にLambda(Reader)をテスト実行すると`test.txt`の内容が読み取れていることが確認できると思います。
-
 
 ## バケットポリシーについて
 

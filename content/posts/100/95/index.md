@@ -20,6 +20,7 @@ gitでリポジトリをクローンしインストールした場合、admin(�
 ## 検証環境
 
 以下の環境で試しましたが、プラグインの導入方法はOSに依存しないと思います。
+
 <ul>
  	<li>PHP 7.1.19 (cli) (built: Aug 17 2018 20:10:18) ( NTS )</li>
  	<li> Mac OS X 10.14.2</li>
@@ -101,7 +102,6 @@ Cleared:  /path/to/grav/cache/doctrine/*
 Cleared:  /path/to/grav/cache/compiled/*
 
 Touched: /path/to/grav/user/config/system.yaml
-
 ```
 
 ## 日本語化

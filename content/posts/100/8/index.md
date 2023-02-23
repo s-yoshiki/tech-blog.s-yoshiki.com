@@ -35,64 +35,63 @@ https://ja.wikipedia.org/wiki/%E7%90%83%E9%9D%A2%E4%B8%89%E8%A7%92%E6%B3%95
 // ヒュベニの公式
 //
 function hubeny(lat1, lng1, lat2, lng2) {
-    function rad(deg) {
-        return deg * Math.PI / 180;
-    }
-    //degree to radian
-    lat1 = rad(lat1);
-    lng1 = rad(lng1);
-    lat2 = rad(lat2);
-    lng2 = rad(lng2);
+  function rad(deg) {
+    return deg * Math.PI / 180;
+  }
+  // degree to radian
+  lat1 = rad(lat1);
+  lng1 = rad(lng1);
+  lat2 = rad(lat2);
+  lng2 = rad(lng2);
 
-    // 緯度差
-    var latDiff = lat1 - lat2;
-    // 経度差算
-    var lngDiff = lng1 - lng2;
-    // 平均緯度
-    var latAvg = (lat1 + lat2) / 2.0;
-    // 赤道半径
-    var a = 6378137.0;
-    // 極半径
-    var b = 6356752.314140356;
-    // 第一離心率^2
-    var e2 = 0.00669438002301188;
-    // 赤道上の子午線曲率半径
-    var a1e2 = 6335439.32708317;
+  // 緯度差
+  var latDiff = lat1 - lat2;
+  // 経度差算
+  var lngDiff = lng1 - lng2;
+  // 平均緯度
+  var latAvg = (lat1 + lat2) / 2.0;
+  // 赤道半径
+  var a = 6378137.0;
+  // 極半径
+  var b = 6356752.314140356;
+  // 第一離心率^2
+  var e2 = 0.00669438002301188;
+  // 赤道上の子午線曲率半径
+  var a1e2 = 6335439.32708317;
 
-    var sinLat = Math.sin(latAvg);
-    var W2 = 1.0 - e2 * (sinLat * sinLat);
+  var sinLat = Math.sin(latAvg);
+  var W2 = 1.0 - e2 * (sinLat * sinLat);
 
-    // 子午線曲率半径M
-    var M = a1e2 / (Math.sqrt(W2) * W2);
-    // 卯酉線曲率半径
-    var N = a / Math.sqrt(W2);
+  // 子午線曲率半径M
+  var M = a1e2 / (Math.sqrt(W2) * W2);
+  // 卯酉線曲率半径
+  var N = a / Math.sqrt(W2);
 
-    t1 = M * latDiff;
-    t2 = N * Math.cos(latAvg) * lngDiff;
-    return Math.sqrt((t1 * t1) + (t2 * t2));
+  t1 = M * latDiff;
+  t2 = N * Math.cos(latAvg) * lngDiff;
+  return Math.sqrt((t1 * t1) + (t2 * t2));
 }
 
 //
 // 球面三角法
 //
 function sphericalTrigonometry(lat1, lng1, lat2, lng2) {
-    // 赤道半径
-    var R = 6378137.0;
+  // 赤道半径
+  var R = 6378137.0;
 
-    function rad(deg) {
-        return deg * Math.PI / 180;
-    }
+  function rad(deg) {
+    return deg * Math.PI / 180;
+  }
 
-    return R *
-        Math.acos(
-            Math.cos(rad(lat1)) *
-            Math.cos(rad(lat2)) *
-            Math.cos(rad(lng2) - rad(lng1)) +
-            Math.sin(rad(lat1)) *
-            Math.sin(rad(lat2))
-        );
+  return R
+    * Math.acos(
+      Math.cos(rad(lat1))
+          * Math.cos(rad(lat2))
+          * Math.cos(rad(lng2) - rad(lng1))
+        + Math.sin(rad(lat1))
+          * Math.sin(rad(lat2)),
+    );
 }
-
 ```
 
 ### GeoLocationAPIとの組み合わせ
@@ -103,47 +102,45 @@ GeoLocationAPIと組み合わせて現在地と任意の地点間の距離を計
 
 ```js
 var getSuccess = function(pos) {
+  // 現在地の緯度経度
+  var lat1 = pos.coords.latitude;
+  var lng1 = pos.coords.longitude;
 
-    //現在地の緯度経度
-    var lat1 = pos.coords.latitude;
-    var lng1 = pos.coords.longitude;
+  // 新宿都庁の座標
+  var lat2 = 35.689487;
+  var lng2 = 139.691706;
 
-    //新宿都庁の座標
-    var lat2 = 35.689487;
-    var lng2 = 139.691706;
+  // 距離の計算//
+  var ans1, ans2;
+  try {
+    ans1 = hubeny(lat1, lng1, lat2, lng2);
+    ans2 = sphericalTrigonometry(lat1, lng1, lat2, lng2);
+  } catch (e) {
+    alert(e);
+  }
 
-    //距離の計算//
-    var ans1, ans2;
-    try {
-        ans1 = hubeny(lat1, lng1, lat2, lng2);
-        ans2 = sphericalTrigonometry(lat1, lng1, lat2, lng2);
-    } catch (e) {
-        alert(e);
-    }
-
-    //結果
-    document.getElementById("result1").innerHTML = ans1 + " m";
-    document.getElementById("result2").innerHTML = ans2 + " m";
+  // 結果
+  document.getElementById('result1').innerHTML = ans1 + ' m';
+  document.getElementById('result2').innerHTML = ans2 + ' m';
 };
 
 var geoError = function() {
-    var pos = {
-        'coords': {
-            'latitude': 35.5562073,
-            'longitude': 139.5723855
-        }
-    };
-    getSuccess(pos);
-    alert('Getting location failed.');
+  var pos = {
+    'coords': {
+      'latitude': 35.5562073,
+      'longitude': 139.5723855,
+    },
+  };
+  getSuccess(pos);
+  alert('Getting location failed.');
 };
 
 // GeoLocationAPIで現在地の座標を取得する
-document.getElementById("start").onclick = function() {
-    navigator.geolocation.getCurrentPosition(getSuccess, geoError, {
-        enableHighAccuracy: true
-    });
+document.getElementById('start').onclick = function() {
+  navigator.geolocation.getCurrentPosition(getSuccess, geoError, {
+    enableHighAccuracy: true,
+  });
 };
-
 ```
 
 <a href="https://jsfiddle.net/s_yoshiki/xL09s2fm/">デモ(外部リンク)</a>
@@ -164,7 +161,6 @@ https://vldb.gsi.go.jp/sokuchi/surveycalc/main.html
 球面三角法 : 18317.126210821592
 ヒュベニ    : 18349.45459166647
 地理院    : 18317.122
-
 ```
 
 数メートルの誤差が生じる。
@@ -177,7 +173,6 @@ https://vldb.gsi.go.jp/sokuchi/surveycalc/main.html
 球面三角法 : 259215.96201641572
 ヒュベニ    : 258964.81739383226
 地理院    : 259205.815
-
 ```
 
 1km未満ではあるが誤差が生じた。
@@ -190,7 +185,6 @@ https://vldb.gsi.go.jp/sokuchi/surveycalc/main.html
 球面三角法 : 15324766.692400709
 ヒュベニ    : 14278853.174450254
 地理院    : 14274245.589
-
 ```
 
 ## まとめ

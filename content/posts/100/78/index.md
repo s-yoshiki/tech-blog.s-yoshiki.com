@@ -39,7 +39,6 @@ if __name__ == "__main__" :
     cv2.imshow('result', im)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-
 ```
 
 このように複雑な形状に対してポリゴンを描画することができます。
@@ -52,6 +51,7 @@ if __name__ == "__main__" :
 ## fillPolyと何が違うのか
 
 fillConvexPolyの方がfillPolyよりも高速で動くそうです。
+
 <blockquote>
 関数 fillConvexPoly は，塗りつぶされた凸ポリゴンを描きます．この関数は，関数 fillPoly よりも高速に動作します．また，凸ポリゴンだけでなく，その輪郭が水平なスキャンラインと2回以下しか交差しない（しかし，上下の境界線は水平でも良い）ようようなモノトーンポリゴンはすべて塗りつぶすことができます．
 

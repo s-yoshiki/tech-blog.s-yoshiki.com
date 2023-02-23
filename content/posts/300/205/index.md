@@ -11,7 +11,6 @@ tags: ["perl","centos","cpan","cpanm"]
 
 cpanm(cpanminus)を利用してCentOS8上にPerl環境を構築した際の記録です。
 
-
 ## cpanmについて
 
 [miyagawa/cpanminus - github](https://github.com/miyagawa/cpanminus)
@@ -77,7 +76,7 @@ Successfully installed JSON-4.02
 ローカルに配置したファイルもインストールできます。
 
 ```
-$ cpanm /home/foo/YAML-1.30.tar.gz 
+$ cpanm /home/foo/YAML-1.30.tar.gz
 ```
 
 インストールするディレクトリを指定してインストールもできます。以下のコマンドの場合は`~/test`にインストールされます。

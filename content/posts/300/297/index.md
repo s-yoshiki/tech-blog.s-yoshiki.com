@@ -24,8 +24,6 @@ NestJS+Prisma 構成のアプリケーションを webpack や ncc 等のバン�
 
 またこの記事では Prisma+NestJS のアプリケーションを作る初期段階の部分は説明を省いています。
 
-
-
 ### モチベーション
 
 NestJS も Prisma についてもサイズが大きく少しでも余分なものを減らし、サイズを小さくすることが狙いでした。
@@ -55,15 +53,15 @@ NestJS も Prisma についてもサイズが大きく少しでも余分なも�
 
 #### コンテナ
 
-| No  | コンテナイメージ                    | 利用技術         | 容量   |
-| --- | ----------------------------------- | ---------------- | ------ |
-| 1   | node:18                             | 特になし         | 3.38GB |
-| 2   | node:18                             | webpack          | 1.02GB |
-| 3   | node:18-slim                        | webpack          | 352MB  |
-| 4   | node:18-slim                        | ncc              | 316MB  |
-| 5   | node:18-slim                        | vite             | 312MB  |
-| 6   | gcr.io/distroless/nodejs18-debian11 | ncc              | 279MB  |
-| 7   | gcr.io/distroless/cc                | ncc + vercel/pkg | 177MB  |
+| No | コンテナイメージ                    | 利用技術         | 容量   |
+| -- | ----------------------------------- | ---------------- | ------ |
+| 1  | node:18                             | 特になし         | 3.38GB |
+| 2  | node:18                             | webpack          | 1.02GB |
+| 3  | node:18-slim                        | webpack          | 352MB  |
+| 4  | node:18-slim                        | ncc              | 316MB  |
+| 5  | node:18-slim                        | vite             | 312MB  |
+| 6  | gcr.io/distroless/nodejs18-debian11 | ncc              | 279MB  |
+| 7  | gcr.io/distroless/cc                | ncc + vercel/pkg | 177MB  |
 
 ※ 1 以外はマルチステージビルドを利用
 
@@ -71,17 +69,15 @@ NestJS も Prisma についてもサイズが大きく少しでも余分なも�
 
 またアプリケーション単体のサイズは以下の通りとなりました。
 
-| No  | バンドル方法 | 成果物の全体 | ソースのみ |
-| --- | ------------ | ------------ | ---------- |
-| 1   | バンドルなし | 100MB        |            |
-| 2   | webpack      | 24MB         | 9MB        |
-| 3   | ncc          | 19MB         | 4MB        |
-| 4   | vite         | 30MB         | 1MB        |
-
+| No | バンドル方法 | 成果物の全体 | ソースのみ |
+| -- | ------------ | ------------ | ---------- |
+| 1  | バンドルなし | 100MB        |            |
+| 2  | webpack      | 24MB         | 9MB        |
+| 3  | ncc          | 19MB         | 4MB        |
+| 4  | vite         | 30MB         | 1MB        |
 
 ※ マルチステージビルドはビルド用とプロダクション用のコンテナを分けてビルドに依存するツールをプロダクション用コンテナに含めない様にした方法のことを指してます。
 ※これらの比較は、オプションを厳密に揃えた訳ではないのでフェアではない可能性があります。
-
 
 ## プロジェクト作成
 
@@ -137,42 +133,42 @@ schema.prisma の設定の際にポイントとなるのが `binaryTargets` で�
 **webpack.config.js**
 
 ```js
-const path = require("path");
-const webpack = require("webpack");
-const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
-const { NODE_ENV = "production" } = process.env;
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const WriteFilePlugin = require("write-file-webpack-plugin");
+const path = require('path');
+const webpack = require('webpack');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const { NODE_ENV = 'production' } = process.env;
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const WriteFilePlugin = require('write-file-webpack-plugin');
 
 module.exports = {
-  entry: "./src/main.ts",
+  entry: './src/main.ts',
   mode: NODE_ENV,
   // note: 調査目的として例外発生時のコードの行数を出力するようにする
-  devtool: "inline-source-map",
-  target: "node",
+  devtool: 'inline-source-map',
+  target: 'node',
   externals: [
     {
-      "@nestjs/websockets/socket-module":
-        "commonjs2 @nestjs/websockets/socket-module",
-      "@nestjs/microservices/microservices-module":
-        "commonjs2 @nestjs/microservices/microservices-module",
+      '@nestjs/websockets/socket-module':
+        'commonjs2 @nestjs/websockets/socket-module',
+      '@nestjs/microservices/microservices-module':
+        'commonjs2 @nestjs/microservices/microservices-module',
     },
   ],
   plugins: [
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: ".env",
-          to: ".env",
+          from: '.env',
+          to: '.env',
         },
         {
-          from: "./prisma/schema.prisma",
-          to: "./schema.prisma",
+          from: './prisma/schema.prisma',
+          to: './schema.prisma',
         },
         {
-          from: "./node_modules/.prisma/client/*.node",
+          from: './node_modules/.prisma/client/*.node',
           to({ context, absoluteFilename }) {
-            return Promise.resolve("[name][ext]");
+            return Promise.resolve('[name][ext]');
           },
         },
       ],
@@ -184,11 +180,11 @@ module.exports = {
        */
       checkResource(resource) {
         const lazyImports = [
-          "@nestjs/microservices",
-          "@nestjs/platform-express",
-          "cache-manager",
-          "class-validator",
-          "class-transformer",
+          '@nestjs/microservices',
+          '@nestjs/platform-express',
+          'cache-manager',
+          'class-validator',
+          'class-transformer',
         ];
         if (!lazyImports.includes(resource)) {
           return false;
@@ -203,22 +199,22 @@ module.exports = {
     }),
   ],
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "main.js",
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'main.js',
   },
   resolve: {
-    extensions: [".ts", ".js"],
-    plugins: [new TsconfigPathsPlugin({ configFile: "./tsconfig.build.json" })],
+    extensions: ['.ts', '.js'],
+    plugins: [new TsconfigPathsPlugin({ configFile: './tsconfig.build.json' })],
   },
   module: {
-    rules: [{ test: /\.ts$/, loader: "ts-loader" }],
+    rules: [{ test: /\.ts$/, loader: 'ts-loader' }],
   },
   stats: {
     warningsFilter: [
-      "node_modules/express/lib/view.js",
-      "node_modules/@nestjs/common/utils/load-package.util.js",
-      "node_modules/@nestjs/core/helpers/load-adapter.js",
-      "node_modules/optional/optional.js",
+      'node_modules/express/lib/view.js',
+      'node_modules/@nestjs/common/utils/load-package.util.js',
+      'node_modules/@nestjs/core/helpers/load-adapter.js',
+      'node_modules/optional/optional.js',
       (warning) => false,
     ],
   },
@@ -324,7 +320,6 @@ ncc build src/main.ts -o dist/ -s -m
 
 しかしこの状態で `node dist` を実行しようとしたら「Error: Query engine library for current platform "darwin" could not be found.」と怒られたので、 `./dist/client`以下にあるライブラリを`./dist`に置き直したら動作しました。
 
-
 ### 所感
 
 利用してもた感想として、webpack に比べ複雑な設定を記載しなくても、
@@ -350,8 +345,8 @@ npm install vite vite-plugin-node
 **vite.config.ts**
 
 ```ts
-import { defineConfig } from "vite";
-import { VitePluginNode } from "vite-plugin-node";
+import { defineConfig } from 'vite';
+import { VitePluginNode } from 'vite-plugin-node';
 
 export default defineConfig({
   server: {
@@ -365,20 +360,20 @@ export default defineConfig({
   // },
   plugins: [
     ...VitePluginNode({
-      adapter: "nest",
-      appPath: "./src/main.ts",
-      exportName: "viteNodeApp",
-      tsCompiler: "esbuild",
+      adapter: 'nest',
+      appPath: './src/main.ts',
+      exportName: 'viteNodeApp',
+      tsCompiler: 'esbuild',
     }),
   ],
   optimizeDeps: {
     exclude: [
-      "@nestjs/microservices",
-      "@nestjs/websockets",
-      "cache-manager",
-      "class-transformer",
-      "class-validator",
-      "fastify-swagger",
+      '@nestjs/microservices',
+      '@nestjs/websockets',
+      'cache-manager',
+      'class-transformer',
+      'class-validator',
+      'fastify-swagger',
     ],
   },
 });
@@ -476,7 +471,6 @@ Distriless + Prismaで動かすには少し調整が必要だったので、
 こちらの記事で説明しています。
 
 [DistrolessコンテナでPrismaを動かす | 404 motivation not found](https://tech-blog.s-yoshiki.com/entry/298)
-
 
 ## 試そうと思ったけどやめたこと
 

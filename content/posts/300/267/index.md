@@ -74,8 +74,6 @@ export class CognitoAuthStack extends Stack {
 }
 ```
 
-
-
 ## 参考にしたサイト
 
 - [OAuth 2.0 全フローの図解と動画 - Qiita](https://qiita.com/TakahikoKawasaki/items/200951e5b5929f840a1f)

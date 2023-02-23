@@ -106,6 +106,7 @@ S3へ遷移したら、「バケットを作成する」ボタンを押下する
 <a href="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901250010_839hwv.jpg"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901250010_839hwv.jpg"></a>
 
 ここで以下の4つのチェックボックスからチェックが外れていることを確認します。
+
 <ul>
  	<li>新規のパブリック ACL と、パブリックオブジェクトのアップロードをブロックする (推奨)</li>
  	<li>パブリック ACL を通じて付与されたパブリックアクセスを削除する (推奨)</li>

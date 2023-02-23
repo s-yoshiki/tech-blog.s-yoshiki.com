@@ -18,7 +18,9 @@ WordPressを静的化するプラグインとして、simply staticやStaticPres
 ## WP2Static
 
 <!-- wp:html -->
+
 <a href="https://wp2static.com/">https://wp2static.com/</a>
+
 <!-- /wp:html -->
 
 ★: 4.5 (78件)、インストール数: 10000~
@@ -50,4 +52,3 @@ WordPressを静的化するプラグインとして、simply staticやStaticPres
 ## 3つを比較して
 
 最初はSimply Staticを利用していました。このプラグインは安定感はありましたが、各種サービスの連携が弱いことと、何よりも開発が数年ストップしているので、開発が続けられているWP2Staticの方が良いと思い、現在ではこれを利用しています。
-

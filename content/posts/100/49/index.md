@@ -217,4 +217,3 @@ ipが122.152.249.187と出てきました。\n
 122.152.249.187 - - [17/Sep/2018:07:29:51 +0000] "GET /phpmyadmin/phpmyadmin/index.php HTTP/1.1" 302     236
 122.152.249.187 - - [17/Sep/2018:07:29:51 +0000] "GET /phpMyAdmin/phpMyAdmin/index.php HTTP/1.1" 302     236
 ```
-

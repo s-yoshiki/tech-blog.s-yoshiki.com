@@ -20,4 +20,3 @@ macOS catalina
 ```
 docker exec -it $(docker-compose ps -q ${mysqlコンテナ名}) /usr/bin/mysqldump -u${MySQLユーザID} -h${MySQLホスト} -p${MySQLパスワード} ${データベース名} 2>/dev/null > ./mysqldump.sql
 ```
-

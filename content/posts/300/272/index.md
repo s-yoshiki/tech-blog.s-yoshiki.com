@@ -48,18 +48,18 @@ npm install ejs
 ### index.js
 
 ```js
-const AWS = require("aws-sdk");
-const ejs = require("ejs");
-const fs = require("fs/promises");
+const AWS = require('aws-sdk');
+const ejs = require('ejs');
+const fs = require('fs/promises');
 
-const ses = new AWS.SES({ apiVersion: "2010-12-01", region: "ap-northeast-1" });
+const ses = new AWS.SES({ apiVersion: '2010-12-01', region: 'ap-northeast-1' });
 
 const main = async () => {
-  const template = (await fs.readFile('./mail.ejs')).toString()
+  const template = (await fs.readFile('./mail.ejs')).toString();
   const data = ejs.render(template, {
     name: 'Tanaka Taro',
-    body: 'hello world'
-  })
+    body: 'hello world',
+  });
   const params = {
     Destination: {
       CcAddresses: [
@@ -67,27 +67,27 @@ const main = async () => {
       ],
       ToAddresses: [
         'test@example.com',
-      ]
+      ],
     },
     Message: {
       Body: {
         Text: {
-         Charset: "UTF-8",
-         Data: data
+          Charset: 'UTF-8',
+          Data: data,
         },
-       },
-       Subject: {
-        Charset: 'UTF-8',
-        Data: 'Test email'
-       }
       },
+      Subject: {
+        Charset: 'UTF-8',
+        Data: 'Test email',
+      },
+    },
     Source: 'TANAKA Taro<test@example.com>',
     ReplyToAddresses: [
-       'test@example.com',
+      'test@example.com',
     ],
   };
-  const res = await ses.sendEmail(params).promise()
-  console.log(res)
+  const res = await ses.sendEmail(params).promise();
+  console.log(res);
 };
 
 main();

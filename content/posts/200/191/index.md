@@ -134,7 +134,6 @@ post_content_filtered:
 +------------------+---------------------+------+-----+---------+----------------+
 ```
 
-
 クエリ
 
 ```sql
@@ -149,9 +148,8 @@ from wp_posts posts
     inner join wp_terms terms 
     on term_taxonomy.term_id = terms.term_id 
 where 
-    posts.ID = :id 
+    posts.ID = :id
 ```
-
 
 ```
 +----------+-----------------------+

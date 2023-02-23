@@ -7,13 +7,11 @@ author: "s-yoshiki"
 tags: ["linux"]
 ---
 
-
 ## はじめに
 
 Linux の Network Namespace でルータを作成した際のメモです。
 
 ## ルータの作成
-
 
 netnsの作成
 
@@ -71,10 +69,9 @@ ip netns exec ns1 ping -c 3 192.0.2.254 -I 192.0.2.1
 ip netns exec ns2 ping -c 3 198.51.100.254 -I 198.51.100.1
 ```
 
-
 ## リンク
 
- - [LinuxのNetwork Namespaceで手元にネットワークテスト環境を作る - APC 技術ブログ](https://techblog.ap-com.co.jp/entry/2019/06/28/100439)
- - [hawksnowlog: Network Namespace 超入門](https://hawksnowlog.blogspot.com/2021/05/getting-started-network-namespace.html)
- - [Linux Network Namespace(netns)でEC2のENIごとに異なるネットワーク設定 | DevelopersIO](https://dev.classmethod.jp/articles/separate-networking-per-eni-by-linux-netns/)
- - [ip netnsコマンドで学ぶNetwork Namespace - Carpe Diem](https://christina04.hatenablog.com/entry/network-namespace)
+- [LinuxのNetwork Namespaceで手元にネットワークテスト環境を作る - APC 技術ブログ](https://techblog.ap-com.co.jp/entry/2019/06/28/100439)
+- [hawksnowlog: Network Namespace 超入門](https://hawksnowlog.blogspot.com/2021/05/getting-started-network-namespace.html)
+- [Linux Network Namespace(netns)でEC2のENIごとに異なるネットワーク設定 | DevelopersIO](https://dev.classmethod.jp/articles/separate-networking-per-eni-by-linux-netns/)
+- [ip netnsコマンドで学ぶNetwork Namespace - Carpe Diem](https://christina04.hatenablog.com/entry/network-namespace)

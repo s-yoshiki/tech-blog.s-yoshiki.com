@@ -33,10 +33,10 @@ Prisma+MySQL の構成で任意のタイムゾーンを DB で利用するのが
 ### 検証するコード
 
 ```ts
-import { PrismaClient, Prisma } from "@prisma/client";
+import { Prisma, PrismaClient } from '@prisma/client';
 
 // process.env.TZ = "UTC";
-process.env.TZ = "Asia/Tokyo";
+process.env.TZ = 'Asia/Tokyo';
 
 const prisma = new PrismaClient();
 

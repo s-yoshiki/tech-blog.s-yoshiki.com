@@ -13,7 +13,7 @@ CentOS8 に Oracle12.2 clientをインストールした際の記録です。
 
 ### 実施した環境
 
- - CentOS Linux release 8.3.2011 (docker)
+- CentOS Linux release 8.3.2011 (docker)
 
 ## セットアップ
 
@@ -23,8 +23,7 @@ CentOS8 に Oracle12.2 clientをインストールした際の記録です。
 
 Linux x86-64（64ビット） 用Instant Clientダウンロードのページからclientツールをダウンロードできます。
 
-
-```sh 
+```sh
 $ ls
 oracle-instantclient12.2-basic-12.2.0.1.0-1.x86_64.rpm
 oracle-instantclient12.2-sqlplus-12.2.0.1.0-1.x86_64.rpm
@@ -77,7 +76,6 @@ SQL*Plus: Release 12.2.0.1.0 Production on Sun Mar 7 09:25:38 2021
 
 Copyright (c) 1982, 2016, Oracle.  All rights reserved.
 ```
-
 
 ## libnsl.so.1: cannot open shared object file と表示される場合
 

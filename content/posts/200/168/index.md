@@ -48,7 +48,6 @@ $ yum -y install wget gcc gcc-c++ make
 $ cd /tmp
 $ wget http://download-ib01.fedoraproject.org/pub/epel/6/x86_64/Packages/i/inotify-tools-3.14-2.el6.x86_64.rpm
 $ yum -y localinstall inotify-tools-3.14-2.el6.x86_64.rpm
-
 ```
 
 <!-- wp:embed {"url":"https://centos.pkgs.org/6/epel-x86_64/inotify-tools-3.14-2.el6.x86_64.rpm.html"} -->
@@ -61,7 +60,6 @@ https://centos.pkgs.org/6/epel-x86_64/inotify-tools-3.14-2.el6.x86_64.rpm.html
 
 ```
 $ yum -y install rsync
-
 ```
 
 **unison**
@@ -70,7 +68,6 @@ $ yum -y install rsync
 $ cd /tmp
 $ wget http://ftp.tu-chemnitz.de/pub/linux/dag/redhat/el6/en/x86_64/rpmforge/RPMS/unison-2.40.63-1.el6.rf.x86_64.rpm
 $ yum -y localinstall unison-2.40.63-1.el6.rf.x86_64.rpm
-
 ```
 
 <!-- wp:embed {"url":"https://centos.pkgs.org/6/repoforge-x86_64/unison-2.40.63-1.el6.rf.x86_64.rpm.html"} -->
@@ -87,7 +84,6 @@ fswatch + rsync を利用する方法は 例えばsrc1/ ディレクトリでフ
 
 ```
 $ inotifywait -m /path/to/src1 | xargs -I{} rsync -r /path/to/src1/ /path/to/src2/
-
 ```
 
 inotifywait の -e オプションで監視するイベントの種類を絞る事ができます。また複数の操作を行うのであれば、whileで回した方が良いと思います。
@@ -132,7 +128,6 @@ root=/path/to/src2/
 
 # 同期するパスの定義
 path=./
-
 ```
 
 <!-- wp:heading {"level":3} -->
@@ -141,7 +136,6 @@ path=./
 
 ```
 $ inotifywait -m /path/to/src1 /path/to/src2 | xargs -I{} unison -batch sync
-
 ```
 
 ## 参考

@@ -13,7 +13,7 @@ AWS Amplify で コンテナベースのデプロイを行い REST API を構築
 
 ## 検証した環境
 
- - amplify 5.1.2
+- amplify 5.1.2
 
 ## やってみる
 
@@ -64,20 +64,20 @@ amplify add api
 
 質問は次のように答えました。
 
- - Please select from one of the below mentioned services: 
-   - REST
- - Which service would you like to use 
-   - API Gateway + AWS Fargate (Container-based)
- - Provide a friendly name for your resource to be used as a label for this category in the project: 
-   - container
- - What image would you like to use 
-   - Docker Compose - ExpressJS + Flask template
- - When do you want to build & deploy the Fargate task 
-   - On every "amplify push" (Fully managed container source)
- - Do you want to restrict API access 
-   - No
- - Select which container is the entrypoint 
-   - python (expressでも良いがここではPythonで進めます)
+- Please select from one of the below mentioned services:
+  - REST
+- Which service would you like to use
+  - API Gateway + AWS Fargate (Container-based)
+- Provide a friendly name for your resource to be used as a label for this category in the project:
+  - container
+- What image would you like to use
+  - Docker Compose - ExpressJS + Flask template
+- When do you want to build & deploy the Fargate task
+  - On every "amplify push" (Fully managed container source)
+- Do you want to restrict API access
+  - No
+- Select which container is the entrypoint
+  - python (expressでも良いがここではPythonで進めます)
 
 設定が終わると設定ファイルが以下のように吐き出されます。
 
@@ -150,10 +150,10 @@ https://xxxxxxxx.execute-api.ap-northeast-1.amazonaws.com/hello
 
 パイプラインを確認してみると
 
- 1. s3へのアップロード
- 2. build
- 3. predeploy
- 4. deploy
+1. s3へのアップロード
+2. build
+3. predeploy
+4. deploy
 
 といった具合で実行されていることが確認できました。
 

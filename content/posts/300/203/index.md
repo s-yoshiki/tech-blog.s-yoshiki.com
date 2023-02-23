@@ -29,7 +29,6 @@ $ head -n 1 ./path/to/file.txt
 
 `./path/to/file.txt` の 5行目までを表示
 
-
 ```shell
 $ head -n 5 ./path/to/file.txt
 ```

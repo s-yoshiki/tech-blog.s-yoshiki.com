@@ -29,66 +29,62 @@ ImageData.dataは１次元の画像配列で[r,g,b,a,r,g,b,a,....]といった�
 ### グレイスケール
 
 ```js
-var src = ctx.getImageData(0, 0, canvas.width, canvas.height)
-var dst = ctx.createImageData(canvas.width, canvas.height)
+var src = ctx.getImageData(0, 0, canvas.width, canvas.height);
+var dst = ctx.createImageData(canvas.width, canvas.height);
 for (let i = 0; i < src.data.length; i = i + 4) {
-    var x = (src.data[i] + src.data[i + 1] + src.data[i + 2]) / 3
-    dst.data[i] = dst.data[i + 1] = dst.data[i + 2] = x
-    dst.data[i + 3] = src.data[i + 3]
+  var x = (src.data[i] + src.data[i + 1] + src.data[i + 2]) / 3;
+  dst.data[i] = dst.data[i + 1] = dst.data[i + 2] = x;
+  dst.data[i + 3] = src.data[i + 3];
 }
-ctx.putImageData(dst, 0, 0)
-
+ctx.putImageData(dst, 0, 0);
 ```
 
 ### ２値化
 
 ```js
-var src = ctx.getImageData(0, 0, canvas.width, canvas.height)
-var dst = ctx.createImageData(canvas.width, canvas.height)
+var src = ctx.getImageData(0, 0, canvas.width, canvas.height);
+var dst = ctx.createImageData(canvas.width, canvas.height);
 for (let i = 0; i < src.data.length; i = i + 4) {
-    var x = (src.data[i] + src.data[i + 1] + src.data[i + 2]) / 3
-    if (int_thresh > x) {
-        x = 255
-    } else {
-        x = 0
-    }
-    dst.data[i] = dst.data[i + 1] = dst.data[i + 2] = x
-    dst.data[i + 3] = src.data[i + 3]
+  var x = (src.data[i] + src.data[i + 1] + src.data[i + 2]) / 3;
+  if (int_thresh > x) {
+    x = 255;
+  } else {
+    x = 0;
+  }
+  dst.data[i] = dst.data[i + 1] = dst.data[i + 2] = x;
+  dst.data[i + 3] = src.data[i + 3];
 }
-ctx.putImageData(dst, 0, 0)
-
+ctx.putImageData(dst, 0, 0);
 ```
 
 ### ネガポジ変換
 
 ```js
-var src = ctx.getImageData(0, 0, canvas.width, canvas.height)
-var dst = ctx.createImageData(canvas.width, canvas.height)
+var src = ctx.getImageData(0, 0, canvas.width, canvas.height);
+var dst = ctx.createImageData(canvas.width, canvas.height);
 for (let i = 0; i < src.data.length; i = i + 4) {
-    dst.data[i] = Math.abs(255 - src.data[i])
-    dst.data[i + 1] = Math.abs(255 - src.data[i + 1])
-    dst.data[i + 2] = Math.abs(255 - src.data[i + 2])
-    dst.data[i + 3] = src.data[i + 3]
+  dst.data[i] = Math.abs(255 - src.data[i]);
+  dst.data[i + 1] = Math.abs(255 - src.data[i + 1]);
+  dst.data[i + 2] = Math.abs(255 - src.data[i + 2]);
+  dst.data[i + 3] = src.data[i + 3];
 }
-ctx.putImageData(dst, 0, 0)
-
+ctx.putImageData(dst, 0, 0);
 ```
 
 ### ガンマ補正
 
 ```js
-var src = ctx.getImageData(0, 0, canvas.width, canvas.height)
-var dst = ctx.createImageData(canvas.width, canvas.height)
-var int_g = 2.0
-const correctify = val => 255 * Math.pow(val / 255, 1 / int_g)
+var src = ctx.getImageData(0, 0, canvas.width, canvas.height);
+var dst = ctx.createImageData(canvas.width, canvas.height);
+var int_g = 2.0;
+const correctify = val => 255 * Math.pow(val / 255, 1 / int_g);
 for (let i = 0; i < src.data.length; i += 4) {
-    dst.data[i] = correctify(src.data[i])
-    dst.data[i + 1] = correctify(src.data[i + 1])
-    dst.data[i + 2] = correctify(src.data[i + 2])
-    dst.data[i + 3] = src.data[i + 3]
+  dst.data[i] = correctify(src.data[i]);
+  dst.data[i + 1] = correctify(src.data[i + 1]);
+  dst.data[i + 2] = correctify(src.data[i + 2]);
+  dst.data[i + 3] = src.data[i + 3];
 }
-ctx.putImageData(dst, 0, 0)
-
+ctx.putImageData(dst, 0, 0);
 ```
 
 ## デモ
@@ -101,77 +97,76 @@ ctx.putImageData(dst, 0, 0)
 
 ```js
 const cv = {
-    grayscale: (src, dst) => {
-        for (let i = 0; i < src.data.length; i = i + 4) {
-            let x = (src.data[i] + src.data[i + 1] + src.data[i + 2]) / 3
-            dst.data[i] = dst.data[i + 1] = dst.data[i + 2] = x
-            dst.data[i + 3] = src.data[i + 3]
-        }
-    },
-    threshold: (src, dst, int_thresh) => {
-        int_thresh = int_thresh || 120
-        for (let i = 0; i < src.data.length; i = i + 4) {
-            let x = (src.data[i] + src.data[i + 1] + src.data[i + 2]) / 3
-            if (int_thresh > x) {
-                x = 255
-            } else {
-                x = 0
-            }
-            dst.data[i] = dst.data[i + 1] = dst.data[i + 2] = x
-            dst.data[i + 3] = src.data[i + 3]
-        }
-    },
-    reverse: (src, dst) => {
-        for (let i = 0; i < src.data.length; i = i + 4) {
-            dst.data[i] = Math.abs(255 - src.data[i])
-            dst.data[i + 1] = Math.abs(255 - src.data[i + 1])
-            dst.data[i + 2] = Math.abs(255 - src.data[i + 2])
-            dst.data[i + 3] = src.data[i + 3]
-        }
-    },
-    gamma: (src, dst, int_g) => {
-        int_g = int_g || 2.0
-        const correctify = val => 255 * Math.pow(val / 255, 1 / int_g)
-        for (let i = 0; i < src.data.length; i += 4) {
-            dst.data[i] = correctify(src.data[i])
-            dst.data[i + 1] = correctify(src.data[i + 1])
-            dst.data[i + 2] = correctify(src.data[i + 2])
-            dst.data[i + 3] = src.data[i + 3]
-        }
+  grayscale: (src, dst) => {
+    for (let i = 0; i < src.data.length; i = i + 4) {
+      let x = (src.data[i] + src.data[i + 1] + src.data[i + 2]) / 3;
+      dst.data[i] = dst.data[i + 1] = dst.data[i + 2] = x;
+      dst.data[i + 3] = src.data[i + 3];
     }
-}
-
-const canvas = document.getElementById("canvas")
-const default_imageurl = document.getElementById("img_src").value
-drawImage(default_imageurl)
-
-document.getElementById("menu").addEventListener("change", () => {
-    try {
-        let func_code = document.getElementById("menu").value || ""
-        drawImage(default_imageurl, () => {
-            let ctx = canvas.getContext('2d')
-            let src = ctx.getImageData(0, 0, canvas.width, canvas.height)
-            let dst = ctx.createImageData(canvas.width, canvas.height)
-            cv[func_code](src, dst)
-            ctx.putImageData(dst, 0, 0)
-        })
-    } catch (e) {
-        alert(e)
+  },
+  threshold: (src, dst, int_thresh) => {
+    int_thresh = int_thresh || 120;
+    for (let i = 0; i < src.data.length; i = i + 4) {
+      let x = (src.data[i] + src.data[i + 1] + src.data[i + 2]) / 3;
+      if (int_thresh > x) {
+        x = 255;
+      } else {
+        x = 0;
+      }
+      dst.data[i] = dst.data[i + 1] = dst.data[i + 2] = x;
+      dst.data[i + 3] = src.data[i + 3];
     }
-})
+  },
+  reverse: (src, dst) => {
+    for (let i = 0; i < src.data.length; i = i + 4) {
+      dst.data[i] = Math.abs(255 - src.data[i]);
+      dst.data[i + 1] = Math.abs(255 - src.data[i + 1]);
+      dst.data[i + 2] = Math.abs(255 - src.data[i + 2]);
+      dst.data[i + 3] = src.data[i + 3];
+    }
+  },
+  gamma: (src, dst, int_g) => {
+    int_g = int_g || 2.0;
+    const correctify = val => 255 * Math.pow(val / 255, 1 / int_g);
+    for (let i = 0; i < src.data.length; i += 4) {
+      dst.data[i] = correctify(src.data[i]);
+      dst.data[i + 1] = correctify(src.data[i + 1]);
+      dst.data[i + 2] = correctify(src.data[i + 2]);
+      dst.data[i + 3] = src.data[i + 3];
+    }
+  },
+};
+
+const canvas = document.getElementById('canvas');
+const default_imageurl = document.getElementById('img_src').value;
+drawImage(default_imageurl);
+
+document.getElementById('menu').addEventListener('change', () => {
+  try {
+    let func_code = document.getElementById('menu').value || '';
+    drawImage(default_imageurl, () => {
+      let ctx = canvas.getContext('2d');
+      let src = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      let dst = ctx.createImageData(canvas.width, canvas.height);
+      cv[func_code](src, dst);
+      ctx.putImageData(dst, 0, 0);
+    });
+  } catch (e) {
+    alert(e);
+  }
+});
 
 function drawImage(url, evt) {
-    let ctx = canvas.getContext('2d')
-    let image = new Image()
-    image.src = url
-    image.onload = () => {
-        canvas.width = image.width
-        canvas.height = image.height
-        ctx.drawImage(image, 0, 0)
-        evt()
-    }
+  let ctx = canvas.getContext('2d');
+  let image = new Image();
+  image.src = url;
+  image.onload = () => {
+    canvas.width = image.width;
+    canvas.height = image.height;
+    ctx.drawImage(image, 0, 0);
+    evt();
+  };
 }
-
 ```
 
 ## 関連

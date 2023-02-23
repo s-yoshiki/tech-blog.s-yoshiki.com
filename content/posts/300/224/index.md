@@ -15,8 +15,7 @@ https://github.com/tokuhirom/plenv
 
 **環境**
 
- - CentOS8.3
-
+- CentOS8.3
 
 ## インストール
 

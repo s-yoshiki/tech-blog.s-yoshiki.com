@@ -59,7 +59,6 @@ $smarty->assign("test", "Hello World!");
 
 // テンプレートを読み込んでレンダリング
 $smarty->display('index.tpl');
-
 ```
 
 **index.tpl**

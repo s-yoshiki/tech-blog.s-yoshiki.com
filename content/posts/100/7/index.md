@@ -6,6 +6,7 @@ coverImage: "../../../images/thumbnail/python-logo.png"
 author: "s-yoshiki"
 tags: ["linux","ubuntu","selenium","python","google-chrome","vagrant"]
 ---
+
 ## 概要
 
 Ubuntu上でSeleniumを動かした時のメモ・備忘録。ネット上でサンプルコードが見つかりやすいpythonでやることにした。
@@ -61,7 +62,9 @@ sudo dpkg-reconfigure keyboard-configuration
 Generic 105-key (Intl) PC → Japanese → Japanese → The default for the keyboard layout → No compose key
 ここを参考にしました。
 <a href="https://qiita.com/jjjiii26/items/af134896483ae9d32a7d">https://qiita.com/jjjiii26/items/af134896483ae9d32a7d</a>
+
 ## Selenium導入
+
 python3環境がなかったのでpythonを導入。
 
 ```shell

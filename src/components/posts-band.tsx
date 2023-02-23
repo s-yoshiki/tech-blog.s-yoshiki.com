@@ -1,8 +1,8 @@
-import { Posts } from '../types/entry.interface'
-import Card from "./card"
+import { Posts } from '../types/entry.interface';
+import Card from './card';
 
 interface EntryBandProp {
-  posts: Posts[]
+  posts: Posts[];
 }
 
 const Band = (props: EntryBandProp) => {
@@ -16,8 +16,7 @@ const Band = (props: EntryBandProp) => {
       gap-1
       flex 
       justify-center
-      '
-    >
+      '>
       {props.posts.map((post, idx) => (
         <Card
           title={post.title}
@@ -30,7 +29,7 @@ const Band = (props: EntryBandProp) => {
         />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default Band
+export default Band;

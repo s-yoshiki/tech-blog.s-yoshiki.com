@@ -53,7 +53,6 @@ app
     |-- tests.py
     |-- urls.py
     `-- views.py
-
 ```
 
 ここで app/url.pyは
@@ -89,7 +88,6 @@ from django.http import HttpResponse
 
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
-
 ```
 
 そして、許可するドメインをapp/settings.pyの28行目あたりに追加する。今回はapp1.localhost.comとして設定している。

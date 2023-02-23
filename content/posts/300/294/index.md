@@ -118,18 +118,18 @@ WebSocketは、クライアントとサーバー間でリアルタイムでデ�
 **index.js**
 
 ```js
-const express = require("express");
+const express = require('express');
 const app = express();
-const server = require("http").Server(app);
-const nodePty = require("node-pty");
-const WebSocket = require("ws");
+const server = require('http').Server(app);
+const nodePty = require('node-pty');
+const WebSocket = require('ws');
 
-app.use("/", express.static("."));
+app.use('/', express.static('.'));
 const wss = new WebSocket.Server({ server });
 
-wss.on("connection", (ws) => {
-  let pty = nodePty.spawn("bash", ["--login"], {
-    name: "xterm-color",
+wss.on('connection', (ws) => {
+  let pty = nodePty.spawn('bash', ['--login'], {
+    name: 'xterm-color',
     cols: 80,
     rows: 24,
     cwd: process.env.HOME,
@@ -138,8 +138,8 @@ wss.on("connection", (ws) => {
   pty.onData((data) => {
     ws.send(JSON.stringify({ output: data }));
   });
-  ws.on("message", (message) => {
-    console.log("received: %s", message);
+  ws.on('message', (message) => {
+    console.log('received: %s', message);
     m = JSON.parse(message);
     if (m.input) {
       pty.write(m.input);
@@ -162,15 +162,15 @@ const term = new Terminal({
   rows: 24,
   allowProposedApi: true,
 });
-term.open(document.getElementById("terminal"));
+term.open(document.getElementById('terminal'));
 
 // addons
 const fitAddon = new FitAddon.FitAddon();
 // const ligaturesAddon = new LigaturesAddon.LigaturesAddon();
-const searchAddon = new SearchAddon.SearchAddon(); 
-const webLinksAddon = new WebLinksAddon.WebLinksAddon(); 
-const unicode11Addon = new Unicode11Addon.Unicode11Addon(); 
-const serializeAddon = new SerializeAddon.SerializeAddon(); 
+const searchAddon = new SearchAddon.SearchAddon();
+const webLinksAddon = new WebLinksAddon.WebLinksAddon();
+const unicode11Addon = new Unicode11Addon.Unicode11Addon();
+const serializeAddon = new SerializeAddon.SerializeAddon();
 
 [
   fitAddon,
@@ -185,11 +185,11 @@ term.unicode.activeVersion = '11';
 
 const ws = new WebSocket(`ws://${location.hostname}:8999`);
 
-ws.addEventListener("open", () => {
-  console.info("WebSocket connected");
+ws.addEventListener('open', () => {
+  console.info('WebSocket connected');
 });
-ws.addEventListener("message", (event) => {
-  console.debug("Message from server ", event.data);
+ws.addEventListener('message', (event) => {
+  console.debug('Message from server ', event.data);
   try {
     let output = JSON.parse(event.data);
     term.write(output.output, () => {
@@ -200,22 +200,20 @@ ws.addEventListener("message", (event) => {
   }
 });
 
-
 term.onData((data) => ws.send(JSON.stringify({ input: data })));
 
-window.addEventListener("resize", () => {
+window.addEventListener('resize', () => {
   fitAddon.fit();
 });
 
 fitAddon.fit();
 
 term.onResize((size) => {
-  console.debug("resize");
+  console.debug('resize');
   const resizer = JSON.stringify({ resizer: [size.cols, size.rows] });
   ws.send(resizer);
 });
 ```
-
 
 JS版のソースです。
 
@@ -226,7 +224,6 @@ https://github.com/s-yoshiki/node-websh/tree/8528ff6d61a2100afefba662584b3d7c306
 TypeScriptで書き直しました。
 
 [s-yoshiki/node-websh: node-pty xterm.js websocket を利用したブラウザで動くShell](https://github.com/s-yoshiki/node-websh/tree/887080800ef58e3df74bab233a43207c5b70900a)
-
 
 ## 参考にしたサイト
 

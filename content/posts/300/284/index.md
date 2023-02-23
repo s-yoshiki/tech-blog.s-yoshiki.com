@@ -120,39 +120,39 @@ cdk init app --language=typescript
 スタックを以下のように変更します。
 
 ```ts
-import { Stack, StackProps, aws_cognito as cognito } from "aws-cdk-lib";
-import { Construct } from "constructs";
-import * as cdk from "aws-cdk-lib";
+import { aws_cognito as cognito, Stack, StackProps } from 'aws-cdk-lib';
+import * as cdk from 'aws-cdk-lib';
+import { Construct } from 'constructs';
 
 const getAuth0Idp = (app: Stack, userPool: cognito.UserPool) => {
   return new cognito.CfnUserPoolIdentityProvider(
     app,
-    "UserPoolIdentityProvider",
+    'UserPoolIdentityProvider',
     {
-      providerName: "auth0-test",
-      providerType: "OIDC",
+      providerName: 'auth0-test',
+      providerType: 'OIDC',
       userPoolId: userPool.userPoolId,
       providerDetails: {
-        client_id: "*********", //auth0:client_id
-        client_secret: "*********", //auth0client_secret
-        attributes_request_method: "GET",
-        oidc_issuer: "https://*********.auth0.com", // auth0:domain
-        authorize_scopes: "email profile openid",
+        client_id: '*********', // auth0:client_id
+        client_secret: '*********', // auth0client_secret
+        attributes_request_method: 'GET',
+        oidc_issuer: 'https://*********.auth0.com', // auth0:domain
+        authorize_scopes: 'email profile openid',
       },
       attributeMapping: {
-        email: "email"
-      }
-    }
+        email: 'email',
+      },
+    },
   );
-}
+};
 
 export class CdkCognitoSampleStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
     // 👇 User Pool
-    const userPool = new cognito.UserPool(this, "UserPool", {
-      userPoolName: "auth0-test-user-pool",
+    const userPool = new cognito.UserPool(this, 'UserPool', {
+      userPoolName: 'auth0-test-user-pool',
       selfSignUpEnabled: true,
       signInAliases: {
         email: true,
@@ -171,23 +171,23 @@ export class CdkCognitoSampleStack extends Stack {
       removalPolicy: cdk.RemovalPolicy.RETAIN,
     });
 
-    const userPoolProvider = getAuth0Idp(this, userPool)
+    const userPoolProvider = getAuth0Idp(this, userPool);
 
-    userPool.addDomain("domain", {
-      cognitoDomain: { 
-        domainPrefix: 'auth0-test-202207'
+    userPool.addDomain('domain', {
+      cognitoDomain: {
+        domainPrefix: 'auth0-test-202207',
       },
-    })
+    });
 
-    const userPoolClient = userPool.addClient("client", {
-      userPoolClientName: "Auth0UserPoolClient",
+    const userPoolClient = userPool.addClient('client', {
+      userPoolClientName: 'Auth0UserPoolClient',
       generateSecret: false,
       oAuth: {
-        callbackUrls: ["http://localhost:8080/auth/callback"],
-        logoutUrls: ["http://localhost:8080/auth/logout"],
+        callbackUrls: ['http://localhost:8080/auth/callback'],
+        logoutUrls: ['http://localhost:8080/auth/logout'],
         flows: {
           authorizationCodeGrant: true,
-          implicitCodeGrant: true, //warn:
+          implicitCodeGrant: true, // warn:
         },
         scopes: [
           cognito.OAuthScope.EMAIL,
@@ -201,7 +201,7 @@ export class CdkCognitoSampleStack extends Stack {
       },
       supportedIdentityProviders: [
         cognito.UserPoolClientIdentityProvider.custom(
-          userPoolProvider.providerName
+          userPoolProvider.providerName,
         ),
       ],
     });

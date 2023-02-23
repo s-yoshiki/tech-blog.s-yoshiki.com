@@ -10,7 +10,6 @@ path: "/about"
 ![s-yoshiki](https://ja.gravatar.com/userimage/115503673/c65df92a8b6d270c8eeb74f643b7e114.jpg)
 s-yoshiki
 
-
 $マークを使うことが多いエンジニア。
 色々忘れっぽいので備忘録としてこのブログを書いています。
 
@@ -37,7 +36,6 @@ $マークを使うことが多いエンジニア。
 ![](https://img.shields.io/badge/-Linux-2f2f2f.svg?logo=linux&style=flat)
 
 ![](https://img.shields.io/badge/-CakePHP-9cc.svg?logo=cakephp&style=flat)
-
 
 <a href="https://www.youracclaim.com/badges/851d28e1-e75a-4ae0-9c32-fc1d9327a391/public_url">
 <img src="../images/parts/aws-certified-solutions-architect-associate.png" >

@@ -7,7 +7,6 @@ author: "s-yoshiki"
 tags: ["小ネタ","雑談"]
 ---
 
-
 Twitterでネタ(?)になっていたのでメモ。
 
 ## 元ネタ(?)
@@ -22,7 +21,6 @@ Twitterでネタ(?)になっていたのでメモ。
 
 [https://twitter.com/eg_19_/status/1225592447364845568](https://twitter.com/eg_19_/status/1225592447364845568)
 
-
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">少なくとも、これら説明できない奴、Flutterエンジニアとして、マジでやばいので自覚した方がいいぞ。<br>・navigator<br>・provider, notifier<br>・cupertino tab bar<br>・set state, init state<br>・did change dependencies <br>・future <br>・stream builder<br>・observable <br><br>あとは何がありますかね？</p>&mdash; 大将 (@AaaPhanmhive) <a href="https://twitter.com/AaaPhanmhive/status/1226354957177118720?ref_src=twsrc%5Etfw">February 9, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 [https://twitter.com/AaaPhanmhive/status/1226354957177118720?](https://twitter.com/AaaPhanmhive/status/1226354957177118720)
@@ -30,7 +28,6 @@ Twitterでネタ(?)になっていたのでメモ。
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">少なくとも、これら説明できない奴、エンジニアとして、マジでやばいので自覚した方がいいぞ。<br>* タスクの目的は何か<br>* 変更の意図は何か<br>* なぜ今それをやるべきなのか<br>* 指示語が指すものが何か<br>* 日本語</p>&mdash; Hiroki KIYOHARA@Shodoベータ利用募集中 (@hirokiky) <a href="https://twitter.com/hirokiky/status/1226088712347406336?ref_src=twsrc%5Etfw">February 8, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 [https://twitter.com/hirokiky/status/1226088712347406336](https://twitter.com/hirokiky/status/1226088712347406336)
-
 
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">少なくとも、これら説明できない奴、エンジニアとして、マジでやばいので自覚した方がいいぞ。<br>・行列<br>・ベクトル<br>・複素数<br>・四元数<br>・シェーダ<br>・C/C++<br>我々の業界ではこんな感じかな？</p>&mdash; くーや (@as_kuya) <a href="https://twitter.com/as_kuya/status/1225597721987280896?ref_src=twsrc%5Etfw">February 7, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 

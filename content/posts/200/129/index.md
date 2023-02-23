@@ -30,7 +30,7 @@ book.jsonに次のように記述します。
 
 ```json
 {
-    "plugins": ["expand-active-chapter"]
+  "plugins": ["expand-active-chapter"]
 }
 ```
 
@@ -74,16 +74,16 @@ book.jsonに記述する設定の一例です。
 
 ```json
 {
-    "plugins": [
-        "page-treeview"
-    ],
-    "pluginsConfig": {
-        "page-treeview": {
-            "copyright": "Copyright © aleen42",
-            "minHeaderCount": "2",
-            "minHeaderDeep": "2"
-        }
+  "plugins": [
+    "page-treeview"
+  ],
+  "pluginsConfig": {
+    "page-treeview": {
+      "copyright": "Copyright © aleen42",
+      "minHeaderCount": "2",
+      "minHeaderDeep": "2"
     }
+  }
 }
 ```
 
@@ -129,19 +129,19 @@ UMLにはオプションを加えることができ、次のように記述し�
 **Mac**
 
 ```shell
- $ brew install graphviz
+$ brew install graphviz
 ```
 
 **Linux**
 
 ```shell
- $ sudo apt install graphviz
+$ sudo apt install graphviz
 ```
 
 or
 
 ```shell
- $ sudo yum install graphviz
+$ sudo yum install graphviz
 ```
 
 ### 表示
@@ -190,10 +190,10 @@ path/to/favicon.ico には置き換えたいfaviconのパスを記述します�
 
 ```json
 {
-	"plugins" : ["custom-favicon"],
-	"pluginsConfig" : {
-		"favicon": "path/to/favicon.ico"
-	}
+  "plugins": ["custom-favicon"],
+  "pluginsConfig": {
+    "favicon": "path/to/favicon.ico"
+  }
 }
 ```
 
@@ -216,13 +216,13 @@ urlの部分はbase64にすることも可能です。
 
 ```json
 {
-    "plugins": ["insert-logo", "another plugin 1", "another plugin 2"],
-    "pluginsConfig": {
-        "insert-logo": {
-            "url": "http://www.example.com/my-logo.png",
-            "style": "background: none;"
-        }
+  "plugins": ["insert-logo", "another plugin 1", "another plugin 2"],
+  "pluginsConfig": {
+    "insert-logo": {
+      "url": "http://www.example.com/my-logo.png",
+      "style": "background: none;"
     }
+  }
 }
 ```
 

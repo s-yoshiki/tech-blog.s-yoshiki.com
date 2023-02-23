@@ -14,10 +14,28 @@ tags: ["javascript","アルゴリズム","16方位"]
 よくありがちな処理としてこんなものがあります。
 
 ```js
-var dname = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW", "N"];
-var dindex = Math.round( degree / 22.5 )
+var dname = [
+  'N',
+  'NNE',
+  'NE',
+  'ENE',
+  'E',
+  'ESE',
+  'SE',
+  'SSE',
+  'S',
+  'SSW',
+  'SW',
+  'WSW',
+  'W',
+  'WNW',
+  'NW',
+  'NNW',
+  'N',
+];
+var dindex = Math.round(degree / 22.5);
 
-alert("方角は" + dname[dindex])
+alert('方角は' + dname[dindex]);
 ```
 
 JSの場合、
@@ -34,14 +52,32 @@ JSの場合、
 
 ```js
 function getAzimuth(degree) {
-    var dname = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW", "N"];
-    var count = 0
-    for (var i = 11.25; i < (360 + 11.25); i += 22.5) {
-        if (degree < i) {
-            break
-        }
-        count++
+  var dname = [
+    'N',
+    'NNE',
+    'NE',
+    'ENE',
+    'E',
+    'ESE',
+    'SE',
+    'SSE',
+    'S',
+    'SSW',
+    'SW',
+    'WSW',
+    'W',
+    'WNW',
+    'NW',
+    'NNW',
+    'N',
+  ];
+  var count = 0;
+  for (var i = 11.25; i < (360 + 11.25); i += 22.5) {
+    if (degree < i) {
+      break;
     }
-    return dname[count]
+    count++;
+  }
+  return dname[count];
 }
 ```

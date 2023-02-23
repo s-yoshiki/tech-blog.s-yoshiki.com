@@ -25,7 +25,6 @@ tags: ["wordpress","blog","gatsby","react","node.js","amazon-aws"]
 
 ちなみにWordPressを批判する目的で書いてはいません。
 
-
 ## これまでのWordPress運用
 
 これまでは、WordPressでブログを4年間運用しており、その間、短期間ながらも管理方法をコロコロ変更してきました。
@@ -39,7 +38,6 @@ Conoha VPS上にWordPressサーバを構築
 **2年目**
 
 VPSのように取り回しが効きやすいAmazon Lightsailにサーバを移行。
-
 
 - [【WordPress】Amazon LightsailとCertbotでHTTPS化に挑戦してみた](https://tech-blog.s-yoshiki.com/entry/4)
 
@@ -63,7 +61,6 @@ WordPressはDocker上に移行し、ローカルホストして運用。
 
 - [WordPress + WP2Static で静的サイトを生成する](https://tech-blog.s-yoshiki.com/entry/172)
 - [WordPressをAmazon S3 + CloudFront構成で月額200円で運用](https://tech-blog.s-yoshiki.com/entry/171)
-
 
 こんなことを行ってきました。
 
@@ -98,8 +95,6 @@ WordPressでも静的ファイルを吐けますが(この時はWP Staticを利�
 
 [GatsbyとWordPressを使用したウェブサイト構築の概要（高速で静的）](https://kinsta.com/jp/blog/gatsby-wordpress/) より
 
-
-
 ## WordPressから記事の救出
 
 ### 移行対象記事の抽出
@@ -114,7 +109,7 @@ WordPressでも静的ファイルを吐けますが(この時はWP Staticを利�
 
 `h2`タグなどは`##`に変換。
 `p` `div`タグなどは削除。
-`pre` `code`タグは` ``` `に変換後、目視でソースを確認しシンタックスハイライトを付ける。
+`pre` `code`タグは`` ``` ``に変換後、目視でソースを確認しシンタックスハイライトを付ける。
 画像のパスを張り替え。URLの変更。特殊タグ削除など
 
 (良く考えれば、ここでWP REST APIを利用すれば良かったんですね。。。)
