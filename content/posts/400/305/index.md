@@ -1,7 +1,7 @@
 ---
 title: "[turborepo]monorepo管理のNext.jsアプリをvercelにデプロイ"
 path: "/entry/305"
-date: "2022-02-23 16:40"
+date: "2023-02-23 16:40"
 coverImage: "../../../images/thumbnail/react-logo.png"
 author: "s-yoshiki"
 tags: ["vercel", "turborepo", "next.js", "react", "typescript"]

@@ -1,7 +1,7 @@
 ---
 title: "VSCode+zshで _arguments:comparguments:409: not enough arguments の対処"
 path: "/entry/302"
-date: "2022-01-29 16:00"
+date: "2023-01-29 16:00"
 coverImage: "../../../images/thumbnail/linux-logo.png"
 author: "s-yoshiki"
 tags: ["linux", "vscode", "mac"]

@@ -1,7 +1,7 @@
 ---
 title: "React/Next.jsでcanvasを利用する"
 path: "/entry/306"
-date: "2022-02-26 15:20"
+date: "2023-02-26 15:20"
 coverImage: "../../../images/thumbnail/react-logo.png"
 author: "s-yoshiki"
 tags: ["react", "Next.js", "typescript", "canvas"]

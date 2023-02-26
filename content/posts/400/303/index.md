@@ -1,7 +1,7 @@
 ---
 title: "[Unicode]スペース以外の見えない空白文字の一覧"
 path: "/entry/303"
-date: "2022-02-18 16:00"
+date: "2023-02-18 16:00"
 coverImage: "../../../images/thumbnail/linux-logo.png"
 author: "s-yoshiki"
 tags: ["javascript"]
@@ -9,7 +9,7 @@ tags: ["javascript"]
 
 ## はじめに
 
-スペースや全角スペース以外にもいくつか存在する目に見えない Unicode 文字の一覧です。
+スペースや全角スペース以外にもいくつか存在する目に見えない Unicode の文字の一覧です。
 
 ## スペースや全角スペースのような空白文字一覧
 

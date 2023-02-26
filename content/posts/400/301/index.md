@@ -1,7 +1,7 @@
 ---
 title: "glibcをソースからビルド〜インストール"
 path: "/entry/301"
-date: "2022-01-14 16:00"
+date: "2023-01-14 16:00"
 coverImage: "../../../images/thumbnail/linux-logo.png"
 author: "s-yoshiki"
 tags: ["linux", "debian"]
