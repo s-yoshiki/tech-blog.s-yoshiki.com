@@ -2848,6 +2848,11 @@ const iconsData: BlandColor[] = [
     'colorIcon': true,
   },
   {
+    'name': 'strapi',
+    'color': '2F2E8B',
+    'colorIcon': true,
+  },
+  {
     'name': 'strava',
     'color': 'FC4C02',
     'colorIcon': true,
