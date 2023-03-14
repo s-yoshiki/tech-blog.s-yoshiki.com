@@ -2138,6 +2138,16 @@ const iconsData: BlandColor[] = [
     'colorIcon': true,
   },
   {
+    'name': 'openai',
+    'color': '412991',
+    'colorIcon': false,
+  },
+  {
+    'name': 'openapi',
+    'color': '6BA539',
+    'colorIcon': false,
+  },
+  {
     'name': 'opencv',
     'color': '5C3EE8',
     'colorIcon': false,
@@ -2850,7 +2860,7 @@ const iconsData: BlandColor[] = [
   {
     'name': 'strapi',
     'color': '2F2E8B',
-    'colorIcon': true,
+    'colorIcon': false,
   },
   {
     'name': 'strava',
