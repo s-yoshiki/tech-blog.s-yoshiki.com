@@ -1,8 +1,8 @@
 ---
-title: "NestJS Prisma Zod OpenAPI で型を堅牢にしたアプリケーションの開発"
+title: "NestJS Prisma Zod OpenAPI で型を堅牢にする"
 path: "/entry/308"
 date: "2023-03-13 18:30"
-coverImage: "../../../images/thumbnail/nestjs-logo.png"
+coverImage: "../../../images/thumbnail/nest-logo.png"
 author: "s-yoshiki"
 tags: ["nestjs", "prisma", "node.js", "typescript", "zod", "openapi"]
 ---
@@ -156,9 +156,9 @@ npm install zod nestjs-zod
 
 `http://localhost:3000/user`の CRUD が行えるエンドポイントを作成していきます。
 
-### リソース作成
+### CRUD リソース作成
 
-次のコマンドで基本的なリソースを作成します。
+次のコマンドで基本的なリソース(GET,POST,PATCH,DELETE のエンドポイント)を作成します。
 
 ```shell
 npx nest generate resource user
@@ -171,6 +171,40 @@ npx nest generate resource user
 ### コード編集
 
 コードを次のように変更します。
+
+**src/user/entity/user.entity.ts**
+
+ここでは Input/Update の際に利用する Dto や型を定義します。
+
+```ts
+import type { Prisma, User } from "@prisma/client";
+import { createZodDto } from "nestjs-zod";
+import { z } from "zod";
+
+const user = z.object({
+  id: z.number().int(),
+  email: z.string().email("形式が不正です"),
+  name: z.string().max(255, "255字未満で入力してください"),
+});
+
+// id は autoincrement で生成されるので除外する
+export const UserCreateInputSchema: z.ZodType<Prisma.UserCreateInput> =
+  user.omit({ id: true });
+
+export const UserUpdateInputSchema: z.ZodType<Prisma.UserCreateInput> = user;
+
+export const UserResponseSchema: z.ZodType<User> = user;
+
+export type UserCreateInput = z.infer<typeof UserCreateInputSchema>;
+
+export type UserUpdateInput = z.infer<typeof UserCreateInputSchema>;
+
+export type UserResponse = z.infer<typeof UserResponseSchema>;
+
+export class UserCreateInputDto extends createZodDto(UserCreateInputSchema) {}
+
+export class UserUpdateInputDto extends createZodDto(UserUpdateInputSchema) {}
+```
 
 **src/user/user.controller.ts**
 
@@ -186,18 +220,18 @@ import {
   UsePipes,
 } from "@nestjs/common";
 import { UserService } from "./user.service";
-import { CreateUserDto } from "./dto/create-user.dto";
-import { UpdateUserDto } from "./dto/update-user.dto";
-import { ZodValidationPipe } from "nestjs-zod";
+import { UserCreateInputDto, UserUpdateInputDto } from "./entities/user.entity";
+import { ZodValidationPipe, zodToOpenAPI } from "nestjs-zod";
 
 @Controller("user")
-@UsePipes(ZodValidationPipe) // Validationを有効にする
+@ApiTags("user")
+@UsePipes(ZodValidationPipe)
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  async create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+  async create(@Body() dto: UserCreateInputDto) {
+    return this.userService.create(dto);
   }
 
   @Get()
@@ -211,8 +245,8 @@ export class UserController {
   }
 
   @Patch(":id")
-  async update(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
+  async update(@Param("id") id: string, @Body() dto: UserUpdateInputDto) {
+    return this.userService.update(+id, dto);
   }
 
   @Delete(":id")
@@ -226,25 +260,28 @@ export class UserController {
 
 ```ts
 import { Injectable } from "@nestjs/common";
-import { CreateUserDto } from "./dto/create-user.dto";
-import { UpdateUserDto } from "./dto/update-user.dto";
+import {
+  UserCreateInput,
+  UserResponse,
+  UserUpdateInput,
+} from "./entities/user.entity";
 import { PrismaService } from "src/prisma.service";
 
 @Injectable()
 export class UserService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(dto: CreateUserDto) {
+  async create(dto: UserCreateInput): Promise<UserResponse> {
     return await this.prisma.user.create({
       data: dto,
     });
   }
 
-  async findAll() {
+  async findAll(): Promise<UserResponse[]> {
     return await this.prisma.user.findMany();
   }
 
-  async findOne(id: number) {
+  async findOne(id: number): Promise<UserResponse | null> {
     return await this.prisma.user.findFirst({
       where: {
         id,
@@ -252,7 +289,7 @@ export class UserService {
     });
   }
 
-  async update(id: number, dto: UpdateUserDto) {
+  async update(id: number, dto: UserUpdateInput): Promise<UserResponse> {
     return await this.prisma.user.update({
       data: dto,
       where: {
@@ -261,7 +298,7 @@ export class UserService {
     });
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<UserResponse> {
     return await this.prisma.user.delete({
       where: {
         id,
@@ -269,43 +306,6 @@ export class UserService {
     });
   }
 }
-```
-
-**CreateUserDto**について zod を利用してスキーマを定義します。
-
-**src/user/dto/create-user.dto.ts**
-
-```ts
-import { createZodDto } from "@anatine/zod-nestjs";
-import type { Prisma } from "@prisma/client";
-import { z } from "zod";
-
-const UserCreateInputSchema: z.ZodType<Prisma.UserCreateInput> = z
-  .object({
-    id: z.number().int(),
-    email: z.string().email(),
-    name: z.string().optional(),
-  })
-  .omit({ id: true });
-
-export class CreateUserDto extends createZodDto(UserCreateInputSchema) {}
-```
-
-**UpdateUserDto**についても同様に定義します。
-
-**src/user/dto/update-user.dto.ts**
-
-```ts
-import { createZodDto } from "@anatine/zod-nestjs";
-import type { Prisma } from "@prisma/client";
-import { z } from "zod";
-
-export class UpdateUserDto extends createZodDto(
-  z.object({
-    email: z.string().email(),
-    name: z.string().optional(),
-  })
-) {}
 ```
 
 これでソースの変更は完了です。
@@ -354,7 +354,7 @@ curl --location 'http://localhost:3000/user' \
     {
       "validation": "email",
       "code": "invalid_string",
-      "message": "Invalid email",
+      "message": "形式が不正です",
       "path": ["email"]
     }
   ]
@@ -382,27 +382,119 @@ curl --location 'http://localhost:3000/user' \
 
 ## OpenAPI の組み込み
 
-Comming soon...
+さらに`@nestjs/swagger`モジュールを利用して OpenAPI のドキュメントを自動生成するように設定します。
 
-<!-- ## 関連モジュール
-
-### zod-prisma-types
+まず `@nestjs/swagger` をインストールします。
 
 ```
-npm install zod-prisma-types
+npm install --save @nestjs/swagger
 ```
 
-### @anatine/zod-nestjs
+**src/main.ts**
 
+http://localhost:3000/docs にて Swagger の Viewer が表示されるように調整します。
 
+```ts
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "./app.module";
+import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
+import { INestApplication } from "@nestjs/common";
 
-### zod-nestjs
+const createDocument = (app: INestApplication) => {
+  const config = new DocumentBuilder()
+    .setTitle("test")
+    .setVersion("1.0")
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup("docs", app, document);
+};
 
-[zod-plugins/packages/zod-nestjs at main · anatine/zod-plugins](https://github.com/anatine/zod-plugins/tree/main/packages/zod-nestjs)
-
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  createDocument(app);
+  await app.listen(3000);
+}
+bootstrap();
 ```
-npm install openapi3-ts zod @anatine/zod-nestjs
-``` -->
+
+**src/user/user.controller.ts**
+
+Swagger 用のデコレータを追加してオブジェクトが表示されるように修正します。
+
+```ts
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UsePipes,
+} from "@nestjs/common";
+import { UserService } from "./user.service";
+import {
+  UserCreateInputSchema,
+  UserCreateInputDto,
+  UserUpdateInputDto,
+  UserResponseSchema,
+} from "./entities/user.entity";
+import { ZodValidationPipe, zodToOpenAPI } from "nestjs-zod";
+import { ApiBody, ApiOkResponse, ApiTags } from "@nestjs/swagger";
+
+@Controller("user")
+@ApiTags("user")
+@UsePipes(ZodValidationPipe)
+export class UserController {
+  constructor(private readonly userService: UserService) {}
+
+  @Post()
+  @ApiBody({
+    schema: zodToOpenAPI(UserCreateInputSchema),
+  })
+  @ApiOkResponse({
+    schema: zodToOpenAPI(UserResponseSchema),
+  })
+  async create(@Body() dto: UserCreateInputDto) {
+    return this.userService.create(dto);
+  }
+
+  @Get()
+  @ApiOkResponse({
+    schema: zodToOpenAPI(UserResponseSchema),
+  })
+  async findAll() {
+    return this.userService.findAll();
+  }
+
+  @Get(":id")
+  @ApiOkResponse({
+    schema: zodToOpenAPI(UserResponseSchema),
+  })
+  async findOne(@Param("id") id: string) {
+    return this.userService.findOne(+id);
+  }
+
+  @Patch(":id")
+  @ApiBody({
+    schema: zodToOpenAPI(UserCreateInputSchema),
+  })
+  @ApiOkResponse({
+    schema: zodToOpenAPI(UserResponseSchema),
+  })
+  async update(@Param("id") id: string, @Body() dto: UserUpdateInputDto) {
+    return this.userService.update(+id, dto);
+  }
+
+  @Delete(":id")
+  @ApiOkResponse({
+    schema: zodToOpenAPI(UserResponseSchema),
+  })
+  async remove(@Param("id") id: string) {
+    return this.userService.remove(+id);
+  }
+}
+```
 
 ## 参考にしたサイト
 
