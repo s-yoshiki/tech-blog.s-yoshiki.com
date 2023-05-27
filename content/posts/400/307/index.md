@@ -2,7 +2,7 @@
 title: "Headless CMS の Strapi をインストールからAPIエンドポイント作成"
 path: "/entry/307"
 date: "2023-03-12 18:30"
-coverImage: "../../../images/thumbnail/node-logo.png"
+coverImage: "../../../images/thumbnail/nodejs-logo.png"
 author: "s-yoshiki"
 tags: ["strapi", "javascript", "node.js", "typescript"]
 ---
