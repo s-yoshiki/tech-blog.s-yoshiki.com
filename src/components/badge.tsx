@@ -508,6 +508,11 @@ const iconsData: BlandColor[] = [
     'colorIcon': false,
   },
   {
+    'name': 'chatgpt',
+    'color': '412991',
+    'colorIcon': false,
+  },
+  {
     'name': 'circle',
     'color': '8669AE',
     'colorIcon': true,
