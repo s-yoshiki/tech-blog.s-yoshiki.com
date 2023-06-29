@@ -13,10 +13,10 @@ const Content = () => {
       collection: [
         { name: 'Webサイトへのアクセス状況' },
         { name: '利用デバイスの特徴を示す情報（ブラウザの種類や OS情報など）' },
-        { name: 'IPアドレス （アクセス元のロケーション）'}
+        { name: 'IPアドレス （アクセス元のロケーション）' }
       ],
       purpose: [
-        { name: 'サイトへのアクセス状況の把握'}
+        { name: 'サイトへのアクセス状況の把握' }
       ],
       reference: [
         {
@@ -35,10 +35,10 @@ const Content = () => {
       collection: [
         { name: 'Webサイトへのアクセス状況' },
         { name: '利用デバイスの特徴を示す情報（ブラウザの種類や OS情報など）' },
-        { name: 'IPアドレス （アクセス元のロケーション）'}
+        { name: 'IPアドレス （アクセス元のロケーション）' }
       ],
       purpose: [
-        { name: '広告の配信'}
+        { name: '広告の配信' }
       ],
       reference: [
         {
@@ -59,31 +59,33 @@ const Content = () => {
       外部事業者の名称やサービス名、外部事業者に送信される利用者情報の内容、送信される情報の利用目的については、以下をご確認ください。
     </div>
     <div>
-      {data.map(row => {
+      {data.map((row, i) => {
         return (
-          <div>
+          <div key={i}>
             <h2>{row.name}</h2>
             <div>事業者名: {row.bussiness}</div>
             <div>送信される情報:
               <ol>
-                {row.collection.map((row1, i) => {
-                  return (<li key={i}>{row1.name}</li>)
+                {row.collection.map((row1, j) => {
+                  return (<li key={j}>{row1.name}</li>)
                 })}
               </ol>
             </div>
             <div>利用目的:
               <ol>
-                {row.purpose.map((row1, i) => {
-                  return (<li key={i}>{row1.name}</li>)
+                {row.purpose.map((row1, j) => {
+                  return (<li key={j}>{row1.name}</li>)
                 })}
               </ol>
             </div>
             <div>事業者情報:
               <ol>
-                {row.reference.map((row1, i) => {
-                  return (<li key={i}>
-                    <a href={row1.link}>{row1.name}</a>
-                  </li>)
+                {row.reference.map((row1, j) => {
+                  return (
+                    <li key={j}>
+                      <a href={row1.link}>{row1.name}</a>
+                    </li>
+                  )
                 })}
               </ol>
             </div>
