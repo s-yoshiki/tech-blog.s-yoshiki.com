@@ -82,9 +82,10 @@ const Author = () => {
         {/* <AwsCertificate /> */}
         <div style={{ 'fontSize': '12px' }}>
           ただの備忘録です。
-          <span style={{ 'fontSize': '8px' }}>
-            ※このブログの内容は個人の見解であり、所属する組織等の見解ではないです。
-          </span>
+          <br />
+          <p className='underline'>
+            <Link href="/terms/external-transmission/">※外部送信に関する公表事項</Link>
+          </p>
         </div>
       </div>
     </div>

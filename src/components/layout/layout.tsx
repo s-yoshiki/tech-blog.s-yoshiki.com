@@ -15,6 +15,7 @@ interface Props {
   children: ReactNode;
   image?: string;
   description?: string;
+  disableAdsense?: boolean;
 }
 
 const Index = (props: Props) => {
@@ -51,7 +52,7 @@ const Index = (props: Props) => {
         <main className=''>
           <div className='container mx-auto'>
             {props.children}
-            <RelationAds />
+            {!props.disableAdsense && <RelationAds /> }
           </div>
         </main>
         <footer>
