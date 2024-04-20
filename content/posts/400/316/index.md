@@ -2,7 +2,7 @@
 title: "NestJSでBasic認証"
 path: "/entry/316"
 date: "2023-07-08 16:30"
-coverImage: "../../../images/thumbnail/nestjs-logo.png"
+coverImage: "../../../images/thumbnail/nest-logo.png"
 author: "s-yoshiki"
 tags: ["nestjs", "typescript", "node.js"]
 ---
