@@ -32,7 +32,7 @@ jobs:
           aws-region: ap-northeast-1
 
       - name: install
-        run: pnpm ci
+        run: pnpm i --frozen-lockfile
 
       - name: build
         run: pnpm run build
