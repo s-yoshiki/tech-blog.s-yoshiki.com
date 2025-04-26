@@ -17,7 +17,12 @@ jobs:
       - name: setup node
         uses: actions/setup-node@v1
         with:
-          node-version: "16.x"
+          node-version: "22.x"
+
+      - name: setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -27,13 +32,13 @@ jobs:
           aws-region: ap-northeast-1
 
       - name: install
-        run: npm ci
+        run: pnpm ci
 
       - name: build
-        run: npm run build
+        run: pnpm run build
 
       - name: export
-        run: npm run export
+        run: pnpm run export
 
       - name: Generate redirect pages
         run: node tools/redirect/generater.js
@@ -43,7 +48,7 @@ jobs:
           S3_CONTENTS_BUCKET: ${{ secrets.S3_CONTENTS_BUCKET }}
         run: |
           aws s3 rm s3://$S3_CONTENTS_BUCKET/ --recursive
-  
+
       - name: Upload file to S3
         env:
           S3_CONTENTS_BUCKET: ${{ secrets.S3_CONTENTS_BUCKET }}
