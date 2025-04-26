@@ -37,9 +37,6 @@ jobs:
       - name: build
         run: pnpm run build
 
-      - name: export
-        run: pnpm run export
-
       - name: Generate redirect pages
         run: node tools/redirect/generater.js
 
