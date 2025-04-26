@@ -1,5 +1,4 @@
 import Layout from 'components/layout/layout';
-import { getWindowSize } from 'hooks/useWindowSize';
 
 const DateFormat = ({ value }: { value: string }) => {
   return <>{value.split(' ')[0]}</>;

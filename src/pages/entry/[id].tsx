@@ -6,7 +6,7 @@ import Layout from 'components/layout/layout';
 import PostsBand from 'components/posts-band';
 import Search from 'components/search';
 import YearMonthPosts from 'components/yesar-month-posts';
-import { getWindowSize } from 'hooks/useWindowSize';
+import { useWindowSize } from 'hooks/useWindowSize';
 import { search as searchEventHandler } from 'lib/inner-search';
 import { InferGetStaticPropsType, NextPage } from 'next';
 import Link from 'next/link';
@@ -222,7 +222,7 @@ const Post: NextPage<Props> = ({
   popular,
   recommends,
 }) => {
-  const { width } = getWindowSize();
+  const { width } = useWindowSize();
   return (
     <Layout title={post.title} image={post.coverImage} description={post.title}>
       <div className="">
