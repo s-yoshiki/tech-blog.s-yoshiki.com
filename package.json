@@ -9,7 +9,8 @@
     "export": "next export && next-sitemap --config sitemap.config.js",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "format": "biome format --write ./{src,content}"
+    "format": "biome format --write ./{src,content}",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@leafac/rehype-shiki": "^2.1.2",

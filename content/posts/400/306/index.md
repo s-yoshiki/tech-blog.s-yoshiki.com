@@ -4,7 +4,7 @@ path: "/entry/306"
 date: "2023-02-26 15:20"
 coverImage: "../../../images/thumbnail/react-logo.png"
 author: "s-yoshiki"
-tags: ["react", "Next.js", "typescript", "canvas"]
+tags: ["react", "next.js", "typescript", "canvas"]
 ---
 
 ## 概要
