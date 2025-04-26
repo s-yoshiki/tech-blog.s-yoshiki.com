@@ -1,13 +1,12 @@
-import rehypeShiki from '@leafac/rehype-shiki';
 import fs from 'fs';
 import matter from 'gray-matter';
 import rehypeStringify from 'rehype-stringify';
 import remarkGfm from 'remark-gfm';
 import remarkHtml from 'remark-html';
 import remarkParse from 'remark-parse';
+import rehypeSlug from 'rehype-slug';
 import remarkRehype from 'remark-rehype';
-import remarkSlug from 'remark-slug';
-import * as shiki from 'shiki';
+import rehypeShiki from '@shikijs/rehype';
 import { unified } from 'unified';
 
 import * as cheerio from 'cheerio';
@@ -44,24 +43,21 @@ const getToc = (html: string) => {
  */
 const markdownToHtml = async (opt: Props) => {
   const fileContents = fs.readFileSync(opt.filepath, 'utf8');
-  const { data, content } = matter(fileContents);
+  const { content } = matter(fileContents);
   const result = await unified() // unifiedライブラリの処理をまとめる
     .use(remarkParse) // Markdownをmdast(Markdownの抽象構文木)に変換
     .use(remarkHtml)
-    .use(remarkSlug)
     .use(remarkGfm)
-    // .use(remarkToc, {
-    //   heading: '目次',  // Table of Contents を挿入するための見出しを指定する
-    // })
     .use(remarkRehype, { allowDangerousHtml: true }) // mdastをhast(HTMLの抽象構文木)に変換
+    .use(rehypeSlug)
     .use(rehypeShiki, {
-      highlighter: await shiki.getHighlighter({
-        // theme: 'nord',
-        theme: 'github-dark',
-      }),
+      themes: {
+        dark: 'github-dark',
+        light: 'github-dark',
+      },
     }) // shikiハイライターでコードブロックをハイライト
     .use(rehypeStringify, { allowDangerousHtml: true }) // hastをHTMLに変換
-    .processSync(content);
+    .process(content);
   return getToc(result.toString());
 };
 

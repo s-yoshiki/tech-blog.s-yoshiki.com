@@ -73,9 +73,7 @@ const Card = (props: CardProps) => {
         >
           {tags.map((tag: string, idx) => (
             <Link href={`/tags/${tag}/1`} passHref key={idx}>
-              <a>
-                <Badge keyword={tag} />
-              </a>
+              <Badge keyword={tag} />
             </Link>
           ))}
         </div>

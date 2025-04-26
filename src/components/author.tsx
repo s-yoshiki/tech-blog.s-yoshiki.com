@@ -60,9 +60,7 @@ const Author = () => {
         <div>
           {badges.map((e, idx) => (
             <Link href={e.link} passHref key={idx}>
-              <a>
-                <img className={style.badge} src={e.logo} alt={e.alt} />
-              </a>
+              <img className={style.badge} src={e.logo} alt={e.alt} />
             </Link>
           ))}
         </div>

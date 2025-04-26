@@ -51,12 +51,12 @@ const NewPosts = ({ posts, count }: { posts: Posts[]; count: number }) => {
   }
   return (
     <>
-      {text.map((e) => {
+      {text.map((e, idx) => {
         return (
-          <>
+          <div key={idx}>
             {e}
             <div className="p-8"></div>
-          </>
+          </div>
         );
       })}
     </>

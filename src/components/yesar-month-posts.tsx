@@ -20,11 +20,9 @@ const Month = ({ item, year }: MonthProps) => {
     <>
       <div className="ml-6 p-1">
         <Link href={`/date/${year}/${key}`} passHref>
-          <a>
-            <div className="hover:underline">
-              {Number(key)}月 ({month.counts})
-            </div>
-          </a>
+          <div className="hover:underline">
+            {Number(key)}月 ({month.counts})
+          </div>
         </Link>
       </div>
     </>
@@ -39,11 +37,9 @@ const Year = ({ item }: YearProps) => {
       <div onClick={() => setFlag(!open)} className="flex flex-wrap p-1">
         <div className="pr-2">{open ? '▼' : '▶︎'}</div>
         <Link href={`/date/${year.name}`} passHref>
-          <a>
-            <div className="hover:underline">
-              {year.name} 年 ({year.counts})
-            </div>
-          </a>
+          <div className="hover:underline">
+            {year.name} 年 ({year.counts})
+          </div>
         </Link>
       </div>
       {open && (
