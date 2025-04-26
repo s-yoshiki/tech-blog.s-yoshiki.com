@@ -14,11 +14,13 @@ const { publicRuntimeConfig } = getConfig();
 const postsDirectory = join(process.cwd(), 'content/posts');
 
 const listFiles = (dir: string): string[] =>
-  fs.readdirSync(dir, { withFileTypes: true }).flatMap(dirent =>
-    dirent.isFile()
-      ? [`${dir}/${dirent.name}`]
-      : listFiles(`${dir}/${dirent.name}`)
-  );
+  fs
+    .readdirSync(dir, { withFileTypes: true })
+    .flatMap((dirent) =>
+      dirent.isFile()
+        ? [`${dir}/${dirent.name}`]
+        : listFiles(`${dir}/${dirent.name}`),
+    );
 
 const getCoverImage = (src: string) =>
   publicRuntimeConfig.basePath + '/images/thumbnail/' + src.split('/').pop();
@@ -95,12 +97,12 @@ class PostsManager {
       const fileContents = fs.readFileSync(files[i], 'utf8');
       const { data } = matter(fileContents);
       data.filepath = files[i];
-      result.push(<Posts> data);
+      result.push(<Posts>data);
     }
     const dataGroupByTag = new Map<string, Posts[]>();
     const dataGroupByYearMonth = new Map<string, Posts[]>();
     const dataGroupByYear = new Map<string, Posts[]>();
-    this.data = result.map(post => {
+    this.data = result.map((post) => {
       //
       // 画像パス修正
       //
@@ -110,7 +112,7 @@ class PostsManager {
       //
       post.tags = Array.from(new Set(post.tags));
       this.tagNames = Array.from(new Set(this.tagNames.concat(post.tags)));
-      post.tags.forEach(tag => {
+      post.tags.forEach((tag) => {
         let tmp = dataGroupByTag.get(tag);
         if (!tmp) {
           tmp = [];
@@ -327,10 +329,9 @@ class PostsManager {
         post,
         point,
       });
-      tmpList = tmpList.sort((a: any, b: any) => b.point - a.point).slice(
-        0,
-        maxCount,
-      );
+      tmpList = tmpList
+        .sort((a: any, b: any) => b.point - a.point)
+        .slice(0, maxCount);
     }
     return tmpList.map((e: any) => e.post);
   }

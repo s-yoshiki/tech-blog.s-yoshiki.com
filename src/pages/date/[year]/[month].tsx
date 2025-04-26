@@ -27,10 +27,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }: any) => {
-  const posts = PostsManager.findByYearMonth(
-    params.year,
-    params.month,
-  );
+  const posts = PostsManager.findByYearMonth(params.year, params.month);
   return {
     props: {
       posts,
@@ -44,19 +41,19 @@ const Home: NextPage<Props> = ({ posts }) => {
 
   return (
     <Layout>
-      <div className='container mx-auto'>
-        <div className=''>
-          <div className='
+      <div className="container mx-auto">
+        <div className="">
+          <div
+            className="
             text-2xl
             text-gray-900 
             font-semibold
             p-2
             flex
-          '>
+          "
+          >
             Posts with date:
-            <span>
-              # {`${year}-${month}`}
-            </span>
+            <span># {`${year}-${month}`}</span>
           </div>
           <PostsBand posts={posts} />
         </div>

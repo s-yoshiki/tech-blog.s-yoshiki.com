@@ -4,14 +4,14 @@ const ImportAds = () => {
   return (
     <>
       <Script
-        id='Adsense-id'
-        data-ad-client='ca-pub-5931776908676811'
+        id="Adsense-id"
+        data-ad-client="ca-pub-5931776908676811"
         async
-        strategy='afterInteractive'
+        strategy="afterInteractive"
         onError={(e) => {
           console.error('Script failed to load', e);
         }}
-        src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       />
     </>
   );

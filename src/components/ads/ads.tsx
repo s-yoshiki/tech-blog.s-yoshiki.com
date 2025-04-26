@@ -25,10 +25,10 @@ const Ads = (props: AdsenseProps) => {
   return (
     <div
       key={asPath}
-      className='max-w-4xl mx-auto content-center bg-slate-200 h-full max-h-lg'
+      className="max-w-4xl mx-auto content-center bg-slate-200 h-full max-h-lg"
     >
       <ins
-        className='adsbygoogle'
+        className="adsbygoogle"
         style={props.style}
         data-ad-layout={props.layout}
         data-ad-format={props.format}

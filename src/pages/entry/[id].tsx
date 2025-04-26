@@ -68,12 +68,14 @@ const EstimatedReading = ({ value }: { value: string }) => {
 
 const MiddleHeadding = ({ children }: { children: string }) => {
   return (
-    <div className='
+    <div
+      className="
       text-3xl
       text-gray-900 
       font-bold
       p-2
-    '>
+    "
+    >
       {children}
     </div>
   );
@@ -81,10 +83,10 @@ const MiddleHeadding = ({ children }: { children: string }) => {
 
 const Sidebar = ({ children }: any) => {
   return (
-    <div className='w-full'>
-      <div className='sticky top-0'>
+    <div className="w-full">
+      <div className="sticky top-0">
         {children}
-        <div className='pt-6 h-96 h-fit'>
+        <div className="pt-6 h-96 h-fit">
           <SidebarAds />
         </div>
       </div>
@@ -95,9 +97,9 @@ const Sidebar = ({ children }: any) => {
 const LeftSidebar = ({ tags }: any) => {
   return (
     <Sidebar>
-      <div className='container justify-center mx-auto  markdown-body rounded-lg shadow p-4'>
+      <div className="container justify-center mx-auto  markdown-body rounded-lg shadow p-4">
         <h3>Tags</h3>
-        <div className='flex flex-wrap'>
+        <div className="flex flex-wrap">
           {tags?.map((tag: string, idx: number) => (
             <a href={`/tags/${tag}/1`} key={idx}>
               <Badge keyword={tag} />
@@ -112,15 +114,13 @@ const LeftSidebar = ({ tags }: any) => {
 const RightSidebar = ({ toc }: any) => {
   return (
     <Sidebar>
-      <div className='container justify-center mx-auto  markdown-body rounded-lg shadow p-4'>
+      <div className="container justify-center mx-auto  markdown-body rounded-lg shadow p-4">
         <h3>目次</h3>
-        <div className='flex flex-wrap'>
+        <div className="flex flex-wrap">
           <ol>
             {toc?.map((toc: string, idx: number) => (
               <li key={idx}>
-                <a href={`#${toc}`}>
-                  {toc}
-                </a>
+                <a href={`#${toc}`}>{toc}</a>
               </li>
             ))}
           </ol>
@@ -130,64 +130,67 @@ const RightSidebar = ({ toc }: any) => {
   );
 };
 
-const RelationContents = (
-  { allPosts, tags, dates, popular, recommends }: any,
-) => {
+const RelationContents = ({
+  allPosts,
+  tags,
+  dates,
+  popular,
+  recommends,
+}: any) => {
   return (
     <>
       {recommends && (
-        <div className='bg-white'>
-          <div className='p-6'></div>
-          <div className='container mx-auto'>
+        <div className="bg-white">
+          <div className="p-6"></div>
+          <div className="container mx-auto">
             <div>
               <Search onClick={searchEventHandler} />
             </div>
             <MiddleHeadding>Recommends</MiddleHeadding>
             <PostsBand posts={recommends} />
           </div>
-          <div className='p-8'></div>
+          <div className="p-8"></div>
         </div>
       )}
       {allPosts && (
         <div>
-          <div className='p-6'></div>
-          <div className='container mx-auto'>
+          <div className="p-6"></div>
+          <div className="container mx-auto">
             <MiddleHeadding>New Posts</MiddleHeadding>
             <PostsBand posts={allPosts} />
           </div>
-          <div className='p-8'></div>
+          <div className="p-8"></div>
         </div>
       )}
       {popular && (
-        <div className='bg-white'>
-          <div className='p-8'></div>
-          <div className='container mx-auto bg-white'>
+        <div className="bg-white">
+          <div className="p-8"></div>
+          <div className="container mx-auto bg-white">
             <MiddleHeadding>Hot posts!</MiddleHeadding>
             <PostsBand posts={popular} />
           </div>
-          <div className='p-8'></div>
+          <div className="p-8"></div>
         </div>
       )}
-      <div className=''>
-        <div className='p-8'></div>
-        <div className='container mx-auto'>
-          <div className='flex flex-wrap flex-row'>
+      <div className="">
+        <div className="p-8"></div>
+        <div className="container mx-auto">
+          <div className="flex flex-wrap flex-row">
             {dates && (
-              <div className='w-1/3'>
+              <div className="w-1/3">
                 <MiddleHeadding>Date</MiddleHeadding>
                 <YearMonthPosts items={dates} />
               </div>
             )}
             {tags && (
-              <div className='w-2/3'>
+              <div className="w-2/3">
                 <MiddleHeadding>Tags</MiddleHeadding>
-                <div className='flex flex-wrap'>
+                <div className="flex flex-wrap">
                   {tags.map((el: any, idx: number) => {
                     return (
                       <Link href={`/tags/${el.name}/1`} passHref key={idx}>
-                        <div className='flex rounded-lg bg-slate-300 m-1 p-1'>
-                          <Badge keyword={el.name} />
-                          ({el.counts})
+                        <div className="flex rounded-lg bg-slate-300 m-1 p-1">
+                          <Badge keyword={el.name} />({el.counts})
                         </div>
                       </Link>
                     );
@@ -197,36 +200,37 @@ const RelationContents = (
             )}
           </div>
         </div>
-        <div className='p-8'></div>
+        <div className="p-8"></div>
       </div>
-      <div className='bg-white'>
-        <div className='p-8'></div>
-        <div className='container mx-auto'>
+      <div className="bg-white">
+        <div className="p-8"></div>
+        <div className="container mx-auto">
           <MiddleHeadding>Author</MiddleHeadding>
           <Author />
         </div>
-        <div className='p-8'></div>
+        <div className="p-8"></div>
       </div>
     </>
   );
 };
 
-const Post: NextPage<Props> = (
-  { post, allPosts, tags, dates, popular, recommends },
-) => {
+const Post: NextPage<Props> = ({
+  post,
+  allPosts,
+  tags,
+  dates,
+  popular,
+  recommends,
+}) => {
   const { width } = getWindowSize();
   return (
-    <Layout
-      title={post.title}
-      image={post.coverImage}
-      description={post.title}
-    >
-      <div className=''>
-        <div className=' mx-auto'>
-          <div className='justify-center text-center'>
-            <div className='p-6 text-7xl flex justify-center'>
+    <Layout title={post.title} image={post.coverImage} description={post.title}>
+      <div className="">
+        <div className=" mx-auto">
+          <div className="justify-center text-center">
+            <div className="p-6 text-7xl flex justify-center">
               <img
-                className='rounded-lg'
+                className="rounded-lg"
                 alt={post.title}
                 src={post.coverImage}
                 width={580}
@@ -234,22 +238,23 @@ const Post: NextPage<Props> = (
                 style={{ objectFit: 'cover' }}
               />
             </div>
-            <h1 className='text-3xl font-semibold' style={{ color: '#24292f' }}>
+            <h1 className="text-3xl font-semibold" style={{ color: '#24292f' }}>
               {post.title}
             </h1>
-            <div className='m-6'></div>
-            <div className='m-6'>
+            <div className="m-6"></div>
+            <div className="m-6">
               <span>
                 <DateFormat value={post.date} />
               </span>
-              <span className='ml-6'>
+              <span className="ml-6">
                 <EstimatedReading value={post.content} />
               </span>
             </div>
-            <div className='m-6'></div>
+            <div className="m-6"></div>
           </div>
-          <div className='m-8'></div>
-          <div className='
+          <div className="m-8"></div>
+          <div
+            className="
             flex
             grid 
             grid-cols-1
@@ -259,8 +264,10 @@ const Post: NextPage<Props> = (
             xl:grid-cols-9
             gap-5
             justify-end
-            '>
-            <div className='
+            "
+          >
+            <div
+              className="
               lg:col-span-2
               xl:col-span-2
               lg:visible
@@ -270,24 +277,28 @@ const Post: NextPage<Props> = (
               lg:h-full
               xl:h-full
               h-0
-            '>
+            "
+            >
               {width >= 1024 && <LeftSidebar tags={post.tags} />}
             </div>
-            <div className='
+            <div
+              className="
               grid-cols-1
               md:col-span-5
               lg:col-span-5
-              xl:col-span-5'>
-              <article className='markdown-body rounded-lg p-6 gap-4 shadow'>
-                <section className=''>
+              xl:col-span-5"
+            >
+              <article className="markdown-body rounded-lg p-6 gap-4 shadow">
+                <section className="">
                   <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
                 </section>
               </article>
-              <div className='pt-6'>
+              <div className="pt-6">
                 <RelationAds />
               </div>
             </div>
-            <div className='
+            <div
+              className="
               lg:col-span-2
               xl:col-span-2
               lg:visible
@@ -297,11 +308,12 @@ const Post: NextPage<Props> = (
               lg:h-full
               xl:h-full
               h-0
-            '>
+            "
+            >
               {width >= 1024 && <RightSidebar toc={post.toc} />}
             </div>
           </div>
-          <div className='p-6'></div>
+          <div className="p-6"></div>
         </div>
         <RelationContents
           allPosts={allPosts}

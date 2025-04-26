@@ -27,12 +27,14 @@ export const getStaticProps = async () => {
 
 const MiddleHeadding = ({ children }: { children: string }) => {
   return (
-    <div className='
+    <div
+      className="
       text-3xl
       text-gray-900 
       font-bold
       p-2
-    '>
+    "
+    >
       {children}
     </div>
   );
@@ -49,11 +51,11 @@ const NewPosts = ({ posts, count }: { posts: Posts[]; count: number }) => {
   }
   return (
     <>
-      {text.map(e => {
+      {text.map((e) => {
         return (
           <>
             {e}
-            <div className='p-8'></div>
+            <div className="p-8"></div>
           </>
         );
       })}
@@ -72,51 +74,50 @@ const Home: NextPage<Props> = ({ allPosts, tags, dates, popular }) => {
   return (
     <Layout>
       <div>
-        <div className='p-6'></div>
-        <div className='container mx-auto'>
+        <div className="p-6"></div>
+        <div className="container mx-auto">
           <div>
             <Search onClick={searchEventHandler} />
           </div>
           <MiddleHeadding>New Posts</MiddleHeadding>
           <NewPosts posts={allPosts} count={count} />
-          <div className='flex justify-center p-8'>
+          <div className="flex justify-center p-8">
             <div>
               <button
                 onClick={() => setCount(count + 1)}
-                className='bg-blue-500 w-96 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded'
+                className="bg-blue-500 w-96 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
               >
                 Show more... {count} / {maxPage}
               </button>
             </div>
           </div>
         </div>
-        <div className='p-8'></div>
+        <div className="p-8"></div>
       </div>
-      <div className='bg-white'>
-        <div className='p-8'></div>
-        <div className='container mx-auto bg-white'>
+      <div className="bg-white">
+        <div className="p-8"></div>
+        <div className="container mx-auto bg-white">
           <MiddleHeadding>Hot posts!</MiddleHeadding>
           <PostsBand posts={popular} />
         </div>
-        <div className='p-8'></div>
+        <div className="p-8"></div>
       </div>
-      <div className=''>
-        <div className='p-8'></div>
-        <div className='container mx-auto'>
-          <div className='flex flex-wrap flex-row'>
-            <div className='w-1/3'>
+      <div className="">
+        <div className="p-8"></div>
+        <div className="container mx-auto">
+          <div className="flex flex-wrap flex-row">
+            <div className="w-1/3">
               <MiddleHeadding>Date</MiddleHeadding>
               <YearMonthPosts items={dates} />
             </div>
-            <div className='w-2/3'>
+            <div className="w-2/3">
               <MiddleHeadding>Tags</MiddleHeadding>
-              <div className='flex flex-wrap'>
+              <div className="flex flex-wrap">
                 {tags.map((el, idx) => {
                   return (
                     <Link href={`/tags/${el.name}/1`} passHref key={idx}>
-                      <div className='flex rounded-lg bg-slate-300 m-1 p-1'>
-                        <Badge keyword={el.name} />
-                        ({el.counts})
+                      <div className="flex rounded-lg bg-slate-300 m-1 p-1">
+                        <Badge keyword={el.name} />({el.counts})
                       </div>
                     </Link>
                   );
@@ -125,15 +126,15 @@ const Home: NextPage<Props> = ({ allPosts, tags, dates, popular }) => {
             </div>
           </div>
         </div>
-        <div className='p-8'></div>
+        <div className="p-8"></div>
       </div>
-      <div className='bg-white'>
-        <div className='p-8'></div>
-        <div className='container mx-auto'>
+      <div className="bg-white">
+        <div className="p-8"></div>
+        <div className="container mx-auto">
           <MiddleHeadding>Author</MiddleHeadding>
           <Author />
         </div>
-        <div className='p-8'></div>
+        <div className="p-8"></div>
       </div>
     </Layout>
   );

@@ -18,10 +18,10 @@ const Month = ({ item, year }: MonthProps) => {
   const key = month.name.split('-')[1];
   return (
     <>
-      <div className='ml-6 p-1'>
+      <div className="ml-6 p-1">
         <Link href={`/date/${year}/${key}`} passHref>
           <a>
-            <div className='hover:underline'>
+            <div className="hover:underline">
               {Number(key)}月 ({month.counts})
             </div>
           </a>
@@ -36,13 +36,11 @@ const Year = ({ item }: YearProps) => {
   const year = item;
   return (
     <div>
-      <div onClick={() => setFlag(!open)} className='flex flex-wrap p-1'>
-        <div className='pr-2'>
-          {open ? '▼' : '▶︎'}
-        </div>
+      <div onClick={() => setFlag(!open)} className="flex flex-wrap p-1">
+        <div className="pr-2">{open ? '▼' : '▶︎'}</div>
         <Link href={`/date/${year.name}`} passHref>
           <a>
-            <div className='hover:underline'>
+            <div className="hover:underline">
               {year.name} 年 ({year.counts})
             </div>
           </a>
@@ -62,7 +60,9 @@ const Year = ({ item }: YearProps) => {
 const YearMonthPosts = ({ items }: YearMonthPostsProps) => {
   return (
     <div>
-      {items.map((year, idx) => <Year item={year} key={idx} />)}
+      {items.map((year, idx) => (
+        <Year item={year} key={idx} />
+      ))}
     </div>
   );
 };

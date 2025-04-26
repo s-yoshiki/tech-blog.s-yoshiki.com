@@ -7,7 +7,8 @@ interface EntryBandProp {
 
 const Band = (props: EntryBandProp) => {
   return (
-    <div className='
+    <div
+      className="
       grid 
       sm:grid-cols-2
       md:grid-cols-2
@@ -16,7 +17,8 @@ const Band = (props: EntryBandProp) => {
       gap-1
       flex 
       justify-center
-      '>
+      "
+    >
       {props.posts.map((post, idx) => (
         <Card
           title={post.title}

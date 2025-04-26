@@ -26,9 +26,7 @@ const Index = (props: Props) => {
   const baseUrl = `${siteMetaData.siteUrl}`;
   return (
     <>
-      <HeaderMeta
-        title={title}
-      >
+      <HeaderMeta title={title}>
         <Og
           title={title}
           type={`article`}
@@ -37,7 +35,7 @@ const Index = (props: Props) => {
           url={`${baseUrl}${router.asPath}`}
         />
         <TwitterCard
-          card='summary'
+          card="summary"
           title={title}
           site={`@s_yoshiki_dev`}
           description={props.description || title}
@@ -48,15 +46,15 @@ const Index = (props: Props) => {
         <header>
           <Header title={siteMetaData?.title} />
         </header>
-        <div className='pt-6'></div>
-        <main className=''>
-          <div className='container mx-auto'>
+        <div className="pt-6"></div>
+        <main className="">
+          <div className="container mx-auto">
             {props.children}
-            {!props.disableAdsense && <RelationAds /> }
+            {!props.disableAdsense && <RelationAds />}
           </div>
         </main>
         <footer>
-          <Footer title='404 motivation not found' />
+          <Footer title="404 motivation not found" />
         </footer>
       </article>
     </>

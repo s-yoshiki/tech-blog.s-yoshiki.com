@@ -3,11 +3,11 @@ import Ads from './ads';
 
 const SidebarAds = () => {
   return (
-    <div className='min-h-full'>
+    <div className="min-h-full">
       <Ads
-        slot=''
-        format='autorelaxed'
-        fullWidthResponsive='true'
+        slot=""
+        format="autorelaxed"
+        fullWidthResponsive="true"
         style={{ display: 'block', textAlign: 'center' }}
       />
     </div>
