@@ -21,11 +21,6 @@ const nextConfig = {
   },
   reactStrictMode: true,
   trailingSlash: true,
-  handleImages: ['jpeg', 'png', 'svg'],
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  },
   images: {
     loader: 'custom',
     domains: ['img.shields.io'],

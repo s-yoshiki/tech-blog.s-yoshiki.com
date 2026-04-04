@@ -1,6 +1,5 @@
 import fs from 'fs';
 import matter from 'gray-matter';
-import getConfig from 'next/config';
 import { join } from 'path';
 import {
   IGroupByItems,
@@ -8,7 +7,18 @@ import {
   Posts,
 } from 'types/entry.interface';
 
-const { publicRuntimeConfig } = getConfig();
+const publicRuntimeConfig = {
+  basePath: '',
+  siteMetaData: {
+    title: `404 motivation not found`,
+    description: `結果にコミットする`,
+    siteUrl: `https://tech-blog.s-yoshiki.com`,
+    copyrights: '',
+    author: `@s-yoshiki`,
+    logoText: '404 motivation not found',
+    gtag: 'G-PJBP94L671',
+  },
+};
 
 // postsが格納されているディレクトリを取得する
 const postsDirectory = join(process.cwd(), 'content/posts');
@@ -337,4 +347,5 @@ class PostsManager {
   }
 }
 
-export default new PostsManager(postsDirectory);
+const postsManager = new PostsManager(postsDirectory);
+export default postsManager;
