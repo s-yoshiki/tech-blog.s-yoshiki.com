@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@leafac/rehype-shiki':
-        specifier: ^2.2.1
-        version: 2.2.1(shiki@4.0.2)
       cheerio:
         specifier: ^1.2.0
         version: 1.2.0
@@ -33,6 +30,9 @@ importers:
       '@jsdevtools/rehype-toc':
         specifier: ^3.0.2
         version: 3.0.2
+      '@leafac/rehype-shiki':
+        specifier: ^2.2.1
+        version: 2.2.1(shiki@4.0.2)
       '@shikijs/rehype':
         specifier: ^4.0.2
         version: 4.0.2
