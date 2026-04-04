@@ -22,7 +22,6 @@
   "devDependencies": {
     "@biomejs/biome": "2.4.10",
     "@jsdevtools/rehype-toc": "^3.0.2",
-    "@leafac/rehype-shiki": "^2.2.1",
     "@shikijs/rehype": "^4.0.2",
     "@types/node": "25.5.2",
     "@types/react": "19.2.14",
