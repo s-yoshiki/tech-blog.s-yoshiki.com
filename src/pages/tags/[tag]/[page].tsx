@@ -103,7 +103,7 @@ const Home: NextPage<Props> = ({ posts, pageMax }) => {
             flex
           "
           >
-            Posts with tag: <Badge classNmae="m-2" keyword={String(tag)} />
+            Posts with tag: <Badge className="m-2" keyword={String(tag)} />
           </div>
           <div className="flex justify-center m-2">
             <PageIndex

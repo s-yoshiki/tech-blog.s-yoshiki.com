@@ -7,11 +7,14 @@ interface HeaderProp {
 
 const Footer = ({ title }: HeaderProp) => {
   return (
-    <div className={style.header}>
-      <div className={style.headerContainer}>
+    <div className={style.footer}>
+      <div className={style.footerContainer}>
         <span className={style.title}>
-          <Link href="/">{`> ${title}`}</Link>
+          <Link href="/">{title}</Link>
         </span>
+        <div className={style.copyright}>
+          © {new Date().getFullYear()} s-yoshiki. All rights reserved.
+        </div>
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import Layout from 'components/layout/layout';
 import PostsBand from 'components/posts-band';
 import Search from 'components/search';
 import YearMonthPosts from 'components/yesar-month-posts';
+import SectionHeading from 'components/section-heading';
 import { useWindowSize } from 'hooks/useWindowSize';
 import { search as searchEventHandler } from 'lib/inner-search';
 import { InferGetStaticPropsType, NextPage } from 'next';
@@ -66,27 +67,12 @@ const EstimatedReading = ({ value }: { value: string }) => {
   return <span>{min} min read</span>;
 };
 
-const MiddleHeadding = ({ children }: { children: string }) => {
-  return (
-    <div
-      className="
-      text-3xl
-      text-gray-900 
-      font-bold
-      p-2
-    "
-    >
-      {children}
-    </div>
-  );
-};
-
 const Sidebar = ({ children }: any) => {
   return (
     <div className="w-full">
-      <div className="sticky top-0">
+      <div className="sticky top-24">
         {children}
-        <div className="pt-6 h-96 h-fit">
+        <div className="pt-6">
           <SidebarAds />
         </div>
       </div>
@@ -97,13 +83,13 @@ const Sidebar = ({ children }: any) => {
 const LeftSidebar = ({ tags }: any) => {
   return (
     <Sidebar>
-      <div className="container justify-center mx-auto  markdown-body rounded-lg shadow p-4">
-        <h3>Tags</h3>
-        <div className="flex flex-wrap">
+      <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
+        <h3 className="text-sm font-bold text-slate-800 mb-4 uppercase tracking-wider">Tags</h3>
+        <div className="flex flex-wrap gap-2">
           {tags?.map((tag: string, idx: number) => (
-            <a href={`/tags/${tag}/1`} key={idx}>
-              <Badge keyword={tag} />
-            </a>
+            <Link href={`/tags/${tag}/1`} key={idx} className="transition-opacity hover:opacity-80">
+              <Badge keyword={tag} className="h-4" />
+            </Link>
           ))}
         </div>
       </div>
@@ -114,13 +100,13 @@ const LeftSidebar = ({ tags }: any) => {
 const RightSidebar = ({ toc }: any) => {
   return (
     <Sidebar>
-      <div className="container justify-center mx-auto  markdown-body rounded-lg shadow p-4">
-        <h3>目次</h3>
-        <div className="flex flex-wrap">
-          <ol>
-            {toc?.map((toc: string, idx: number) => (
-              <li key={idx}>
-                <a href={`#${toc}`}>{toc}</a>
+      <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
+        <h3 className="text-sm font-bold text-slate-800 mb-4 uppercase tracking-wider">目次</h3>
+        <div className="max-h-[70vh] overflow-y-auto pr-2 custom-scrollbar">
+          <ol className="space-y-2 text-sm">
+            {toc?.map((tocItem: string, idx: number) => (
+              <li key={idx} className="text-slate-600 hover:text-blue-600 transition-colors">
+                <a href={`#${tocItem}`} className="block py-1 line-clamp-2">{tocItem}</a>
               </li>
             ))}
           </ol>
@@ -138,59 +124,56 @@ const RelationContents = ({
   recommends,
 }: any) => {
   return (
-    <>
+    <div className="mt-20">
       {recommends && (
-        <div className="bg-white">
-          <div className="p-6"></div>
-          <div className="container mx-auto">
-            <div>
+        <div className="py-16 bg-slate-50 border-y border-slate-100">
+          <div className="container mx-auto px-4">
+            <div className="max-w-xl mx-auto mb-10">
               <Search onClick={searchEventHandler} />
             </div>
-            <MiddleHeadding>Recommends</MiddleHeadding>
+            <SectionHeading>Recommended for you</SectionHeading>
             <PostsBand posts={recommends} />
           </div>
-          <div className="p-8"></div>
         </div>
       )}
       {allPosts && (
-        <div>
-          <div className="p-6"></div>
-          <div className="container mx-auto">
-            <MiddleHeadding>New Posts</MiddleHeadding>
+        <div className="py-16 bg-white border-b border-slate-100">
+          <div className="container mx-auto px-4">
+            <SectionHeading>Latest Articles</SectionHeading>
             <PostsBand posts={allPosts} />
           </div>
-          <div className="p-8"></div>
         </div>
       )}
       {popular && (
-        <div className="bg-white">
-          <div className="p-8"></div>
-          <div className="container mx-auto bg-white">
-            <MiddleHeadding>Hot posts!</MiddleHeadding>
+        <div className="py-16 bg-slate-50 border-b border-slate-100">
+          <div className="container mx-auto px-4">
+            <SectionHeading>Popular Now</SectionHeading>
             <PostsBand posts={popular} />
           </div>
-          <div className="p-8"></div>
         </div>
       )}
-      <div className="">
-        <div className="p-8"></div>
-        <div className="container mx-auto">
-          <div className="flex flex-wrap flex-row">
+
+      <div className="py-16 bg-white border-b border-slate-100">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row gap-12">
             {dates && (
-              <div className="w-1/3">
-                <MiddleHeadding>Date</MiddleHeadding>
-                <YearMonthPosts items={dates} />
+              <div className="md:w-1/3">
+                <SectionHeading>Archive</SectionHeading>
+                <div className="bg-slate-50 rounded-xl p-6">
+                  <YearMonthPosts items={dates} />
+                </div>
               </div>
             )}
             {tags && (
-              <div className="w-2/3">
-                <MiddleHeadding>Tags</MiddleHeadding>
-                <div className="flex flex-wrap">
+              <div className="md:w-2/3">
+                <SectionHeading>Categories</SectionHeading>
+                <div className="flex flex-wrap gap-2">
                   {tags.map((el: any, idx: number) => {
                     return (
                       <Link href={`/tags/${el.name}/1`} passHref key={idx}>
-                        <div className="flex rounded-lg bg-slate-300 m-1 p-1">
-                          <Badge keyword={el.name} />({el.counts})
+                        <div className="flex items-center gap-1 rounded-full bg-slate-100 px-3 py-1.5 hover:bg-slate-200 transition-colors border border-slate-200">
+                          <Badge keyword={el.name} className="h-4" />
+                          <span className="text-xs font-semibold text-slate-600">{el.counts}</span>
                         </div>
                       </Link>
                     );
@@ -200,17 +183,17 @@ const RelationContents = ({
             )}
           </div>
         </div>
-        <div className="p-8"></div>
       </div>
-      <div className="bg-white">
-        <div className="p-8"></div>
-        <div className="container mx-auto">
-          <MiddleHeadding>Author</MiddleHeadding>
-          <Author />
+
+      <div className="py-16 bg-slate-50">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <SectionHeading>About the Author</SectionHeading>
+          <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
+            <Author />
+          </div>
         </div>
-        <div className="p-8"></div>
       </div>
-    </>
+    </div>
   );
 };
 
@@ -225,96 +208,66 @@ const Post: NextPage<Props> = ({
   const { width } = useWindowSize();
   return (
     <Layout title={post.title} image={post.coverImage} description={post.title}>
-      <div className="">
-        <div className=" mx-auto">
-          <div className="justify-center text-center">
-            <div className="p-6 text-7xl flex justify-center">
-              <img
-                className="rounded-lg"
-                alt={post.title}
-                src={post.coverImage}
-                width={580}
-                height={300}
-                style={{ objectFit: 'cover' }}
-              />
-            </div>
-            <h1 className="text-3xl font-semibold" style={{ color: '#24292f' }}>
-              {post.title}
-            </h1>
-            <div className="m-6"></div>
-            <div className="m-6">
-              <span>
-                <DateFormat value={post.date} />
-              </span>
-              <span className="ml-6">
-                <EstimatedReading value={post.content} />
-              </span>
-            </div>
-            <div className="m-6"></div>
+      <article className="pt-12">
+        <div className="max-w-4xl mx-auto px-4 text-center mb-16">
+          <div className="flex flex-wrap justify-center gap-2 mb-6">
+            {post.tags?.slice(0, 5).map((tag: string, idx: number) => (
+              <Link href={`/tags/${tag}/1`} key={idx}>
+                <Badge keyword={tag} className="h-5" />
+              </Link>
+            ))}
           </div>
-          <div className="m-8"></div>
-          <div
-            className="
-            flex
-            grid 
-            grid-cols-1
-            sm:grid-cols-1
-            md:grid-cols-5
-            lg:grid-cols-9
-            xl:grid-cols-9
-            gap-5
-            justify-end
-            "
-          >
-            <div
-              className="
-              lg:col-span-2
-              xl:col-span-2
-              lg:visible
-              xl:visible
-              invisible
-              flex
-              lg:h-full
-              xl:h-full
-              h-0
-            "
-            >
-              {width >= 1024 && <LeftSidebar tags={post.tags} />}
+
+          <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 leading-tight mb-8">
+            {post.title}
+          </h1>
+
+          <div className="flex items-center justify-center gap-6 text-slate-500 font-medium text-sm">
+            <div className="flex items-center gap-2">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <DateFormat value={post.date} />
             </div>
-            <div
-              className="
-              grid-cols-1
-              md:col-span-5
-              lg:col-span-5
-              xl:col-span-5"
-            >
-              <article className="markdown-body rounded-lg p-6 gap-4 shadow">
-                <section className="">
-                  <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
-                </section>
-              </article>
-              <div className="pt-6">
+            <div className="flex items-center gap-2">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <EstimatedReading value={post.content} />
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-6xl mx-auto px-4 mb-16">
+          <img
+            className="rounded-2xl shadow-xl w-full max-h-[600px] object-cover"
+            alt={post.title}
+            src={post.coverImage}
+            loading="eager"
+          />
+        </div>
+
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+            <aside className="hidden lg:block lg:w-1/4">
+              {width >= 1024 && <LeftSidebar tags={post.tags} />}
+            </aside>
+
+            <main className="w-full lg:w-1/2">
+              <div className="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-slate-100">
+                <div className="markdown-body prose prose-slate max-w-none" dangerouslySetInnerHTML={{ __html: post.content }}></div>
+              </div>
+              <div className="mt-8">
                 <RelationAds />
               </div>
-            </div>
-            <div
-              className="
-              lg:col-span-2
-              xl:col-span-2
-              lg:visible
-              xl:visible
-              invisible
-              flex
-              lg:h-full
-              xl:h-full
-              h-0
-            "
-            >
+            </main>
+
+            <aside className="hidden lg:block lg:w-1/4">
               {width >= 1024 && <RightSidebar toc={post.toc} />}
-            </div>
+            </aside>
           </div>
-          <div className="p-6"></div>
         </div>
+
         <RelationContents
           allPosts={allPosts}
           tags={tags}
@@ -322,7 +275,7 @@ const Post: NextPage<Props> = ({
           popular={popular}
           recommends={recommends}
         />
-      </div>
+      </article>
     </Layout>
   );
 };
