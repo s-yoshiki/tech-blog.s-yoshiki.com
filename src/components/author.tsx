@@ -6,25 +6,29 @@ const AwsCertificate = () => {
     {
       link: `https://www.credly.com/badges/f51acc63-04aa-44a4-b4ef-89109ea4e433/public_url`,
       image: `https://images.credly.com/images/2d84e428-9078-49b6-a804-13c15383d0de/image.png`,
+      alt: 'AWS Certified Solutions Architect – Associate',
     },
     {
       link: `https://www.credly.com/badges/d5d74113-1038-4622-ad48-79af359af2bb/public_url`,
       image: `https://images.credly.com/size/680x680/images/bd31ef42-d460-493e-8503-39592aaf0458/image.png`,
+      alt: 'AWS Certified Developer – Associate',
     },
     {
       link: `https://www.credly.com/badges/9ac240e0-3789-45ac-b743-4847bc15e509/public_url`,
       image: `https://images.credly.com/size/680x680/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png`,
+      alt: 'AWS Certified SysOps Administrator – Associate',
     },
     {
       link: `https://www.credly.com/badges/720815a7-6ead-40e5-b248-2c628417a124/public_url`,
       image: `https://images.credly.com/size/680x680/images/b9feab85-1a43-4f6c-99a5-631b88d5461b/image.png`,
+      alt: 'AWS Certified Cloud Practitioner',
     },
   ];
   return (
     <div className="flex flex-wrap flex-row">
       {data.map((e, idx) => (
         <a href={e.link} key={idx}>
-          <img src={e.image} width="60" />
+          <img src={e.image} width="60" alt={e.alt} />
         </a>
       ))}
     </div>
