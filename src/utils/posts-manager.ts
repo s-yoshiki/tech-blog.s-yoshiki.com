@@ -1,3 +1,4 @@
+import { publicRuntimeConfig } from 'config/site-config';
 import fs from 'fs';
 import matter from 'gray-matter';
 import { join } from 'path';
@@ -6,19 +7,6 @@ import {
   IGroupByYearMonthItems,
   Posts,
 } from 'types/entry.interface';
-
-const publicRuntimeConfig = {
-  basePath: '',
-  siteMetaData: {
-    title: `404 motivation not found`,
-    description: `結果にコミットする`,
-    siteUrl: `https://tech-blog.s-yoshiki.com`,
-    copyrights: '',
-    author: `@s-yoshiki`,
-    logoText: '404 motivation not found',
-    gtag: 'G-PJBP94L671',
-  },
-};
 
 // postsが格納されているディレクトリを取得する
 const postsDirectory = join(process.cwd(), 'content/posts');
@@ -325,8 +313,7 @@ class PostsManager {
     let tmpList: any = [];
     for (let i = 0; i < data.length; i++) {
       const post = data[i];
-      let point = 0;
-      for (let j = 0; j < tags.length; j++) {
+      let point = 0;      for (let j = 0; j < tags.length; j++) {
         const tag = tags[j];
         if (post.tags.includes(tag)) {
           point++;

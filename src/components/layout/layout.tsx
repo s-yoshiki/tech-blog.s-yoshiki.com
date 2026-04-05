@@ -2,20 +2,11 @@ import RelationAds from 'components/ads/relations-ads';
 import HeaderMeta from 'components/meta/header-meta';
 import Og from 'components/meta/og';
 import TwitterCard from 'components/meta/og-twitter-card';
+import { siteMetaData } from 'config/site-config';
 import { useRouter } from 'next/router';
 import { ReactNode } from 'react';
 import Footer from './footer';
 import Header from './header';
-
-const siteMetaData = {
-  title: `404 motivation not found`,
-  description: `結果にコミットする`,
-  siteUrl: `https://tech-blog.s-yoshiki.com`,
-  copyrights: '',
-  author: `@s-yoshiki`,
-  logoText: '404 motivation not found',
-  gtag: 'G-PJBP94L671',
-};
 
 interface Props {
   title?: string;
