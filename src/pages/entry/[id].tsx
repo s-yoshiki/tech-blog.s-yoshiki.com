@@ -11,6 +11,7 @@ import { useWindowSize } from 'hooks/useWindowSize';
 import { search as searchEventHandler } from 'lib/inner-search';
 import { InferGetStaticPropsType, NextPage } from 'next';
 import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 import markdownToHtml from 'utils/md';
 import PostsManager from 'utils/posts-manager';
 
@@ -206,6 +207,12 @@ const Post: NextPage<Props> = ({
   recommends,
 }) => {
   const { width } = useWindowSize();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <Layout title={post.title} image={post.coverImage} description={post.title}>
       <article className="pt-12">
@@ -250,7 +257,7 @@ const Post: NextPage<Props> = ({
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
             <aside className="hidden lg:block lg:w-1/4">
-              {width >= 1024 && <LeftSidebar tags={post.tags} />}
+              {mounted && width >= 1024 && <LeftSidebar tags={post.tags} />}
             </aside>
 
             <main className="w-full lg:w-1/2">
@@ -263,7 +270,7 @@ const Post: NextPage<Props> = ({
             </main>
 
             <aside className="hidden lg:block lg:w-1/4">
-              {width >= 1024 && <RightSidebar toc={post.toc} />}
+              {mounted && width >= 1024 && <RightSidebar toc={post.toc} />}
             </aside>
           </div>
         </div>
