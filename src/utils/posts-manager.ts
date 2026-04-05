@@ -1,14 +1,12 @@
+import { publicRuntimeConfig } from 'config/site-config';
 import fs from 'fs';
 import matter from 'gray-matter';
-import getConfig from 'next/config';
 import { join } from 'path';
 import {
   IGroupByItems,
   IGroupByYearMonthItems,
   Posts,
 } from 'types/entry.interface';
-
-const { publicRuntimeConfig } = getConfig();
 
 // postsが格納されているディレクトリを取得する
 const postsDirectory = join(process.cwd(), 'content/posts');
@@ -315,8 +313,7 @@ class PostsManager {
     let tmpList: any = [];
     for (let i = 0; i < data.length; i++) {
       const post = data[i];
-      let point = 0;
-      for (let j = 0; j < tags.length; j++) {
+      let point = 0;      for (let j = 0; j < tags.length; j++) {
         const tag = tags[j];
         if (post.tags.includes(tag)) {
           point++;
@@ -337,4 +334,5 @@ class PostsManager {
   }
 }
 
-export default new PostsManager(postsDirectory);
+const postsManager = new PostsManager(postsDirectory);
+export default postsManager;

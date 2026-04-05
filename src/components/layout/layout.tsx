@@ -2,13 +2,11 @@ import RelationAds from 'components/ads/relations-ads';
 import HeaderMeta from 'components/meta/header-meta';
 import Og from 'components/meta/og';
 import TwitterCard from 'components/meta/og-twitter-card';
-import getConfig from 'next/config';
+import { siteMetaData } from 'config/site-config';
 import { useRouter } from 'next/router';
 import { ReactNode } from 'react';
 import Footer from './footer';
 import Header from './header';
-
-const { siteMetaData, basePath } = getConfig().publicRuntimeConfig;
 
 interface Props {
   title?: string;

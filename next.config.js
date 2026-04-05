@@ -1,5 +1,3 @@
-const basePath = '';
-
 const siteMetaData = {
   title: `404 motivation not found`,
   description: `結果にコミットする`,
@@ -9,6 +7,8 @@ const siteMetaData = {
   logoText: '404 motivation not found',
   gtag: 'G-PJBP94L671',
 };
+
+const basePath = '';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -21,11 +21,6 @@ const nextConfig = {
   },
   reactStrictMode: true,
   trailingSlash: true,
-  handleImages: ['jpeg', 'png', 'svg'],
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  },
   images: {
     loader: 'custom',
     domains: ['img.shields.io'],
