@@ -1,20 +1,20 @@
-.header {
-  @apply bg-white;
+.footer {
+  @apply bg-slate-900 text-slate-400 mt-12 py-12;
 }
 
-.headerContainer {
-  @apply p-6 mx-auto container;
+.footerContainer {
+  @apply px-6 mx-auto container flex flex-col md:flex-row items-center justify-between gap-6;
 }
 
 .title {
-  font-weight: 600;
-  padding-bottom: .3em;
-  font-size: 20px;
-  font-weight: 900;
-  line-height: 1.25;
-  color: #98a2b2;
+  @apply text-xl font-extrabold text-white tracking-tight;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .title:hover {
-  color: blue;
+  @apply opacity-80;
+}
+
+.copyright {
+  @apply text-sm font-medium;
 }
