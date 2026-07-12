@@ -9,9 +9,9 @@ const Header = ({ title }: HeaderProp) => {
   return (
     <div className={style.header}>
       <div className={style.headerContainer}>
-        <span className={style.title}>
-          <Link href="/">{`> ${title}`}</Link>
-        </span>
+        <h1 className={style.title}>
+          <Link href="/">{title}</Link>
+        </h1>
       </div>
     </div>
   );

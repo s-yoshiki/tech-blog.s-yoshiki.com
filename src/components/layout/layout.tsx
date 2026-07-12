@@ -40,21 +40,16 @@ const Index = (props: Props) => {
           image={`${baseUrl}${props.image}`}
         />
       </HeaderMeta>
-      <article>
-        <header>
-          <Header title={siteMetaData?.title} />
-        </header>
-        <div className="pt-6"></div>
-        <main className="">
+      <div className="flex flex-col min-h-screen">
+        <Header title={siteMetaData?.title} />
+        <main className="flex-grow">
           <div className="container mx-auto">
             {props.children}
             {!props.disableAdsense && <RelationAds />}
           </div>
         </main>
-        <footer>
-          <Footer title="404 motivation not found" />
-        </footer>
-      </article>
+        <Footer title="404 motivation not found" />
+      </div>
     </>
   );
 };

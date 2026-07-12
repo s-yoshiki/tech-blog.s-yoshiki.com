@@ -4,6 +4,7 @@ import Layout from 'components/layout/layout';
 import PostsBand from 'components/posts-band';
 import Search from 'components/search';
 import YearMonthPosts from 'components/yesar-month-posts';
+import SectionHeading from 'components/section-heading';
 import { search as searchEventHandler } from 'lib/inner-search';
 import { InferGetStaticPropsType, NextPage } from 'next';
 import Link from 'next/link';
@@ -25,42 +26,18 @@ export const getStaticProps = async () => {
   };
 };
 
-const MiddleHeadding = ({ children }: { children: string }) => {
-  return (
-    <div
-      className="
-      text-3xl
-      text-gray-900 
-      font-bold
-      p-2
-    "
-    >
-      {children}
-    </div>
-  );
-};
-
 const NewPosts = ({ posts, count }: { posts: Posts[]; count: number }) => {
-  const text = [];
+  const postBands = [];
   for (let i = 0; i < count; i++) {
-    text.push(
-      <PostsBand
-        posts={posts.slice(postsPerPage * i, postsPerPage * (i + 1))}
-      />,
+    postBands.push(
+      <div key={i} className="mb-12">
+        <PostsBand
+          posts={posts.slice(postsPerPage * i, postsPerPage * (i + 1))}
+        />
+      </div>,
     );
   }
-  return (
-    <>
-      {text.map((e, idx) => {
-        return (
-          <div key={idx}>
-            {e}
-            <div className="p-8"></div>
-          </div>
-        );
-      })}
-    </>
-  );
+  return <>{postBands}</>;
 };
 
 const Home: NextPage<Props> = ({ allPosts, tags, dates, popular }) => {
@@ -73,51 +50,55 @@ const Home: NextPage<Props> = ({ allPosts, tags, dates, popular }) => {
   };
   return (
     <Layout>
-      <div>
-        <div className="p-6"></div>
-        <div className="container mx-auto">
-          <div>
+      <div className="py-12 bg-white border-b border-slate-100">
+        <div className="container mx-auto px-4">
+          <div className="max-w-2xl mx-auto mb-10">
             <Search onClick={searchEventHandler} />
           </div>
-          <MiddleHeadding>New Posts</MiddleHeadding>
-          <NewPosts posts={allPosts} count={count} />
-          <div className="flex justify-center p-8">
-            <div>
-              <button
-                onClick={() => setCount(count + 1)}
-                className="bg-blue-500 w-96 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-              >
-                Show more... {count} / {maxPage}
-              </button>
+          <div className="flex flex-col items-center">
+            <SectionHeading>New Posts</SectionHeading>
+            <div className="w-full">
+              <NewPosts posts={allPosts} count={count} />
             </div>
+            {count < maxPage && (
+              <div className="mt-8">
+                <button
+                  onClick={() => setCount(count + 1)}
+                  className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-md hover:shadow-lg transition-all duration-200"
+                >
+                  Load More Articles ({count} / {maxPage})
+                </button>
+              </div>
+            )}
           </div>
         </div>
-        <div className="p-8"></div>
       </div>
-      <div className="bg-white">
-        <div className="p-8"></div>
-        <div className="container mx-auto bg-white">
-          <MiddleHeadding>Hot posts!</MiddleHeadding>
+
+      <div className="py-16 bg-slate-50">
+        <div className="container mx-auto px-4">
+          <SectionHeading>Popular Topics</SectionHeading>
           <PostsBand posts={popular} />
         </div>
-        <div className="p-8"></div>
       </div>
-      <div className="">
-        <div className="p-8"></div>
-        <div className="container mx-auto">
-          <div className="flex flex-wrap flex-row">
-            <div className="w-1/3">
-              <MiddleHeadding>Date</MiddleHeadding>
-              <YearMonthPosts items={dates} />
+
+      <div className="py-16 bg-white border-y border-slate-100">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col lg:flex-row gap-12">
+            <div className="lg:w-1/3">
+              <SectionHeading>Archive</SectionHeading>
+              <div className="bg-slate-50 rounded-xl p-6">
+                <YearMonthPosts items={dates} />
+              </div>
             </div>
-            <div className="w-2/3">
-              <MiddleHeadding>Tags</MiddleHeadding>
-              <div className="flex flex-wrap">
+            <div className="lg:w-2/3">
+              <SectionHeading>Explore Tags</SectionHeading>
+              <div className="flex flex-wrap gap-2">
                 {tags.map((el, idx) => {
                   return (
                     <Link href={`/tags/${el.name}/1`} passHref key={idx}>
-                      <div className="flex rounded-lg bg-slate-300 m-1 p-1">
-                        <Badge keyword={el.name} />({el.counts})
+                      <div className="flex items-center gap-1 rounded-full bg-slate-100 px-3 py-1.5 hover:bg-slate-200 transition-colors border border-slate-200">
+                        <Badge keyword={el.name} className="h-4" />
+                        <span className="text-xs font-semibold text-slate-600">{el.counts}</span>
                       </div>
                     </Link>
                   );
@@ -126,15 +107,15 @@ const Home: NextPage<Props> = ({ allPosts, tags, dates, popular }) => {
             </div>
           </div>
         </div>
-        <div className="p-8"></div>
       </div>
-      <div className="bg-white">
-        <div className="p-8"></div>
-        <div className="container mx-auto">
-          <MiddleHeadding>Author</MiddleHeadding>
-          <Author />
+
+      <div className="py-16 bg-slate-50">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <SectionHeading>Author</SectionHeading>
+          <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
+            <Author />
+          </div>
         </div>
-        <div className="p-8"></div>
       </div>
     </Layout>
   );

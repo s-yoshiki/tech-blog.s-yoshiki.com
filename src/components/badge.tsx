@@ -2,7 +2,7 @@ import React from 'react';
 
 interface BadgeProp {
   keyword: string;
-  classNmae?: string;
+  className?: string;
 }
 interface BlandColor {
   name: string;
@@ -3464,7 +3464,7 @@ for (const item of iconsData) {
   icons.set(item.name, item);
 }
 
-const Badge = ({ keyword, classNmae }: BadgeProp) => {
+const Badge = ({ keyword, className }: BadgeProp) => {
   let type = 'flat-square';
   let color = '2f2f2f';
   let logo = '';
@@ -3502,7 +3502,7 @@ const Badge = ({ keyword, classNmae }: BadgeProp) => {
   keyword = encodeURI(keyword.split('-').join(' '));
   const src = `https://img.shields.io/badge/${keyword}-${color}.svg?style=${type}&logo=${logo}`;
   return (
-    <img className={classNmae + ' m-1 rounded h-5'} src={src} alt={keyword} />
+    <img className={className + ' m-1 rounded h-5'} src={src} alt={keyword} />
   );
 };
 
