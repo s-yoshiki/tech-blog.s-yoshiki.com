@@ -7,11 +7,10 @@ import PostsBand from 'components/posts-band';
 import Search from 'components/search';
 import YearMonthPosts from 'components/yesar-month-posts';
 import SectionHeading from 'components/section-heading';
-import { useWindowSize } from 'hooks/useWindowSize';
 import { search as searchEventHandler } from 'lib/inner-search';
 import { InferGetStaticPropsType, NextPage } from 'next';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import markdownToHtml from 'utils/md';
 import PostsManager from 'utils/posts-manager';
 
@@ -81,27 +80,10 @@ const Sidebar = ({ children }: any) => {
   );
 };
 
-const LeftSidebar = ({ tags }: any) => {
-  return (
-    <Sidebar>
-      <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
-        <h3 className="text-sm font-bold text-slate-800 mb-4 uppercase tracking-wider">Tags</h3>
-        <div className="flex flex-wrap gap-2">
-          {tags?.map((tag: string, idx: number) => (
-            <Link href={`/tags/${tag}/1`} key={idx} className="transition-opacity hover:opacity-80">
-              <Badge keyword={tag} className="h-4" />
-            </Link>
-          ))}
-        </div>
-      </div>
-    </Sidebar>
-  );
-};
-
 const RightSidebar = ({ toc }: any) => {
   return (
     <Sidebar>
-      <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
+      <div className="rounded-2xl border bg-card p-6 shadow-sm">
         <h3 className="text-sm font-bold text-slate-800 mb-4 uppercase tracking-wider">目次</h3>
         <div className="max-h-[70vh] overflow-y-auto pr-2 custom-scrollbar">
           <ol className="space-y-2 text-sm">
@@ -206,17 +188,10 @@ const Post: NextPage<Props> = ({
   popular,
   recommends,
 }) => {
-  const { width } = useWindowSize();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
     <Layout title={post.title} image={post.coverImage} description={post.title}>
-      <article className="pt-12">
-        <div className="max-w-4xl mx-auto px-4 text-center mb-16">
+      <article className="pt-12 sm:pt-16">
+        <div className="mx-auto mb-12 max-w-4xl px-4 text-center sm:px-6">
           <div className="flex flex-wrap justify-center gap-2 mb-6">
             {post.tags?.slice(0, 5).map((tag: string, idx: number) => (
               <Link href={`/tags/${tag}/1`} key={idx}>
@@ -225,7 +200,7 @@ const Post: NextPage<Props> = ({
             ))}
           </div>
 
-          <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 leading-tight mb-8">
+          <h1 className="mb-8 text-3xl font-bold leading-tight tracking-tight text-foreground md:text-5xl">
             {post.title}
           </h1>
 
@@ -245,23 +220,19 @@ const Post: NextPage<Props> = ({
           </div>
         </div>
 
-        <div className="max-w-6xl mx-auto px-4 mb-16">
+        <div className="mx-auto mb-12 max-w-5xl px-4 sm:px-6">
           <img
-            className="rounded-2xl shadow-xl w-full max-h-[600px] object-cover"
+            className="max-h-[540px] w-full rounded-2xl border object-cover shadow-xl shadow-slate-900/10"
             alt={post.title}
             src={post.coverImage}
             loading="eager"
           />
         </div>
 
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
-            <aside className="hidden lg:block lg:w-1/4">
-              {mounted && width >= 1024 && <LeftSidebar tags={post.tags} />}
-            </aside>
-
-            <main className="w-full lg:w-1/2">
-              <div className="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-slate-100">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,760px)_260px]">
+            <main className="min-w-0">
+              <div className="rounded-2xl border bg-card p-6 shadow-sm md:p-10 lg:p-12">
                 <div className="markdown-body prose prose-slate max-w-none" dangerouslySetInnerHTML={{ __html: post.content }}></div>
               </div>
               <div className="mt-8">
@@ -269,8 +240,8 @@ const Post: NextPage<Props> = ({
               </div>
             </main>
 
-            <aside className="hidden lg:block lg:w-1/4">
-              {mounted && width >= 1024 && <RightSidebar toc={post.toc} />}
+            <aside className="hidden lg:block">
+              <RightSidebar toc={post.toc} />
             </aside>
           </div>
         </div>

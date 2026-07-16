@@ -11,6 +11,8 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { Posts } from 'types/entry.interface';
 import PostsManager from 'utils/posts-manager';
+import { ArrowDown, BookOpen } from 'lucide-react';
+import { Button } from 'components/ui/button';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -50,48 +52,45 @@ const Home: NextPage<Props> = ({ allPosts, tags, dates, popular }) => {
   };
   return (
     <Layout>
-      <div className="py-12 bg-white border-b border-slate-100">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto mb-10">
-            <Search onClick={searchEventHandler} />
-          </div>
+      <section className="bg-background py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="flex flex-col items-center">
-            <SectionHeading>New Posts</SectionHeading>
+            <div className="w-full"><SectionHeading>新着記事</SectionHeading></div>
             <div className="w-full">
               <NewPosts posts={allPosts} count={count} />
             </div>
             {count < maxPage && (
               <div className="mt-8">
-                <button
+                <Button
                   onClick={() => setCount(count + 1)}
-                  className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-md hover:shadow-lg transition-all duration-200"
+                  variant="outline" size="lg"
                 >
-                  Load More Articles ({count} / {maxPage})
-                </button>
+                  さらに記事を表示 <ArrowDown className="size-4" /> ({count} / {maxPage})
+                </Button>
               </div>
             )}
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="py-16 bg-slate-50">
-        <div className="container mx-auto px-4">
-          <SectionHeading>Popular Topics</SectionHeading>
+      <div className="border-y bg-card py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <SectionHeading>よく読まれている記事</SectionHeading>
           <PostsBand posts={popular} />
         </div>
       </div>
 
-      <div className="py-16 bg-white border-y border-slate-100">
-        <div className="container mx-auto px-4">
+      <div className="py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="flex flex-col lg:flex-row gap-12">
             <div className="lg:w-1/3">
-              <SectionHeading>Archive</SectionHeading>
-              <div className="bg-slate-50 rounded-xl p-6">
+              <SectionHeading>アーカイブ</SectionHeading>
+              <div className="rounded-2xl border bg-card p-6 shadow-sm">
                 <YearMonthPosts items={dates} />
               </div>
             </div>
             <div className="lg:w-2/3">
-              <SectionHeading>Explore Tags</SectionHeading>
+              <SectionHeading>タグから探す</SectionHeading>
               <div className="flex flex-wrap gap-2">
                 {tags.map((el, idx) => {
                   return (
@@ -109,10 +108,10 @@ const Home: NextPage<Props> = ({ allPosts, tags, dates, popular }) => {
         </div>
       </div>
 
-      <div className="py-16 bg-slate-50">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <SectionHeading>Author</SectionHeading>
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
+      <div className="border-t bg-card py-16">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6">
+          <SectionHeading>著者について</SectionHeading>
+          <div className="rounded-2xl border bg-background p-8">
             <Author />
           </div>
         </div>

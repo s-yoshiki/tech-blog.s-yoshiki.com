@@ -1,4 +1,3 @@
-import RelationAds from 'components/ads/relations-ads';
 import HeaderMeta from 'components/meta/header-meta';
 import Og from 'components/meta/og';
 import TwitterCard from 'components/meta/og-twitter-card';
@@ -40,14 +39,9 @@ const Index = (props: Props) => {
           image={`${baseUrl}${props.image}`}
         />
       </HeaderMeta>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex min-h-screen flex-col">
         <Header title={siteMetaData?.title} />
-        <main className="flex-grow">
-          <div className="container mx-auto">
-            {props.children}
-            {!props.disableAdsense && <RelationAds />}
-          </div>
-        </main>
+        <main className="flex-grow">{props.children}</main>
         <Footer title="404 motivation not found" />
       </div>
     </>

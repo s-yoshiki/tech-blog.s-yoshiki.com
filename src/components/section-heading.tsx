@@ -4,13 +4,7 @@ const SectionHeading = ({ children }: { children: string }) => {
   return (
     <div
       className="
-      text-2xl
-      sm:text-3xl
-      text-slate-800
-      font-extrabold
-      py-4
-      px-2
-      tracking-tight
+      mb-7 text-2xl sm:text-3xl text-foreground font-bold tracking-tight
     "
     >
       {children}
