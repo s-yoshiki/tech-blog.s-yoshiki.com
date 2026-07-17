@@ -13,7 +13,7 @@ const Header = ({ title }: HeaderProp) => (
       </Link>
       <nav className="flex items-center gap-1" aria-label="メインナビゲーション">
         <Button variant="ghost" size="sm" asChild><Link href="/">Articles</Link></Button>
-        <Button variant="ghost" size="sm" asChild><Link href="/about/profile">About</Link></Button>
+        <Button variant="ghost" size="sm" asChild><Link href="/about">About</Link></Button>
         <Button variant="ghost" size="icon" asChild>
           <a href="https://github.com/s-yoshiki" target="_blank" rel="noreferrer" aria-label="GitHub"><Github className="size-4" /></a>
         </Button>
