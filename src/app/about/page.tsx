@@ -1,5 +1,5 @@
+import path from 'node:path';
 import type { Metadata } from 'next';
-import path from 'path';
 import markdownToHtml from 'utils/md';
 
 export const metadata: Metadata = { title: 'About' };
@@ -7,7 +7,6 @@ export const metadata: Metadata = { title: 'About' };
 export default async function Page() {
   const content = await markdownToHtml({
     filepath: path.join(process.cwd(), 'content/pages/about.md'),
-    baseImagePath: '/about',
   });
   return (
     <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
