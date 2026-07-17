@@ -229,8 +229,8 @@ const Post: NextPage<Props> = ({
           />
         </div>
 
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,760px)_260px]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,900px)_280px]">
             <main className="min-w-0">
               <div className="rounded-2xl border bg-card p-6 shadow-sm md:p-10 lg:p-12">
                 <div className="markdown-body prose prose-slate max-w-none" dangerouslySetInnerHTML={{ __html: post.content }}></div>
