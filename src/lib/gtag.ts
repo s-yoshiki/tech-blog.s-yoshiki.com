@@ -6,7 +6,8 @@ export const initializeGoogleAnalytics = () => {
   if (typeof window === 'undefined') return;
   window.dataLayer ??= [];
   if (!window.gtag) {
-    window.gtag = ((...args: unknown[]) => window.dataLayer?.push(args)) as Window['gtag'];
+    window.gtag = ((...args: unknown[]) =>
+      window.dataLayer?.push(args)) as Window['gtag'];
     window.gtag('js', new Date());
     window.gtag('config', GOOGLE_ANALYTICS_ID, { send_page_view: false });
   }

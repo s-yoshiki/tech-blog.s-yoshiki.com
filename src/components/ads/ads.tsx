@@ -1,9 +1,9 @@
 'use client';
 
+import { GOOGLE_ADSENSE_CLIENT } from 'config/google';
 import { usePathname } from 'next/navigation';
 import type { CSSProperties } from 'react';
 import { useEffect } from 'react';
-import { GOOGLE_ADSENSE_CLIENT } from 'config/google';
 
 interface AdsenseProps {
   layout?: string;
@@ -20,7 +20,8 @@ const Ads = (props: AdsenseProps) => {
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch (error) {
-      if (process.env.NODE_ENV === 'development') console.error('AdSense initialization failed', error);
+      if (process.env.NODE_ENV === 'development')
+        console.error('AdSense initialization failed', error);
     }
   }, [pathname]);
 

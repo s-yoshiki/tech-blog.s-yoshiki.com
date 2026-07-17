@@ -1,8 +1,8 @@
 'use client';
 
+import { initializeGoogleAnalytics, pageview } from 'lib/gtag';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
-import { initializeGoogleAnalytics, pageview } from 'lib/gtag';
 
 export const usePageView = () => {
   const pathname = usePathname();

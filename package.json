@@ -10,13 +10,14 @@
     "export": "next export && next-sitemap --config sitemap.config.js",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
-    "format": "biome format --write ./{src,content}",
+    "format": "biome check --write --formatter-enabled=true --linter-enabled=false --assist-enabled=true src next.config.js postcss.config.mjs sitemap.config.js",
+    "format:check": "biome check --formatter-enabled=true --linter-enabled=false --assist-enabled=true src next.config.js postcss.config.mjs sitemap.config.js",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
-    "class-variance-authority": "^0.7.1",
     "cheerio": "^1.2.0",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.525.0",
@@ -26,7 +27,7 @@
     "tailwind-merge": "^3.3.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.10",
+    "@biomejs/biome": "2.5.4",
     "@jsdevtools/rehype-toc": "^3.0.2",
     "@shikijs/rehype": "^4.0.2",
     "@tailwindcss/postcss": "^4.3.2",

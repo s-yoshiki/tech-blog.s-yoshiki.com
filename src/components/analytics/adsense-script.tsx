@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
 import { GOOGLE_ADSENSE_CLIENT } from 'config/google';
+import { useEffect } from 'react';
 
 const SCRIPT_ID = 'google-adsense-script';
 

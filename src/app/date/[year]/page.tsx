@@ -1,12 +1,17 @@
-import { notFound } from 'next/navigation';
 import PostsIndexPage from 'components/features/posts/posts-index-page';
 import { getDateParams } from 'lib/posts/queries';
+import { notFound } from 'next/navigation';
 import PostsManager from 'utils/posts-manager';
 
 export const dynamicParams = false;
-export const generateStaticParams = () => getDateParams().map(({ name }) => ({ year: name }));
+export const generateStaticParams = () =>
+  getDateParams().map(({ name }) => ({ year: name }));
 
-export default async function Page({ params }: { params: Promise<{ year: string }> }) {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ year: string }>;
+}) {
   const { year } = await params;
   const posts = PostsManager.findByYear(year);
   if (!posts.length) notFound();
