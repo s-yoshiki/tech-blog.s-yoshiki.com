@@ -313,7 +313,8 @@ class PostsManager {
     let tmpList: any = [];
     for (let i = 0; i < data.length; i++) {
       const post = data[i];
-      let point = 0;      for (let j = 0; j < tags.length; j++) {
+      let point = 0;
+      for (let j = 0; j < tags.length; j++) {
         const tag = tags[j];
         if (post.tags.includes(tag)) {
           point++;

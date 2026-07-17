@@ -1,15 +1,14 @@
+import rehypeShiki from '@shikijs/rehype';
+import * as cheerio from 'cheerio';
 import fs from 'fs';
 import matter from 'gray-matter';
+import rehypeSlug from 'rehype-slug';
 import rehypeStringify from 'rehype-stringify';
 import remarkGfm from 'remark-gfm';
 import remarkHtml from 'remark-html';
 import remarkParse from 'remark-parse';
-import rehypeSlug from 'rehype-slug';
 import remarkRehype from 'remark-rehype';
-import rehypeShiki from '@shikijs/rehype';
 import { unified } from 'unified';
-
-import * as cheerio from 'cheerio';
 
 interface Props {
   filepath: string;

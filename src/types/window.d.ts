@@ -1,15 +1,9 @@
 interface Window {
   adsbygoogle?: { [key: string]: unknown }[];
-  // pageviewのため
-  gtag(type: 'config', googleAnalyticsId: string, { page_path: string });
-  // eventのため
+  dataLayer?: unknown[];
   gtag(
-    type: 'event',
-    eventAction: string,
-    fieldObject: {
-      event_label: string;
-      event_category: string;
-      value?: string;
-    },
-  );
+    command: 'config' | 'event' | 'set' | 'js',
+    target: string | Date,
+    parameters?: Record<string, unknown>,
+  ): void;
 }
