@@ -21,8 +21,8 @@ tags: ["javascript","canvas","画像処理","画像処理100本ノック","hsv"]
 
 デモの内容はRGB画像をHSVに変換し、色相(H)を反転(180を加算)した後、再びRGBに戻すとい処理を行なっています。
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/04/201904082255_r1tc43.png">
-<img src="https://images-tech-blog.s-yoshiki.com/img/2019/04/201904082255_r1tc43.png"></a>
+<a href="/img/2019/04/201904082255_r1tc43.png">
+<img src="/img/2019/04/201904082255_r1tc43.png"></a>
 
 デモの実行後、画像はこの写真のように処理されます。
 

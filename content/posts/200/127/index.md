@@ -101,9 +101,9 @@ Histogram.renderHistogram(canvas, pixelValues)
 
 次のように出力されます。
 
-<img src="https://images-tech-blog.s-yoshiki.com/img/2019/05/20190526181900.png">
+<img src="/img/2019/05/20190526181900.png">
 
-<img src="https://images-tech-blog.s-yoshiki.com/img/2019/05/20190526191307.jpg">
+<img src="/img/2019/05/20190526191307.jpg">
 
 ## 参考
 

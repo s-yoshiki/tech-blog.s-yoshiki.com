@@ -25,12 +25,12 @@ Cyberduckを起動します。
 
 左上の新規接続をクリックします。
 
-<img src="https://images-tech-blog.s-yoshiki.com/img/2019/06/20190612000755.png">
+<img src="/img/2019/06/20190612000755.png">
 
 接続先に「Amazon S3」を選択し、
 アクセスキーID、シークレットアクセスキーを入力します。
 
-<img src="https://images-tech-blog.s-yoshiki.com/img/2019/06/20190612001019.png">
+<img src="/img/2019/06/20190612001019.png">
 
 これで接続できるかと思います。
 アクセスキーID、シークレットアクセスキーの取得に関しては次のセクションを参考にしてください。
@@ -42,19 +42,19 @@ Cyberduckを起動します。
 ユーザ作成権限のあるアカウントでログイン後、AWSマネジメントコンソールにアクセス。
 右上のユーザ名のところから「Security Credentials」もしくは「マイセキュリティ資格情報」を選択。
 
-<img src="https://images-tech-blog.s-yoshiki.com/img/2019/06/20190611225939.png">
+<img src="/img/2019/06/20190611225939.png">
 
 「User」のタブを選択します
-<img src="https://images-tech-blog.s-yoshiki.com/img/2019/06/20190611231029.png">
+<img src="/img/2019/06/20190611231029.png">
 
 次にユーザ作成をクリックします。
 
-<img src="https://images-tech-blog.s-yoshiki.com/img/2019/06/20190611231301.png">
+<img src="/img/2019/06/20190611231301.png">
 
 ### アカウント詳細設定
 
 名前は任意とします。
-<img src="https://images-tech-blog.s-yoshiki.com/img/2019/06/20190611231634.png">
+<img src="/img/2019/06/20190611231634.png">
 
 AWS SDKを使う場合やFTPクライアントを用いてファイルをアップロードする場合は「プログラムによるアクセス」をチェックします。
 
@@ -72,7 +72,7 @@ S3オブジェクトに対してのreadおよびwriteの設定をします。
 
 フィルターに「S3」と入力すると絞り込むことができます。
 
-<img src="https://images-tech-blog.s-yoshiki.com/img/2019/06/20190611232640.png">
+<img src="/img/2019/06/20190611232640.png">
 
 この次にタグなどを設定できますが、必須ではないため飛ばします。
 
@@ -80,7 +80,7 @@ S3オブジェクトに対してのreadおよびwriteの設定をします。
 
 作業が完了したら最後のページにアクセスキーIDとシークレットアクセスキーが表示されるのでメモしましょう。
 
-<img src="https://images-tech-blog.s-yoshiki.com/img/2019/06/20190611233424.png">
+<img src="/img/2019/06/20190611233424.png">
 
 公開バケットを作成する場合は次の手順を参考にしてください。
 
@@ -90,20 +90,20 @@ AWSのコンソールからS3を選択します。
 
 ### オプションの設定
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901250010_748f3m.jpg"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901250010_748f3m.jpg"></a>
+<a href="/img/2019/01/201901250010_748f3m.jpg"><img src="/img/2019/01/201901250010_748f3m.jpg"></a>
 
 **S3の画面**
 
 S3へ遷移したら、「バケットを作成する」ボタンを押下すると、モーダルウィンドウが立ち上がるのでそこから設定を入力します。
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901242326_445jfi.jpg"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901242326_445jfi.jpg"></a>
+<a href="/img/2019/01/201901242326_445jfi.jpg"><img src="/img/2019/01/201901242326_445jfi.jpg"></a>
 
 ここでは特に設定はしていません。
 必要なオプションがあれば任意で選択して「次へ」をクリックします。
 
 ### アクセス許可の設定
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901250010_839hwv.jpg"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901250010_839hwv.jpg"></a>
+<a href="/img/2019/01/201901250010_839hwv.jpg"><img src="/img/2019/01/201901250010_839hwv.jpg"></a>
 
 ここで以下の4つのチェックボックスからチェックが外れていることを確認します。
 
@@ -115,7 +115,7 @@ S3へ遷移したら、「バケットを作成する」ボタンを押下する
 </ul>
 チェックがついていれば外します。
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901242331_f9jLMz.jpg"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901242331_f9jLMz.jpg"></a>
+<a href="/img/2019/01/201901242331_f9jLMz.jpg"><img src="/img/2019/01/201901242331_f9jLMz.jpg"></a>
 
 バケット作成が成功すると一覧に表示されます。
 
@@ -125,7 +125,7 @@ S3へ遷移したら、「バケットを作成する」ボタンを押下する
 
 アクセス権限 → バケットポリシーでポリシーを入力します。
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901242327_98cim0.jpg"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901242327_98cim0.jpg"></a>
+<a href="/img/2019/01/201901242327_98cim0.jpg"><img src="/img/2019/01/201901242327_98cim0.jpg"></a>
 **ポリシー入力例**
 
 上記の画像のように以下のバケットポリシーを適用させます。
@@ -149,7 +149,7 @@ S3へ遷移したら、「バケットを作成する」ボタンを押下する
 
 ※　examplebucketのところは自身のバケット名に変えます。
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901242329_21wqy1.jpg"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901242329_21wqy1.jpg"></a>
+<a href="/img/2019/01/201901242329_21wqy1.jpg"><img src="/img/2019/01/201901242329_21wqy1.jpg"></a>
 
 このような状態になればパブリックへの公開が成功しています。
 
@@ -159,8 +159,8 @@ S3へ遷移したら、「バケットを作成する」ボタンを押下する
 
 再びバケットを選択し、アップロードボタンを選択し画像を選択し決定するとアップロードされます。
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901242330_3248mN.jpg"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901242330_3248mN.jpg"></a>
+<a href="/img/2019/01/201901242330_3248mN.jpg"><img src="/img/2019/01/201901242330_3248mN.jpg"></a>
 
 公開設定が正しくなされていれば、オブジェクトURLにアクセスできるはずです。
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901242329_oKl1mZ.jpg"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901242329_oKl1mZ.jpg"></a>
+<a href="/img/2019/01/201901242329_oKl1mZ.jpg"><img src="/img/2019/01/201901242329_oKl1mZ.jpg"></a>

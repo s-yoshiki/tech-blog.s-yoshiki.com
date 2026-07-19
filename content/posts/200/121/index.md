@@ -86,7 +86,7 @@ remote containerを検索します。
 
 「remote」 と打てば上〜真ん中あたりに出てきます。
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/05/20190506143900.jpg"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/05/20190506143900.jpg" />
+<a href="/img/2019/05/20190506143900.jpg"><img src="/img/2019/05/20190506143900.jpg" />
 </a>
 
 いこれをインストールすると、依存関係のいくつかの関連パッケージもインストールされました。
@@ -109,8 +109,8 @@ Host test.my-server1  # 任意のホスト名
 
 左下のターミナルのようなアイコンをクリックしRemote-SSH:COnnect to hostからssh_configに設定した接続先 (上記のサンプルであればtest.my-server1) を選択して接続することができます。
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/05/20190506144000.jpg">
-</a><a href="https://images-tech-blog.s-yoshiki.com/img/2019/05/20190506144000.jpg"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/05/20190506144000.jpg" />
+<a href="/img/2019/05/20190506144000.jpg">
+</a><a href="/img/2019/05/20190506144000.jpg"><img src="/img/2019/05/20190506144000.jpg" />
 </a>
 
 接続時の設定ファイルなどはリモートの~/.vscode-remote/に置かれます。
@@ -119,13 +119,13 @@ Host test.my-server1  # 任意のホスト名
 
 接続が成功したらOpen Folderから編集したいファイルを選ぶことができます。
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/05/20190506152205.jpg">
-<img src="https://images-tech-blog.s-yoshiki.com/img/2019/05/20190506152205.jpg" /></a>
+<a href="/img/2019/05/20190506152205.jpg">
+<img src="/img/2019/05/20190506152205.jpg" /></a>
 
 このようにリモートサーバのディレクトリが表示されます。
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/05/20190506152338.jpg">
-<img src="https://images-tech-blog.s-yoshiki.com/img/2019/05/20190506152338.jpg" />
+<a href="/img/2019/05/20190506152338.jpg">
+<img src="/img/2019/05/20190506152338.jpg" />
 </a>
 
 ## 接続がうまくいかなかった時

@@ -142,7 +142,7 @@ export default class {
 
 <a href="https://s-yoshiki.github.io/Gasyori100knockJS/#/questions/ans7/iframe">平均プーリング</a>
 
-<img src="https://images-tech-blog.s-yoshiki.com/img/2019/05/20190518004055.png">
+<img src="/img/2019/05/20190518004055.png">
 
 平均プーリングのサンプルがこちらになります。
 
@@ -150,7 +150,7 @@ export default class {
 
 <a href="https://s-yoshiki.github.io/Gasyori100knockJS/#/questions/ans8/iframe">MAXプーリング</a>
 
-<img src="https://images-tech-blog.s-yoshiki.com/img/2019/05/20190518004109.png">
+<img src="/img/2019/05/20190518004109.png">
 
 MAXプーリングのサンプルがこちらになります。
 

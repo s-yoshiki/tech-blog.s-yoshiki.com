@@ -17,20 +17,20 @@ AWSのコンソールからS3を選択します。
 
 ### オプションの設定
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901250010_748f3m.jpg"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901250010_748f3m.jpg" /></a>
+<a href="/img/2019/01/201901250010_748f3m.jpg"><img src="/img/2019/01/201901250010_748f3m.jpg" /></a>
 
 **S3の画面**
 
 S3へ遷移したら、「バケットを作成する」ボタンを押下すると、モーダルウィンドウが立ち上がるのでそこから設定を入力します。
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901242326_445jfi.jpg"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901242326_445jfi.jpg" /></a>
+<a href="/img/2019/01/201901242326_445jfi.jpg"><img src="/img/2019/01/201901242326_445jfi.jpg" /></a>
 
 ここでは特に設定はしていません。
 必要なオプションがあれば任意で選択して「次へ」をクリックします。
 
 ### アクセス許可の設定
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901250010_839hwv.jpg"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901250010_839hwv.jpg" /></a>
+<a href="/img/2019/01/201901250010_839hwv.jpg"><img src="/img/2019/01/201901250010_839hwv.jpg" /></a>
 
 ここで以下の4つのチェックボックスからチェックが外れていることを確認します。
 
@@ -42,7 +42,7 @@ S3へ遷移したら、「バケットを作成する」ボタンを押下する
 </ul>
 チェックがついていれば外します。
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901242331_f9jLMz.jpg"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901242331_f9jLMz.jpg" /></a>
+<a href="/img/2019/01/201901242331_f9jLMz.jpg"><img src="/img/2019/01/201901242331_f9jLMz.jpg" /></a>
 
 バケット作成が成功すると一覧に表示されます。
 
@@ -52,7 +52,7 @@ S3へ遷移したら、「バケットを作成する」ボタンを押下する
 
 アクセス権限 → バケットポリシーでポリシーを入力します。
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901242327_98cim0.jpg"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901242327_98cim0.jpg" /></a>
+<a href="/img/2019/01/201901242327_98cim0.jpg"><img src="/img/2019/01/201901242327_98cim0.jpg" /></a>
 **ポリシー入力例**
 
 上記の画像のように以下のバケットポリシーを適用させます。
@@ -76,7 +76,7 @@ S3へ遷移したら、「バケットを作成する」ボタンを押下する
 
 ※　examplebucketのところは自身のバケット名に変えます。
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901242329_21wqy1.jpg"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901242329_21wqy1.jpg" /></a>
+<a href="/img/2019/01/201901242329_21wqy1.jpg"><img src="/img/2019/01/201901242329_21wqy1.jpg" /></a>
 
 このような状態になればパブリックへの公開が成功しています。
 

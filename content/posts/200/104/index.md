@@ -19,19 +19,19 @@ S3バケットの作成と公開設定はここを参考にしてください。
 
 ## 静的ホスティングの設定
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901242331_f9jLMz.jpg"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901242331_f9jLMz.jpg"></a>
+<a href="/img/2019/01/201901242331_f9jLMz.jpg"><img src="/img/2019/01/201901242331_f9jLMz.jpg"></a>
 
 AWSのコンソールからバケットを選択します。
 
 選択したバケットのタブからプロパティを選択し、
 インデックスドキュメント名とエラードキュメント名を入力します。
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901250025_4fg29z.jpg">
-<img src="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901250025_4fg29z.jpg"></a>
+<a href="/img/2019/01/201901250025_4fg29z.jpg">
+<img src="/img/2019/01/201901250025_4fg29z.jpg"></a>
 
 バケットからindex.htmlをアップします。
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901250025_fhwuio.jpg"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901250025_fhwuio.jpg"></a>
+<a href="/img/2019/01/201901250025_fhwuio.jpg"><img src="/img/2019/01/201901250025_fhwuio.jpg"></a>
 
 S3を静的サイトとしてホスティングしている場合は
 
