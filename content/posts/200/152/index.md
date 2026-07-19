@@ -19,13 +19,13 @@ tags: ["wordpress","ブログ","seo"]
 
 月ごとに集計するとこんな感じ
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/07/20190714151228.png"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/07/20190714151228.png"></a>
+<a href="/img/2019/07/20190714151228.png"><img src="/img/2019/07/20190714151228.png"></a>
 
 多い月では27件投稿していました。
 
 ### ブログ開始からのアクセス数推移
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/07/20190714121913.png"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/07/20190714121913.png"></a>
+<a href="/img/2019/07/20190714121913.png"><img src="/img/2019/07/20190714121913.png"></a>
 
 最初の半年は、全くアクセス数がありませんでした。
 ちょっとだけアクセス数が上がった月も自分のアクセスログだけで悲しくなりました。
@@ -40,7 +40,7 @@ tags: ["wordpress","ブログ","seo"]
 
 アクセス数が多かった記事として、以下のようなものがあります。
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/07/20190714123439.png"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/07/20190714123439.png"></a>
+<a href="/img/2019/07/20190714123439.png"><img src="/img/2019/07/20190714123439.png"></a>
 
 AtCoderの記事が多くランクインしてるのが意外でした。
 他に20位まで含めてみてみるとOpenCV系の記事も多くランクインしていました。

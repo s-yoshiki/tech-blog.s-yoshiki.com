@@ -19,19 +19,19 @@ AWS S3 接続用のアカウントを作成する方法の紹介。
 ユーザ作成権限のあるアカウントでログイン後、AWSマネジメントコンソールにアクセス。
 右上のユーザ名のところから「Security Credentials」もしくは「マイセキュリティ資格情報」を選択。
 
-<img src="https://images-tech-blog.s-yoshiki.com/img/2019/06/20190611225939.png">
+<img src="/img/2019/06/20190611225939.png">
 
 「User」のタブを選択します
-<img src="https://images-tech-blog.s-yoshiki.com/img/2019/06/20190611231029.png">
+<img src="/img/2019/06/20190611231029.png">
 
 次にユーザ作成をクリックします。
 
-<img src="https://images-tech-blog.s-yoshiki.com/img/2019/06/20190611231301.png">
+<img src="/img/2019/06/20190611231301.png">
 
 ### アカウント詳細設定
 
 名前は任意とします。
-<img src="https://images-tech-blog.s-yoshiki.com/img/2019/06/20190611231634.png">
+<img src="/img/2019/06/20190611231634.png">
 
 AWS SDKを使う場合やFTPクライアントを用いてファイルをアップロードする場合は「プログラムによるアクセス」をチェックします。
 
@@ -49,7 +49,7 @@ S3オブジェクトに対してのreadおよびwriteの設定をします。
 
 フィルターに「S3」と入力すると絞り込むことができます。
 
-<img src="https://images-tech-blog.s-yoshiki.com/img/2019/06/20190611232640.png">
+<img src="/img/2019/06/20190611232640.png">
 
 この次にタグなどを設定できますが、必須ではないため飛ばします。
 
@@ -57,7 +57,7 @@ S3オブジェクトに対してのreadおよびwriteの設定をします。
 
 作業が完了したら最後のページにアクセスキーIDとシークレットアクセスキーが表示されるのでメモしましょう。
 
-<img src="https://images-tech-blog.s-yoshiki.com/img/2019/06/20190611233424.png">
+<img src="/img/2019/06/20190611233424.png">
 
 この2つのアクセスキーがS3への認証時に必要となります。
 
@@ -67,6 +67,6 @@ S3オブジェクトに対してのreadおよびwriteの設定をします。
 
 消す対象のユーザを選択し、「ユーザの削除」をクリックします。
 
-<img src="https://images-tech-blog.s-yoshiki.com/img/2019/06/20190611234003.png">
+<img src="/img/2019/06/20190611234003.png">
 
 こんな感じで簡単に削除することができます。

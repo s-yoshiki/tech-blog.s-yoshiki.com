@@ -1,5 +1,5 @@
 import { Button } from 'components/ui/button';
-import { Github, Search } from 'lucide-react';
+import { GitFork, Search } from 'lucide-react';
 import Link from 'next/link';
 
 interface HeaderProp {
@@ -35,7 +35,7 @@ const Header = ({ title }: HeaderProp) => (
             rel="noreferrer"
             aria-label="GitHub"
           >
-            <Github className="size-4" />
+            <GitFork className="size-4" />
           </a>
         </Button>
         <Button variant="outline" size="icon" asChild>

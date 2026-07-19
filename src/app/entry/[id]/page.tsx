@@ -25,7 +25,6 @@ export default async function Page({ params }: Props) {
   if (!data) notFound();
   const content = await markdownToHtml({
     filepath: data.post.filepath,
-    baseImagePath: data.post.path,
   });
   return (
     <ArticlePage

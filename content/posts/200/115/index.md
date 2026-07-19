@@ -23,7 +23,7 @@ tags: ["javascript","canvas","画像処理","画像処理100本ノック"]
 
 実行するとこのような画像が生成されます。
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/04/201904071958_njvf00.png"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/04/201904071958_njvf00.png"></a>
+<a href="/img/2019/04/201904071958_njvf00.png"><img src="/img/2019/04/201904071958_njvf00.png"></a>
 
 ## サンプルソース
 

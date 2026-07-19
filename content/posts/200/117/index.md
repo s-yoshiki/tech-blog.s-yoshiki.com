@@ -22,7 +22,7 @@ tags: ["javascript","canvas","画像処理","画像処理100本ノック"]
 
 この場合、画像は以下のように処理されます。
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/04/201904090025_loi44s.png"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/04/201904090025_loi44s.png"></a>
+<a href="/img/2019/04/201904090025_loi44s.png"><img src="/img/2019/04/201904090025_loi44s.png"></a>
 
 ## デモ
 

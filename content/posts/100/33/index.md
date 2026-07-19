@@ -24,7 +24,7 @@ tags: ["html5","css3","javascript"]
 
 ↑これだと流石にお粗末すぎるので、回転するルーレットを作りました。
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901252340_gy731q.jpg"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/01/201901252340_gy731q.jpg"></a>
+<a href="/img/2019/01/201901252340_gy731q.jpg"><img src="/img/2019/01/201901252340_gy731q.jpg"></a>
 
 **デモ画像**
 

@@ -16,7 +16,7 @@ tags: ["mac","ネットワーク","ツール","hosts","switchhosts"]
 
 <a href="https://github.com/oldj/SwitchHosts">https://github.com/oldj/SwitchHosts</a>
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/07/20190716002200.png"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/07/20190716002200.png"></a>
+<a href="/img/2019/07/20190716002200.png"><img src="/img/2019/07/20190716002200.png"></a>
 
 Electron, React, Ant Design, CodeMirrorが使われているようです。
 ソースコードのライセンスはMITライセンスです。

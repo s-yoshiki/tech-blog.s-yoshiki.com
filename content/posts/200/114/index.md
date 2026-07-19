@@ -17,7 +17,7 @@ JavaScriptで画像を2値化するサンプルコードの紹介。
 
 実行すると以下のような画像が生成されます。
 
-<a href="https://images-tech-blog.s-yoshiki.com/img/2019/04/201904071958_njvf00.png"><img src="https://images-tech-blog.s-yoshiki.com/img/2019/04/201904071958_njvf00.png"></a>
+<a href="/img/2019/04/201904071958_njvf00.png"><img src="/img/2019/04/201904071958_njvf00.png"></a>
 
 ## サンプルソース
 
