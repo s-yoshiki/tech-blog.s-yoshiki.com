@@ -3,13 +3,22 @@ name: deploy s3
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
 
+concurrency:
+  group: deploy-prd
+  cancel-in-progress: false
+
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    environment: prd
+
+    permissions:
+      id-token: write
+      contents: read
 
     steps:
       - name: Checkout
@@ -28,10 +37,9 @@ jobs:
           cache-dependency-path: pnpm-lock.yaml
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
           aws-region: ap-northeast-1
 
       - name: Install dependencies
@@ -43,14 +51,20 @@ jobs:
       - name: Generate redirect pages
         run: node tools/redirect/generater.js
 
-      - name: Delete file on S3
-        env:
-          S3_CONTENTS_BUCKET: ${{ secrets.S3_CONTENTS_BUCKET }}
-        run: |
-          aws s3 rm s3://$S3_CONTENTS_BUCKET/ --recursive
-
       - name: Upload file to S3
         env:
-          S3_CONTENTS_BUCKET: ${{ secrets.S3_CONTENTS_BUCKET }}
+          S3_CONTENTS_BUCKET: ${{ vars.S3_CONTENTS_BUCKET }}
         run: |
-          aws s3 sync ./out s3://$S3_CONTENTS_BUCKET/ --quiet
+          aws s3 sync ./out "s3://$S3_CONTENTS_BUCKET/" --delete --quiet
+
+      - name: Invalidate CloudFront cache
+        env:
+          CLOUDFRONT_DISTRIBUTION_ID: ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}
+        run: |
+          invalidation_id=$(aws cloudfront create-invalidation \
+            --distribution-id "$CLOUDFRONT_DISTRIBUTION_ID" \
+            --paths '/*' \
+            --query 'Invalidation.Id' --output text)
+          aws cloudfront wait invalidation-completed \
+            --distribution-id "$CLOUDFRONT_DISTRIBUTION_ID" \
+            --id "$invalidation_id"
