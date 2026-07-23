@@ -3,6 +3,10 @@
 @source "../app/**/*.{js,ts,jsx,tsx}";
 @source "../components/**/*.{js,ts,jsx,tsx}";
 
+/* Dark mode is driven by a `.dark` class on <html>, set before paint by the
+   inline script in app/layout.tsx so there is no flash of the wrong theme. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -10,37 +14,155 @@
   --color-card-foreground: var(--card-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-destructive: var(--destructive);
+
   --font-sans: var(--font-sans-stack);
+  --font-mono: var(--font-mono-stack);
+
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 2px);
+  --radius-2xl: calc(var(--radius) + 6px);
+
+  --shadow-sm: var(--elevation-sm);
+  --shadow-md: var(--elevation);
 }
 
 :root {
-  --background: #f7f8fa;
-  --foreground: #172033;
-  --card: #ffffff;
-  --card-foreground: #172033;
-  --primary: #2563eb;
-  --primary-foreground: #ffffff;
-  --muted: #eef2f7;
-  --muted-foreground: #64748b;
-  --accent: #e8eefc;
-  --accent-foreground: #1d4ed8;
-  --border: #e2e8f0;
-  --input: #d7dee8;
-  --ring: #3b82f6;
+  /* --- raw palette (light) --- */
+  --bg: #fbfbfd;
+  --surface: #ffffff;
+  --surface-subtle: #f4f5f8;
+  --border-subtle: #e3e6ec;
+  --border-strong-raw: #ccd1da;
+  --text: #16181d;
+  --text-muted: #616b7a;
+  --accent-raw: #3b5bdb;
+  --accent-hover: #2f4bc4;
+  --accent-subtle: #eaefff;
+  --accent-contrast: #ffffff;
+  --elevation-sm: 0 1px 2px rgb(16 18 27 / 0.06);
+  --elevation: 0 4px 16px rgb(16 18 27 / 0.08);
+
+  /* --- semantic aliases --- */
+  --background: var(--bg);
+  --foreground: var(--text);
+  --card: var(--surface);
+  --card-foreground: var(--text);
+  --primary: var(--accent-raw);
+  --primary-foreground: var(--accent-contrast);
+  --secondary: var(--surface-subtle);
+  --secondary-foreground: var(--text);
+  --muted: var(--surface-subtle);
+  --muted-foreground: var(--text-muted);
+  --accent: var(--accent-subtle);
+  --accent-foreground: var(--accent-hover);
+  --border: var(--border-subtle);
+  --border-strong: var(--border-strong-raw);
+  --input: var(--border-strong-raw);
+  --ring: var(--accent-raw);
+  --destructive: #c92a2a;
+  --success: #237032;
+  --warning: #ad3e0b;
+
+  --radius: 10px;
+  --header-height: 3.5rem;
+
   --font-sans-stack:
-    "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui,
-    sans-serif;
+    system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Noto Sans JP",
+    Meiryo, sans-serif;
+  --font-mono-stack:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
+
+  /* --- markdown (GitHub stylesheet) tokens --- */
+  --md-fg: #16181d;
+  --md-fg-muted: #616b7a;
+  --md-fg-subtle: #6e7781;
+  --md-bg: transparent;
+  --md-canvas-subtle: #f4f5f8;
+  --md-border: #e3e6ec;
+  --md-border-muted: #eaeef2;
+  --md-neutral-muted: rgb(175 184 193 / 0.2);
+  --md-accent-fg: #0969da;
+  --md-attention-bg: #fff8c5;
+  --md-danger-bg: #ffebe9;
+  --md-success-bg: #dafbe1;
+  --md-warning-bg: #ffd8b5;
+  --md-prettylights-1: #0550ae;
+  --md-prettylights-2: #cf222e;
+  --md-prettylights-3: #82071e;
+  --md-prettylights-4: #116329;
+  --md-prettylights-5: #953800;
+  --md-prettylights-6: #8250df;
+  --md-prettylights-7: #0a3069;
+  --md-prettylights-8: #3b2300;
+  --md-prettylights-9: #8c959f;
+  --md-inline-code-fg: #be123c;
+  --md-quote-bg: #f4f5f8;
+}
+
+.dark {
+  color-scheme: dark;
+
+  --bg: #0f1116;
+  --surface: #171a21;
+  --surface-subtle: #1e222b;
+  --border-subtle: #272c37;
+  --border-strong-raw: #3a4150;
+  --text: #e7e9ee;
+  --text-muted: #9aa3b2;
+  --accent-raw: #7d97ff;
+  --accent-hover: #93a9ff;
+  --accent-subtle: #1c2440;
+  --accent-contrast: #0f1116;
+  --elevation-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --elevation: 0 4px 16px rgb(0 0 0 / 0.45);
+
+  --accent-foreground: #c3cfff;
+  --destructive: #ff8787;
+  --success: #69db7c;
+  --warning: #ffa94d;
+
+  --md-fg: #e7e9ee;
+  --md-fg-muted: #9aa3b2;
+  --md-fg-subtle: #8b93a3;
+  --md-canvas-subtle: #1e222b;
+  --md-border: #272c37;
+  --md-border-muted: #21262f;
+  --md-neutral-muted: rgb(110 118 129 / 0.4);
+  --md-accent-fg: #7d97ff;
+  --md-attention-bg: #3b2f00;
+  --md-danger-bg: #3d1d1d;
+  --md-success-bg: #12341d;
+  --md-warning-bg: #452711;
+  --md-prettylights-1: #79c0ff;
+  --md-prettylights-2: #ff7b72;
+  --md-prettylights-3: #ffa198;
+  --md-prettylights-4: #7ee787;
+  --md-prettylights-5: #ffa657;
+  --md-prettylights-6: #d2a8ff;
+  --md-prettylights-7: #a5d6ff;
+  --md-prettylights-8: #f0d8b5;
+  --md-prettylights-9: #8b949e;
+  --md-inline-code-fg: #ff9ab0;
+  --md-quote-bg: #1a1f2e;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + 1rem);
 }
 
 body {
@@ -49,90 +171,160 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans-stack);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 * {
   box-sizing: border-box;
   border-color: var(--border);
 }
+
 a {
   color: inherit;
   text-decoration: none;
 }
+
 button,
 a {
   -webkit-tap-highlight-color: transparent;
 }
 
-::selection {
-  background: #bfdbfe;
-  color: #172033;
+/* A single, consistent keyboard-focus treatment for every interactive element.
+   Pointer interaction never shows it; keyboard navigation always does. */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: calc(var(--radius) - 4px);
 }
+
+::selection {
+  background: var(--accent-subtle);
+  color: var(--foreground);
+}
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #eef2f7;
+  background: var(--surface-subtle);
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border: 2px solid #eef2f7;
+  background: var(--border-strong-raw);
+  border: 2px solid var(--surface-subtle);
   border-radius: 999px;
 }
 
-.markdown-body {
-  font-size: 16px;
-  line-height: 1.9;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
+
+/* ---------------------------------------------------------------- */
+/* Article body                                                      */
+/* ---------------------------------------------------------------- */
+
+.markdown-body {
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--foreground);
+}
+
+/* remark-toc injects a duplicate "目次" heading + list at the top of every
+   document; the rendered table of contents replaces it. */
 .markdown-body > h2:first-child,
 .markdown-body > h2:first-child + ol {
   display: none;
 }
+
 .markdown-body h2 {
-  scroll-margin-top: 6rem;
+  scroll-margin-top: calc(var(--header-height) + 1.5rem);
   margin-top: 3.5rem;
-  padding: 0 0 0.75rem;
+  padding: 0 0 0.6rem;
   border-bottom: 1px solid var(--border);
-  font-size: 1.6rem;
-  font-weight: 750;
+  font-size: 1.5rem;
+  font-weight: 700;
   letter-spacing: -0.02em;
 }
+
 .markdown-body h3 {
-  scroll-margin-top: 6rem;
+  scroll-margin-top: calc(var(--header-height) + 1.5rem);
   margin-top: 2.5rem;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 700;
+  letter-spacing: -0.01em;
 }
+
 .markdown-body p {
   margin: 1.25rem 0;
 }
+
+.markdown-body a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, var(--primary) 40%, transparent);
+}
+.markdown-body a:hover {
+  text-decoration-color: currentColor;
+}
+
 .markdown-body img {
   margin: 2rem auto;
-  border-radius: 0.9rem;
-  box-shadow: 0 12px 30px rgb(15 23 42 / 0.08);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
 }
+
 .markdown-body pre {
   margin: 1.75rem 0;
   overflow-x: auto;
-  border-radius: 0.9rem;
-  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.7;
 }
+
+/* Shiki emits both themes; the light one is inlined and the dark one is
+   carried in --shiki-dark custom properties. */
+.dark .markdown-body .shiki,
+.dark .markdown-body .shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
 .markdown-body :not(pre) > code {
-  border-radius: 0.35rem;
-  background: #eef2f7;
-  padding: 0.15rem 0.35rem;
-  color: #be123c;
+  border-radius: 6px;
+  background: var(--md-neutral-muted);
+  padding: 0.15rem 0.4rem;
+  color: var(--md-inline-code-fg);
+  font-size: 0.875em;
 }
+
 .markdown-body blockquote {
   margin: 1.75rem 0;
-  border-left: 4px solid var(--primary);
-  border-radius: 0 0.75rem 0.75rem 0;
-  background: #eff6ff;
+  border-left: 3px solid var(--primary);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: var(--md-quote-bg);
   padding: 0.75rem 1.25rem;
-  color: #475569;
+  color: var(--muted-foreground);
 }
+
 .markdown-body table {
+  display: block;
   margin: 1.75rem 0;
   width: 100%;
+  overflow-x: auto;
 }

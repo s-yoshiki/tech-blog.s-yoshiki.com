@@ -1,35 +1,67 @@
 'use client';
 
 import { Button } from 'components/ui/button';
-import { Input } from 'components/ui/input';
 import { search as navigateToSearch } from 'lib/inner-search';
+import { cn } from 'lib/utils';
 import { Search as SearchIcon } from 'lucide-react';
-import { useState } from 'react';
+import { useId, useState } from 'react';
 
 interface SearchProps {
-  onClick?: (arg: string) => void;
+  onSearch?: (arg: string) => void;
+  /** `hero` is the large landing-page field, `compact` the one in the header */
+  variant?: 'hero' | 'compact';
+  className?: string;
 }
 
-const Search = ({ onClick }: SearchProps) => {
+const Search = ({ onSearch, variant = 'hero', className }: SearchProps) => {
   const [value, setValue] = useState('');
-  const onSearch = () => (onClick ?? navigateToSearch)(value);
+  const inputId = useId();
+  const isHero = variant === 'hero';
+
+  const submit = (event: React.FormEvent) => {
+    event.preventDefault();
+    const query = value.trim();
+    if (query) (onSearch ?? navigateToSearch)(query);
+  };
+
   return (
-    <div
-      id="search"
-      className="flex w-full items-center gap-2 rounded-2xl border bg-card p-2 shadow-sm"
+    <search
+      id={isHero ? 'search' : undefined}
+      className={cn('block w-full', className)}
     >
-      <SearchIcon className="ml-2 size-5 text-muted-foreground" />
-      <Input
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        onKeyDown={(e) => e.key === 'Enter' && onSearch()}
-        type="search"
-        className="border-0 shadow-none focus-visible:ring-0"
-        placeholder="キーワードで記事を検索"
-        aria-label="記事を検索"
-      />
-      <Button onClick={onSearch}>検索</Button>
-    </div>
+      <form onSubmit={submit} className="relative w-full">
+        <label htmlFor={inputId} className="sr-only">
+          記事を検索
+        </label>
+        <SearchIcon
+          aria-hidden="true"
+          className={cn(
+            '-translate-y-1/2 pointer-events-none absolute top-1/2 left-3 text-muted-foreground',
+            isHero ? 'size-5' : 'size-4',
+          )}
+        />
+        <input
+          id={inputId}
+          type="search"
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
+          placeholder="記事を検索"
+          className={cn(
+            'w-full rounded-lg border border-input bg-card text-foreground outline-none transition-colors placeholder:text-muted-foreground hover:border-border-strong',
+            isHero ? 'h-12 pr-24 pl-11 text-[15px]' : 'h-9 pr-3 pl-9 text-sm',
+          )}
+        />
+        {isHero && (
+          <Button
+            type="submit"
+            size="sm"
+            className="-translate-y-1/2 absolute top-1/2 right-2"
+          >
+            検索
+          </Button>
+        )}
+      </form>
+    </search>
   );
 };
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import Ads from './ads';
 
 const RelationAds = () => {

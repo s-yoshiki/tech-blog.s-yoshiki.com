@@ -1,15 +1,19 @@
 'use client';
 
 import Author from 'components/author';
-import Badge from 'components/badge';
 import PostsBand from 'components/posts-band';
 import Search from 'components/search';
 import SectionHeading from 'components/section-heading';
+import Tag from 'components/tag';
 import { Button } from 'components/ui/button';
 import YearMonthPosts from 'components/yesar-month-posts';
-import { search } from 'lib/inner-search';
-import { ArrowDown, BookOpen } from 'lucide-react';
-import Link from 'next/link';
+import {
+  CalendarDays,
+  Hash,
+  Newspaper,
+  TrendingUp,
+  UserRound,
+} from 'lucide-react';
 import { useState } from 'react';
 import type {
   IGroupByItems,
@@ -18,6 +22,7 @@ import type {
 } from 'types/entry.interface';
 
 const PAGE_SIZE = 15;
+
 interface Props {
   posts: Posts[];
   popular: Posts[];
@@ -28,63 +33,85 @@ interface Props {
 export default function HomePage({ posts, popular, tags, dates }: Props) {
   const [visiblePages, setVisiblePages] = useState(1);
   const pageCount = Math.ceil(posts.length / PAGE_SIZE);
+  const visible = posts.slice(0, visiblePages * PAGE_SIZE);
+
   return (
     <>
-      <section className="py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <SectionHeading>新着記事</SectionHeading>
-          <PostsBand posts={posts.slice(0, visiblePages * PAGE_SIZE)} />
-          {visiblePages < pageCount && (
-            <div className="mt-10 text-center">
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() => setVisiblePages((value) => value + 1)}
-              >
-                さらに記事を表示 <ArrowDown className="size-4" /> (
-                {visiblePages} / {pageCount})
-              </Button>
-            </div>
-          )}
+      <section className="border-border border-b">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20">
+          <p className="text-muted-foreground text-sm">
+            {posts.length} 本の記事を公開中
+          </p>
+          <h1 className="mt-2 max-w-3xl font-bold text-3xl leading-tight tracking-tight sm:text-5xl">
+            技術を試し、記録し、共有する。
+          </h1>
+          <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
+            Web、インフラ、機械学習まわりで実際に手を動かして詰まったことと、その解き方の備忘録です。
+          </p>
+          <Search className="mt-8 max-w-xl" />
         </div>
       </section>
-      <section className="border-y bg-card py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <SectionHeading>よく読まれている記事</SectionHeading>
-          <PostsBand posts={popular} />
-        </div>
+
+      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
+        <SectionHeading
+          icon={Newspaper}
+          action={
+            <span className="text-muted-foreground text-sm tabular-nums">
+              {visible.length} / {posts.length}
+            </span>
+          }
+        >
+          新着記事
+        </SectionHeading>
+        <PostsBand posts={visible} />
+        {visiblePages < pageCount && (
+          <div className="mt-8 flex justify-center">
+            <Button
+              variant="outline"
+              onClick={() => setVisiblePages((value) => value + 1)}
+            >
+              さらに記事を表示
+            </Button>
+          </div>
+        )}
       </section>
-      <section className="py-16">
-        <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_2fr]">
+
+      {popular.length > 0 && (
+        <section className="border-border border-t bg-card">
+          <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
+            <SectionHeading icon={TrendingUp}>
+              よく読まれている記事
+            </SectionHeading>
+            <PostsBand posts={popular} />
+          </div>
+        </section>
+      )}
+
+      <section className="border-border border-t">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[minmax(0,1fr)_320px]">
           <div>
-            <SectionHeading>アーカイブ</SectionHeading>
-            <div className="rounded-2xl border bg-card p-6 shadow-sm">
+            <SectionHeading icon={Hash}>タグから探す</SectionHeading>
+            <ul className="flex flex-wrap gap-2">
+              {tags.map((tag) => (
+                <li key={tag.name}>
+                  <Tag keyword={tag.name} count={tag.counts} size="md" />
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <SectionHeading icon={CalendarDays}>アーカイブ</SectionHeading>
+            <div className="rounded-xl border border-border bg-card p-2">
               <YearMonthPosts items={dates} />
             </div>
           </div>
-          <div>
-            <SectionHeading>タグから探す</SectionHeading>
-            <div className="flex flex-wrap gap-2">
-              {tags.map((tag) => (
-                <Link
-                  href={`/tags/${tag.name}/1`}
-                  key={tag.name}
-                  className="flex items-center rounded-full border bg-card px-2 py-1"
-                >
-                  <Badge keyword={tag.name} />
-                  <span className="pr-2 text-xs text-muted-foreground">
-                    {tag.counts}
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
-      <section className="border-t bg-card py-16">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <SectionHeading>著者について</SectionHeading>
-          <div className="rounded-2xl border bg-background p-8">
+
+      <section className="border-border border-t bg-card">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
+          <SectionHeading icon={UserRound}>著者について</SectionHeading>
+          <div className="max-w-xl rounded-xl border border-border bg-background p-6">
             <Author />
           </div>
         </div>
