@@ -1,8 +1,12 @@
 'use client';
 
+import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
-import { IGroupByItems, IGroupByYearMonthItems } from 'types/entry.interface';
+import type {
+  IGroupByItems,
+  IGroupByYearMonthItems,
+} from 'types/entry.interface';
 
 interface YearMonthPostsProps {
   items: IGroupByYearMonthItems[];
@@ -13,56 +17,77 @@ interface MonthProps {
 }
 interface YearProps {
   item: IGroupByYearMonthItems;
+  defaultOpen?: boolean;
 }
 
+const Count = ({ value }: { value: number }) => (
+  <span className="ml-auto text-muted-foreground text-xs tabular-nums">
+    {value}
+  </span>
+);
+
 const Month = ({ item, year }: MonthProps) => {
-  const month = item;
-  const key = month.name.split('-')[1];
+  const key = item.name.split('-')[1];
   return (
-    <>
-      <div className="ml-6 p-1">
-        <Link href={`/date/${year}/${key}`} passHref>
-          <div className="hover:underline">
-            {Number(key)}月 ({month.counts})
-          </div>
-        </Link>
-      </div>
-    </>
+    <li>
+      <Link
+        href={`/date/${year}/${key}`}
+        className="flex items-center gap-2 rounded-md py-1.5 pr-2 pl-9 text-muted-foreground text-sm transition-colors hover:bg-muted hover:text-foreground"
+      >
+        {Number(key)}月
+        <Count value={item.counts} />
+      </Link>
+    </li>
   );
 };
 
-const Year = ({ item }: YearProps) => {
-  const [open, setFlag] = useState<boolean>(false);
-  const year = item;
+const Year = ({ item, defaultOpen = false }: YearProps) => {
+  const [open, setOpen] = useState(defaultOpen);
+  const panelId = `archive-${item.name}`;
+
   return (
-    <div>
-      <div onClick={() => setFlag(!open)} className="flex flex-wrap p-1">
-        <div className="pr-2">{open ? '▼' : '▶︎'}</div>
-        <Link href={`/date/${year.name}`} passHref>
-          <div className="hover:underline">
-            {year.name} 年 ({year.counts})
-          </div>
+    <li>
+      <div className="flex items-center">
+        {/* Was a <div onClick>: not focusable, not keyboard operable, and with
+            no state exposed to assistive technology. */}
+        <button
+          type="button"
+          onClick={() => setOpen((value) => !value)}
+          aria-expanded={open}
+          aria-controls={panelId}
+          aria-label={`${item.name}年の月別内訳を${open ? '閉じる' : '開く'}`}
+          className="grid size-7 shrink-0 place-items-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+        >
+          <ChevronRight
+            aria-hidden="true"
+            className={`size-4 transition-transform ${open ? 'rotate-90' : ''}`}
+          />
+        </button>
+        <Link
+          href={`/date/${item.name}`}
+          className="flex flex-1 items-center gap-2 rounded-md px-2 py-1.5 font-medium text-sm transition-colors hover:bg-muted"
+        >
+          {item.name} 年
+          <Count value={item.counts} />
         </Link>
       </div>
       {open && (
-        <div>
-          {year.months.map((month, idx) => {
-            return <Month item={month} year={year.name} key={idx} />;
-          })}
-        </div>
+        <ul id={panelId} className="mt-0.5 space-y-0.5">
+          {item.months.map((month) => (
+            <Month item={month} year={item.name} key={month.name} />
+          ))}
+        </ul>
       )}
-    </div>
+    </li>
   );
 };
 
-const YearMonthPosts = ({ items }: YearMonthPostsProps) => {
-  return (
-    <div>
-      {items.map((year, idx) => (
-        <Year item={year} key={idx} />
-      ))}
-    </div>
-  );
-};
+const YearMonthPosts = ({ items }: YearMonthPostsProps) => (
+  <ul className="space-y-0.5">
+    {items.map((year, index) => (
+      <Year item={year} key={year.name} defaultOpen={index === 0} />
+    ))}
+  </ul>
+);
 
 export default YearMonthPosts;

@@ -14,14 +14,19 @@ const collected = [
 
 export default function Page() {
   return (
-    <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-      <header className="mb-12 text-center">
-        <h1 className="text-3xl font-bold">外部送信に関する公表事項</h1>
-        <time className="mt-4 block text-sm text-muted-foreground">
+    <article className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
+      <header className="border-border border-b pb-8">
+        <h1 className="font-bold text-2xl tracking-tight sm:text-3xl">
+          外部送信に関する公表事項
+        </h1>
+        <time
+          dateTime="2023-06-20"
+          className="mt-3 block text-muted-foreground text-sm"
+        >
           2023-06-20
         </time>
       </header>
-      <div className="markdown-body rounded-2xl border bg-card p-6 shadow-sm md:p-10">
+      <div className="markdown-body">
         <h2>概要</h2>
         <p>
           当サイトは、サービス利用者に関する情報を収集し、外部事業者に送信しています。送信内容と利用目的は以下の通りです。

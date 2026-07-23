@@ -9,10 +9,14 @@ export default async function Page() {
     filepath: path.join(process.cwd(), 'content/pages/about.md'),
   });
   return (
-    <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-      <h1 className="mb-10 text-4xl font-bold">About</h1>
+    <article>
+      <header className="border-border border-b">
+        <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
+          <h1 className="font-bold text-3xl tracking-tight">About</h1>
+        </div>
+      </header>
       <div
-        className="markdown-body rounded-2xl border bg-card p-6 shadow-sm md:p-10"
+        className="markdown-body mx-auto max-w-3xl px-4 py-10 sm:px-6"
         dangerouslySetInnerHTML={{ __html: content.html }}
       />
     </article>

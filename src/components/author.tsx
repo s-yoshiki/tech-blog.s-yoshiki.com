@@ -1,86 +1,49 @@
+import { ExternalLink } from 'lucide-react';
 import Link from 'next/link';
-import style from 'styles/author.module.css';
 
-const AwsCertificate = () => {
-  const data = [
-    {
-      link: `https://www.credly.com/badges/f51acc63-04aa-44a4-b4ef-89109ea4e433/public_url`,
-      image: `https://images.credly.com/images/2d84e428-9078-49b6-a804-13c15383d0de/image.png`,
-      alt: 'AWS Certified Solutions Architect – Associate',
-    },
-    {
-      link: `https://www.credly.com/badges/d5d74113-1038-4622-ad48-79af359af2bb/public_url`,
-      image: `https://images.credly.com/size/680x680/images/bd31ef42-d460-493e-8503-39592aaf0458/image.png`,
-      alt: 'AWS Certified Developer – Associate',
-    },
-    {
-      link: `https://www.credly.com/badges/9ac240e0-3789-45ac-b743-4847bc15e509/public_url`,
-      image: `https://images.credly.com/size/680x680/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png`,
-      alt: 'AWS Certified SysOps Administrator – Associate',
-    },
-    {
-      link: `https://www.credly.com/badges/720815a7-6ead-40e5-b248-2c628417a124/public_url`,
-      image: `https://images.credly.com/size/680x680/images/b9feab85-1a43-4f6c-99a5-631b88d5461b/image.png`,
-      alt: 'AWS Certified Cloud Practitioner',
-    },
-  ];
-  return (
-    <div className="flex flex-wrap flex-row">
-      {data.map((e, idx) => (
-        <a href={e.link} key={idx}>
-          <img src={e.image} width="60" alt={e.alt} />
-        </a>
-      ))}
-    </div>
-  );
-};
+const profiles = [
+  { label: 'GitHub', href: 'https://github.com/s-yoshiki' },
+  { label: 'Zenn', href: 'https://zenn.dev/s_yoshiki' },
+  { label: 'Qiita', href: 'https://qiita.com/s-yoshiki' },
+];
 
-const Author = () => {
-  const badges = [
-    {
-      link: 'https://github.com/s-yoshiki',
-      alt: 'github',
-      logo: 'https://img.shields.io/badge/GitHub--lightgrey.svg?logo=github&style=social',
-    },
-    {
-      link: 'https://zenn.dev/s_yoshiki',
-      alt: 'zenn',
-      logo: 'https://img.shields.io/badge/zenn--lightgrey.svg?logo=zenn&style=social',
-    },
-    // {link: 'https://twitter.com/s_yoshiki_dev', alt: 'twitter', logo: 'https://img.shields.io/badge/Twitter--lightgrey.svg?logo=twitter&style=social'},
-    {
-      link: 'https://qiita.com/s-yoshiki',
-      alt: 'qiita',
-      logo: 'https://img.shields.io/badge/qiita--lightgrey.svg?logo=qiita&style=social',
-    },
-  ];
-  return (
-    <div className={style.content}>
-      {/* <div className={style.postImg}>
-        <img className={style.icon} src="https://ja.gravatar.com/userimage/115503673/c65df92a8b6d270c8eeb74f643b7e114.jpeg" alt="s-yoshiki"/>
-      </div> */}
-      <div className={style.col}>
-        {/* <span className={style.authorName}>s-yoshiki</span> */}
-        <div>
-          {badges.map((e, idx) => (
-            <Link href={e.link} passHref key={idx}>
-              <img className={style.badge} src={e.logo} alt={e.alt} />
-            </Link>
-          ))}
-        </div>
-        {/* <AwsCertificate /> */}
-        <div style={{ fontSize: '12px' }}>
-          ただの備忘録です。
-          <br />
-          <p className="underline">
-            <Link href="/terms/external-transmission/">
-              ※外部送信に関する公表事項
-            </Link>
-          </p>
-        </div>
+const Author = () => (
+  <div className="flex flex-col gap-4">
+    <div className="flex items-center gap-3">
+      <span className="grid size-10 shrink-0 place-items-center rounded-full bg-primary font-mono text-primary-foreground text-xs">
+        404
+      </span>
+      <div>
+        <p className="font-semibold text-sm">s-yoshiki</p>
+        <p className="text-muted-foreground text-sm">ただの備忘録です。</p>
       </div>
     </div>
-  );
-};
+
+    <ul className="flex flex-wrap gap-2">
+      {profiles.map((profile) => (
+        <li key={profile.href}>
+          <a
+            href={profile.href}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-border bg-muted px-3 text-sm transition-colors hover:border-border-strong hover:bg-accent"
+          >
+            {profile.label}
+            <ExternalLink aria-hidden="true" className="size-3.5 opacity-60" />
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <p className="text-muted-foreground text-xs">
+      <Link
+        href="/terms/external-transmission/"
+        className="rounded underline underline-offset-2 hover:text-foreground"
+      >
+        ※外部送信に関する公表事項
+      </Link>
+    </p>
+  </div>
+);
 
 export default Author;

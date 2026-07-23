@@ -28,7 +28,7 @@ const Ads = (props: AdsenseProps) => {
   return (
     <div
       key={pathname}
-      className="max-w-4xl mx-auto content-center bg-slate-200 h-full max-h-lg"
+      className="mx-auto h-full max-h-lg max-w-4xl content-center rounded-xl bg-muted"
     >
       <ins
         className="adsbygoogle"

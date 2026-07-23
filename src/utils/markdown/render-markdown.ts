@@ -14,9 +14,10 @@ export const renderMarkdown = async (markdown: string): Promise<string> => {
     .use(rehypeSlug)
     .use(rehypeShiki, {
       themes: {
+        light: 'github-light',
         dark: 'github-dark',
-        light: 'github-dark',
       },
+      defaultColor: 'light',
     })
     .use(rehypeStringify, { allowDangerousHtml: true })
     .process(markdown);
