@@ -15,9 +15,9 @@ tags: ["javascript","canvas","画像処理","画像処理100本ノック","hsv"]
 
 以下のリンクでデモを動かしています。
 
-<a href="https://s-yoshiki.github.io/Gasyori100knockJS/#/questions/ans5">https://s-yoshiki.github.io/Gasyori100knockJS/#/questions/ans5</a>
+[Q.5 HSV変換のデモ](https://s-yoshiki.github.io/Gasyori100knockJS/questions/5)
 
-<iframe src="https://s-yoshiki.github.io/Gasyori100knockJS/#/questions/ans5/iframe" style="width:100%; height:350px"></iframe>
+<iframe src="https://s-yoshiki.github.io/Gasyori100knockJS/embed/5" style="width:100%; height:520px; border:0" loading="lazy"></iframe>
 
 デモの内容はRGB画像をHSVに変換し、色相(H)を反転(180を加算)した後、再びRGBに戻すとい処理を行なっています。
 
@@ -149,7 +149,14 @@ image.onload = function() {
 
 参考にしたソース
 
-<a href="https://github.com/s-yoshiki/Gasyori100knockJS/blob/master/src/components/questions/answers/Ans5.js">https://github.com/s-yoshiki/Gasyori100knockJS/blob/master/src/components/questions/answers/Ans5.js</a>
+[Ans005.ts](https://github.com/s-yoshiki/Gasyori100knockJS/blob/master/src/questions/answers/Ans005.ts)
+
+## 2026年版TypeScript実装
+
+現在もRGBからHSVへ変換し、`H = (H + 180) % 360`として補色へ移してからRGBへ戻します。
+彩度が0の無彩色では色相を0として扱い、0除算を避けています。
+
+同じHSV変換は、後半の[カラートラッキングとマスク処理](/entry/329)でも利用します。
 
 ## 参考
 

@@ -55,3 +55,23 @@ function main(canvas, image) {
   ctx.putImageData(dst, 0, 0);
 }
 ```
+
+## 2026年版TypeScript実装
+
+現在の実装とデモはこちらです。
+
+- [Q.21 ヒストグラム正規化のデモ](https://s-yoshiki.github.io/Gasyori100knockJS/questions/21)
+- [Ans021.ts](https://github.com/s-yoshiki/Gasyori100knockJS/blob/master/src/questions/answers/Ans021.ts)
+
+入力の最小値を`vMin`、最大値を`vMax`として、各画素値`v`を次の式で出力範囲へ写します。
+
+```text
+output = (dMax - dMin) / (vMax - vMin) × (v - vMin) + dMin
+```
+
+入力の最大値と最小値が同じ場合は分母が0になるため、実装では変換を行わないなどの分岐が
+必要です。また、正規化はRGBを個別に変換するため色合いが変化する場合があります。輝度だけを
+伸張したい場合は、YCbCrやHSVなどの色空間へ変換して明るさ成分を処理します。
+
+累積度数を使って分布を再配置するヒストグラム平坦化やガンマ補正との違いは、
+[画像のヒストグラムと濃度変換をCanvasで実装する](/entry/320)でまとめています。

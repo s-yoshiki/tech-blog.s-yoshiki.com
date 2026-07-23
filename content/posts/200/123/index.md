@@ -28,7 +28,7 @@ JavaScriptで画像のプーリング処理を行ってみました。
 
 ## サンプルソース
 
-**MAXプーリング**
+**平均プーリング**
 
 ```js
 export default class {
@@ -138,17 +138,17 @@ export default class {
 
 ## デモ
 
-<a href="https://s-yoshiki.github.io/Gasyori100knockJS/#/questions/ans7/iframe">https://s-yoshiki.github.io/Gasyori100knockJS/#/questions/ans7/iframe</a>
+[Q.7 平均プーリングのデモ](https://s-yoshiki.github.io/Gasyori100knockJS/questions/7)
 
-<a href="https://s-yoshiki.github.io/Gasyori100knockJS/#/questions/ans7/iframe">平均プーリング</a>
+[平均プーリングの埋め込み表示](https://s-yoshiki.github.io/Gasyori100knockJS/embed/7)
 
 <img src="/img/2019/05/20190518004055.png">
 
 平均プーリングのサンプルがこちらになります。
 
-<a href="https://s-yoshiki.github.io/Gasyori100knockJS/#/questions/ans8/iframe">https://s-yoshiki.github.io/Gasyori100knockJS/#/questions/ans8/iframe</a>
+[Q.8 Maxプーリングのデモ](https://s-yoshiki.github.io/Gasyori100knockJS/questions/8)
 
-<a href="https://s-yoshiki.github.io/Gasyori100knockJS/#/questions/ans8/iframe">MAXプーリング</a>
+[Maxプーリングの埋め込み表示](https://s-yoshiki.github.io/Gasyori100knockJS/embed/8)
 
 <img src="/img/2019/05/20190518004109.png">
 
@@ -163,3 +163,14 @@ MAXプーリングのサンプルがこちらになります。
 <a href="https://deepage.net/deep_learning/2016/11/07/convolutional_neural_network.html">https://deepage.net/deep_learning/2016/11/07/convolutional_neural_network.html</a>
 
 <a href="https://github.com/yoyoyo-yo/Gasyori100knock/tree/master/Question_01_10">https://github.com/yoyoyo-yo/Gasyori100knock/tree/master/Question_01_10</a>
+
+## 2026年版TypeScript実装
+
+現在の実装は8×8画素を1ブロックとして処理します。平均プーリングはブロック内のRGBを
+チャンネルごとに平均し、Maxプーリングは最大値を選びます。
+
+- [Ans007.ts](https://github.com/s-yoshiki/Gasyori100knockJS/blob/master/src/questions/answers/Ans007.ts)
+- [Ans008.ts](https://github.com/s-yoshiki/Gasyori100knockJS/blob/master/src/questions/answers/Ans008.ts)
+
+畳み込みと異なり、カーネル係数との積和ではなく領域を代表する1つの値を求めます。
+後続の画像ピラミッドやHOGでは、局所領域の情報をまとめる考え方が別の形で利用されます。
