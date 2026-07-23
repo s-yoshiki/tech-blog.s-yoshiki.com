@@ -7,11 +7,11 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "export": "next export && next-sitemap --config sitemap.config.js",
+    "export": "next build",
     "lint": "biome lint src",
     "lint:fix": "biome lint --write src",
-    "format": "biome check --write --formatter-enabled=true --linter-enabled=false --assist-enabled=true src next.config.js postcss.config.mjs sitemap.config.js",
-    "format:check": "biome check --formatter-enabled=true --linter-enabled=false --assist-enabled=true src next.config.js postcss.config.mjs sitemap.config.js",
+    "format": "biome check --write --formatter-enabled=true --linter-enabled=false --assist-enabled=true src next.config.js postcss.config.mjs",
+    "format:check": "biome check --formatter-enabled=true --linter-enabled=false --assist-enabled=true src next.config.js postcss.config.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -35,7 +35,6 @@
     "@types/react": "19.2.17",
     "autoprefixer": "^10.5.4",
     "babel-plugin-prismjs": "^2.1.0",
-    "next-sitemap": "^4.2.3",
     "playwright": "^1.61.1",
     "postcss": "^8.5.19",
     "raw-loader": "^4.0.2",

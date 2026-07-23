@@ -63,9 +63,6 @@ importers:
       babel-plugin-prismjs:
         specifier: ^2.1.0
         version: 2.1.0(prismjs@1.30.0)
-      next-sitemap:
-        specifier: ^4.2.3
-        version: 4.2.3(next@16.2.10(react-dom@19.2.7(react@19.2.7))(react@19.2.7))
       playwright:
         specifier: ^1.61.1
         version: 1.61.1
