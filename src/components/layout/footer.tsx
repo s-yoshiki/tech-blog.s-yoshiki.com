@@ -30,9 +30,6 @@ const Footer = ({ title }: FooterProp) => (
           </span>
           <span className="text-sm">{title}</span>
         </Link>
-        <p className="mt-3 max-w-xs text-muted-foreground text-sm">
-          技術を試し、記録し、共有する。ただの備忘録です。
-        </p>
       </div>
 
       {Object.entries(links).map(([heading, items]) => (
