@@ -15,7 +15,13 @@ export const metadata: Metadata = {
     template: `%s | ${siteMetaData.title}`,
   },
   description: siteMetaData.description,
-  icons: { icon: '/favicon-32x32.png', apple: '/favicon-32x32.png' },
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
   openGraph: { type: 'website', siteName: siteMetaData.title },
   twitter: { card: 'summary', creator: '@s_yoshiki_dev' },
 };

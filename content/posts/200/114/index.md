@@ -13,7 +13,7 @@ JavaScriptで画像を2値化するサンプルコードの紹介。
 
 ## デモ
 
-<a href="https://s-yoshiki.github.io/Gasyori100knockJS/#/questions/ans3">https://s-yoshiki.github.io/Gasyori100knockJS/#/questions/ans3</a>
+[Q.3 二値化のデモ](https://s-yoshiki.github.io/Gasyori100knockJS/questions/3)
 
 実行すると以下のような画像が生成されます。
 
@@ -52,4 +52,12 @@ ctx.putImageData(dst, 0, 0);
 
 グレースケールについてはこちらを参考にしてください。
 
-<a href="https://tech-blog.s-yoshiki.com/2019/04/1111/">https://tech-blog.s-yoshiki.com/2019/04/1111/</a>
+[画像をグレースケールに変換する](/entry/113)
+
+## 2026年版TypeScript実装
+
+現在のソースは[Ans003.ts](https://github.com/s-yoshiki/Gasyori100knockJS/blob/master/src/questions/answers/Ans003.ts)
+です。三項演算子で`gray > 128 ? 255 : 0`を選び、R、G、Bへ同じ値を設定しています。
+
+固定閾値は処理が単純ですが、画像全体が暗い場合や明るい場合に前景と背景を適切に分離できません。
+画像ごとに閾値を求める方法は[大津の二値化](/entry/115)で扱います。

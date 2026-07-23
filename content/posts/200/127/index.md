@@ -1,110 +1,84 @@
 ---
-title: "画像のヒストグラムを表示する Chart.js JavaScript canvas"
+title: "画像のヒストグラムをJavaScriptとCanvasで表示する"
 path: "/entry/127"
 date: "2019-05-26 19:30:25"
 coverImage: "../../../images/thumbnail/javascript-logo.png"
 author: "s-yoshiki"
-tags: ["html5","javascript","画像処理","画像処理100本ノック","chart.js"]
+tags: ["html5", "javascript", "typescript", "canvas", "画像処理", "画像処理100本ノック"]
 ---
 
 ## 概要
 
-画像のヒストグラムをJavaScriptで算出してグラフとして表示してみます。
+JavaScriptで画像のヒストグラムを計算し、Canvasへ棒グラフとして描画する方法を紹介します。
 
-## ヒストグラム算出のサンプルコード
+この記事は2019年にChart.jsを使う実装として公開しました。2026年の更新で、外部のグラフ
+ライブラリを使わないTypeScript実装に合わせて内容を変更しました。
 
-ヒストグラムの表示にChart.jsを使っています。
+## デモとソース
 
-### インストール
+- [Q.20 ヒストグラム表示](https://s-yoshiki.github.io/Gasyori100knockJS/questions/20)
+- [Ans020.ts](https://github.com/s-yoshiki/Gasyori100knockJS/blob/master/src/questions/answers/Ans020.ts)
+- [Canvasによるヒストグラム描画](https://github.com/s-yoshiki/Gasyori100knockJS/blob/master/src/lib/histogram.ts)
 
-npmを使っている場合は次のようにinstallします。
+## ヒストグラムを計算する
 
-```
-npm install chart.js
-```
+0〜255の画素値に対応する256要素の配列を0で初期化します。画像のRGBA配列を4要素ずつ進み、
+RGBの値を添字として出現回数を加算します。
 
-こちらを参考にしました。
+```ts
+const histogram = new Array<number>(256).fill(0);
 
-<a href="https://www.chartjs.org/docs/latest/getting-started/installation.html">https://www.chartjs.org/docs/latest/getting-started/installation.html</a>
-
-### ヒストグラム表示クラス
-
-```js
-import Chart from 'chart.js';
-
-export default class Histogram {
-  /**
-   * ヒストグラムを描画する
-   * @param {Object} canvas
-   * @param {Object} data
-   */
-  static renderHistogram(canvas, data) {
-    let labels = new Array(data.length).fill('');
-    new Chart(canvas, {
-      type: 'bar',
-      data: {
-        labels,
-        datasets: [
-          {
-            label: '画素値',
-            data,
-            backgroundColor: 'rgba(80,80,80,0.5)',
-          },
-        ],
-      },
-      options: {
-        title: {
-          display: true,
-          text: 'Histogram',
-        },
-        scales: {
-          yAxes: [{
-            ticks: {
-              suggestedMin: 0,
-            },
-          }],
-        },
-        animation: {
-          duration: 0,
-        },
-      },
-    });
-  }
-}
-```
-
-### ヒストグラム算出
-
-長さが255の配列を0で初期化し、各ピクセルのベクトルの数をカウントしています。
-また、算出の前にrgbからグレイスケール画像に変換しています。
-
-```js
-import Histogram
-const grayscale = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b
-// 略
-let pixelValues = new Array(255).fill(0)
 for (let i = 0; i < src.data.length; i += 4) {
-    let gray = grayscale(src.data[i], src.data[i + 1], src.data[i + 2])
-    gary = Math.floor(gray)
-    pixelValues[gray]++
+  histogram[src.data[i]]++;
+  histogram[src.data[i + 1]]++;
+  histogram[src.data[i + 2]]++;
 }
-Histogram.renderHistogram(canvas, pixelValues)
 ```
 
-## デモ
+グレースケールのヒストグラムが必要な場合は、RGBから輝度を計算して1画素につき1回加算します。
 
-こちらからデモを試せます。
+```ts
+const gray = Math.floor(
+  0.2126 * src.data[i] +
+  0.7152 * src.data[i + 1] +
+  0.0722 * src.data[i + 2],
+);
+histogram[gray]++;
+```
 
-<a href="https://s-yoshiki.github.io/Gasyori100knockJS/#/questions/ans20/iframe">https://s-yoshiki.github.io/Gasyori100knockJS/#/questions/ans20/iframe</a>
+## Canvasへ棒グラフを描く
 
-## 出力結果
+最大度数を求め、グラフの高さに収まるように各ビンを正規化します。256本の棒をCanvasの幅へ
+割り当て、`fillRect`で描画します。
 
-次のように出力されます。
+```ts
+const max = Math.max(...histogram);
+const barWidth = canvas.width / histogram.length;
 
-<img src="/img/2019/05/20190526181900.png">
+histogram.forEach((count, index) => {
+  const height = (count / max) * canvas.height;
+  context.fillRect(
+    index * barWidth,
+    canvas.height - height,
+    Math.max(1, barWidth),
+    height,
+  );
+});
+```
 
-<img src="/img/2019/05/20190526191307.jpg">
+現在の共通描画処理では、CSSカスタムプロパティから色を取得し、サイトのライト・ダークテーマへ
+追従します。
 
-## 参考
+## ヒストグラムから読み取れること
 
-<a href="https://s-yoshiki.github.io/Gasyori100knockJS/#/">https://s-yoshiki.github.io/Gasyori100knockJS/#/</a>
+暗い画像は左側、明るい画像は右側へ分布が偏ります。狭い範囲へ値が集中している画像は
+コントラストが低い傾向があります。
+
+分布を確認した後、正規化、平坦化、ガンマ補正を適用すると、処理前後で画素値がどのように
+移動したかを確認できます。
+
+## 関連記事
+
+- [画像のヒストグラムと濃度変換をCanvasで実装する](/entry/320)
+- [JavaScriptで画像のヒストグラムを正規化](/entry/134)
+- [画像をグレースケールに変換する](/entry/113)

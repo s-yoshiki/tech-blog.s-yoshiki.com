@@ -26,11 +26,11 @@ tags: ["javascript","canvas","画像処理","画像処理100本ノック"]
 
 ## デモ
 
-<iframe src="https://s-yoshiki.github.io/Gasyori100knockJS/#/questions/ans6/iframe"></iframe>
+<iframe src="https://s-yoshiki.github.io/Gasyori100knockJS/embed/6" style="width:100%; height:520px; border:0" loading="lazy"></iframe>
 
 以下のURLからでも試すことができます。
 
-<a href="https://s-yoshiki.github.io/Gasyori100knockJS/#/questions/ans6">https://s-yoshiki.github.io/Gasyori100knockJS/#/questions/ans6</a>
+[Q.6 減色処理のデモ](https://s-yoshiki.github.io/Gasyori100knockJS/questions/6)
 
 ## ソース
 
@@ -96,4 +96,12 @@ image.onload = function() {
 
 参考に知ったソースはこちら。
 
-<a href="https://github.com/s-yoshiki/Gasyori100knockJS/blob/master/src/components/questions/answers/Ans6.js">https://github.com/s-yoshiki/Gasyori100knockJS/blob/master/src/components/questions/answers/Ans6.js</a>
+[Ans006.ts](https://github.com/s-yoshiki/Gasyori100knockJS/blob/master/src/questions/answers/Ans006.ts)
+
+## 2026年版TypeScript実装
+
+現在の実装では、各チャンネルを`Math.floor(value / 64) * 64 + 32`で量子化します。入力範囲
+0〜63、64〜127、128〜191、192〜255を、それぞれ32、96、160、224へ写す処理です。
+
+固定された代表値への量子化に対して、入力画像から代表色を学習する方法は
+[k-meansクラスタリングと画像の代表色抽出](/entry/334)で扱います。

@@ -11,7 +11,7 @@ tags: ["javascript","canvas","画像処理","画像処理100本ノック"]
 
 大津の二値化で画像を2値化するサンプルコード
 
-<a href="https://tech-blog.s-yoshiki.com/2019/04/1115/">https://tech-blog.s-yoshiki.com/2019/04/1115/</a>
+[固定閾値による二値化](/entry/114)
 
 ↑のサンプルコードでは閾値を128として決め打ちで2値化していますが、画像のヒストグラムの分散から適切な閾値を求める方法（判別分析法）の1つです。
 
@@ -19,7 +19,7 @@ tags: ["javascript","canvas","画像処理","画像処理100本ノック"]
 
 ## デモ
 
-<a href="https://s-yoshiki.github.io/Gasyori100knockJS/#/questions/ans4">https://s-yoshiki.github.io/Gasyori100knockJS/#/questions/ans4</a>
+[Q.4 大津の二値化のデモ](https://s-yoshiki.github.io/Gasyori100knockJS/questions/4)
 
 実行するとこのような画像が生成されます。
 
@@ -130,7 +130,18 @@ image.onload = function() {
 
 GitHubに上がっているものを流用しています。
 
-<a href="https://github.com/s-yoshiki/Gasyori100knockJS/blob/master/src/components/questions/answers/Ans4.js">https://github.com/s-yoshiki/Gasyori100knockJS/blob/master/src/components/questions/answers/Ans4.js</a>
+[Ans004.ts](https://github.com/s-yoshiki/Gasyori100knockJS/blob/master/src/questions/answers/Ans004.ts)
+
+## 2026年版TypeScript実装
+
+現在の実装では0〜255の各閾値候補についてクラス間分散を計算し、最大となる値を採用します。
+背景と前景の画素数`w1`、`w2`と平均`m1`、`m2`から、次の値を比較します。
+
+```text
+w1 × w2 × (m1 - m2)²
+```
+
+固定値128を使う二値化と異なり、入力画像のヒストグラムから閾値を自動決定できる点が特徴です。
 
 ## 大津の2値化
 
