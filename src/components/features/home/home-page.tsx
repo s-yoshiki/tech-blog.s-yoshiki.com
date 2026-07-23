@@ -2,7 +2,6 @@
 
 import Author from 'components/author';
 import PostsBand from 'components/posts-band';
-import Search from 'components/search';
 import SectionHeading from 'components/section-heading';
 import Tag from 'components/tag';
 import { Button } from 'components/ui/button';
@@ -37,21 +36,6 @@ export default function HomePage({ posts, popular, tags, dates }: Props) {
 
   return (
     <>
-      <section className="border-border border-b">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20">
-          <p className="text-muted-foreground text-sm">
-            {posts.length} 本の記事を公開中
-          </p>
-          <h1 className="mt-2 max-w-3xl font-bold text-3xl leading-tight tracking-tight sm:text-5xl">
-            技術を試し、記録し、共有する。
-          </h1>
-          <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            Web、インフラ、機械学習まわりで実際に手を動かして詰まったことと、その解き方の備忘録です。
-          </p>
-          <Search className="mt-8 max-w-xl" />
-        </div>
-      </section>
-
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
         <SectionHeading
           icon={Newspaper}
