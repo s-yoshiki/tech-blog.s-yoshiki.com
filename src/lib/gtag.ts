@@ -6,8 +6,14 @@ export const initializeGoogleAnalytics = () => {
   if (typeof window === 'undefined') return;
   window.dataLayer ??= [];
   if (!window.gtag) {
-    window.gtag = ((...args: unknown[]) =>
-      window.dataLayer?.push(args)) as Window['gtag'];
+    // gtag.js consumes dataLayer entries as native `arguments` objects.
+    // Pushing a spread array instead makes GA4 silently drop every command
+    // (no beacons are sent), so the stub must forward `arguments` as-is.
+    const gtag: Window['gtag'] = function () {
+      // biome-ignore lint/complexity/noArguments: gtag stub must push the native `arguments`
+      window.dataLayer?.push(arguments);
+    };
+    window.gtag = gtag;
     window.gtag('js', new Date());
     window.gtag('config', GOOGLE_ANALYTICS_ID, { send_page_view: false });
   }
