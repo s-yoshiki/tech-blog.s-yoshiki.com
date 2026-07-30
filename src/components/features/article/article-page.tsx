@@ -150,24 +150,24 @@ export default function ArticlePage({
       </header>
 
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
-        <div className="mx-auto max-w-4xl">
-          {isOlderArticle && (
-            <aside
-              aria-label="古い記事についての注意"
-              className="mb-8 flex gap-3 rounded-xl border border-warning/40 bg-warning/10 p-4 text-sm"
-            >
-              <TriangleAlert
-                aria-hidden="true"
-                className="mt-0.5 size-5 shrink-0 text-warning"
-              />
-              <p>
-                この記事は公開から2年以上経過しています。画面、料金、ライブラリや
-                サービスの仕様が現在と異なる可能性があるため、公式資料も併せて確認してください。
-              </p>
-            </aside>
-          )}
-          <TableOfContents items={post.toc} />
+        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_240px]">
           <div className="min-w-0">
+            {isOlderArticle && (
+              <aside
+                aria-label="古い記事についての注意"
+                className="mb-8 flex gap-3 rounded-xl border border-warning/40 bg-warning/10 p-4 text-sm"
+              >
+                <TriangleAlert
+                  aria-hidden="true"
+                  className="mt-0.5 size-5 shrink-0 text-warning"
+                />
+                <p>
+                  この記事は公開から2年以上経過しています。画面、料金、ライブラリや
+                  サービスの仕様が現在と異なる可能性があるため、公式資料も併せて確認してください。
+                </p>
+              </aside>
+            )}
+            <TableOfContents items={post.toc} variant="inline" />
             {post.contentHtml === undefined ? (
               <div id="article-content" className="markdown-body max-w-none">
                 {post.content}
@@ -184,6 +184,7 @@ export default function ArticlePage({
               <RelationAds />
             </div>
           </div>
+          <TableOfContents items={post.toc} variant="sidebar" />
         </div>
       </div>
 
