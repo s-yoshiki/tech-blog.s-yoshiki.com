@@ -68,6 +68,38 @@ HOG特徴量
 - [Ans093.ts〜Ans100.ts](https://github.com/s-yoshiki/Gasyori100knockJS/tree/master/src/questions/answers)
 - [物体検出の共通処理](https://github.com/s-yoshiki/Gasyori100knockJS/blob/master/src/questions/answers/objectDetection.ts)
 
+## IoUとNMSを実装する
+
+2つの矩形の交差幅・高さは負にならないよう0でクランプし、IoUを求めます。
+
+```text
+intersection = max(0, right - left) × max(0, bottom - top)
+union = areaA + areaB - intersection
+IoU = union > 0 ? intersection / union : 0
+```
+
+NMSでは候補をスコアの降順に並べ、最高スコアの矩形を採用し、IoUが閾値以上の残り候補を除外する
+処理を繰り返します。クラスごとに適用しないと、重なっている別クラスの物体まで消す場合があります。
+候補数が多いと矩形比較が二乗で増えるため、低スコア候補を先に除くことも重要です。
+
+## 学習処理の数値安定性
+
+シグモイドは大きな正負の値で指数計算がオーバーフローしやすいため、入力の符号で式を分けるか
+クランプします。Softmaxは最大ロジットを全要素から引いてから指数を取ると安定します。
+損失が`NaN`になった場合は学習率だけでなく、特徴量の正規化、空の学習バッチ、0除算も確認します。
+
+正例と負例の数が大きく違う場合、Accuracyだけでは全件を負例と予測するモデルが良く見えます。
+サンプリング比率を記録し、Precision、Recall、PR曲線を合わせて評価します。
+
+## 評価時の重複カウントを防ぐ
+
+1つの正解矩形へ複数の検出が重なっても、True Positiveは1件だけです。スコア順に検出を処理し、
+まだ対応付けられていない正解のうちIoUが最大のものへ1対1で割り当てます。残りの重複検出は
+False Positiveになります。
+
+このシリーズはHOGと小規模な分類器で検出パイプラインの原理を学ぶ構成です。実運用ではCNN系の
+検出器、データセットの偏り、推論速度、モデル更新後の監視まで含めた設計が必要になります。
+
 ## まとめ
 
 最終8問は、それまでに実装した補間、HOG、距離・評価指標などを組み合わせる総合問題です。

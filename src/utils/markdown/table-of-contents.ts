@@ -1,28 +1,25 @@
 import * as cheerio from 'cheerio';
 import GithubSlugger from 'github-slugger';
-import type { RenderedMarkdown } from './types';
+import type { RenderedMarkdown, TableOfContentsItem } from './types';
 
-const TOC_HEADING = '目次';
-
-const extractHeadingIds = (html: string): string[] => {
+const extractHeadings = (html: string): TableOfContentsItem[] => {
   const document = cheerio.load(html);
   return document('h2')
     .toArray()
-    .map((heading) => heading.attribs.id)
-    .filter((id): id is string => Boolean(id));
-};
-
-const renderTableOfContents = (headingIds: string[]): string => {
-  const links = headingIds
-    .map((id) => `<li><a href="#${id}">${id}</a></li>`)
-    .join('');
-  return `<h2 class="inline-toc" id="${TOC_HEADING}">${TOC_HEADING}</h2>\n<ol class="inline-toc">${links}</ol>`;
+    .map((heading) => ({
+      id: heading.attribs.id,
+      label: document(heading).text().trim(),
+    }))
+    .filter(
+      (item): item is TableOfContentsItem =>
+        Boolean(item.id) && Boolean(item.label),
+    );
 };
 
 export const prependTableOfContents = (html: string): RenderedMarkdown => {
-  const toc = extractHeadingIds(html);
+  const toc = extractHeadings(html);
   return {
-    html: renderTableOfContents(toc) + html,
+    html,
     toc,
   };
 };
@@ -39,10 +36,12 @@ const markdownHeadingToText = (heading: string): string =>
     .text()
     .trim();
 
-export const extractMdxTableOfContents = (source: string): string[] => {
+export const extractMdxTableOfContents = (
+  source: string,
+): TableOfContentsItem[] => {
   const slugger = new GithubSlugger();
   return Array.from(source.matchAll(/^##[ \t]+(.+?)[ \t]*#*[ \t]*$/gm))
     .map((match) => markdownHeadingToText(match[1]))
     .filter(Boolean)
-    .map((heading) => slugger.slug(heading));
+    .map((label) => ({ id: slugger.slug(label), label }));
 };

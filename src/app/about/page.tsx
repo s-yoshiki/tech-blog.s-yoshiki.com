@@ -16,7 +16,7 @@ export default async function Page() {
         </div>
       </header>
       <div
-        className="markdown-body mx-auto max-w-3xl px-4 py-10 sm:px-6"
+        className="about-page markdown-body mx-auto max-w-3xl px-4 py-10 sm:px-6"
         dangerouslySetInnerHTML={{ __html: content.html }}
       />
     </article>

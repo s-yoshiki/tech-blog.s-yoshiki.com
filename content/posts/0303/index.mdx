@@ -94,14 +94,15 @@ Unicode Character Databaseの`White_Space`プロパティに含まれる25コー
 
 次の文字は空白のような字形になることがありますが、`White_Space`ではありません。
 ユーザー名や識別子の検証では、単純な空白除去だけでは検出できない点に注意が必要です。
+「コピー」ボタンを押すと、コード表記ではなく実体の1文字をコピーできます。
 
-| Unicode | JavaScript表記 | 名前 | Unicodeカテゴリ |
-| --- | --- | --- | --- |
-| U+115F | `\u115F` | HANGUL CHOSEONG FILLER | Letter |
-| U+1160 | `\u1160` | HANGUL JUNGSEONG FILLER | Letter |
-| U+2800 | `\u2800` | BRAILLE PATTERN BLANK | Symbol |
-| U+3164 | `\u3164` | HANGUL FILLER | Letter |
-| U+FFA0 | `\uFFA0` | HALFWIDTH HANGUL FILLER | Letter |
+| Unicode | JavaScript表記 | 名前 | Unicodeカテゴリ | コピー |
+| --- | --- | --- | --- | --- |
+| U+115F | `\u115F` | HANGUL CHOSEONG FILLER | Letter | <CopyCharacterButton codePoint="115F" /> |
+| U+1160 | `\u1160` | HANGUL JUNGSEONG FILLER | Letter | <CopyCharacterButton codePoint="1160" /> |
+| U+2800 | `\u2800` | BRAILLE PATTERN BLANK | Symbol | <CopyCharacterButton codePoint="2800" /> |
+| U+3164 | `\u3164` | HANGUL FILLER | Letter | <CopyCharacterButton codePoint="3164" /> |
+| U+FFA0 | `\uFFA0` | HALFWIDTH HANGUL FILLER | Letter | <CopyCharacterButton codePoint="FFA0" /> |
 
 ## JavaScriptで空白文字を検出・置換する
 

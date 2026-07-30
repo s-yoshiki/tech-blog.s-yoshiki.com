@@ -238,12 +238,6 @@ a {
   color: var(--foreground);
 }
 
-/* Markdown rendering injects a duplicate inline table of contents. The sticky
-   sidebar is the canonical table of contents for Markdown and MDX. */
-.markdown-body > .inline-toc {
-  display: none;
-}
-
 .markdown-body h2 {
   scroll-margin-top: calc(var(--header-height) + 1.5rem);
   margin-top: 3.5rem;
@@ -326,4 +320,75 @@ a {
   margin: 1.75rem 0;
   width: 100%;
   overflow-x: auto;
+}
+
+/* ---------------------------------------------------------------- */
+/* About page                                                        */
+/* ---------------------------------------------------------------- */
+
+.about-page .about-profile {
+  display: grid;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 1.5rem 0 2.5rem;
+  grid-template-columns: 96px minmax(0, 1fr);
+}
+
+.about-page .about-profile img {
+  width: 96px;
+  height: 96px;
+  margin: 0;
+  border-radius: 999px;
+  object-fit: cover;
+}
+
+.about-page .about-profile p {
+  margin: 0.35rem 0;
+}
+
+.about-page .about-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.25rem 0 2rem;
+}
+
+.about-page .about-badges img {
+  width: auto;
+  height: 28px;
+  margin: 0;
+  border: 0;
+  border-radius: 4px;
+}
+
+.about-page .about-certification {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0.5rem 0 2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  padding: 1rem;
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+.about-page .about-certification img {
+  width: 72px;
+  height: 72px;
+  margin: 0;
+  border: 0;
+  object-fit: contain;
+}
+
+@media (max-width: 480px) {
+  .about-page .about-profile {
+    grid-template-columns: 72px minmax(0, 1fr);
+  }
+
+  .about-page .about-profile img {
+    width: 72px;
+    height: 72px;
+  }
 }

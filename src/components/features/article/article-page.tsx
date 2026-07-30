@@ -13,6 +13,7 @@ import {
   Newspaper,
   Sparkles,
   TrendingUp,
+  TriangleAlert,
   UserRound,
 } from 'lucide-react';
 import Link from 'next/link';
@@ -22,13 +23,15 @@ import type {
   IGroupByYearMonthItems,
   Posts,
 } from 'types/entry.interface';
+import type { TableOfContentsItem } from 'utils/markdown/types';
 import TableOfContents from './table-of-contents';
+import XEmbeds from './x-embeds';
 
 type Article = Posts & {
   content: ReactNode;
   contentHtml?: string;
   readingText: string;
-  toc: string[];
+  toc: TableOfContentsItem[];
 };
 
 interface Props {
@@ -50,6 +53,12 @@ const estimateReadingMinutes = (html: string): number => {
     .replace(/<(script|style)[\s\S]*?<\/\1>/gi, '')
     .replace(/<[^>]+>/g, '');
   return Math.max(1, Math.ceil(text.length / 500));
+};
+
+const isOlderThanTwoYears = (publishedOn: string): boolean => {
+  const threshold = new Date();
+  threshold.setUTCFullYear(threshold.getUTCFullYear() - 2);
+  return new Date(`${publishedOn}T00:00:00Z`) < threshold;
 };
 
 const ArticleCollection = ({
@@ -82,6 +91,7 @@ export default function ArticlePage({
 }: Props) {
   const readingMinutes = estimateReadingMinutes(post.readingText);
   const publishedOn = post.date.split(' ')[0];
+  const isOlderArticle = isOlderThanTwoYears(publishedOn);
 
   return (
     <article>
@@ -140,23 +150,40 @@ export default function ArticlePage({
       </header>
 
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
-        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_240px]">
+        <div className="mx-auto max-w-4xl">
+          {isOlderArticle && (
+            <aside
+              aria-label="古い記事についての注意"
+              className="mb-8 flex gap-3 rounded-xl border border-warning/40 bg-warning/10 p-4 text-sm"
+            >
+              <TriangleAlert
+                aria-hidden="true"
+                className="mt-0.5 size-5 shrink-0 text-warning"
+              />
+              <p>
+                この記事は公開から2年以上経過しています。画面、料金、ライブラリや
+                サービスの仕様が現在と異なる可能性があるため、公式資料も併せて確認してください。
+              </p>
+            </aside>
+          )}
+          <TableOfContents items={post.toc} />
           <div className="min-w-0">
-            {/* Keep article elements directly under .markdown-body so shared
-                Markdown and MDX typography selectors apply consistently. */}
             {post.contentHtml === undefined ? (
-              <div className="markdown-body max-w-none">{post.content}</div>
+              <div id="article-content" className="markdown-body max-w-none">
+                {post.content}
+              </div>
             ) : (
               <div
+                id="article-content"
                 className="markdown-body max-w-none"
                 dangerouslySetInnerHTML={{ __html: post.contentHtml }}
               />
             )}
+            <XEmbeds containerId="article-content" />
             <div className="mt-10">
               <RelationAds />
             </div>
           </div>
-          <TableOfContents items={post.toc} />
         </div>
       </div>
 

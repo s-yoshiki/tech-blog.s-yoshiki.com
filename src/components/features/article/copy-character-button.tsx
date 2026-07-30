@@ -1,8 +1,8 @@
 'use client';
 
+import { Button } from 'components/ui/button';
 import { Check, Copy, TriangleAlert } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { Button } from 'components/ui/button';
 
 type CopyStatus = 'idle' | 'copied' | 'error';
 
@@ -13,11 +13,7 @@ interface Props {
 const parseCodePoint = (value: string): number => {
   const normalized = value.replace(/^U\+/i, '');
   const codePoint = Number.parseInt(normalized, 16);
-  if (
-    !Number.isInteger(codePoint) ||
-    codePoint < 0 ||
-    codePoint > 0x10ffff
-  ) {
+  if (!Number.isInteger(codePoint) || codePoint < 0 || codePoint > 0x10ffff) {
     throw new Error(`Invalid Unicode code point: ${value}`);
   }
   return codePoint;

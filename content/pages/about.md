@@ -7,44 +7,36 @@ path: "/about"
 
 ## 書いている人
 
-![s-yoshiki](https://ja.gravatar.com/userimage/115503673/c65df92a8b6d270c8eeb74f643b7e114.jpg)
-s-yoshiki
-
-$マークを使うことが多いエンジニア。
-色々忘れっぽいので備忘録としてこのブログを書いています。
+<div class="about-profile">
+  <img src="https://ja.gravatar.com/userimage/115503673/c65df92a8b6d270c8eeb74f643b7e114.jpg" alt="s-yoshiki">
+  <div>
+    <p><strong>s-yoshiki</strong></p>
+    <p>$マークを使うことが多いエンジニア。忘れやすい技術情報を、再現できる形で残すためにこのブログを書いています。</p>
+  </div>
+</div>
 
 ## Skills
 
-![](https://img.shields.io/badge/JavaScript-2f2f2f.svg?style=flat-square&logo=javascript)
+Webフロントエンド、Node.jsを使ったAPI、AWS上のインフラを中心に扱っています。
 
-![](https://img.shields.io/badge/Vue.js-5f5f5f.svg?style=flat-square&logo=vue.js)
+<div class="about-badges">
+  <img src="https://img.shields.io/badge/TypeScript-3178C6.svg?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/React-20232A.svg?style=flat-square&logo=react" alt="React">
+  <img src="https://img.shields.io/badge/Node.js-444.svg?style=flat-square&logo=node.js" alt="Node.js">
+  <img src="https://img.shields.io/badge/AWS-232F3E.svg?style=flat-square&logo=amazonwebservices" alt="AWS">
+  <img src="https://img.shields.io/badge/Docker-D3DFDE.svg?style=flat-square&logo=docker" alt="Docker">
+  <img src="https://img.shields.io/badge/Python-F9DC3E.svg?style=flat-square&logo=python" alt="Python">
+  <img src="https://img.shields.io/badge/Linux-2f2f2f.svg?style=flat-square&logo=linux" alt="Linux">
+</div>
 
-![](https://img.shields.io/badge/Node.js-444.svg?logo=node.js&style=flat)
-
-![](https://img.shields.io/badge/-Docker-D3DFDE.svg?logo=docker&style=flat)
-
-![](https://img.shields.io/badge/-Python-F9DC3E.svg?logo=python&style=flat)
-
-![](https://img.shields.io/badge/AtCoder-000.svg?style=flat)
-
-![](https://img.shields.io/badge/-Amazon%20Web%20Service-232F3E.svg?logo=amazon-aws&style=flat)
-
-![](https://img.shields.io/badge/-Apache-D22128.svg?logo=apache&style=flat)
-
-![](https://img.shields.io/badge/PHP-ccc.svg?logo=php&style=flat)
-
-![](https://img.shields.io/badge/-Linux-2f2f2f.svg?logo=linux&style=flat)
-
-![](https://img.shields.io/badge/-CakePHP-9cc.svg?logo=cakephp&style=flat)
-
-<a href="https://www.youracclaim.com/badges/851d28e1-e75a-4ae0-9c32-fc1d9327a391/public_url">
-<img src="../images/parts/aws-certified-solutions-architect-associate.png" >
+<a class="about-certification" href="https://www.credly.com/badges/851d28e1-e75a-4ae0-9c32-fc1d9327a391/public_url">
+  <img src="../images/parts/aws-certified-solutions-architect-associate.png" alt="">
+  <span>AWS Certified Solutions Architect – Associate</span>
 </a>
 
 ## Accounts
 
-[![](https://img.shields.io/badge/GitHub--lightgrey.svg?logo=github&style=social)](https://github.com/s-yoshiki)
-
-[![](https://img.shields.io/badge/Twitter--lightgrey.svg?logo=twitter&style=social)](https://twitter.com/s_yoshiki_dev)
-
-[![](https://img.shields.io/badge/qiita--lightgrey.svg?logo=qiita&style=social)](https://qiita.com/s-yoshiki)
+- [GitHub](https://github.com/s-yoshiki)
+- [X（旧Twitter）](https://x.com/s_yoshiki_dev)
+- [Zenn](https://zenn.dev/s_yoshiki)
+- [Qiita](https://qiita.com/s-yoshiki)
