@@ -16,6 +16,7 @@ import {
   UserRound,
 } from 'lucide-react';
 import Link from 'next/link';
+import type { ReactNode } from 'react';
 import type {
   IGroupByItems,
   IGroupByYearMonthItems,
@@ -23,7 +24,12 @@ import type {
 } from 'types/entry.interface';
 import TableOfContents from './table-of-contents';
 
-type Article = Posts & { content: string; toc: string[] };
+type Article = Posts & {
+  content: ReactNode;
+  contentHtml?: string;
+  readingText: string;
+  toc: string[];
+};
 
 interface Props {
   post: Article;
@@ -74,7 +80,7 @@ export default function ArticlePage({
   tags,
   dates,
 }: Props) {
-  const readingMinutes = estimateReadingMinutes(post.content);
+  const readingMinutes = estimateReadingMinutes(post.readingText);
   const publishedOn = post.date.split(' ')[0];
 
   return (
@@ -136,13 +142,16 @@ export default function ArticlePage({
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
         <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_240px]">
           <div className="min-w-0">
-            {/* The HTML must be the direct child of .markdown-body: the rule
-                that hides remark-toc's duplicate inline "目次" block targets
-                `.markdown-body > h2:first-child`. */}
-            <div
-              className="markdown-body max-w-none"
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            />
+            {/* Keep article elements directly under .markdown-body so shared
+                Markdown and MDX typography selectors apply consistently. */}
+            {post.contentHtml === undefined ? (
+              <div className="markdown-body max-w-none">{post.content}</div>
+            ) : (
+              <div
+                className="markdown-body max-w-none"
+                dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+              />
+            )}
             <div className="mt-10">
               <RelationAds />
             </div>

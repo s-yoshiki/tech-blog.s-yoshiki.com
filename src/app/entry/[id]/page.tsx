@@ -1,7 +1,10 @@
+import path from 'node:path';
 import ArticlePage from 'components/features/article/article-page';
 import { getAllPostIds, getArticlePageData } from 'lib/posts/queries';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { readMarkdownFile } from 'utils/markdown/read-markdown-file';
+import { extractMdxTableOfContents } from 'utils/markdown/table-of-contents';
 import markdownToHtml from 'utils/md';
 
 export const dynamicParams = false;
@@ -23,13 +26,38 @@ export default async function Page({ params }: Props) {
   const { id } = await params;
   const data = getArticlePageData(id);
   if (!data) notFound();
-  const content = await markdownToHtml({
-    filepath: data.post.filepath,
-  });
+  const source = readMarkdownFile(data.post.filepath);
+  const isMdx = path.extname(data.post.filepath) === '.mdx';
+
+  if (isMdx) {
+    const postDirectory = path.basename(path.dirname(data.post.filepath));
+    const { default: Content } = await import(
+      `../../../../content/posts/${postDirectory}/index.mdx`
+    );
+    return (
+      <ArticlePage
+        {...data}
+        post={{
+          ...data.post,
+          content: <Content />,
+          readingText: source,
+          toc: extractMdxTableOfContents(source),
+        }}
+      />
+    );
+  }
+
+  const content = await markdownToHtml({ filepath: data.post.filepath });
   return (
     <ArticlePage
       {...data}
-      post={{ ...data.post, content: content.html, toc: content.toc }}
+      post={{
+        ...data.post,
+        content: null,
+        contentHtml: content.html,
+        readingText: content.html,
+        toc: content.toc,
+      }}
     />
   );
 }

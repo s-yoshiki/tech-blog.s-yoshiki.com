@@ -238,10 +238,9 @@ a {
   color: var(--foreground);
 }
 
-/* remark-toc injects a duplicate "目次" heading + list at the top of every
-   document; the rendered table of contents replaces it. */
-.markdown-body > h2:first-child,
-.markdown-body > h2:first-child + ol {
+/* Markdown rendering injects a duplicate inline table of contents. The sticky
+   sidebar is the canonical table of contents for Markdown and MDX. */
+.markdown-body > .inline-toc {
   display: none;
 }
 

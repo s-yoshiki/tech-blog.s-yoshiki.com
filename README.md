@@ -4,26 +4,31 @@
 
 ブログです。
 
-- gatsby + markdown 構成
+- Next.js + Markdown / MDX 構成
 
-### DEMO - https://tech-blog.s-yoshiki.com
+## 投稿の構成
+
+投稿IDは4桁のゼロ埋めディレクトリ名にします。本文は `index.md` または
+`index.mdx` のどちらか一方を配置できます。
+
+```text
+content/posts/
+└── 0336/
+    ├── index.mdx
+    └── photo.jpg
+```
+
+同じディレクトリの画像は、本文から相対パスで参照できます。
+
+```md
+![説明](./photo.jpg)
+```
 
 ## 操作方法
 
-開発サーバ起動
-
-```
-gatsby develop
-```
-
-ビルド
-
-```
-gatsby build
+```sh
+pnpm dev
+pnpm build
 ```
 
-## forked from
-
-https://github.com/panr/gatsby-starter-hello-friend/
-
-https://gatsby-hello-friend.now.sh/
+デモ: <https://tech-blog.s-yoshiki.com>
