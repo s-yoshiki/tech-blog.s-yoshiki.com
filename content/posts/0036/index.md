@@ -113,3 +113,48 @@ Mac OS X
 ## 参考
 
 https://docs.opencv.org/3.3.0/d0/d33/tutorial_table_of_content_stitching.html
+
+## OpenCV 4系での最小コード
+
+現在のPython APIでは `cv2.Stitcher_create()` を使えます。
+
+```python
+from pathlib import Path
+import cv2
+
+paths = sorted(Path("images").glob("*.jpg"))
+images = [cv2.imread(str(path)) for path in paths]
+
+if not images or any(image is None for image in images):
+    raise ValueError("画像を読み込めませんでした")
+
+stitcher = cv2.Stitcher_create(cv2.Stitcher_PANORAMA)
+status, panorama = stitcher.stitch(images)
+
+if status != cv2.Stitcher_OK:
+    raise RuntimeError(f"stitch failed: status={status}")
+
+cv2.imwrite("panorama.jpg", panorama)
+```
+
+書類や平面をスキャンするような動きでは `cv2.Stitcher_SCANS` が適する場合があります。
+
+## 失敗しにくい撮影方法
+
+- 隣の画像と30〜50%程度重なるように撮る
+- 模様や角など、対応付けできる特徴を十分に含める
+- 同じ位置で回転し、視差を小さくする
+- 露出・ホワイトバランス・焦点を固定する
+- 海、空、無地の壁など特徴が少ない領域だけにしない
+- 動く人や車を重複領域へ入れない
+
+失敗したら、入力画像が読み込めているか、画像の順序、解像度、重複範囲を先に確認します。巨大画像では縮小版で位置合わせを試すと原因を切り分けやすくなります。
+
+## Statusの見方
+
+`status == cv2.Stitcher_OK` のときだけ結果を保存します。その他はカメラパラメーター推定失敗やホモグラフィ推定失敗などを表すため、空の画像をそのまま使わずstatusをログへ残してください。
+
+## 参考
+
+- [OpenCV: High level stitching API](https://docs.opencv.org/4.x/d8/d19/tutorial_stitcher.html)
+- [OpenCV: cv::Stitcher Class Reference](https://docs.opencv.org/4.x/d2/d8d/classcv_1_1Stitcher.html)

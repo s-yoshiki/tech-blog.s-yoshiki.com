@@ -238,3 +238,11 @@ CloudFront OACをLambda Function URLに利用すると、Function URLを直接�
 
 OACやLambda側だけを調べ続けると見落としやすい仕様なので、POSTだけが失敗する場合は
 リクエストヘッダーも確認するとよいです。
+
+## 公式仕様へのリンク
+
+- [CloudFront: Restrict access to a Lambda function URL origin](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-lambda.html)
+- [Lambda: Control access to function URLs](https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html)
+- [Lambda: Invoking function URLs](https://docs.aws.amazon.com/lambda/latest/dg/urls-invocation.html)
+
+AWS公式ドキュメントでも、OACでLambda Function URLを使うには `AuthType=AWS_IAM` が必要で、POST/PUTでは本文のSHA-256を `x-amz-content-sha256` に指定するよう明記されています。仕様変更を追う際は上記を一次情報として確認してください。

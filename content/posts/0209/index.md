@@ -92,3 +92,26 @@ $ dnf module install perl:5.26
 ```shell
 $ dnf module install perl:5.24
 ```
+
+## 現在利用する場合の注意
+
+CentOS Linux 8は2021年末にEOLとなりました。この記事はAppStreamのmodule切り替えを検証した当時の記録です。新規構築ではサポート中のRHEL互換ディストリビューションやCentOS Streamを選び、そこで提供されるPerl streamを確認してください。
+
+```shell
+dnf module list perl
+dnf module info perl:<stream>
+```
+
+module streamの切り替えは、既存パッケージと依存関係を変更する操作です。本番機で直接試す前に、次を実施します。
+
+1. `dnf module list --enabled` とインストール済みRPMを記録する
+2. コンテナや検証VMで依存関係を確認する
+3. アプリケーションのテストを実行する
+4. OS標準Perlとアプリ用Perlの分離も検討する
+
+複数バージョンをアプリケーションごとに使い分けたいだけなら、OSのmoduleを切り替えるよりperlbrew/plenvやコンテナの方が影響範囲を限定しやすいです。
+
+## 参考
+
+- [DNF documentation: Modularity](https://dnf.readthedocs.io/en/latest/modularity.html)
+- [CentOS Linux EOL](https://www.centos.org/centos-linux-eol/)

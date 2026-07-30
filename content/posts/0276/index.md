@@ -205,3 +205,37 @@ S3もしくはEFSへのFTP/FTPS/SFTP接続を可能にするサービス。
 
 - [AWS DataSyncでデータ移行 ～他のサービスと何が違う？～ - サーバーワークスエンジニアブログ](https://blog.serverworks.co.jp/tech/2020/02/14/lets-use-aws-data-sync/)
 - [AWS DataSync のよくある質問](https://aws.amazon.com/jp/datasync/faqs/)
+
+## 現在の選び方を整理
+
+各サービスの役割は重なるように見えますが、判断軸を「誰が、どのプロトコルで、継続的に使うか」に置くと選びやすくなります。
+
+| 要件 | 第一候補 | 理由 |
+| :--- | :--- | :--- |
+| オンプレ・他クラウドから大量データを移行・同期 | AWS DataSync | エージェントまたはサービス間で転送を自動化し、検証・帯域制御・スケジュールを扱える |
+| 利用者や取引先へSFTP/FTPS/FTPエンドポイントを提供 | AWS Transfer Family | 既存クライアントのプロトコルを維持しながらS3/EFSへ保存できる |
+| オンプレのNFS/SMB/iSCSI/仮想テープ運用をAWSストレージへ接続 | AWS Storage Gateway | ローカルキャッシュを持つハイブリッドストレージとして継続利用できる |
+| オフラインで運ぶほど大容量・回線が細い | AWS Snow Family | 物理デバイスによる移行を検討 |
+| S3バケット間を継続複製 | S3 Replication | S3ネイティブな複製が目的なら構成が単純 |
+
+「一度だけ移す」のか「毎日同期する」のか、「管理者が移行する」のか「外部ユーザーへ転送口を提供する」のかを最初に決めます。
+
+## 導入前チェックリスト
+
+- 転送元・転送先の容量、ファイル数、平均ファイルサイズ
+- 許容停止時間と差分同期の要否
+- 必要なNFS/SMB/SFTPなどのプロトコル
+- 専用線、VPN、インターネットの帯域と転送時間
+- 保存先のS3ストレージクラス、ライフサイクル、暗号化
+- IAMロールとネットワーク経路を最小権限にできるか
+- 転送後の整合性検証、ログ、再実行方法
+- データ転送量だけでなく、リクエスト・保存・ゲートウェイ稼働を含む総額
+
+本文の料金例は執筆時点のものです。リージョン、転送方向、ストレージ、リクエストで変わるため、設計時は各サービスの料金ページとAWS Pricing Calculatorで再計算してください。
+
+## AWS公式資料
+
+- [Choosing an AWS storage service](https://docs.aws.amazon.com/decision-guides/latest/storage-on-aws-how-to-choose/storage-on-aws-how-to-choose.html)
+- [AWS DataSync User Guide](https://docs.aws.amazon.com/datasync/latest/userguide/what-is-datasync.html)
+- [AWS Transfer Family User Guide](https://docs.aws.amazon.com/transfer/latest/userguide/what-is-aws-transfer-family.html)
+- [AWS Storage Gateway User Guide](https://docs.aws.amazon.com/storagegateway/latest/userguide/WhatIsStorageGateway.html)

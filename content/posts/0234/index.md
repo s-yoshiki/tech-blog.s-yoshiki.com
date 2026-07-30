@@ -11,7 +11,7 @@ tags: ["php","php-fpm","apache","centos"]
 
 Apache環境で php-fpm のステータスページを htaccess で制御して表示する方法を試した際の記録です。
 
-### 試した環境
+### 当時試した環境
 
 - CentOS 8
 - php7.4
@@ -27,7 +27,7 @@ Apache環境で php-fpm のステータスページを htaccess で制御して�
 
 php-fpm には次のパラメータを設定します。他のパラメータについては省略します。
 
-- listen: TCPで起動する。UNIXドメインソケットだと実現できない。
+- `listen`: FastCGIの待ち受け先。TCPとUNIXドメインソケットのどちらも利用できる
 - pm.status_path: ステータスを表示するページ。このドキュメントでは phpfpm_status として進める
 
 ```conf
@@ -35,6 +35,17 @@ listen = 9000
 pm.status_path = /fpm_status
 # 他のパラメータについては省略
 ```
+
+現在のPHP公式マニュアルには、UNIXドメインソケットを使うApache設定例も掲載されています。Apacheとphp-fpmが同じホストにあるなら、ソケットを使う構成も選択肢です。
+
+```apache
+<LocationMatch "^/fpm_status$">
+    Require local
+    ProxyPass "unix:/run/php-fpm/www.sock|fcgi://localhost/fpm_status"
+</LocationMatch>
+```
+
+ソケットの実際のパスはOSやパッケージ設定によって異なります。
 
 ## .htaccess の設定
 
@@ -49,6 +60,8 @@ pm.status_path = /fpm_status
     Require ip X.X.X.X
 </FilesMatch>
 ```
+
+Apache 2.4では `Order` / `Allow` / `Deny` ではなく `Require` を使います。ステータスページにはリクエストURLやワーカー数など運用情報が含まれるため、公開せず、`Require local`、管理ネットワークのCIDR、VPNなどで必ず制限してください。`.htaccess` を使えるかは `AllowOverride` の設定にも依存するため、管理権限があるならVirtualHost側へ記述する方が設定箇所を明確にできます。
 
 ## アクセスしてみる
 
@@ -111,7 +124,34 @@ http://localhost/fpm_status?json&full
 }
 ```
 
+現在は `html`、`json`、`openmetrics`、`xml` の出力形式も選択できます。
+
+```text
+/fpm_status
+/fpm_status?full
+/fpm_status?json
+/fpm_status?openmetrics
+```
+
+監視では特に次の値を確認します。
+
+| 項目 | 見方 |
+| :--- | :--- |
+| `listen queue` | 0より大きい状態が続くと、処理待ちが発生している可能性 |
+| `max children reached` | 増加していると `pm.max_children` の上限到達 |
+| `active processes` | 実行中のワーカー数 |
+| `idle processes` | 待機中のワーカー数 |
+| `slow requests` | slowlog対象になったリクエスト数 |
+
+生存確認だけが目的なら `ping.path` を設定できます。また `pm.status_listen` を使うと、メインプールが長時間処理で詰まった場合にも独立したステータス用リスナーから状態を取得できます。
+
 ## 参考にしたサイト
+
+[PHP Manual: FPM Status Page](https://www.php.net/manual/en/fpm.status.php)
+
+[PHP Manual: FPM Configuration](https://www.php.net/manual/en/install.fpm.configuration.php)
+
+[Apache HTTP Server 2.4: Access Control](https://httpd.apache.org/docs/2.4/howto/access.html)
 
 [Real-time PHP-FPM Status](https://gist.github.com/Jiab77/a9428050ab9bb3f17c5e33343da94fd8)
 

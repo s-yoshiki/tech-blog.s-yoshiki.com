@@ -201,3 +201,67 @@ ceil関数は少数を切り上げするため、ceil(51 / 10)の時は $max = 6
 <a href="/?p={$next}">次へ</a>
 {/if}
 ```
+
+## 実運用向けに直すポイント
+
+ページ番号をそのままSQLへ連結せず、整数として検証し、prepared statementで `LIMIT` / `OFFSET` に渡します。
+
+```php
+$page = filter_input(
+    INPUT_GET,
+    'p',
+    FILTER_VALIDATE_INT,
+    ['options' => ['default' => 1, 'min_range' => 1]]
+);
+$perPage = 20;
+$offset = ($page - 1) * $perPage;
+
+$statement = $pdo->prepare(
+    'SELECT id, title FROM articles ORDER BY id DESC LIMIT :limit OFFSET :offset'
+);
+$statement->bindValue(':limit', $perPage, PDO::PARAM_INT);
+$statement->bindValue(':offset', $offset, PDO::PARAM_INT);
+$statement->execute();
+```
+
+総件数から最終ページを求め、範囲外のページは404にするか最終ページへ丸めます。
+
+```php
+$totalPages = max(1, (int) ceil($totalCount / $perPage));
+$previous = $page > 1 ? $page - 1 : null;
+$next = $page < $totalPages ? $page + 1 : null;
+
+$smarty->assign([
+    'page' => $page,
+    'totalPages' => $totalPages,
+    'previous' => $previous,
+    'next' => $next,
+]);
+```
+
+## テンプレートの改善例
+
+```smarty
+<nav aria-label="ページネーション">
+  {if $previous !== null}
+    <a rel="prev" href="?p={$previous}">前へ</a>
+  {/if}
+
+  <span>{$page} / {$totalPages}</span>
+
+  {if $next !== null}
+    <a rel="next" href="?p={$next}">次へ</a>
+  {/if}
+</nav>
+```
+
+Smartyのescape設定を有効にし、URLへ検索条件などを引き継ぐ場合も適切にエスケープしてください。大量データで深いOFFSETが遅くなる場合は、最後に取得したIDを使うcursor/keyset paginationを検討します。
+
+## チェックリスト
+
+- 並び順を一意にする（同じ日時ならIDも使う）
+- `p=0`、負数、文字列、極端に大きい値を検証する
+- 1ページ当たり件数に上限を設ける
+- 一覧取得と総件数取得のクエリ負荷を測る
+- 戻る/次への `rel` とナビゲーションのlabelを付ける
+- フィルター条件をページ移動後も維持する

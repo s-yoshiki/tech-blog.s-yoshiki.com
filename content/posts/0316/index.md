@@ -11,9 +11,16 @@ tags: ["nestjs", "typescript", "node.js"]
 
 NestJSでBasic認証機能付きAPIを構築した際のメモです。
 
-## Strategey を利用する
+## Strategy を利用する
 
-以下、実装です。
+`passport-http` のBasic StrategyをNestJSのGuardとして組み込みます。
+
+```shell
+npm install @nestjs/passport passport passport-http
+npm install --save-dev @types/passport-http
+```
+
+以下、最小構成の実装です。
 
 
 **path/to/basic-auth.ts**
@@ -33,9 +40,12 @@ export class BasicAuthStrategy extends PassportStrategy(Strategy) {
     super();
   }
 
-  validate(username: string, password: string): boolean {
-    if (username === 'user1' && password === 'password') {
-      return true;
+  validate(username: string, password: string) {
+    const expectedUser = process.env.BASIC_AUTH_USER;
+    const expectedPassword = process.env.BASIC_AUTH_PASSWORD;
+
+    if (username === expectedUser && password === expectedPassword) {
+      return { username };
     } else {
       throw new UnauthorizedException();
     }
@@ -95,7 +105,7 @@ $ curl http://user1:password@localhost:3000
 
 ```sh
 $ curl \
- -H "Authorization: Basic `echo -n user1:password | base64`" \
+ -u "$BASIC_AUTH_USER:$BASIC_AUTH_PASSWORD" \
  http://localhost:3000
 ```
 
@@ -104,3 +114,41 @@ $ curl \
  -H "Authorization: Basic dXNlcjE6cGFzc3dvcmQ=" \
  http://localhost:3000
 ```
+
+## Basic認証を使う際の注意点
+
+Basic認証の資格情報は暗号化されず、Base64で表現されるだけです。本番環境では必ずHTTPSを使ってください。
+
+- ユーザー名・パスワードをソースコードやGitへ保存しない
+- ログ、例外、監視ツールに `Authorization` ヘッダーを出力しない
+- 比較的単純な社内ツールや一時的な保護に用途を限定する
+- 公開APIや細かな権限制御が必要な場合は、JWT、OAuth 2.0/OIDCなどを検討する
+- 総当たり攻撃に備えて、リバースプロキシやAPI Gateway側でもレート制限を行う
+
+URLへ `http://user:password@...` の形式で資格情報を書くと、シェル履歴やログへ残りやすいため、curlでは `-u` と環境変数を利用する方が安全です。
+
+## テスト例
+
+```ts
+import { Test } from '@nestjs/testing';
+
+describe('BasicAuthStrategy', () => {
+  it('正しい資格情報ならユーザーを返す', async () => {
+    process.env.BASIC_AUTH_USER = 'user1';
+    process.env.BASIC_AUTH_PASSWORD = 'password';
+
+    const strategy = new BasicAuthStrategy();
+    expect(strategy.validate('user1', 'password')).toEqual({
+      username: 'user1',
+    });
+  });
+});
+```
+
+実運用では平文の環境変数を直接比較する代わりに、Secret Manager等から値を取得し、必要ならタイミング攻撃を避ける比較方法も検討してください。
+
+## 参考
+
+- [NestJS Authentication](https://docs.nestjs.com/security/authentication)
+- [NestJS Passport recipe](https://docs.nestjs.com/recipes/passport)
+- [passport-http](https://github.com/jaredhanson/passport-http)

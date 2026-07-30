@@ -39,6 +39,48 @@ console.log(JSON.stringify(arr));
 // [0,0,0,0,0]
 ```
 
+## `fill()`で多次元配列を作るときの落とし穴
+
+オブジェクトや配列を `fill()` へ渡すと、すべての要素が同じ参照を共有します。
+
+```js
+const bad = new Array(3).fill(new Array(3).fill(0));
+bad[0][0] = 1;
+
+console.log(bad);
+// [[1, 0, 0], [1, 0, 0], [1, 0, 0]]
+```
+
+各行を別の配列にするには、コールバックが毎回実行される `Array.from()` を使います。
+
+```js
+const rows = 3;
+const columns = 4;
+
+const matrix = Array.from(
+  { length: rows },
+  () => Array.from({ length: columns }, () => 0),
+);
+```
+
+## 任意の次元を作る関数
+
+```js
+const createArray = (dimensions, initialValue = 0) => {
+  if (dimensions.length === 0) return initialValue;
+
+  const [length, ...rest] = dimensions;
+  return Array.from(
+    { length },
+    () => createArray(rest, initialValue),
+  );
+};
+
+const image = createArray([480, 640, 3], 0);
+```
+
+`initialValue` がオブジェクトの場合は末端でも参照を共有するため、必要なら値を返すfactory関数に変えてください。また、大きな数値データではネスト配列より `Uint8Array` や `Float32Array` の方がメモリ効率と処理性能に向く場合があります。
+
 ## 2次元配列
 
 Array.from()を使って浅いコピーを行い2次元行列を生成します。
@@ -93,3 +135,5 @@ console.log(JSON.stringify(arr));
 <a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/from">https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/from</a>
 
 <a href="https://qiita.com/butchi_y/items/db3078dced4592872a9c">https://qiita.com/butchi_y/items/db3078dced4592872a9c</a>
+
+- [MDN: TypedArray](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)

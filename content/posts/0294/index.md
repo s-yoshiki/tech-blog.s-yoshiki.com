@@ -234,3 +234,43 @@ TypeScriptで書き直しました。
 [xterm.jsでキーボード入力を受け付ける方法 - haku-maiのブログ](https://n-guitar.hatenablog.com/entry/2020/11/14/203521)
 
 [Node.js Stream を使いこなす - Qiita](https://qiita.com/masakura/items/5683e8e3e655bfda6756)
+
+## 公開前に必ず行うセキュリティ対策
+
+この構成はブラウザからOSのシェルへ入力できるため、サンプルのままインターネットへ公開してはいけません。`node-pty` で起動したプロセスは親Node.jsプロセスと同じ権限を持ちます。
+
+- WebSocket接続前に認証・認可し、セッションごとに利用者を特定する
+- `wss://` を使い、Originも検証する
+- rootで起動せず、専用の低権限ユーザーとコンテナ・sandboxを使う
+- 接続数、アイドル時間、実行時間、入出力量に上限を設ける
+- 切断時にPTYと子プロセスを確実に終了する
+- 端末I/O、タイトル、リンクを信頼せず、`innerHTML` へ渡さない
+- 実行可能コマンドや接続先を用途に応じて制限する
+- 操作ログを機密情報を除外した上で監査可能にする
+
+xterm.js公式は、デモとattach addonをWebSocket実装へそのまま流用しないよう警告しています。端末ページに読み込む第三者スクリプトもキーストロークを読めるため、依存関係とCSPを厳格に管理します。
+
+## 切断処理の例
+
+```js
+const stop = () => {
+  if (!ptyProcess) return;
+  ptyProcess.kill();
+  ptyProcess = undefined;
+};
+
+ws.on('close', stop);
+ws.on('error', stop);
+
+const idleTimer = setTimeout(() => {
+  ws.close(1000, 'idle timeout');
+  stop();
+}, 15 * 60 * 1000);
+```
+
+実際にはタイマー更新、二重終了の防止、子プロセスツリーの扱いも含めて設計してください。
+
+## 公式資料
+
+- [node-pty: Security](https://github.com/microsoft/node-pty#security)
+- [xterm.js Security](https://xtermjs.org/docs/guides/security/)

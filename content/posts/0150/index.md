@@ -127,3 +127,38 @@ color : 色
 <a href="https://tech-blog.s-yoshiki.com/2019/07/1406/">https://tech-blog.s-yoshiki.com/2019/07/1406/</a>
 
 <a href="https://qiita.com/s-yoshiki/items/436bbe1f7160b610b05c">https://qiita.com/s-yoshiki/items/436bbe1f7160b610b05c</a>
+
+## 現在のURL指定例
+
+ラベルやメッセージにはURLエンコードが必要です。スペースは `_` または `%20`、ハイフンやアンダースコア自体を表示したい場合はShields.ioのエスケープ規則を確認してください。
+
+```text
+https://img.shields.io/badge/build-passing-brightgreen
+https://img.shields.io/badge/coverage-95%25-blue
+https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white
+```
+
+Markdownでは次のようにリンクも設定できます。
+
+```markdown
+[![CI](https://img.shields.io/github/actions/workflow/status/OWNER/REPO/ci.yml?branch=main&label=CI)](https://github.com/OWNER/REPO/actions)
+```
+
+## バッジを増やしすぎない
+
+バッジは、ビルド状態、リリース、ライセンス、対応バージョンなど「今の状態を一目で判断できる情報」に絞ると効果的です。
+
+- 画像には意味の分かるaltを付ける
+- 色だけで成功・失敗を伝えず、ラベルや文字も表示する
+- 外部サービス障害でREADME表示が遅くなる可能性を考慮する
+- ロゴの商標・ブランドガイドラインを確認する
+- privateリポジトリのtokenをバッジURLへ埋め込まない
+- 古いCIやバージョンのバッジを放置しない
+
+Simple Iconsのslugやブランド色は変更されることがあります。表示されないロゴは、現在の一覧でslugを確認してください。
+
+## 公式資料
+
+- [Shields.io Documentation](https://shields.io/docs)
+- [Shields.io Static Badge](https://shields.io/badges/static-badge)
+- [Simple Icons](https://simpleicons.org/)

@@ -1,0 +1,208 @@
+---
+title: "Unicodeの空白文字・見えない文字一覧と検出方法"
+path: "/entry/303"
+date: "2023-02-18 16:00"
+coverImage: "../../../images/thumbnail/linux-logo.png"
+author: "s-yoshiki"
+tags: ["javascript", "unicode"]
+---
+
+## はじめに
+
+文字列には、半角スペースや全角スペース以外にも、画面上では見分けにくい文字があります。
+コピー＆ペーストした値が一致しない、入力チェックを通り抜ける、CSVやソースコードの解析に
+失敗するといった問題の原因になります。
+
+ただし、「空白文字」と「表示されない文字」は同じものではありません。
+
+- Unicodeの`White_Space`プロパティを持つ空白文字は25個
+- ゼロ幅スペースや結合・方向制御文字は、見えなくても`White_Space`ではない
+- 点字空白やハングルフィラーは空白に見えるが、文字カテゴリ上は空白ではない
+
+この記事では、Unicode 17.0の定義を基準に、用途別の一覧とJavaScriptでの調べ方をまとめます。
+
+## Unicodeで定義された空白文字一覧
+
+Unicode Character Databaseの`White_Space`プロパティに含まれる25コードポイントです。
+「コピー」ボタンはコード表記ではなく、実体の1文字をクリップボードへ保存します。
+
+| Unicode | JavaScript表記 | 名前 | 用途・特徴 | コピー |
+| --- | --- | --- | --- | --- |
+| U+0009 | `\u0009` | CHARACTER TABULATION | 水平タブ | <CopyCharacterButton codePoint="0009" /> |
+| U+000A | `\u000A` | LINE FEED | 改行（LF） | <CopyCharacterButton codePoint="000A" /> |
+| U+000B | `\u000B` | LINE TABULATION | 垂直タブ | <CopyCharacterButton codePoint="000B" /> |
+| U+000C | `\u000C` | FORM FEED | 改ページ | <CopyCharacterButton codePoint="000C" /> |
+| U+000D | `\u000D` | CARRIAGE RETURN | 復帰（CR） | <CopyCharacterButton codePoint="000D" /> |
+| U+0020 | `\u0020` | SPACE | 半角スペース | <CopyCharacterButton codePoint="0020" /> |
+| U+0085 | `\u0085` | NEXT LINE | 次行制御 | <CopyCharacterButton codePoint="0085" /> |
+| U+00A0 | `\u00A0` | NO-BREAK SPACE | 改行を禁止するスペース（NBSP） | <CopyCharacterButton codePoint="00A0" /> |
+| U+1680 | `\u1680` | OGHAM SPACE MARK | オガム文字用のスペース | <CopyCharacterButton codePoint="1680" /> |
+| U+2000 | `\u2000` | EN QUAD | 1en幅 | <CopyCharacterButton codePoint="2000" /> |
+| U+2001 | `\u2001` | EM QUAD | 1em幅 | <CopyCharacterButton codePoint="2001" /> |
+| U+2002 | `\u2002` | EN SPACE | enスペース | <CopyCharacterButton codePoint="2002" /> |
+| U+2003 | `\u2003` | EM SPACE | emスペース | <CopyCharacterButton codePoint="2003" /> |
+| U+2004 | `\u2004` | THREE-PER-EM SPACE | 1/3em幅 | <CopyCharacterButton codePoint="2004" /> |
+| U+2005 | `\u2005` | FOUR-PER-EM SPACE | 1/4em幅 | <CopyCharacterButton codePoint="2005" /> |
+| U+2006 | `\u2006` | SIX-PER-EM SPACE | 1/6em幅 | <CopyCharacterButton codePoint="2006" /> |
+| U+2007 | `\u2007` | FIGURE SPACE | 数字と同じ固定幅 | <CopyCharacterButton codePoint="2007" /> |
+| U+2008 | `\u2008` | PUNCTUATION SPACE | 句読点と同程度の幅 | <CopyCharacterButton codePoint="2008" /> |
+| U+2009 | `\u2009` | THIN SPACE | 細いスペース | <CopyCharacterButton codePoint="2009" /> |
+| U+200A | `\u200A` | HAIR SPACE | THIN SPACEより細いスペース | <CopyCharacterButton codePoint="200A" /> |
+| U+2028 | `\u2028` | LINE SEPARATOR | 行区切り | <CopyCharacterButton codePoint="2028" /> |
+| U+2029 | `\u2029` | PARAGRAPH SEPARATOR | 段落区切り | <CopyCharacterButton codePoint="2029" /> |
+| U+202F | `\u202F` | NARROW NO-BREAK SPACE | 細い改行禁止スペース | <CopyCharacterButton codePoint="202F" /> |
+| U+205F | `\u205F` | MEDIUM MATHEMATICAL SPACE | 数式用の中幅スペース | <CopyCharacterButton codePoint="205F" /> |
+| U+3000 | `\u3000` | IDEOGRAPHIC SPACE | 全角スペース | <CopyCharacterButton codePoint="3000" /> |
+
+最新の定義はUnicode公式の
+[PropList.txt](https://www.unicode.org/Public/17.0.0/ucd/PropList.txt)で確認できます。
+
+## よく問題になる「見えないが空白ではない文字」
+
+次の文字は表示されない、または非常に見分けにくいものの、Unicodeの`White_Space`には
+含まれません。文字の結合、改行位置、双方向テキスト、数式などに意味を持つため、
+無条件に削除すると表示や言語処理を壊す場合があります。
+
+| Unicode | JavaScript表記 | 名前 | 主な役割 | コピー |
+| --- | --- | --- | --- | --- |
+| U+00AD | `\u00AD` | SOFT HYPHEN | 必要な場合だけ表示されるハイフン | <CopyCharacterButton codePoint="00AD" /> |
+| U+034F | `\u034F` | COMBINING GRAPHEME JOINER | 結合文字の境界制御 | <CopyCharacterButton codePoint="034F" /> |
+| U+061C | `\u061C` | ARABIC LETTER MARK | アラビア文字の方向制御 | <CopyCharacterButton codePoint="061C" /> |
+| U+180E | `\u180E` | MONGOLIAN VOWEL SEPARATOR | モンゴル文字の字形制御 | <CopyCharacterButton codePoint="180E" /> |
+| U+200B | `\u200B` | ZERO WIDTH SPACE | 幅を持たない改行候補 | <CopyCharacterButton codePoint="200B" /> |
+| U+200C | `\u200C` | ZERO WIDTH NON-JOINER | 文字の結合を抑止 | <CopyCharacterButton codePoint="200C" /> |
+| U+200D | `\u200D` | ZERO WIDTH JOINER | 文字や絵文字の結合 | <CopyCharacterButton codePoint="200D" /> |
+| U+200E | `\u200E` | LEFT-TO-RIGHT MARK | 左から右の方向指定 | <CopyCharacterButton codePoint="200E" /> |
+| U+200F | `\u200F` | RIGHT-TO-LEFT MARK | 右から左の方向指定 | <CopyCharacterButton codePoint="200F" /> |
+| U+2060 | `\u2060` | WORD JOINER | 幅を持たず改行を禁止 | <CopyCharacterButton codePoint="2060" /> |
+| U+2061 | `\u2061` | FUNCTION APPLICATION | 関数適用 | <CopyCharacterButton codePoint="2061" /> |
+| U+2062 | `\u2062` | INVISIBLE TIMES | 乗算 | <CopyCharacterButton codePoint="2062" /> |
+| U+2063 | `\u2063` | INVISIBLE SEPARATOR | 区切り | <CopyCharacterButton codePoint="2063" /> |
+| U+2064 | `\u2064` | INVISIBLE PLUS | 加算 | <CopyCharacterButton codePoint="2064" /> |
+| U+2066 | `\u2066` | LEFT-TO-RIGHT ISOLATE | 左から右の方向分離 | <CopyCharacterButton codePoint="2066" /> |
+| U+2067 | `\u2067` | RIGHT-TO-LEFT ISOLATE | 右から左の方向分離 | <CopyCharacterButton codePoint="2067" /> |
+| U+2068 | `\u2068` | FIRST STRONG ISOLATE | 先頭の強い文字に従って方向を分離 | <CopyCharacterButton codePoint="2068" /> |
+| U+2069 | `\u2069` | POP DIRECTIONAL ISOLATE | 方向分離を終了 | <CopyCharacterButton codePoint="2069" /> |
+| U+FEFF | `\uFEFF` | ZERO WIDTH NO-BREAK SPACE / BOM | 先頭ではBOM、途中では非推奨のZWNBSP | <CopyCharacterButton codePoint="FEFF" /> |
+
+特に`U+200B`は名前にSPACEを含みますが、Unicodeでは幅のある空白ではなく、改行候補を
+示すための書式文字です。詳細はUnicode 17.0の
+[Zero Width Spaceの説明](https://www.unicode.org/versions/Unicode17.0.0/core-spec/chapter-23/)を
+参照してください。
+
+## 空白に見える別の文字
+
+次の文字は空白のような字形になることがありますが、`White_Space`ではありません。
+ユーザー名や識別子の検証では、単純な空白除去だけでは検出できない点に注意が必要です。
+
+| Unicode | JavaScript表記 | 名前 | Unicodeカテゴリ |
+| --- | --- | --- | --- |
+| U+115F | `\u115F` | HANGUL CHOSEONG FILLER | Letter |
+| U+1160 | `\u1160` | HANGUL JUNGSEONG FILLER | Letter |
+| U+2800 | `\u2800` | BRAILLE PATTERN BLANK | Symbol |
+| U+3164 | `\u3164` | HANGUL FILLER | Letter |
+| U+FFA0 | `\uFFA0` | HALFWIDTH HANGUL FILLER | Letter |
+
+## JavaScriptで空白文字を検出・置換する
+
+### UnicodeのWhite_Spaceを検出する
+
+Unicodeプロパティエスケープを使うと、Unicodeの定義を直接指定できます。
+
+```js
+const hasWhiteSpace = /\p{White_Space}/u.test("foo\u00A0bar");
+
+console.log(hasWhiteSpace); // true
+```
+
+連続する空白を半角スペース1個へ統一する例です。
+
+```js
+const normalizeWhiteSpace = (text) =>
+  text.replace(/\p{White_Space}+/gu, " ").trim();
+
+console.log(normalizeWhiteSpace("foo\u3000\u00A0bar")); // "foo bar"
+```
+
+すべての空白を削除する処理は、自然文の単語境界や改行も失います。IDやコードなど、
+空白を許可しない値にだけ適用してください。
+
+### `\s`、`\p{White_Space}`、`trim()`の違い
+
+JavaScriptの`\s`と`trim()`はECMAScript仕様の空白を使います。Unicodeの
+`White_Space`とほぼ同じですが、完全には一致しません。
+
+| 対象 | U+0085 NEXT LINE | U+FEFF BOM / ZWNBSP | U+200B ZERO WIDTH SPACE |
+| --- | --- | --- | --- |
+| `/\p{White_Space}/u` | 対象 | 対象外 | 対象外 |
+| `/\s/u` | 対象外 | 対象 | 対象外 |
+| `trim()` | 対象外 | 文字列の両端なら対象 | 対象外 |
+
+ECMAScriptの定義は
+[TC39のWhite Space仕様](https://tc39.es/ecma262/#sec-white-space)と
+[String.prototype.trim仕様](https://tc39.es/ecma262/#sec-string.prototype.trim)で
+確認できます。
+
+### ゼロ幅スペースなどを検出する
+
+削除対象を用途に合わせて明示します。次の例は、コピー＆ペーストで混入しやすい
+ゼロ幅スペース、ワードジョイナー、BOMだけを対象にしています。
+
+```js
+const commonZeroWidthChars = /[\u200B\u2060\uFEFF]/u;
+const removeCommonZeroWidthChars = (text) =>
+  text.replace(/[\u200B\u2060\uFEFF]/gu, "");
+
+console.log(commonZeroWidthChars.test("foo\u200Bbar")); // true
+console.log(removeCommonZeroWidthChars("foo\u200Bbar")); // "foobar"
+```
+
+`U+200C`と`U+200D`は一部言語の表記や絵文字シーケンスに必要です。双方向制御文字も
+正当な用途があるため、入力元と許可する文字を決めずに一括削除しないでください。
+
+## 文字列に含まれるコードポイントを調べる
+
+見た目が同じ文字列を比較するときは、各文字を`U+XXXX`形式へ変換すると原因を確認できます。
+サロゲートペアを含む文字にも対応した例です。
+
+```js
+const toCodePoints = (text) =>
+  Array.from(text, (char) => {
+    const hex = char.codePointAt(0).toString(16).toUpperCase();
+    return `U+${hex.padStart(4, "0")}`;
+  });
+
+console.log(toCodePoints("A\u200BB"));
+// ["U+0041", "U+200B", "U+0042"]
+```
+
+不可視文字の位置も表示する場合は、インデックスを付けます。
+
+```js
+const inspectText = (text) =>
+  Array.from(text, (char, index) => ({
+    index,
+    codePoint: toCodePoints(char)[0],
+    visible: /\p{White_Space}/u.test(char) ? "␠" : char,
+  }));
+
+console.table(inspectText("foo\u00A0bar"));
+```
+
+## 実装時の判断基準
+
+- 表示用の文章では、意味のある結合・方向制御文字を保持する
+- ユーザー名やIDでは、許可する文字をホワイトリストで定義する
+- CSVやログの調査では、削除前にコードポイントを可視化する
+- 空白の正規化と不可視書式文字の除去を別の処理にする
+- 絵文字を扱う場合は、特に`U+200D`を削除しない
+
+「見えないから不要」とは限りません。問題の文字を特定したうえで、入力の用途に必要かどうかを
+判断するのが安全です。
+
+## 参考資料
+
+- [Unicode 17.0 PropList.txt](https://www.unicode.org/Public/17.0.0/ucd/PropList.txt)
+- [Unicode Standard Annex #44: Unicode Character Database](https://www.unicode.org/reports/tr44/)
+- [Unicode 17.0: Space Characters](https://www.unicode.org/versions/Unicode17.0.0/core-spec/chapter-6/)
+- [ECMAScript: White Space](https://tc39.es/ecma262/#sec-white-space)

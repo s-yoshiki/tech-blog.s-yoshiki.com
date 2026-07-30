@@ -48,8 +48,7 @@ Windows / Mac / Linux でアプリケーションが提供されています。
 
 ### 利用環境
 
-DBeaverを実行するにはJavaが必要です。Open JDK 11は、すべてのDBeaverディストリビューションに含まれています。（バージョン7.3.1以降）。dbeaverインストールフォルダの
-ディレクトリjreを置き換えることで、デフォルトのJDKバージョンを変更できます。
+公式インストーラーにはOpenJDKが同梱されるため、通常はJavaを別途インストールする必要はありません。対応OSや同梱Javaのバージョンは更新されるため、導入時に公式Installationページを確認してください。
 
 ### アーカイブ
 
@@ -61,7 +60,7 @@ DBeaverを実行するにはJavaが必要です。Open JDK 11は、すべてのD
 
 インストールに関する情報はこちらに記載されています。
 
-[https://github.com/dbeaver/dbeaver/wiki/Installation](https://github.com/dbeaver/dbeaver/wiki/Installation)
+[DBeaver公式 Installation](https://dbeaver.com/docs/dbeaver/Installation/)
 
 ### windows
 
@@ -117,23 +116,17 @@ https://dbeaver.io/download/
 
 からパッケージを取得できます。
 
-また debianでは
+ダウンロードしたパッケージを使う場合は次のようにインストールできます。
 
 ```shell
-wget -O-https：//dbeaver.io/debs/dbeaver.gpg.key | sudo apt-keyadd-
-echo "deb https://dbeaver.io/debs/dbeaver-ce /" | sudo tee /etc/apt/sources.list.d/dbeaver.list
-sudo apt-get update && sudo apt-get install dbeaver-ce
+# Debian / Ubuntu
+sudo dpkg -i dbeaver-<version>.deb
+
+# RPM系
+sudo rpm -ivh dbeaver-<version>.rpm
 ```
 
-Ubuntuでは
-
-```shell
-sudo add-apt-repository ppa：serge-rider / dbeaver-ce
-sudo apt-get update
-sudo apt-get install dbeaver-ce
-```
-
-snpaコマンドで実施する場合は
+Snapで実施する場合は
 
 ```shell
 sudo snap install dbeaver-ce
@@ -167,6 +160,17 @@ DataBase Connection を選択し次に進みます。
 
 SSHを利用した接続も可能です。
 
+## 安全な接続設定
+
+- 本番DBへは可能なら読み取り専用ユーザーで接続する
+- パスワードを共有せず、ユーザーごとに監査できる認証情報を使う
+- インターネットへDBポートを直接公開せず、VPNやSSHトンネルを使う
+- TLSを有効化し、サーバー証明書を検証する
+- 接続名に `production` など環境を明記し、色分けして誤操作を減らす
+- 自動コミットの状態を確認し、更新系SQLはトランザクション内で実行する
+
+DBeaverは接続ごとにConnection typeを設定でき、開発・テスト・本番を色で区別できます。SQL実行前に接続先ホストとデータベース名も確認してください。
+
 ## SQLを実行する
 
 エディタからスクリプトを流し込み実行することができます。
@@ -175,8 +179,30 @@ SSHを利用した接続も可能です。
 
 SQLエディターは、上部にスクリプトのパネル、下部に結果パネルで構成されています。
 
+複数文を含むスクリプト全体の実行と、カーソル位置にある1文だけの実行はショートカットが異なります。意図しないUPDATEやDELETEを避けるため、実行対象のハイライトと件数条件を確認してください。最初にSELECTで対象を確認し、必要ならトランザクションを開始してから更新します。
+
+## よくあるトラブル
+
+### ドライバーを取得できない
+
+初回接続時にJDBCドライバーがダウンロードされます。社内Proxy環境では、DBeaverのNetwork Connections設定にProxyを登録するか、社内で許可されたドライバー配布方法を利用します。
+
+### タイムゾーンや文字コードがずれる
+
+クライアント、JDBCドライバー、DBサーバー、セッションの設定が一致しているか確認します。接続プロパティで一時的に回避する前に、どの層で変換されたかを切り分けます。
+
+### 接続できない
+
+ホスト名、ポート、データベース名、認証方式に加えて、DNS、ファイアウォール、セキュリティグループ、VPN、TLS証明書を順に確認します。SSHトンネル利用時は、DBのホスト名が「手元から見た名前」ではなく「SSH接続先から見た名前」になる点にも注意します。
+
 ## その他
 
 ### CloudBeaverについて
 
 CloudBeaver は2020年に公開された、Webインタフェースを提供するSQLデベロッパーツールです。
+
+## 参考
+
+- [DBeaver Documentation](https://dbeaver.com/docs/)
+- [DBeaver Installation](https://dbeaver.com/docs/dbeaver/Installation/)
+- [DBeaver Community](https://dbeaver.io/)

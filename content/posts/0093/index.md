@@ -152,3 +152,47 @@ document.getElementById('main').onclick = function() {
 任意の文字列をcanvasに描画した後、canvasのピクセルデータ(imageData)を走査します。
 
 この時、2値化の処理と同じように、閾値より低いものは文字を描画、そうでなければ描画しない(実際にはスペースを描画)しています。
+
+## 実装を改善するポイント
+
+元のコードはピクセルごとに `innerHTML +=` を実行するため、画像が大きくなるほどDOMの再解析が繰り返されて遅くなります。文字列を配列へ蓄積し、最後に一度だけ `textContent` へ設定すると高速かつ安全です。
+
+```js
+const lines = [];
+
+for (let y = 0; y < canvas.height; y += 1) {
+  let line = '';
+
+  for (let x = 0; x < canvas.width; x += 1) {
+    const index = (y * canvas.width + x) * 4;
+    const r = src.data[index];
+    const g = src.data[index + 1];
+    const b = src.data[index + 2];
+    const alpha = src.data[index + 3];
+    const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+
+    line += alpha === 0 || luminance > 127 ? '  ' : '00';
+  }
+
+  lines.push(line);
+}
+
+document.getElementById('result').textContent = lines.join('\n');
+```
+
+単純なRGB平均より、人間の明るさの感じ方に近い輝度係数を使うと色付き文字でも輪郭が安定します。背景が透過しているピクセルは空白として扱っています。
+
+## 読みやすいAAにするコツ
+
+- `<pre>` に等幅フォントと小さめの `line-height` を設定する
+- Canvasを縮小してから変換し、出力文字数を抑える
+- 閾値をスライダーで変更できるようにする
+- `00` / `##` / `@` など、縦横比と濃度が適した文字を選ぶ
+- ユーザー入力を表示するときは `innerHTML` ではなく `textContent` を使う
+
+高品質化したい場合は、1文字だけの二値化ではなく、暗さに応じて ` .:-=+*#%@` のような濃淡文字を割り当てる方法もあります。
+
+## 参考
+
+- [MDN: CanvasRenderingContext2D.getImageData()](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/getImageData)
+- [MDN: Node.textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent)

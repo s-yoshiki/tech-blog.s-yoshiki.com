@@ -205,3 +205,31 @@ prisma migrate deploy
 ## 参考
 
 [Prisma CLI Command Reference](https://www.prisma.io/docs/reference/api-reference/command-reference)
+
+## 開発・CI・本番の使い分け
+
+| 環境 | 主なコマンド | 役割 |
+| :--- | :--- | :--- |
+| プロトタイプ | `prisma db push` | migrationを作らずスキーマを素早く反映 |
+| 開発 | `prisma migrate dev` | migrationの生成・適用とdrift検出 |
+| CI | `prisma validate` / `prisma generate` | schema検証とClient生成 |
+| ステージング・本番 | `prisma migrate deploy` | コミット済みの未適用migrationだけを適用 |
+
+`migrate dev` は開発用であり、本番では実行しません。`migrate deploy` は通常CI/CDから実行し、`prisma/migrations` と `schema.prisma` を一緒にバージョン管理します。
+
+## 安全なマイグレーションのチェックリスト
+
+- 生成された `migration.sql` をレビューする
+- renameがdrop/addとして生成されていないか確認する
+- NOT NULL列の追加時に既存行をどう埋めるか決める
+- 大きなテーブルのロック時間とインデックス作成方式を確認する
+- deploy前にバックアップと復旧手順を確認する
+- アプリの旧版・新版が移行中の両スキーマで動けるか検討する
+- 失敗時に `migrate resolve` を使う条件を事前に決める
+
+コマンド例は記事執筆時点のPrisma CLIを基準にしています。オプションは変更される可能性があるため、実行前にプロジェクトで固定したバージョンの `prisma <command> --help` を確認してください。
+
+## 公式資料
+
+- [Prisma Migrate: development and production](https://docs.prisma.io/docs/orm/prisma-migrate/workflows/development-and-production)
+- [Prisma CLI reference](https://docs.prisma.io/docs/orm/reference/prisma-cli-reference)

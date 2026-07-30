@@ -130,3 +130,26 @@ TablePlusで利用できるショートカットキーを掲載しておきま�
 https://github.com/TablePlus/TablePlus/issues
 </div></figure>
 <!-- /wp:embed -->
+
+## 現在選ぶときの確認ポイント
+
+TablePlusは現在も複数OS・複数データベースへ対応していますが、対応DB、無料利用の制限、料金は更新されます。本文の価格やライセンス条件は執筆時点のものとして、購入前に公式Pricingページを確認してください。
+
+- 日常的に使うDBと認証方式へ対応しているか
+- SSHトンネル、TLS証明書、クラウドDBの認証に対応できるか
+- クエリ履歴や保存SQLへ機密情報が残らないか
+- 本番接続を色分け・読み取り専用にできるか
+- チーム共有機能が必要か、個人利用で十分か
+- Windows/macOS/Linux間で操作を統一する必要があるか
+
+## 誤操作を減らす運用
+
+本番DBでは専用の読み取りユーザーを用意し、更新権限は必要な担当者・作業時間だけに限定します。UPDATE/DELETE前に同じWHERE条件のSELECTで件数を確認し、自動コミットとトランザクションの状態も確認します。
+
+接続情報をチーム内で共有する場合でも、パスワードや秘密鍵そのものをリポジトリへ保存しないでください。VPN、SSHトンネル、TLSを使い、DBポートの直接公開は避けます。
+
+## 参考
+
+- [TablePlus Documentation](https://docs.tableplus.com/)
+- [TablePlus Pricing](https://tableplus.com/pricing)
+- [TablePlus Releases](https://tableplus.com/blog/)

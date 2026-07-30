@@ -128,3 +128,45 @@ driver.get('https://google.co.jp')
 ```
 
 googleのトップに遷移します。
+
+## 現在のUbuntuで動かす最小例
+
+この記事のUbuntu 14.04、Python 2系、Selenium 2系の手順は現在では古くなっています。Selenium 4の各言語バインディングにはSelenium Managerが同梱され、通常はChromeDriverを手動ダウンロードする必要がありません。
+
+```shell
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip selenium
+```
+
+```python
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+options = webdriver.ChromeOptions()
+options.add_argument("--headless=new")
+options.add_argument("--window-size=1280,900")
+
+with webdriver.Chrome(options=options) as driver:
+    driver.get("https://example.com/")
+    print(driver.title)
+    print(driver.find_element(By.TAG_NAME, "h1").text)
+```
+
+`webdriver.Chrome()` の呼び出し時にブラウザとdriverを検出し、必要なら適合するdriverを取得・cacheします。社内Proxyやオフライン環境ではSelenium ManagerのProxy、mirror、offline設定か、管理済みdriverの明示指定を検討してください。
+
+## CI・コンテナでの注意
+
+- ブラウザと共有ライブラリをコンテナイメージへ含める
+- 固定sleepではなくWebDriverWaitで要素の状態を待つ
+- 失敗時にスクリーンショット、ページソース、ブラウザログを保存する
+- 外部サイトではなく管理下のテスト環境を対象にする
+- browser/driverのバージョンをログへ出す
+
+root実行を理由に安易に `--no-sandbox` を付けるのではなく、非rootユーザーで動かせるコンテナ構成を優先してください。
+
+## 参考
+
+- [Selenium Manager](https://www.selenium.dev/documentation/selenium_manager/)
+- [Selenium: Write your first Selenium script](https://www.selenium.dev/documentation/webdriver/getting_started/first_script/)
+- [Selenium waits](https://www.selenium.dev/documentation/webdriver/waits/)

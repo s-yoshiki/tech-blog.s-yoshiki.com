@@ -112,3 +112,44 @@ libディレクトリやヘッダファイルは次の場所となります。
 $ export LDFLAGS="-L/usr/local/opt/node@14/lib"
 $ export CPPFLAGS="-I/usr/local/opt/node@14/include"
 ```
+
+## 現在利用する場合の注意
+
+本文で扱っているNode.js 14と17はすでにEOLで、セキュリティ更新を受けられません。実際にインストールする版はNode.js公式のリリース一覧で確認し、Active LTSまたはMaintenance LTSを選んでください。
+
+```shell
+brew update
+brew info node
+brew search '/^node(@[0-9]+)?$/'
+```
+
+Homebrewのversioned formulaは通常keg-onlyです。`brew link --force` でシステム全体を切り替えるより、プロジェクトごとのバージョン管理にはVolta、fnm、nvm、miseなどを使うと衝突を減らせます。
+
+```shell
+# 例: Volta
+volta install node@lts
+volta pin node@24
+
+# package.jsonへ利用バージョンが記録される
+node --version
+```
+
+## どのnodeが実行されているか確認する
+
+複数の導入方法を混ぜるとPATHの順序で意図しないnodeが選ばれます。
+
+```shell
+type -a node
+which node
+node --version
+npm --version
+brew --prefix node
+```
+
+Apple SiliconではHomebrewの既定prefixが `/opt/homebrew`、Intel Macでは `/usr/local` です。記事中の固定パスをコピーせず、`brew --prefix` で実環境の場所を取得してください。
+
+## 参考
+
+- [Node.js Releases](https://nodejs.org/en/about/previous-releases)
+- [Node.js End-of-Life](https://nodejs.org/en/about/eol)
+- [Homebrew node formula](https://formulae.brew.sh/formula/node)

@@ -126,3 +126,52 @@ function drawCanvas(source) {
 ## 参考
 
 https://tech-blog.s-yoshiki.com/2018/01/10/
+
+## CSSで拡大・縮小したCanvasに対応する
+
+`clientX - rect.left` だけでは、Canvasの内部解像度とCSS表示サイズが異なる場合に座標がずれます。比率を掛けてCanvas座標へ変換します。
+
+```js
+function getCanvasPoint(canvas, event) {
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
+
+  return {
+    x: (event.clientX - rect.left) * scaleX,
+    y: (event.clientY - rect.top) * scaleY,
+  };
+}
+
+canvas.addEventListener('pointerdown', (event) => {
+  const { x, y } = getCanvasPoint(canvas, event);
+  console.log({ x, y });
+});
+```
+
+`getBoundingClientRect()` はborderを含むため、太いborderをCanvas自体へ付ける場合は `clientLeft` / `clientTop` やラッパー要素の利用も確認します。固定値で `borderWidth = 1` とするとCSS変更に弱くなります。
+
+## Retina / High DPI対応
+
+CSS上のサイズと描画バッファを `devicePixelRatio` に合わせる場合も、上記の比率変換なら同じ関数を利用できます。
+
+```js
+const cssWidth = 640;
+const cssHeight = 360;
+const dpr = window.devicePixelRatio || 1;
+
+canvas.style.width = `${cssWidth}px`;
+canvas.style.height = `${cssHeight}px`;
+canvas.width = Math.round(cssWidth * dpr);
+canvas.height = Math.round(cssHeight * dpr);
+
+const context = canvas.getContext('2d');
+context.scale(dpr, dpr);
+```
+
+タッチやペンも扱う場合はMouse EventsよりPointer Eventsが便利です。ドラッグ中にCanvas外へ移動しても追跡したい場合は `setPointerCapture()` を組み合わせます。
+
+## 参考
+
+- [MDN: Element.getBoundingClientRect()](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect)
+- [MDN: Pointer events](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events)

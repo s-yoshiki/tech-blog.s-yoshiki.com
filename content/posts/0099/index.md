@@ -240,3 +240,62 @@ function showArrow() {
   context.fill();
 }
 ```
+
+## `requestAnimationFrame`で回す
+
+元の実装のような `setInterval` は描画タイミングと画面更新が一致せず、タブが非表示でも意図しない進行をすることがあります。アニメーションには `requestAnimationFrame` を使い、経過時間から角度を計算します。
+
+```js
+let startedAt = 0;
+const duration = 5000;
+const startAngle = 0;
+const rotations = 6;
+
+const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+function animate(timestamp) {
+  if (startedAt === 0) startedAt = timestamp;
+
+  const elapsed = timestamp - startedAt;
+  const progress = Math.min(elapsed / duration, 1);
+  const eased = easeOutCubic(progress);
+  const angle = startAngle + eased * rotations * Math.PI * 2;
+
+  drawRoulette(angle);
+
+  if (progress < 1) {
+    requestAnimationFrame(animate);
+  } else {
+    showResult(angle);
+  }
+}
+
+requestAnimationFrame(animate);
+```
+
+## 当選項目の求め方
+
+描画に使った開始角、回転方向、矢印位置を同じ基準へ揃えます。
+
+```js
+const TAU = Math.PI * 2;
+const normalized = ((angle % TAU) + TAU) % TAU;
+const segment = TAU / data.length;
+const pointerAngle = -Math.PI / 2;
+const index = Math.floor(
+  (((pointerAngle - normalized) % TAU) + TAU) % TAU / segment,
+);
+
+console.log(data[index]);
+```
+
+境界上の丸めをテストし、表示上の当選項目と計算結果がずれないことを確認してください。
+
+## 公平性が必要な抽選には使わない
+
+演出用ルーレットの乱数やアニメーションは、監査可能な抽選には向きません。賞品・金銭・権利に関わる場合は、サーバー側で暗号学的乱数を使って結果を先に確定し、記録・再現・不正防止を設計します。Canvasは確定結果を表示する演出だけに使います。
+
+## 参考
+
+- [MDN: requestAnimationFrame()](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame)
+- [MDN: CanvasRenderingContext2D.arc()](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/arc)

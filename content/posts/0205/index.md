@@ -142,3 +142,30 @@ You can also specify the default options in PERL_CPANM_OPT environment variable 
 
 Type `man cpanm` or `perldoc cpanm` for the more detailed explanation of the options.
 ```
+
+## 現在利用する場合の注意
+
+CentOS Linux 8は2021年末にEOLとなっており、通常のミラーから更新を受けられません。この記事のコマンドは当時の検証記録として残していますが、新規環境ではAlmaLinux、Rocky Linux、RHEL、CentOS Streamなど、サポート中のディストリビューションで実施してください。
+
+ディストリビューションのPerlへ直接CPANモジュールを追加すると、OSパッケージとの競合や更新時の差分が生じます。アプリケーション単位で依存関係を固定する場合はCartonやlocal::libも検討します。
+
+```shell
+cpanm --installdeps .
+carton install
+carton exec perl app.pl
+```
+
+## トラブルシューティング
+
+- `make` やコンパイラがない: 開発ツールと該当ライブラリの`-devel`パッケージを入れる
+- HTTPSで取得できない: CA証明書、時刻、Proxy設定を確認する
+- テストだけ失敗する: ログを読み、安易に `--notest` で回避しない
+- system Perlを壊したくない: perlbrew/plenvやコンテナで環境を分離する
+- 再現性が必要: `cpanfile` とsnapshotをバージョン管理する
+
+curlから直接スクリプトをシェルへ渡す方法は、内容を確認せずに実行するリスクがあります。可能ならOSパッケージ、署名・チェックサムを確認できる配布物、隔離した環境を利用してください。
+
+## 参考
+
+- [App::cpanminus - MetaCPAN](https://metacpan.org/pod/App::cpanminus)
+- [CentOS Linux EOL](https://www.centos.org/centos-linux-eol/)

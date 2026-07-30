@@ -105,7 +105,7 @@ model User {
 +----------------+-------------+------+-----+----------------------+-------------------+
 ```
 
-## 結果
+## 検証結果のまとめ
 
 それぞれの比較結果を記載していきます。
 
@@ -377,8 +377,45 @@ DB は、createdAt1, createdAt2 (Timestamp 型)のもの以外は、JST で表�
 
 バージョンアップでオプションが付いてくれると嬉しいですね。
 
+## 現在の実装方針
+
+この記事はPrisma 4.1.1での検証結果です。DateTimeの変換挙動やdriverは更新されるため、現在のPrisma・database・Node.jsの組み合わせで再テストしてください。
+
+原則として、保存時はUTCの絶対時刻に統一し、表示時に利用者のタイムゾーンへ変換します。
+
+```ts
+const createdAt = new Date();
+await prisma.event.create({
+  data: { createdAt },
+});
+
+const formatter = new Intl.DateTimeFormat('ja-JP', {
+  dateStyle: 'medium',
+  timeStyle: 'long',
+  timeZone: 'Asia/Tokyo',
+});
+
+console.log(formatter.format(createdAt));
+```
+
+`DATETIME` と `TIMESTAMP` はMySQL側のタイムゾーン変換、値域、defaultの挙動が異なります。2038年以降を扱う、過去のローカル時刻をそのまま保持する、DB関数で生成する、といった要件があれば型選定を個別に行います。
+
+## 再検証チェックリスト
+
+- `SELECT VERSION()` とPrisma/driverのバージョンを記録する
+- DBサーバー・セッション・アプリのタイムゾーンを明示する
+- `@@global.time_zone` と `@@session.time_zone` を確認する
+- 夏時間の切り替わり前後を含む地域でテストする
+- Prisma生成時刻とDB default生成時刻を分けて確認する
+- JSON/APIの契約ではISO 8601とoffsetの扱いを決める
+- UTCへの正規化と表示変換の境界をテストする
+
+「JSTの壁時計時刻」だけを保存したい値（営業時間など）と、「世界で一意な瞬間」を表す値（作成日時など）を同じ設計にしないことも重要です。
+
 ## 参考にしたサイト
 
 - [Improve Timezone Support for Existing MySQL Databases configured with a Non-UTC Timezone #5051](https://github.com/prisma/prisma/issues/5051)
 - [DateTime timezone #4153](https://github.com/prisma/prisma/discussions/4153)
 - [Prisma で UTC 以外の Timezone を扱いたい](https://zenn.dev/yu46/articles/5cbb3f9e224944)
+- [Prisma schema: DateTime](https://www.prisma.io/docs/orm/reference/prisma-schema-reference#datetime)
+- [MySQL: The DATE, DATETIME, and TIMESTAMP Types](https://dev.mysql.com/doc/refman/8.4/en/datetime.html)
