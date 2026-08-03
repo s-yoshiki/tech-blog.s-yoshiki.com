@@ -4,6 +4,7 @@ export interface Posts {
   date: string;
   coverImage: string;
   tags: string[];
+  aiGenerated: boolean;
   filepath: string;
 }
 

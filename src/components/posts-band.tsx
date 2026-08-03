@@ -15,6 +15,7 @@ const Band = ({ posts }: EntryBandProp) => (
           href={post.path}
           src={post.coverImage}
           tags={post.tags}
+          aiGenerated={post.aiGenerated}
         />
       </li>
     ))}

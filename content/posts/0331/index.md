@@ -4,6 +4,7 @@ path: "/entry/331"
 date: "2026-07-23 23:10"
 coverImage: "../../../images/thumbnail/opencv-logo.png"
 author: "s-yoshiki"
+aiGenerated: true
 tags: ["typescript", "javascript", "canvas", "画像処理", "画像処理100本ノック"]
 ---
 

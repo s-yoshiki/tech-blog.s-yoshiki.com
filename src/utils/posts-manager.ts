@@ -16,6 +16,7 @@ const EMPTY_POST: Posts = {
   date: '',
   coverImage: '',
   tags: [],
+  aiGenerated: false,
   filepath: '',
 };
 

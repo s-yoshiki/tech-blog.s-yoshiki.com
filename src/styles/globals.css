@@ -27,6 +27,10 @@
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-destructive: var(--destructive);
+  --color-ai: var(--ai);
+  --color-ai-foreground: var(--ai-foreground);
+  --color-ai-surface: var(--ai-surface);
+  --color-ai-border: var(--ai-border);
 
   --font-sans: var(--font-sans-stack);
   --font-mono: var(--font-mono-stack);
@@ -75,6 +79,10 @@
   --destructive: #c92a2a;
   --success: #237032;
   --warning: #ad3e0b;
+  --ai: #7048b8;
+  --ai-foreground: #5b2f99;
+  --ai-surface: #f5efff;
+  --ai-border: #d8c4f4;
 
   --radius: 10px;
   --header-height: 3.5rem;
@@ -134,6 +142,10 @@
   --destructive: #ff8787;
   --success: #69db7c;
   --warning: #ffa94d;
+  --ai: #c5a4ff;
+  --ai-foreground: #e0ccff;
+  --ai-surface: #2a2140;
+  --ai-border: #5a427b;
 
   --md-fg: #e7e9ee;
   --md-fg-muted: #9aa3b2;

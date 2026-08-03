@@ -4,6 +4,7 @@ path: "/entry/337"
 date: "2026-07-31 12:00"
 coverImage: "../../../images/thumbnail/typescipr-logo.png"
 author: "s-yoshiki"
+aiGenerated: true
 tags: ["typescript", "react", "hono", "monorepo", "pnpm", "turborepo", "amazon-aws"]
 ---
 

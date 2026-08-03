@@ -4,6 +4,7 @@ path: "/entry/317"
 date: "2026-07-16 21:00"
 coverImage: "../../../images/thumbnail/aws-logo.png"
 author: "s-yoshiki"
+aiGenerated: true
 tags: ["aws", "cloudfront", "lambda", "javascript", "typescript"]
 ---
 
