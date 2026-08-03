@@ -24,6 +24,16 @@ content/posts/
 ![説明](./photo.jpg)
 ```
 
+AIを活用して作成した記事には、front matterに `aiGenerated: true` を指定します。
+指定がない既存記事は `false` として扱われ、指定した記事には一覧と記事本文の先頭にAI生成であることが表示されます。
+
+```md
+---
+title: "記事タイトル"
+aiGenerated: true
+---
+```
+
 ## 操作方法
 
 ```sh

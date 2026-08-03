@@ -4,6 +4,7 @@ path: "/entry/333"
 date: "2026-07-23 23:30"
 coverImage: "../../../images/thumbnail/typescript-logo.png"
 author: "s-yoshiki"
+aiGenerated: true
 tags: ["typescript", "javascript", "画像処理", "画像処理100本ノック", "機械学習", "knn"]
 ---
 

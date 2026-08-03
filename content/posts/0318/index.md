@@ -4,6 +4,7 @@ path: "/entry/318"
 date: "2026-07-23 21:00"
 coverImage: "../../../images/thumbnail/opencv-logo.png"
 author: "s-yoshiki"
+aiGenerated: true
 tags: ["typescript", "javascript", "react", "canvas", "画像処理"]
 ---
 

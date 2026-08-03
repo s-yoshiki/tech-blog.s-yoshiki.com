@@ -1,4 +1,5 @@
 import RelationAds from 'components/ads/relations-ads';
+import AIGeneratedBadge from 'components/ai-generated-badge';
 import Author from 'components/author';
 import PostsBand from 'components/posts-band';
 import Search from 'components/search';
@@ -7,6 +8,7 @@ import Tag from 'components/tag';
 import YearMonthPosts from 'components/yesar-month-posts';
 import {
   CalendarDays,
+  Bot,
   ChevronRight,
   Clock3,
   Hash,
@@ -134,6 +136,11 @@ export default function ArticlePage({
                   {readingMinutes} 分
                 </span>
               </div>
+              {post.aiGenerated && (
+                <div className="mt-4">
+                  <AIGeneratedBadge />
+                </div>
+              )}
             </div>
           </div>
 
@@ -152,6 +159,18 @@ export default function ArticlePage({
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
         <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_240px]">
           <div className="min-w-0">
+            {post.aiGenerated && (
+              <aside
+                aria-label="AI生成記事についての説明"
+                className="mb-8 flex items-start gap-3 rounded-xl border border-ai-border bg-ai-surface/70 p-4 text-sm text-ai-foreground"
+              >
+                <Bot aria-hidden="true" className="mt-0.5 size-5 shrink-0" />
+                <p>
+                  この記事は生成AIを活用して作成されています。内容は公開時点の情報をもとにしているため、
+                  最新の仕様や重要な判断については公式ドキュメントも確認してください。
+                </p>
+              </aside>
+            )}
             {isOlderArticle && (
               <aside
                 aria-label="古い記事についての注意"

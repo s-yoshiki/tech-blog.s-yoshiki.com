@@ -4,6 +4,7 @@ path: "/entry/338"
 date: "2026-07-31 13:00"
 coverImage: "../../../images/thumbnail/nodejs-logo.webp"
 author: "s-yoshiki"
+aiGenerated: true
 tags: ["node.js", "typescript", "hono", "websocket", "xterm.js", "node-pty", "pnpm", "turborepo", "セキュリティ", "shell"]
 ---
 
@@ -291,4 +292,3 @@ pnpm test:e2e
 node-websh は、開発マシンや自宅サーバーへ「必要なときだけブラウザから入る」ための小さなツールです。
 シェルの強い権限をそのままブラウザへ渡す性質は変わらないため、公開範囲と実行ユーザーを絞ったうえで
 利用してください。
-
