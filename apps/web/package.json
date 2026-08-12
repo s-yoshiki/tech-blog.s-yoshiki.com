@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "next build --turbopack",
     "start": "next start",
-    "export": "next build",
+    "export": "next build --turbopack",
     "lint": "biome lint src",
     "lint:fix": "biome lint --write src",
     "format": "biome check --write --formatter-enabled=true --linter-enabled=false --assist-enabled=true src next.config.mjs postcss.config.mjs",
