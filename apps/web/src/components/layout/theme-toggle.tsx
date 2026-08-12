@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from 'components/ui/button';
+import { Button } from '@repo/ui';
 import { Moon, Sun } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { THEME_STORAGE_KEY } from './theme-script';

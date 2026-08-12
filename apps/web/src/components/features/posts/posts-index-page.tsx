@@ -1,9 +1,9 @@
+import type { Posts } from '@repo/blog-content';
+import { Button } from '@repo/ui';
 import PostsBand from 'components/posts-band';
 import { TagPill } from 'components/tag';
-import { Button } from 'components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
-import type { Posts } from 'types/entry.interface';
 
 interface Props {
   title: string;

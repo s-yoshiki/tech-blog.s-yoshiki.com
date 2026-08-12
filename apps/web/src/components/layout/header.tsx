@@ -1,8 +1,8 @@
 'use client';
 
+import { Button } from '@repo/ui';
 import GithubIcon from 'components/icons/github';
 import Search from 'components/search';
-import { Button } from 'components/ui/button';
 import { Search as SearchIcon } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';

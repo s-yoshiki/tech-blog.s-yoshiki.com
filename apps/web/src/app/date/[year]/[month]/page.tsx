@@ -1,7 +1,7 @@
 import PostsIndexPage from 'components/features/posts/posts-index-page';
+import PostsManager from 'lib/posts/manager';
 import { getDateParams } from 'lib/posts/queries';
 import { notFound } from 'next/navigation';
-import PostsManager from 'utils/posts-manager';
 
 export const dynamicParams = false;
 export const generateStaticParams = () =>

@@ -1,10 +1,15 @@
 'use client';
 
+import type {
+  IGroupByItems,
+  IGroupByYearMonthItems,
+  Posts,
+} from '@repo/blog-content';
+import { Button } from '@repo/ui';
 import Author from 'components/author';
 import PostsBand from 'components/posts-band';
 import SectionHeading from 'components/section-heading';
 import Tag from 'components/tag';
-import { Button } from 'components/ui/button';
 import YearMonthPosts from 'components/yesar-month-posts';
 import {
   CalendarDays,
@@ -14,11 +19,6 @@ import {
   UserRound,
 } from 'lucide-react';
 import { useState } from 'react';
-import type {
-  IGroupByItems,
-  IGroupByYearMonthItems,
-  Posts,
-} from 'types/entry.interface';
 
 const PAGE_SIZE = 15;
 

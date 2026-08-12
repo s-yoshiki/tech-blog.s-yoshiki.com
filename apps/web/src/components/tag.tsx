@@ -1,5 +1,5 @@
+import { cn } from '@repo/ui';
 import { getTagColor } from 'lib/tag-brand-colors';
-import { cn } from 'lib/utils';
 import Link from 'next/link';
 
 interface TagProps {

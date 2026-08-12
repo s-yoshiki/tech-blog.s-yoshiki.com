@@ -1,11 +1,13 @@
 import path from 'node:path';
+import {
+  extractMdxTableOfContents,
+  markdownFileToHtml as markdownToHtml,
+  readMarkdownFile,
+} from '@repo/blog-content';
 import ArticlePage from 'components/features/article/article-page';
 import { getAllPostIds, getArticlePageData } from 'lib/posts/queries';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { readMarkdownFile } from 'utils/markdown/read-markdown-file';
-import { extractMdxTableOfContents } from 'utils/markdown/table-of-contents';
-import markdownToHtml from 'utils/md';
 
 export const dynamicParams = false;
 export const generateStaticParams = getAllPostIds;

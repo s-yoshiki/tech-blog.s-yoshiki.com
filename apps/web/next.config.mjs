@@ -9,6 +9,7 @@ const nextConfig = {
   basePath,
   reactStrictMode: true,
   trailingSlash: true,
+  transpilePackages: ['@repo/blog-content', '@repo/ui'],
 };
 
 const withMDX = createMDX({

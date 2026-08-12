@@ -1,4 +1,4 @@
-import type { Posts } from 'types/entry.interface';
+import type { Posts } from '../types/entry.interface';
 import { getYearKey, getYearMonthKey } from './post-normalizer';
 
 const addToGroup = (

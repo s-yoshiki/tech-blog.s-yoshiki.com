@@ -1,8 +1,7 @@
 'use client';
 
-import { Button } from 'components/ui/button';
+import { Button, cn } from '@repo/ui';
 import { search as navigateToSearch } from 'lib/inner-search';
-import { cn } from 'lib/utils';
 import { Search as SearchIcon } from 'lucide-react';
 import { useId, useState } from 'react';
 

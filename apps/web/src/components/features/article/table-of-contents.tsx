@@ -1,7 +1,7 @@
 'use client';
 
+import type { TableOfContentsItem } from '@repo/blog-content';
 import { useEffect, useState } from 'react';
-import type { TableOfContentsItem } from 'utils/markdown/types';
 
 interface Props {
   items: TableOfContentsItem[];

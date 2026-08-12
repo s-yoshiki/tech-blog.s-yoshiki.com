@@ -2,6 +2,7 @@
 
 @source "../app/**/*.{js,ts,jsx,tsx}";
 @source "../components/**/*.{js,ts,jsx,tsx}";
+@source "../../../packages/ui/src/**/*.{js,ts,jsx,tsx}";
 
 /* Dark mode is driven by a `.dark` class on <html>, set before paint by the
    inline script in app/layout.tsx so there is no flash of the wrong theme. */

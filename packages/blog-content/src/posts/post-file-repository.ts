@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
-import type { Posts } from 'types/entry.interface';
+import type { Posts } from '../types/entry.interface';
 
 const POST_DIRECTORY_PATTERN = /^\d{4}$/;
 const POST_FILENAMES = ['index.md', 'index.mdx'] as const;

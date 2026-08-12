@@ -1,4 +1,4 @@
-import PostsManager from 'utils/posts-manager';
+import PostsManager from './manager';
 
 const POSTS_PER_PAGE = 20;
 

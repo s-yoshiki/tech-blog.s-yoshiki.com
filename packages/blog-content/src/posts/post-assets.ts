@@ -1,7 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const POSTS_DIRECTORY = path.join(process.cwd(), 'content/posts');
 const POST_DIRECTORY_PATTERN = /^\d{4}$/;
 const POST_DOCUMENT_PATTERN = /^index\.mdx?$/;
 
@@ -22,14 +21,14 @@ export interface PostAsset {
   id: string;
 }
 
-export const getAllPostAssets = (): PostAsset[] =>
+export const getAllPostAssets = (postsDirectory: string): PostAsset[] =>
   fs
-    .readdirSync(POSTS_DIRECTORY, { withFileTypes: true })
+    .readdirSync(postsDirectory, { withFileTypes: true })
     .filter(
       (entry) => entry.isDirectory() && POST_DIRECTORY_PATTERN.test(entry.name),
     )
     .flatMap((directory) => {
-      const postDirectory = path.join(POSTS_DIRECTORY, directory.name);
+      const postDirectory = path.join(postsDirectory, directory.name);
       return fs
         .readdirSync(postDirectory, { withFileTypes: true })
         .filter(
@@ -53,5 +52,8 @@ export const getAllPostAssets = (): PostAsset[] =>
 export const findPostAsset = (
   id: string,
   asset: string,
+  postsDirectory: string,
 ): PostAsset | undefined =>
-  getAllPostAssets().find((item) => item.id === id && item.asset === asset);
+  getAllPostAssets(postsDirectory).find(
+    (item) => item.id === id && item.asset === asset,
+  );

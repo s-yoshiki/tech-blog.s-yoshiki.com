@@ -1,0 +1,33 @@
+{
+  "name": "@repo/blog-content",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "biome lint src",
+    "format": "biome check --write --formatter-enabled=true --linter-enabled=false --assist-enabled=true src",
+    "format:check": "biome check --formatter-enabled=true --linter-enabled=false --assist-enabled=true src",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@shikijs/rehype": "^4.4.3",
+    "cheerio": "^1.2.0",
+    "github-slugger": "^2.0.0",
+    "gray-matter": "^4.0.3",
+    "rehype-slug": "^6.0.0",
+    "rehype-stringify": "^10.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
+    "unified": "^11.0.5"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.4",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "26.2.0",
+    "typescript": "7.0.2"
+  }
+}

@@ -11,4 +11,14 @@ export const markdownFileToHtml = async (
   return prependTableOfContents(html);
 };
 
-export type { MarkdownFileOptions, RenderedMarkdown } from './types';
+export { readMarkdownFile } from './read-markdown-file';
+export { renderMarkdown } from './render-markdown';
+export {
+  extractMdxTableOfContents,
+  prependTableOfContents,
+} from './table-of-contents';
+export type {
+  MarkdownFileOptions,
+  RenderedMarkdown,
+  TableOfContentsItem,
+} from './types';
