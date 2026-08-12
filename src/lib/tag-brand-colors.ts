@@ -1,4 +1,4 @@
-export interface BrandColor {
+interface BrandColor {
   name: string;
   /** hex without the leading `#`, taken from the brand's primary colour */
   color: string;

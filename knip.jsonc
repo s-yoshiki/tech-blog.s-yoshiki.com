@@ -1,0 +1,11 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  // Posts are discovered by the runtime filesystem repository, not imports.
+  "ignoreFiles": ["content/posts/**"],
+  // These rules are loaded by the textlint GitHub Actions workflow.
+  "ignoreDependencies": [
+    "textlint-rule-max-ten",
+    "textlint-rule-no-mix-dearu-desumasu",
+    "textlint-rule-spellcheck-tech-word"
+  ]
+}

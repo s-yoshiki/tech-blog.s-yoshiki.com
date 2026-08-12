@@ -1,4 +1,4 @@
-export const basePath = '';
+const basePath = '';
 
 export const siteMetaData = {
   title: `404 motivation not found`,

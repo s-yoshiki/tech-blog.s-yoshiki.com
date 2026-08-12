@@ -20,7 +20,7 @@ const EMPTY_POST: Posts = {
   filepath: '',
 };
 
-export class PostsManager {
+class PostsManager {
   private readonly data: Posts[];
   private readonly index: PostIndex;
 
