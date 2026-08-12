@@ -1,6 +1,6 @@
 import PostsManager from 'utils/posts-manager';
 
-export const POSTS_PER_PAGE = 20;
+const POSTS_PER_PAGE = 20;
 
 export const getHomePageData = () => ({
   posts: PostsManager.getData(),

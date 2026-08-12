@@ -35,12 +35,3 @@ export const pageview = (path: string) => {
     page_location: new URL(path, window.location.origin).href,
   });
 };
-
-// GAイベントを発火させる
-export const event = ({ action, category, label, value = '' }: any) => {
-  window.gtag('event', action, {
-    event_category: category,
-    event_label: JSON.stringify(label),
-    value,
-  });
-};
