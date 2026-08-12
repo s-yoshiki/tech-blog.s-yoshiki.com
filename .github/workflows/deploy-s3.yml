@@ -47,13 +47,13 @@ jobs:
         run: pnpm build
 
       - name: Generate redirect pages
-        run: node tools/redirect/generater.js
+        run: pnpm generate:redirects
 
       - name: Upload file to S3
         env:
           S3_CONTENTS_BUCKET: ${{ vars.S3_CONTENTS_BUCKET }}
         run: |
-          aws s3 sync ./out "s3://$S3_CONTENTS_BUCKET/" --delete --quiet
+          aws s3 sync ./apps/web/out "s3://$S3_CONTENTS_BUCKET/" --delete --quiet
 
       - name: Invalidate CloudFront cache
         env:

@@ -1,5 +1,5 @@
-import { Bot } from 'lucide-react';
 import { cn } from 'lib/utils';
+import { Bot } from 'lucide-react';
 
 interface Props {
   compact?: boolean;
@@ -7,7 +7,10 @@ interface Props {
 }
 
 /** A consistent disclosure for posts whose front matter has aiGenerated: true. */
-export default function AIGeneratedBadge({ compact = false, className }: Props) {
+export default function AIGeneratedBadge({
+  compact = false,
+  className,
+}: Props) {
   return (
     <span
       className={cn(

@@ -12,7 +12,7 @@
 `index.mdx` のどちらか一方を配置できます。
 
 ```text
-content/posts/
+apps/web/content/posts/
 └── 0336/
     ├── index.mdx
     └── photo.jpg
@@ -40,5 +40,9 @@ aiGenerated: true
 pnpm dev
 pnpm build
 ```
+
+ルートは pnpm workspace と Turborepo で管理しています。ブログ本体は
+`apps/web` にあり、ルートから実行したコマンドは workspace ごとのタスクとして
+実行されます。
 
 デモ: <https://tech-blog.s-yoshiki.com>
