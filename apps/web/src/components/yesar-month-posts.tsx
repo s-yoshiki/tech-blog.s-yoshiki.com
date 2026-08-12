@@ -1,12 +1,9 @@
 'use client';
 
+import type { IGroupByItems, IGroupByYearMonthItems } from '@repo/blog-content';
 import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
-import type {
-  IGroupByItems,
-  IGroupByYearMonthItems,
-} from 'types/entry.interface';
 
 interface YearMonthPostsProps {
   items: IGroupByYearMonthItems[];

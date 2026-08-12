@@ -1,4 +1,4 @@
-import type { Posts } from 'types/entry.interface';
+import type { Posts } from '../types/entry.interface';
 
 interface ScoredPost {
   post: Posts;

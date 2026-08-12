@@ -1,4 +1,4 @@
-import type { Posts } from 'types/entry.interface';
+import type { Posts } from '@repo/blog-content';
 import Card from './card';
 
 interface EntryBandProp {

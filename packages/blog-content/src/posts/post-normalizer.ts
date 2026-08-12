@@ -1,12 +1,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { publicRuntimeConfig } from 'config/site-config';
-import type { Posts } from 'types/entry.interface';
+import type { Posts } from '../types/entry.interface';
 
 const THUMBNAIL_DIR = 'images/thumbnail';
 const FALLBACK_THUMBNAIL = 'no-image.png';
 
-const publicThumbnailDir = path.join(process.cwd(), 'public', THUMBNAIL_DIR);
+export interface PostNormalizationOptions {
+  basePath: string;
+  publicThumbnailDirectory: string;
+}
 
 /**
  * Front matter points at a repository-relative path; the served asset lives in
@@ -15,18 +17,26 @@ const publicThumbnailDir = path.join(process.cwd(), 'public', THUMBNAIL_DIR);
  * an `onError` handler in the browser (which would force every card to ship as
  * a client component).
  */
-const resolveCoverImage = (coverImage: string): string => {
+const resolveCoverImage = (
+  coverImage: string,
+  options: PostNormalizationOptions,
+): string => {
   const filename = path.basename(coverImage);
   const exists =
-    filename !== '' && fs.existsSync(path.join(publicThumbnailDir, filename));
-  return `${publicRuntimeConfig.basePath}/${THUMBNAIL_DIR}/${
+    filename !== '' &&
+    fs.existsSync(path.join(options.publicThumbnailDirectory, filename));
+  const basePath = options.basePath.replace(/\/$/, '');
+  return `${basePath}/${THUMBNAIL_DIR}/${
     exists ? filename : FALLBACK_THUMBNAIL
   }`;
 };
 
-export const normalizePost = (post: Posts): Posts => ({
+export const normalizePost = (
+  post: Posts,
+  options: PostNormalizationOptions,
+): Posts => ({
   ...post,
-  coverImage: resolveCoverImage(post.coverImage),
+  coverImage: resolveCoverImage(post.coverImage, options),
   tags: [...new Set(post.tags)],
 });
 

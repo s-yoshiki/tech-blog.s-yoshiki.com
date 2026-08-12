@@ -1,14 +1,20 @@
-import path from 'node:path';
-import type {
-  IGroupByItems,
-  IGroupByYearMonthItems,
-  Posts,
-} from 'types/entry.interface';
 import { POPULAR_POST_PATHS } from './posts/popular-post-paths';
 import { PostFileRepository } from './posts/post-file-repository';
 import { PostIndex } from './posts/post-index';
 import { getPostId, normalizePost } from './posts/post-normalizer';
 import { selectRecommendedPosts } from './posts/post-selectors';
+import type {
+  IGroupByItems,
+  IGroupByYearMonthItems,
+  Posts,
+} from './types/entry.interface';
+
+export interface PostsManagerOptions {
+  basePath: string;
+  postsDirectory: string;
+  publicThumbnailDirectory: string;
+  popularPostPaths?: readonly string[];
+}
 
 const EMPTY_POST: Posts = {
   title: '',
@@ -20,12 +26,15 @@ const EMPTY_POST: Posts = {
   filepath: '',
 };
 
-class PostsManager {
+export class PostsManager {
   private readonly data: Posts[];
   private readonly index: PostIndex;
 
-  public constructor(repository: PostFileRepository) {
-    const posts = repository.findAll().map(normalizePost);
+  public constructor(private readonly options: PostsManagerOptions) {
+    const repository = new PostFileRepository(options.postsDirectory);
+    const posts = repository
+      .findAll()
+      .map((post) => normalizePost(post, options));
     this.index = new PostIndex(posts);
     this.data = posts.sort((left, right) => getPostId(right) - getPostId(left));
   }
@@ -108,15 +117,11 @@ class PostsManager {
   }
 
   public getPopularPosts(): Posts[] {
-    return POPULAR_POST_PATHS.map((postPath) => this.findByPath(postPath));
+    const paths = this.options.popularPostPaths ?? POPULAR_POST_PATHS;
+    return paths.map((postPath) => this.findByPath(postPath));
   }
 
   public getRecommendsPosts(tags: string[], maxCount = 12): Posts[] {
     return selectRecommendedPosts(this.data, tags, maxCount);
   }
 }
-
-const postsDirectory = path.join(process.cwd(), 'content/posts');
-const postsManager = new PostsManager(new PostFileRepository(postsDirectory));
-
-export default postsManager;

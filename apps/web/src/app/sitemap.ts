@@ -1,7 +1,7 @@
 import { siteMetaData } from 'config/site-config';
+import PostsManager from 'lib/posts/manager';
 import { getDateParams, getTagParams } from 'lib/posts/queries';
 import type { MetadataRoute } from 'next';
-import PostsManager from 'utils/posts-manager';
 
 export const dynamic = 'force-static';
 

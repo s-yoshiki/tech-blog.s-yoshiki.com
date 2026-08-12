@@ -1,6 +1,6 @@
 import path from 'node:path';
+import { markdownFileToHtml as markdownToHtml } from '@repo/blog-content';
 import type { Metadata } from 'next';
-import markdownToHtml from 'utils/md';
 
 export const metadata: Metadata = { title: 'About' };
 

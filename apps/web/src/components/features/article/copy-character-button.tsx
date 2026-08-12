@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from 'components/ui/button';
+import { Button } from '@repo/ui';
 import { Check, Copy, TriangleAlert } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 

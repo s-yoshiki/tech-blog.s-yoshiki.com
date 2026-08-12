@@ -45,4 +45,18 @@ pnpm build
 `apps/web` にあり、ルートから実行したコマンドは workspace ごとのタスクとして
 実行されます。
 
+## workspace 構成
+
+```text
+apps/web/                 Next.js アプリとサイト固有のコード
+configs/biome/            Biome の共有設定
+configs/tsconfig/         Next.js / Node / React 用 TypeScript 設定
+packages/blog-content/    Markdown と記事インデックス・アセット処理
+packages/ui/              shadcn/ui ベースの共有 UI プリミティブ
+```
+
+共有 UI は `@repo/ui`、記事処理は `@repo/blog-content` として参照します。
+新しいアプリやスクリプトを追加する場合は、サイト固有の処理を `apps/*` に、
+複数 workspace で再利用する処理を `packages/*` に配置してください。
+
 デモ: <https://tech-blog.s-yoshiki.com>

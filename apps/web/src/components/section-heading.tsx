@@ -1,4 +1,4 @@
-import { cn } from 'lib/utils';
+import { cn } from '@repo/ui';
 import type { LucideIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
 

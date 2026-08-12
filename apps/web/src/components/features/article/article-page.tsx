@@ -1,3 +1,9 @@
+import type {
+  IGroupByItems,
+  IGroupByYearMonthItems,
+  Posts,
+  TableOfContentsItem,
+} from '@repo/blog-content';
 import RelationAds from 'components/ads/relations-ads';
 import AIGeneratedBadge from 'components/ai-generated-badge';
 import Author from 'components/author';
@@ -20,12 +26,6 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
-import type {
-  IGroupByItems,
-  IGroupByYearMonthItems,
-  Posts,
-} from 'types/entry.interface';
-import type { TableOfContentsItem } from 'utils/markdown/types';
 import TableOfContents from './table-of-contents';
 import XEmbeds from './x-embeds';
 
