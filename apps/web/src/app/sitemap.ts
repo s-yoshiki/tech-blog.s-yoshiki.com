@@ -27,6 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: toUrl('/') },
     { url: toUrl('/about/') },
+    { url: toUrl('/about/portfolio/') },
     { url: toUrl('/terms/external-transmission/') },
     ...posts,
     ...tags,

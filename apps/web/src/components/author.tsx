@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 const profiles = [
   { label: 'GitHub', href: 'https://github.com/s-yoshiki' },
+  { label: 'X', href: 'https://x.com/s_yoshiki_dev' },
   { label: 'Zenn', href: 'https://zenn.dev/s_yoshiki' },
   { label: 'Qiita', href: 'https://qiita.com/s-yoshiki' },
 ];

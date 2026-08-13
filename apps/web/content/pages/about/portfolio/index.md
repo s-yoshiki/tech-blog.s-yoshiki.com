@@ -10,7 +10,7 @@ path: "/about/portfolio"
 - Name: s-yoshiki
 - Accounts
   - [GitHub: s-yoshiki](https://github.com/s-yoshiki)
-  - [Twitter: @s\_yoshiki\_dev](https://twitter.com/s_yoshiki_dev)
+  - [X: @s\_yoshiki\_dev](https://x.com/s_yoshiki_dev)
   - [Qiita: s-yoshiki](https://qiita.com/s-yoshiki)
   - [Zenn: s_yoshiki](https://zenn.dev/s_yoshiki)
 
@@ -18,14 +18,14 @@ path: "/about/portfolio"
 
 ### 引っ越しなどの面倒な「段取り」を自動で作成するサービス
 
-![](./dandrie.png)
+![](/images/portfolio/dandrie.png)
 
 - **概要**: 引っ越しなどの面倒な「段取り」を自動で作成するサービス「dandrie」
 - **技術**: サーバレス系の技術で構築 (Amplify / S3 / CloudFront / Lambda / DynamoDB)
 
 ### [AWSを利用した静的サイト構築 - tech-blog.s-yoshiki.com](https://tech-blog.s-yoshiki.com/)
 
-![](./tech-blog-s-yoshiki-com.png)
+![](/images/portfolio/tech-blog-s-yoshiki-com.png)
 
 - **概要**: AWS のサービスを活用した [ブログ(https://tech-blog.s-yoshiki.com/)](https://tech-blog.s-yoshiki.com/) およびCI/CDの構築
 - **技術**: AWS / S3 / CloudFront / GitHub Actions / Gatsby / React
