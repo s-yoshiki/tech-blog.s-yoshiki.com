@@ -8,10 +8,12 @@ const links = {
   サイト: [
     { href: '/', label: 'Articles' },
     { href: '/about', label: 'About' },
+    { href: '/about/portfolio', label: 'Portfolio' },
     { href: '/terms/external-transmission', label: '外部送信に関する公表事項' },
   ],
   リンク: [
     { href: 'https://github.com/s-yoshiki', label: 'GitHub', external: true },
+    { href: 'https://x.com/s_yoshiki_dev', label: 'X', external: true },
     { href: 'https://zenn.dev/s_yoshiki', label: 'Zenn', external: true },
     { href: 'https://qiita.com/s-yoshiki', label: 'Qiita', external: true },
   ],

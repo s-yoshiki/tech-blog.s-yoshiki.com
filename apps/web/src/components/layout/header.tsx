@@ -2,6 +2,7 @@
 
 import { Button } from '@repo/ui';
 import GithubIcon from 'components/icons/github';
+import XIcon from 'components/icons/x';
 import Search from 'components/search';
 import { Search as SearchIcon } from 'lucide-react';
 import Link from 'next/link';
@@ -71,6 +72,21 @@ const Header = ({ title }: HeaderProp) => {
             </Link>
           </Button>
           <ThemeToggle />
+          <Button
+            variant="ghost"
+            size="icon"
+            asChild
+            className="hidden sm:inline-flex"
+          >
+            <a
+              href="https://x.com/s_yoshiki_dev"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="X (新しいタブで開く)"
+            >
+              <XIcon className="size-4" />
+            </a>
+          </Button>
           <Button variant="ghost" size="icon" asChild>
             <a
               href="https://github.com/s-yoshiki"
