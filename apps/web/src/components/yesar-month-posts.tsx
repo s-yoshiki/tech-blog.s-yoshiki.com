@@ -28,7 +28,7 @@ const Month = ({ item, year }: MonthProps) => {
   return (
     <li>
       <Link
-        href={`/date/${year}/${key}`}
+        href={`/date/${year}/${key}/`}
         className="flex items-center gap-2 rounded-md py-1.5 pr-2 pl-9 text-muted-foreground text-sm transition-colors hover:bg-muted hover:text-foreground"
       >
         {Number(key)}月
@@ -61,7 +61,7 @@ const Year = ({ item, defaultOpen = false }: YearProps) => {
           />
         </button>
         <Link
-          href={`/date/${item.name}`}
+          href={`/date/${item.name}/`}
           className="flex flex-1 items-center gap-2 rounded-md px-2 py-1.5 font-medium text-sm transition-colors hover:bg-muted"
         >
           {item.name} 年

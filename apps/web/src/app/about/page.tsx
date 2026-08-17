@@ -16,7 +16,7 @@ export default async function Page() {
         <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-4 px-4 py-10 sm:px-6 sm:py-14">
           <h1 className="font-bold text-3xl tracking-tight">About</h1>
           <Button variant="outline" size="sm" asChild>
-            <Link href="/about/portfolio">Portfolio</Link>
+            <Link href="/about/portfolio/">Portfolio</Link>
           </Button>
         </div>
       </header>

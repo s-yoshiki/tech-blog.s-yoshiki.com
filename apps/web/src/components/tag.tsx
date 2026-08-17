@@ -51,7 +51,7 @@ export const TagPill = ({
 /** A tag pill that links to the tag's archive. */
 const Tag = ({ keyword, count, size, className }: TagProps) => (
   <Link
-    href={`/tags/${encodeURIComponent(keyword)}/1`}
+    href={`/tags/${encodeURIComponent(keyword)}/1/`}
     className="inline-flex rounded-md"
   >
     <TagPill
