@@ -36,7 +36,7 @@ const Pagination = ({
     {current > 1 ? (
       <Button variant="outline" size="icon" asChild>
         <Link
-          href={`${basePath}/${current - 1}`}
+          href={`${basePath}/${current - 1}/`}
           rel="prev"
           aria-label="前のページ"
         >
@@ -63,7 +63,7 @@ const Pagination = ({
               asChild
             >
               <Link
-                href={`${basePath}/${page}`}
+                href={`${basePath}/${page}/`}
                 aria-current={page === current ? 'page' : undefined}
                 aria-label={`${page}ページ目`}
                 className="tabular-nums"
@@ -79,7 +79,7 @@ const Pagination = ({
     {current < total ? (
       <Button variant="outline" size="icon" asChild>
         <Link
-          href={`${basePath}/${current + 1}`}
+          href={`${basePath}/${current + 1}/`}
           rel="next"
           aria-label="次のページ"
         >

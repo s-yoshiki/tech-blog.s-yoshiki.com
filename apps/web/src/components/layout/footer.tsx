@@ -7,9 +7,9 @@ interface FooterProp {
 const links = {
   サイト: [
     { href: '/', label: 'Articles' },
-    { href: '/about', label: 'About' },
-    { href: '/about/portfolio', label: 'Portfolio' },
-    { href: '/terms/external-transmission', label: '外部送信に関する公表事項' },
+    { href: '/about/', label: 'About' },
+    { href: '/about/portfolio/', label: 'Portfolio' },
+    { href: '/terms/external-transmission/', label: '外部送信に関する公表事項' },
   ],
   リンク: [
     { href: 'https://github.com/s-yoshiki', label: 'GitHub', external: true },

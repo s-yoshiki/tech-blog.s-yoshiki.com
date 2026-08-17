@@ -12,7 +12,7 @@ const Band = ({ posts }: EntryBandProp) => (
         <Card
           title={post.title}
           date={post.date}
-          href={post.path}
+          href={`${post.path}/`}
           src={post.coverImage}
           tags={post.tags}
           aiGenerated={post.aiGenerated}

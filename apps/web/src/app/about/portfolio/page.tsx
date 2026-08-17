@@ -18,7 +18,7 @@ export default async function Page() {
         <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
           <nav aria-label="パンくずリスト" className="mb-5">
             <Link
-              href="/about"
+              href="/about/"
               className="rounded text-muted-foreground text-sm hover:text-foreground"
             >
               ← About
