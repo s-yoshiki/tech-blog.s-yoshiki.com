@@ -18,12 +18,16 @@ const Ads = (props: AdsenseProps) => {
 
   useEffect(() => {
     try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      if (window.adsbygoogle === undefined) {
+        window.adsbygoogle = [];
+      }
+      window.adsbygoogle.push({});
     } catch (error) {
-      if (process.env.NODE_ENV === 'development')
+      if (process.env.NODE_ENV === 'development') {
         console.error('AdSense initialization failed', error);
+      }
     }
-  }, [pathname]);
+  }, []);
 
   return (
     <div

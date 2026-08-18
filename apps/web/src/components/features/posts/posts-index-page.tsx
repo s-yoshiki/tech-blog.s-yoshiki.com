@@ -5,6 +5,8 @@ import { TagPill } from 'components/tag';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 
+type PageItem = number | { type: 'gap'; after: number };
+
 interface Props {
   title: string;
   posts: Posts[];
@@ -13,15 +15,19 @@ interface Props {
 }
 
 /** Window of numbered pages around the current one, with the ends always shown. */
-const pageWindow = (current: number, total: number): (number | 'gap')[] => {
+const pageWindow = (current: number, total: number): PageItem[] => {
   if (total <= 7) return Array.from({ length: total }, (_, index) => index + 1);
   const pages = new Set([1, total, current - 1, current, current + 1]);
   const sorted = [...pages]
     .filter((page) => page >= 1 && page <= total)
     .sort((a, b) => a - b);
-  return sorted.flatMap((page, index) =>
-    index > 0 && page - sorted[index - 1] > 1 ? ['gap' as const, page] : [page],
-  );
+  return sorted.flatMap((page, index) => {
+    const previousPage = sorted[index - 1];
+    if (previousPage !== undefined && page - previousPage > 1) {
+      return [{ type: 'gap' as const, after: previousPage }, page];
+    }
+    return [page];
+  });
 };
 
 const Pagination = ({
@@ -50,9 +56,9 @@ const Pagination = ({
     )}
 
     <ul className="flex items-center gap-1">
-      {pageWindow(current, total).map((page, index) =>
-        page === 'gap' ? (
-          <li key={`gap-${index}`} className="px-1 text-muted-foreground">
+      {pageWindow(current, total).map((page) =>
+        typeof page === 'object' ? (
+          <li key={`gap-${page.after}`} className="px-1 text-muted-foreground">
             …
           </li>
         ) : (

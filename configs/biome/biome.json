@@ -30,30 +30,53 @@
   "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "linter": {
     "enabled": true,
+    "domains": {
+      "drizzle": "none",
+      "next": "all",
+      "playwright": "none",
+      "project": "none",
+      "qwik": "none",
+      "react": "all",
+      "reactNative": "none",
+      "solid": "none",
+      "svelte": "none",
+      "tailwind": "all",
+      "test": "none",
+      "turborepo": "all",
+      "types": "all",
+      "vue": "none"
+    },
     "rules": {
-      "preset": "recommended",
-      "a11y": {
-        "noStaticElementInteractions": "off",
-        "noSvgWithoutTitle": "off",
-        "useButtonType": "off",
-        "useGenericFontNames": "off",
-        "useKeyWithClickEvents": "off",
-        "useValidAnchor": "off"
-      },
-      "correctness": {
-        "noConstantCondition": "off",
-        "noUnknownMediaFeatureName": "off",
-        "useExhaustiveDependencies": "off"
-      },
-      "security": {
-        "noDangerouslySetInnerHtml": "off"
-      },
-      "suspicious": {
-        "noArrayIndexKey": "off",
-        "noAssignInExpressions": "off"
-      }
+      "preset": "all"
     }
   },
+  "overrides": [
+    {
+      "includes": [
+        "**/src/app/about/page.tsx",
+        "**/src/app/about/portfolio/page.tsx",
+        "**/src/app/page.tsx",
+        "**/src/components/features/article/article-page.tsx",
+        "**/src/components/layout/theme-script.tsx"
+      ],
+      "linter": {
+        "rules": {
+          "security": { "noDangerouslySetInnerHtml": "off" }
+        }
+      }
+    },
+    {
+      "includes": [
+        "**/src/app/layout.tsx",
+        "**/src/components/features/article/article-page.tsx"
+      ],
+      "linter": {
+        "rules": {
+          "correctness": { "useUniqueElementIds": "off" }
+        }
+      }
+    }
+  ],
   "javascript": {
     "formatter": {
       "quoteStyle": "single"
