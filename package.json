@@ -2,7 +2,10 @@
   "name": "tech-blog.s-yoshiki.com",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@11.15.1",
+  "packageManager": "pnpm@12.12.1",
+  "engines": {
+    "node": ">=26.11.1"
+  },
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
@@ -17,6 +20,6 @@
     "generate:redirects": "turbo generate:redirects"
   },
   "devDependencies": {
-    "turbo": "^2.5.5"
+    "turbo": "^2.11.7"
   }
 }
