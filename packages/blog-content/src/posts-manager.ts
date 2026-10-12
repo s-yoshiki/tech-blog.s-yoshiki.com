@@ -13,6 +13,7 @@ export interface PostsManagerOptions {
   basePath: string;
   postsDirectory: string;
   publicThumbnailDirectory: string;
+  postSampleSize?: number;
   popularPostPaths?: readonly string[];
 }
 
@@ -33,7 +34,7 @@ export class PostsManager {
   public constructor(private readonly options: PostsManagerOptions) {
     const repository = new PostFileRepository(options.postsDirectory);
     const posts = repository
-      .findAll()
+      .findAll(options.postSampleSize)
       .map((post) => normalizePost(post, options));
     this.index = new PostIndex(posts);
     this.data = posts.sort((left, right) => getPostId(right) - getPostId(left));

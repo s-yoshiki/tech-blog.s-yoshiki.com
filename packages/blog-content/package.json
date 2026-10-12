@@ -13,7 +13,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@shikijs/rehype": "^4.4.3",
+    "@shikijs/rehype": "^4.5.0",
     "cheerio": "^1.2.0",
     "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.3",
@@ -25,9 +25,9 @@
     "unified": "^11.0.5"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.4",
+    "@biomejs/biome": "2.5.15",
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "26.2.0",
+    "@types/node": "26.6.5",
     "typescript": "7.0.2"
   }
 }

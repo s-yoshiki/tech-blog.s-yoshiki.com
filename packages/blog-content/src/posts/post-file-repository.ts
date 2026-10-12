@@ -19,6 +19,7 @@ const listPostFiles = (directory: string): string[] =>
     .filter(
       (entry) => entry.isDirectory() && POST_DIRECTORY_PATTERN.test(entry.name),
     )
+    .sort((left, right) => left.name.localeCompare(right.name))
     .flatMap((entry) => {
       const postDirectory = path.join(
         /* turbopackIgnore: true */ directory,
@@ -37,8 +38,15 @@ const listPostFiles = (directory: string): string[] =>
 export class PostFileRepository {
   public constructor(private readonly directory: string) {}
 
-  public findAll(): Posts[] {
-    return listPostFiles(this.directory).map((filepath) => {
+  public findAll(limit?: number): Posts[] {
+    const postFiles = listPostFiles(this.directory);
+    let filesToRead = postFiles;
+    if (limit !== undefined) {
+      const sampleSize = Math.max(0, Math.floor(limit));
+      filesToRead = postFiles.slice(Math.max(0, postFiles.length - sampleSize));
+    }
+
+    return filesToRead.map((filepath) => {
       const fileContents = fs.readFileSync(filepath, 'utf8');
       const { data } = matter(fileContents);
       return {
