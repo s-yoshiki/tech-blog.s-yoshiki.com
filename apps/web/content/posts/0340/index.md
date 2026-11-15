@@ -4,6 +4,7 @@ path: "/entry/340"
 date: "2026-11-05 12:00"
 author: "s-yoshiki"
 aiGenerated: true
+coverImage: "../../../images/thumbnail/no-image.png"
 tags: ["url", "uri", "http", "javascript", "仕様"]
 ---
 
