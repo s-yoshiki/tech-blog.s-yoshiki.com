@@ -1,9 +1,51 @@
 packages:
-  - apps/*
-  - configs/*
-  - packages/*
+  - 'apps/*'
+  - 'configs/*'
+  - 'packages/*'
+  - 'infra/*'
+  - 'scripts/*'
+  - 'docs/*'
 
 allowBuilds:
   fsevents: true
   sharp: true
   unrs-resolver: true
+
+catalog:
+  '@mdx-js/loader': '^3.1.1'
+  '@mdx-js/react': '^3.1.1'
+  '@next/mdx': '^16.4.6'
+  '@radix-ui/react-slot': '^1.5.0'
+  '@shikijs/rehype': '^4.6.0'
+  '@tailwindcss/postcss': '^4.3.5'
+  '@types/mdx': '^2.0.14'
+  '@types/node': '^26.0.0'
+  '@types/react': '19.3.0'
+  '@types/react-dom': '19.3.0'
+  'cheerio': '^1.2.0'
+  'class-variance-authority': '^0.7.1'
+  'clsx': '^2.1.1'
+  'github-slugger': '^2.0.0'
+  'gray-matter': '^4.0.3'
+  'lucide-react': '^1.72.0'
+  'next': '16.4.1'
+  'oxfmt': '0.78.0'
+  'oxlint': '1.93.0'
+  'postcss': '^8.5.32'
+  'react': '19.3.0'
+  'react-dom': '19.3.0'
+  'rehype-slug': '^6.0.0'
+  'rehype-stringify': '^10.0.1'
+  'remark-frontmatter': '^5.0.0'
+  'remark-gfm': '^4.0.1'
+  'remark-parse': '^11.0.0'
+  'remark-rehype': '^11.1.2'
+  'tailwind-merge': '^3.7.0'
+  'tailwindcss': '^4.3.5'
+  'textlint': '^15.8.0'
+  'textlint-rule-max-ten': '^5.0.0'
+  'textlint-rule-no-mix-dearu-desumasu': '^6.0.4'
+  'textlint-rule-spellcheck-tech-word': '^5.0.0'
+  'turbo': '2.11.11'
+  'typescript': '>=7.0.0'
+  'unified': '^11.0.5'

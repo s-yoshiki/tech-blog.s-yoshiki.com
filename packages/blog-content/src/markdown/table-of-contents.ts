@@ -10,10 +10,7 @@ const extractHeadings = (html: string): TableOfContentsItem[] => {
       id: heading.attribs.id,
       label: document(heading).text().trim(),
     }))
-    .filter(
-      (item): item is TableOfContentsItem =>
-        Boolean(item.id) && Boolean(item.label),
-    );
+    .filter((item): item is TableOfContentsItem => Boolean(item.id) && Boolean(item.label));
 };
 
 export const prependTableOfContents = (html: string): RenderedMarkdown => {
@@ -36,9 +33,7 @@ const markdownHeadingToText = (heading: string): string =>
     .text()
     .trim();
 
-export const extractMdxTableOfContents = (
-  source: string,
-): TableOfContentsItem[] => {
+export const extractMdxTableOfContents = (source: string): TableOfContentsItem[] => {
   const slugger = new GithubSlugger();
   return Array.from(source.matchAll(/^##[ \t]+(.+?)[ \t]*#*[ \t]*$/gm))
     .map((match) => markdownHeadingToText(match[1]))

@@ -16,8 +16,7 @@ export default async function Page({ params }: Props) {
   const { tag, page } = await params;
   const current = Number(page);
   const { posts, pageCount } = getTagPageData(decodeURIComponent(tag), current);
-  if (!Number.isInteger(current) || current < 1 || current > pageCount)
-    notFound();
+  if (!Number.isInteger(current) || current < 1 || current > pageCount) notFound();
   return (
     <PostsIndexPage
       title="タグの記事"

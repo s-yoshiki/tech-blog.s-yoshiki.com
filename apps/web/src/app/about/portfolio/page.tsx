@@ -7,10 +7,7 @@ export const metadata: Metadata = { title: 'Portfolio' };
 
 export default async function Page() {
   const content = await markdownToHtml({
-    filepath: path.join(
-      process.cwd(),
-      'content/pages/about/portfolio/index.md',
-    ),
+    filepath: path.join(process.cwd(), 'content/pages/about/portfolio/index.md'),
   });
   return (
     <article>

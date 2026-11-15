@@ -3,11 +3,7 @@ import { PostFileRepository } from './posts/post-file-repository';
 import { PostIndex } from './posts/post-index';
 import { getPostId, normalizePost } from './posts/post-normalizer';
 import { selectRecommendedPosts } from './posts/post-selectors';
-import type {
-  IGroupByItems,
-  IGroupByYearMonthItems,
-  Posts,
-} from './types/entry.interface';
+import type { IGroupByItems, IGroupByYearMonthItems, Posts } from './types/entry.interface';
 
 export interface PostsManagerOptions {
   basePath: string;
@@ -62,19 +58,14 @@ export class PostsManager {
       counts: this.findByTag(name).length,
     }));
     const direction = sort === 'asc' ? 1 : -1;
-    return counts.sort(
-      (left, right) => direction * (left.counts - right.counts),
-    );
+    return counts.sort((left, right) => direction * (left.counts - right.counts));
   }
 
   public getAllTagNames(): string[] {
     return this.index.getTagNames();
   }
 
-  public findByYearMonth(
-    year: string | number,
-    month: string | number,
-  ): Posts[] {
+  public findByYearMonth(year: string | number, month: string | number): Posts[] {
     return this.index.findByYearMonth(year, month);
   }
 
@@ -84,11 +75,7 @@ export class PostsManager {
 
   public getCountsGroupYearMonth(): IGroupByYearMonthItems[] {
     const dates: IGroupByYearMonthItems[] = [];
-    for (
-      let year = this.getPostsStartYear();
-      year <= new Date().getFullYear();
-      year++
-    ) {
+    for (let year = this.getPostsStartYear(); year <= new Date().getFullYear(); year++) {
       const months = Array.from({ length: 12 }, (_, index) => index + 1)
         .map((month) => ({
           name: `${year}-${String(month).padStart(2, '0')}`,

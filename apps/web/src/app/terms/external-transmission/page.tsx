@@ -16,13 +16,8 @@ export default function Page() {
   return (
     <article className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
       <header className="border-border border-b pb-8">
-        <h1 className="font-bold text-2xl tracking-tight sm:text-3xl">
-          外部送信に関する公表事項
-        </h1>
-        <time
-          dateTime="2023-06-20"
-          className="mt-3 block text-muted-foreground text-sm"
-        >
+        <h1 className="font-bold text-2xl tracking-tight sm:text-3xl">外部送信に関する公表事項</h1>
+        <time dateTime="2023-06-20" className="mt-3 block text-muted-foreground text-sm">
           2023-06-20
         </time>
       </header>
@@ -48,14 +43,10 @@ export default function Page() {
             <h3>事業者情報</h3>
             <ul>
               <li>
-                <a href="https://policies.google.com/privacy">
-                  プライバシーポリシー
-                </a>
+                <a href="https://policies.google.com/privacy">プライバシーポリシー</a>
               </li>
               <li>
-                <a href="https://tools.google.com/dlpage/gaoptout/">
-                  オプトアウト
-                </a>
+                <a href="https://tools.google.com/dlpage/gaoptout/">オプトアウト</a>
               </li>
             </ul>
           </section>

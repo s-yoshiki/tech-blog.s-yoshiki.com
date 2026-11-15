@@ -1,23 +1,13 @@
 'use client';
 
-import type {
-  IGroupByItems,
-  IGroupByYearMonthItems,
-  Posts,
-} from '@repo/blog-content';
+import type { IGroupByItems, IGroupByYearMonthItems, Posts } from '@repo/blog-content';
 import { Button } from '@repo/ui';
 import Author from 'components/author';
 import PostsBand from 'components/posts-band';
 import SectionHeading from 'components/section-heading';
 import Tag from 'components/tag';
 import YearMonthPosts from 'components/yesar-month-posts';
-import {
-  CalendarDays,
-  Hash,
-  Newspaper,
-  TrendingUp,
-  UserRound,
-} from 'lucide-react';
+import { CalendarDays, Hash, Newspaper, TrendingUp, UserRound } from 'lucide-react';
 import { useState } from 'react';
 
 const PAGE_SIZE = 15;
@@ -50,10 +40,7 @@ export default function HomePage({ posts, popular, tags, dates }: Props) {
         <PostsBand posts={visible} />
         {visiblePages < pageCount && (
           <div className="mt-8 flex justify-center">
-            <Button
-              variant="outline"
-              onClick={() => setVisiblePages((value) => value + 1)}
-            >
+            <Button variant="outline" onClick={() => setVisiblePages((value) => value + 1)}>
               さらに記事を表示
             </Button>
           </div>
@@ -63,9 +50,7 @@ export default function HomePage({ posts, popular, tags, dates }: Props) {
       {popular.length > 0 && (
         <section className="border-border border-t bg-card">
           <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-            <SectionHeading icon={TrendingUp}>
-              よく読まれている記事
-            </SectionHeading>
+            <SectionHeading icon={TrendingUp}>よく読まれている記事</SectionHeading>
             <PostsBand posts={popular} />
           </div>
         </section>

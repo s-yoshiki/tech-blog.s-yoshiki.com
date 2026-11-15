@@ -24,10 +24,7 @@ const Search = ({ onSearch, variant = 'hero', className }: SearchProps) => {
   };
 
   return (
-    <search
-      id={isHero ? 'search' : undefined}
-      className={cn('block w-full', className)}
-    >
+    <search id={isHero ? 'search' : undefined} className={cn('block w-full', className)}>
       <form onSubmit={submit} className="relative w-full">
         <label htmlFor={inputId} className="sr-only">
           記事を検索
@@ -51,11 +48,7 @@ const Search = ({ onSearch, variant = 'hero', className }: SearchProps) => {
           )}
         />
         {isHero && (
-          <Button
-            type="submit"
-            size="sm"
-            className="-translate-y-1/2 absolute top-1/2 right-2"
-          >
+          <Button type="submit" size="sm" className="-translate-y-1/2 absolute top-1/2 right-2">
             検索
           </Button>
         )}

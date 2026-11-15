@@ -21,31 +21,22 @@ const resolveCoverImage = (
   coverImage: string | null | undefined,
   options: PostNormalizationOptions,
 ): string => {
-  const filename =
-    typeof coverImage === 'string' ? path.basename(coverImage) : '';
+  const filename = typeof coverImage === 'string' ? path.basename(coverImage) : '';
   const exists =
-    filename !== '' &&
-    fs.existsSync(path.join(options.publicThumbnailDirectory, filename));
+    filename !== '' && fs.existsSync(path.join(options.publicThumbnailDirectory, filename));
   const basePath = options.basePath.replace(/\/$/, '');
-  return `${basePath}/${THUMBNAIL_DIR}/${
-    exists ? filename : FALLBACK_THUMBNAIL
-  }`;
+  return `${basePath}/${THUMBNAIL_DIR}/${exists ? filename : FALLBACK_THUMBNAIL}`;
 };
 
-export const normalizePost = (
-  post: Posts,
-  options: PostNormalizationOptions,
-): Posts => ({
+export const normalizePost = (post: Posts, options: PostNormalizationOptions): Posts => ({
   ...post,
   coverImage: resolveCoverImage(post.coverImage, options),
   tags: [...new Set(post.tags)],
 });
 
-export const getPostId = (post: Posts): number =>
-  Number(post.path.split('/').pop());
+export const getPostId = (post: Posts): number => Number(post.path.split('/').pop());
 
-export const getYearKey = (date: string): string =>
-  String(new Date(date).getFullYear());
+export const getYearKey = (date: string): string => String(new Date(date).getFullYear());
 
 export const getYearMonthKey = (date: string): string => {
   const value = new Date(date);

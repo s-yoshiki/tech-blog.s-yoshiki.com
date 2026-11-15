@@ -9,28 +9,27 @@
     "./lib/*": "./src/lib/*.ts"
   },
   "scripts": {
-    "lint": "biome lint src",
-    "format": "biome check --write --formatter-enabled=true --linter-enabled=false --assist-enabled=true src",
-    "format:check": "biome check --formatter-enabled=true --linter-enabled=false --assist-enabled=true src",
+    "lint": "oxlint",
+    "format": "oxfmt src package.json",
+    "format:check": "oxfmt --check src package.json",
     "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "catalog:",
+    "class-variance-authority": "catalog:",
+    "clsx": "catalog:",
+    "tailwind-merge": "catalog:"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "typescript": "catalog:"
   },
   "peerDependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
-  },
-  "dependencies": {
-    "@radix-ui/react-slot": "^1.5.0",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "tailwind-merge": "^3.7.0"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "2.5.15",
-    "@repo/typescript-config": "workspace:*",
-    "@types/react": "19.3.0",
-    "@types/react-dom": "19.3.0",
-    "react": "19.3.0",
-    "react-dom": "19.3.0",
-    "typescript": "7.0.2"
   }
 }

@@ -20,7 +20,5 @@ export default async function Page({
   const { year, month } = await params;
   const posts = PostsManager.findByYearMonth(year, month);
   if (!posts.length) notFound();
-  return (
-    <PostsIndexPage title={`${year}年${Number(month)}月の記事`} posts={posts} />
-  );
+  return <PostsIndexPage title={`${year}年${Number(month)}月の記事`} posts={posts} />;
 }

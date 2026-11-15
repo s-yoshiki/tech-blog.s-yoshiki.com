@@ -34,20 +34,14 @@ const Header = ({ title }: HeaderProp) => {
           <span className="hidden truncate text-sm sm:inline">{title}</span>
         </Link>
 
-        <Search
-          variant="compact"
-          className="mx-auto hidden max-w-sm md:block"
-        />
+        <Search variant="compact" className="mx-auto hidden max-w-sm md:block" />
 
         <nav
           className="ml-auto flex items-center gap-0.5 md:ml-0"
           aria-label="メインナビゲーション"
         >
           {navItems.map((item) => {
-            const isCurrent =
-              item.href === '/'
-                ? pathname === '/'
-                : pathname.startsWith(item.href);
+            const isCurrent = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
             return (
               <Button
                 key={item.href}
@@ -56,10 +50,7 @@ const Header = ({ title }: HeaderProp) => {
                 asChild
                 className={isCurrent ? 'text-foreground' : undefined}
               >
-                <Link
-                  href={item.href}
-                  aria-current={isCurrent ? 'page' : undefined}
-                >
+                <Link href={item.href} aria-current={isCurrent ? 'page' : undefined}>
                   {item.label}
                 </Link>
               </Button>
@@ -72,12 +63,7 @@ const Header = ({ title }: HeaderProp) => {
             </Link>
           </Button>
           <ThemeToggle />
-          <Button
-            variant="ghost"
-            size="icon"
-            asChild
-            className="hidden sm:inline-flex"
-          >
+          <Button variant="ghost" size="icon" asChild className="hidden sm:inline-flex">
             <a
               href="https://x.com/s_yoshiki_dev"
               target="_blank"

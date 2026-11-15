@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @source "../app/**/*.{js,ts,jsx,tsx}";
 @source "../components/**/*.{js,ts,jsx,tsx}";
@@ -89,11 +89,9 @@
   --header-height: 3.5rem;
 
   --font-sans-stack:
-    system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Noto Sans JP",
-    Meiryo, sans-serif;
+    system-ui, -apple-system, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', Meiryo, sans-serif;
   --font-mono-stack:
-    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
-    monospace;
+    ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
 
   /* --- markdown (GitHub stylesheet) tokens --- */
   --md-fg: #16181d;

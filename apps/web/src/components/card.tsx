@@ -35,10 +35,7 @@ const Card = ({ src, title, date, href, tags, aiGenerated }: CardProps) => (
     <div className="flex min-w-0 flex-1 flex-col">
       <div className="relative z-10 flex items-start justify-between gap-2">
         <div className="flex min-w-0 items-center gap-2">
-          <time
-            dateTime={getYMD(date)}
-            className="text-muted-foreground text-xs tabular-nums"
-          >
+          <time dateTime={getYMD(date)} className="text-muted-foreground text-xs tabular-nums">
             {getYMD(date)}
           </time>
           {aiGenerated && <AIGeneratedBadge compact />}

@@ -10,7 +10,7 @@ export const initializeGoogleAnalytics = () => {
     // Pushing a spread array instead makes GA4 silently drop every command
     // (no beacons are sent), so the stub must forward `arguments` as-is.
     const gtag: Window['gtag'] = function () {
-      // biome-ignore lint/complexity/noArguments: gtag stub must push the native `arguments`
+      // gtag stub must push the native `arguments`
       window.dataLayer?.push(arguments);
     };
     window.gtag = gtag;
