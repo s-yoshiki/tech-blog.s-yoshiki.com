@@ -27,7 +27,7 @@ const Ads = (props: AdsenseProps) => {
         console.error('AdSense initialization failed', error);
       }
     }
-  }, []);
+  }, [pathname]);
 
   return (
     <div
