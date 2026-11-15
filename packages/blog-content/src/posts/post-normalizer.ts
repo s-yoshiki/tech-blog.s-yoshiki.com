@@ -18,10 +18,11 @@ export interface PostNormalizationOptions {
  * a client component).
  */
 const resolveCoverImage = (
-  coverImage: string,
+  coverImage: string | null | undefined,
   options: PostNormalizationOptions,
 ): string => {
-  const filename = path.basename(coverImage);
+  const filename =
+    typeof coverImage === 'string' ? path.basename(coverImage) : '';
   const exists =
     filename !== '' &&
     fs.existsSync(path.join(options.publicThumbnailDirectory, filename));
