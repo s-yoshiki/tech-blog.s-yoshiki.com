@@ -7,8 +7,6 @@ export const THEME_STORAGE_KEY = 'theme';
  */
 const script = `(function(){try{var s=localStorage.getItem('${THEME_STORAGE_KEY}');var d=s==='dark'||(s!=='light'&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.classList.toggle('dark',d);document.documentElement.style.colorScheme=d?'dark':'light';}catch(e){}})();`;
 
-const ThemeScript = () => (
-  <script dangerouslySetInnerHTML={{ __html: script }} />
-);
+const ThemeScript = () => <script dangerouslySetInnerHTML={{ __html: script }} />;
 
 export default ThemeScript;

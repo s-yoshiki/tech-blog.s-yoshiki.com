@@ -1,14 +1,13 @@
 import type { Posts } from '../types/entry.interface';
 import { getYearKey, getYearMonthKey } from './post-normalizer';
 
-const addToGroup = (
-  groups: Map<string, Posts[]>,
-  key: string,
-  post: Posts,
-  prepend = false,
-) => {
+const addToGroup = (groups: Map<string, Posts[]>, key: string, post: Posts, prepend = false) => {
   const posts = groups.get(key) ?? [];
-  prepend ? posts.unshift(post) : posts.push(post);
+  if (prepend) {
+    posts.unshift(post);
+  } else {
+    posts.push(post);
+  }
   groups.set(key, posts);
 };
 
@@ -54,10 +53,7 @@ export class PostIndex {
     return this.byYear.get(String(year)) ?? [];
   }
 
-  public findByYearMonth(
-    year: string | number,
-    month: string | number,
-  ): Posts[] {
+  public findByYearMonth(year: string | number, month: string | number): Posts[] {
     const monthKey = String(Number(month)).padStart(2, '0');
     return this.byYearMonth.get(`${year}-${monthKey}`) ?? [];
   }

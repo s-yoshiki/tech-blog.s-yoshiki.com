@@ -18,9 +18,7 @@ interface YearProps {
 }
 
 const Count = ({ value }: { value: number }) => (
-  <span className="ml-auto text-muted-foreground text-xs tabular-nums">
-    {value}
-  </span>
+  <span className="ml-auto text-muted-foreground text-xs tabular-nums">{value}</span>
 );
 
 const Month = ({ item, year }: MonthProps) => {

@@ -24,16 +24,12 @@ export interface PostAsset {
 export const getAllPostAssets = (postsDirectory: string): PostAsset[] =>
   fs
     .readdirSync(postsDirectory, { withFileTypes: true })
-    .filter(
-      (entry) => entry.isDirectory() && POST_DIRECTORY_PATTERN.test(entry.name),
-    )
+    .filter((entry) => entry.isDirectory() && POST_DIRECTORY_PATTERN.test(entry.name))
     .flatMap((directory) => {
       const postDirectory = path.join(postsDirectory, directory.name);
       return fs
         .readdirSync(postDirectory, { withFileTypes: true })
-        .filter(
-          (entry) => entry.isFile() && !POST_DOCUMENT_PATTERN.test(entry.name),
-        )
+        .filter((entry) => entry.isFile() && !POST_DOCUMENT_PATTERN.test(entry.name))
         .flatMap((entry) => {
           const extension = path.extname(entry.name).toLowerCase();
           const contentType = CONTENT_TYPES[extension];
@@ -54,6 +50,4 @@ export const findPostAsset = (
   asset: string,
   postsDirectory: string,
 ): PostAsset | undefined =>
-  getAllPostAssets(postsDirectory).find(
-    (item) => item.id === id && item.asset === asset,
-  );
+  getAllPostAssets(postsDirectory).find((item) => item.id === id && item.asset === asset);

@@ -51,9 +51,7 @@ interface Props {
  * they are.
  */
 const estimateReadingMinutes = (html: string): number => {
-  const text = html
-    .replace(/<(script|style)[\s\S]*?<\/\1>/gi, '')
-    .replace(/<[^>]+>/g, '');
+  const text = html.replace(/<(script|style)[\s\S]*?<\/\1>/gi, '').replace(/<[^>]+>/g, '');
   return Math.max(1, Math.ceil(text.length / 500));
 };
 
@@ -83,14 +81,7 @@ const ArticleCollection = ({
     </section>
   ) : null;
 
-export default function ArticlePage({
-  post,
-  latest,
-  popular,
-  recommends,
-  tags,
-  dates,
-}: Props) {
+export default function ArticlePage({ post, latest, popular, recommends, tags, dates }: Props) {
   const readingMinutes = estimateReadingMinutes(post.readingText);
   const publishedOn = post.date.split(' ')[0];
   const isOlderArticle = isOlderThanTwoYears(publishedOn);
@@ -132,8 +123,7 @@ export default function ArticlePage({
                   <time dateTime={publishedOn}>{publishedOn}</time>
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <Clock3 aria-hidden="true" className="size-4" />約{' '}
-                  {readingMinutes} 分
+                  <Clock3 aria-hidden="true" className="size-4" />約 {readingMinutes} 分
                 </span>
               </div>
               {post.aiGenerated && (
@@ -176,10 +166,7 @@ export default function ArticlePage({
                 aria-label="古い記事についての注意"
                 className="mb-8 flex gap-3 rounded-xl border border-warning/40 bg-warning/10 p-4 text-sm"
               >
-                <TriangleAlert
-                  aria-hidden="true"
-                  className="mt-0.5 size-5 shrink-0 text-warning"
-                />
+                <TriangleAlert aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-warning" />
                 <p>
                   この記事は公開から2年以上経過しています。画面、料金、ライブラリや
                   サービスの仕様が現在と異なる可能性があるため、公式資料も併せて確認してください。
@@ -218,12 +205,7 @@ export default function ArticlePage({
       </section>
 
       <ArticleCollection title="最新の記事" icon={Newspaper} posts={latest} />
-      <ArticleCollection
-        title="よく読まれている記事"
-        icon={TrendingUp}
-        posts={popular}
-        muted
-      />
+      <ArticleCollection title="よく読まれている記事" icon={TrendingUp} posts={popular} muted />
 
       <section className="border-border border-t">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[minmax(0,1fr)_320px]">

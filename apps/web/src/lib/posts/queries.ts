@@ -35,9 +35,7 @@ export const getTagPageData = (tag: string, page: number) => {
 
 export const getTagParams = () =>
   PostsManager.getAllTagNames().flatMap((tag) => {
-    const pageCount = Math.ceil(
-      PostsManager.findByTag(tag).length / POSTS_PER_PAGE,
-    );
+    const pageCount = Math.ceil(PostsManager.findByTag(tag).length / POSTS_PER_PAGE);
     return Array.from({ length: pageCount }, (_, index) => ({
       tag,
       page: String(index + 1),

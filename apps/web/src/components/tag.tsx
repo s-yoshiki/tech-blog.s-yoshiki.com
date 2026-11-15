@@ -20,12 +20,7 @@ const sizes = {
  * img.shields.io, which meant one third-party request per tag (~45 on the home
  * page), no dark-mode support and layout shift while they loaded.
  */
-export const TagPill = ({
-  keyword,
-  count,
-  size = 'sm',
-  className,
-}: TagProps) => {
+export const TagPill = ({ keyword, count, size = 'sm', className }: TagProps) => {
   const color = getTagColor(keyword);
   return (
     <span
@@ -41,27 +36,19 @@ export const TagPill = ({
         style={color ? { backgroundColor: color } : undefined}
       />
       {keyword}
-      {count !== undefined && (
-        <span className="tabular-nums opacity-60">{count}</span>
-      )}
+      {count !== undefined && <span className="tabular-nums opacity-60">{count}</span>}
     </span>
   );
 };
 
 /** A tag pill that links to the tag's archive. */
 const Tag = ({ keyword, count, size, className }: TagProps) => (
-  <Link
-    href={`/tags/${encodeURIComponent(keyword)}/1/`}
-    className="inline-flex rounded-md"
-  >
+  <Link href={`/tags/${encodeURIComponent(keyword)}/1/`} className="inline-flex rounded-md">
     <TagPill
       keyword={keyword}
       count={count}
       size={size}
-      className={cn(
-        'hover:border-border-strong hover:text-foreground',
-        className,
-      )}
+      className={cn('hover:border-border-strong hover:text-foreground', className)}
     />
   </Link>
 );

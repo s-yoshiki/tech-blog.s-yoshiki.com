@@ -7,9 +7,7 @@ export default function NotFound() {
       <span className="grid size-14 place-items-center rounded-2xl bg-primary font-mono text-primary-foreground text-sm">
         404
       </span>
-      <h1 className="mt-6 font-bold text-2xl tracking-tight sm:text-3xl">
-        ページが見つかりません
-      </h1>
+      <h1 className="mt-6 font-bold text-2xl tracking-tight sm:text-3xl">ページが見つかりません</h1>
       <p className="mt-3 text-muted-foreground">
         URLが変更されたか、ページが削除された可能性があります。
       </p>

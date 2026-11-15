@@ -22,10 +22,7 @@ export default function Page() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(websiteStructuredData).replace(
-            /</g,
-            '\\u003c',
-          ),
+          __html: JSON.stringify(websiteStructuredData).replace(/</g, '\\u003c'),
         }}
       />
       <HomePage {...getHomePageData()} />

@@ -63,10 +63,8 @@ export default function CopyCharacterButton({ codePoint }: Props) {
     resetTimer.current = setTimeout(() => setStatus('idle'), 1800);
   };
 
-  const text =
-    status === 'copied' ? 'コピー済み' : status === 'error' ? '失敗' : 'コピー';
-  const Icon =
-    status === 'copied' ? Check : status === 'error' ? TriangleAlert : Copy;
+  const text = status === 'copied' ? 'コピー済み' : status === 'error' ? '失敗' : 'コピー';
+  const Icon = status === 'copied' ? Check : status === 'error' ? TriangleAlert : Copy;
 
   return (
     <Button

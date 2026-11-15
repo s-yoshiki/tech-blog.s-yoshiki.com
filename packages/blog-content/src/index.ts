@@ -1,8 +1,4 @@
-export type {
-  MarkdownFileOptions,
-  RenderedMarkdown,
-  TableOfContentsItem,
-} from './markdown';
+export type { MarkdownFileOptions, RenderedMarkdown, TableOfContentsItem } from './markdown';
 export {
   extractMdxTableOfContents,
   markdownFileToHtml,
@@ -17,8 +13,4 @@ export { PostFileRepository } from './posts/post-file-repository';
 export type { PostNormalizationOptions } from './posts/post-normalizer';
 export type { PostsManagerOptions } from './posts-manager';
 export { PostsManager } from './posts-manager';
-export type {
-  IGroupByItems,
-  IGroupByYearMonthItems,
-  Posts,
-} from './types/entry.interface';
+export type { IGroupByItems, IGroupByYearMonthItems, Posts } from './types/entry.interface';

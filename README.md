@@ -49,7 +49,7 @@ pnpm build
 
 ```text
 apps/web/                 Next.js アプリとサイト固有のコード
-configs/biome/            Biome の共有設定
+configs/Oxlint / Oxfmt/            Oxlint / Oxfmt の共有設定
 configs/tsconfig/         Next.js / Node / React 用 TypeScript 設定
 packages/blog-content/    Markdown と記事インデックス・アセット処理
 packages/ui/              shadcn/ui ベースの共有 UI プリミティブ

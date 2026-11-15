@@ -31,9 +31,7 @@ const ThemeToggle = () => {
       variant="ghost"
       size="icon"
       onClick={toggle}
-      aria-label={
-        mounted && isDark ? 'ライトモードに切り替え' : 'ダークモードに切り替え'
-      }
+      aria-label={mounted && isDark ? 'ライトモードに切り替え' : 'ダークモードに切り替え'}
       aria-pressed={mounted ? isDark : undefined}
     >
       {/* Rendered with CSS so the icon is correct on the server too. */}

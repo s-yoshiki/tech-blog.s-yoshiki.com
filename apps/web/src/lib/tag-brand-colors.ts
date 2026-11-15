@@ -2765,8 +2765,7 @@ const brandColors: BrandColor[] = [
 
 const byName = new Map(brandColors.map((item) => [item.name, item]));
 
-const normalize = (keyword: string) =>
-  keyword.replace(/[^a-z0-9]/gi, '').toLowerCase();
+const normalize = (keyword: string) => keyword.replace(/[^a-z0-9]/gi, '').toLowerCase();
 
 /**
  * Resolves a tag to its brand colour, matching either the literal tag or a
@@ -2774,7 +2773,6 @@ const normalize = (keyword: string) =>
  * no known brand so the caller can fall back to a neutral pill.
  */
 export const getTagColor = (keyword: string): string | null => {
-  const match =
-    byName.get(keyword.toLowerCase()) ?? byName.get(normalize(keyword));
+  const match = byName.get(keyword.toLowerCase()) ?? byName.get(normalize(keyword));
   return match ? `#${match.color}` : null;
 };

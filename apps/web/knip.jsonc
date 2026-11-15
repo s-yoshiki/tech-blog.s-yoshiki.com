@@ -6,6 +6,6 @@
   "ignoreDependencies": [
     "textlint-rule-max-ten",
     "textlint-rule-no-mix-dearu-desumasu",
-    "textlint-rule-spellcheck-tech-word"
-  ]
+    "textlint-rule-spellcheck-tech-word",
+  ],
 }

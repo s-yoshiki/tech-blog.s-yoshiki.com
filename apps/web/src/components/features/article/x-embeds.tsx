@@ -27,9 +27,7 @@ export default function XEmbeds({ containerId }: Props) {
     if (!container?.querySelector('blockquote.twitter-tweet')) return;
 
     container
-      .querySelectorAll<HTMLScriptElement>(
-        'script[src*="platform.twitter.com/widgets.js"]',
-      )
+      .querySelectorAll<HTMLScriptElement>('script[src*="platform.twitter.com/widgets.js"]')
       .forEach((script) => {
         script.remove();
       });
@@ -38,9 +36,7 @@ export default function XEmbeds({ containerId }: Props) {
       void window.twttr?.widgets.load(container);
     };
 
-    const existing = document.getElementById(
-      SCRIPT_ID,
-    ) as HTMLScriptElement | null;
+    const existing = document.getElementById(SCRIPT_ID) as HTMLScriptElement | null;
 
     if (window.twttr?.widgets) {
       renderEmbeds();
