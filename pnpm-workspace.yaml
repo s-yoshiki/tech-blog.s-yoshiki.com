@@ -28,7 +28,7 @@ catalog:
   'github-slugger': '^2.0.0'
   'gray-matter': '^4.0.3'
   'lucide-react': '^1.72.0'
-  'next': '16.4.1'
+  'next': '16.4.5'
   'oxfmt': '0.78.0'
   'oxlint': '1.93.0'
   'postcss': '^8.5.32'
