@@ -13,11 +13,11 @@
     "format:check": "turbo run format:check",
     "check": "pnpm lint && pnpm format:check && pnpm typecheck",
     "check:fix": "pnpm lint:fix && pnpm format",
-    "verify": "pnpm check && pnpm build",
-    "start": "turbo start",
-    "export": "turbo build",
-    "textlint": "turbo textlint",
-    "generate:redirects": "turbo generate:redirects"
+    "verify": "pnpm check",
+    "start": "turbo run start",
+    "export": "turbo run build",
+    "textlint": "turbo run textlint",
+    "generate:redirects": "turbo run generate:redirects"
   },
   "devDependencies": {
     "oxfmt": "catalog:",
