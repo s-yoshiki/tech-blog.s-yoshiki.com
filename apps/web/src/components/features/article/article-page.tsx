@@ -6,26 +6,26 @@ import type {
 } from '@repo/blog-content';
 import RelationAds from 'components/ads/relations-ads';
 import AIGeneratedBadge from 'components/ai-generated-badge';
-import Author from 'components/author';
 import PostsBand from 'components/posts-band';
+import AuthorSection from 'components/sections/author-section';
+import BrowseSection from 'components/sections/browse-section';
+import PostsSection from 'components/sections/posts-section';
 import Search from 'components/search';
 import SectionHeading from 'components/section-heading';
 import Tag from 'components/tag';
-import YearMonthPosts from 'components/yesar-month-posts';
 import {
   Bot,
   CalendarDays,
   ChevronRight,
   Clock3,
-  Hash,
   Newspaper,
   Sparkles,
   TrendingUp,
   TriangleAlert,
-  UserRound,
 } from 'lucide-react';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import ReadingProgress from './reading-progress';
 import TableOfContents from './table-of-contents';
 import XEmbeds from './x-embeds';
 
@@ -61,26 +61,6 @@ const isOlderThanTwoYears = (publishedOn: string): boolean => {
   return new Date(`${publishedOn}T00:00:00Z`) < threshold;
 };
 
-const ArticleCollection = ({
-  title,
-  icon,
-  posts,
-  muted = false,
-}: {
-  title: string;
-  icon: typeof Newspaper;
-  posts: Posts[];
-  muted?: boolean;
-}) =>
-  posts.length ? (
-    <section className={`border-border border-t ${muted ? 'bg-card' : ''}`}>
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-        <SectionHeading icon={icon}>{title}</SectionHeading>
-        <PostsBand posts={posts} />
-      </div>
-    </section>
-  ) : null;
-
 export default function ArticlePage({ post, latest, popular, recommends, tags, dates }: Props) {
   const readingMinutes = estimateReadingMinutes(post.readingText);
   const publishedOn = post.date.split(' ')[0];
@@ -88,6 +68,7 @@ export default function ArticlePage({ post, latest, popular, recommends, tags, d
 
   return (
     <article>
+      <ReadingProgress targetId="article-content" />
       <header className="border-border border-b">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14">
           <nav aria-label="パンくずリスト" className="mb-6">
@@ -204,38 +185,10 @@ export default function ArticlePage({ post, latest, popular, recommends, tags, d
         </div>
       </section>
 
-      <ArticleCollection title="最新の記事" icon={Newspaper} posts={latest} />
-      <ArticleCollection title="よく読まれている記事" icon={TrendingUp} posts={popular} muted />
-
-      <section className="border-border border-t">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[minmax(0,1fr)_320px]">
-          <div>
-            <SectionHeading icon={Hash}>タグから探す</SectionHeading>
-            <ul className="flex flex-wrap gap-2">
-              {tags.map((tag) => (
-                <li key={tag.name}>
-                  <Tag keyword={tag.name} count={tag.counts} size="md" />
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <SectionHeading icon={CalendarDays}>アーカイブ</SectionHeading>
-            <div className="rounded-xl border border-border bg-card p-2">
-              <YearMonthPosts items={dates} />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-border border-t bg-card">
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-          <SectionHeading icon={UserRound}>著者について</SectionHeading>
-          <div className="max-w-xl rounded-xl border border-border bg-background p-6">
-            <Author />
-          </div>
-        </div>
-      </section>
+      <PostsSection title="最新の記事" icon={Newspaper} posts={latest} />
+      <PostsSection title="よく読まれている記事" icon={TrendingUp} posts={popular} muted />
+      <BrowseSection tags={tags} dates={dates} />
+      <AuthorSection />
     </article>
   );
 }

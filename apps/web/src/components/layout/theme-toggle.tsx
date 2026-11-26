@@ -1,38 +1,21 @@
 'use client';
 
 import { Button } from '@repo/ui';
+import { useTheme } from 'hooks/use-theme';
 import { Moon, Sun } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { THEME_STORAGE_KEY } from './theme-script';
 
 const ThemeToggle = () => {
-  const [isDark, setIsDark] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setIsDark(document.documentElement.classList.contains('dark'));
-    setMounted(true);
-  }, []);
-
-  const toggle = () => {
-    const next = !isDark;
-    setIsDark(next);
-    document.documentElement.classList.toggle('dark', next);
-    document.documentElement.style.colorScheme = next ? 'dark' : 'light';
-    try {
-      localStorage.setItem(THEME_STORAGE_KEY, next ? 'dark' : 'light');
-    } catch {
-      /* storage unavailable (private mode); the theme still applies for now */
-    }
-  };
+  const { theme, toggleTheme } = useTheme();
+  const isDark = theme === 'dark';
 
   return (
     <Button
       variant="ghost"
       size="icon"
-      onClick={toggle}
-      aria-label={mounted && isDark ? 'ライトモードに切り替え' : 'ダークモードに切り替え'}
-      aria-pressed={mounted ? isDark : undefined}
+      onClick={toggleTheme}
+      aria-label={isDark ? 'ライトモードに切り替え' : 'ダークモードに切り替え'}
+      aria-pressed={isDark}
+      suppressHydrationWarning
     >
       {/* Rendered with CSS so the icon is correct on the server too. */}
       <Sun className="size-4 dark:hidden" />
