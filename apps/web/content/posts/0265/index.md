@@ -4,7 +4,7 @@ path: "/entry/265"
 date: "2022-02-27 00:10"
 coverImage: "../../../images/thumbnail/javascript-logo.png"
 author: "s-yoshiki"
-tags: ["アルゴリズム","競技プログラムミング","atcoder","node.js","javascript","typescript"]
+tags: ["アルゴリズム","競技プログラミング","atcoder","node.js","javascript","typescript"]
 ---
 
 ## 概要
