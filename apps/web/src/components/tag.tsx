@@ -1,5 +1,6 @@
 import { cx } from '@repo/ui';
 import { getTagColor } from 'lib/tag-brand-colors';
+import { routes } from 'lib/routes';
 import Link from 'next/link';
 import styles from './tag.module.css';
 
@@ -29,7 +30,7 @@ export const TagPill = ({ keyword, count, size = 'sm', className }: TagProps) =>
 
 /** A tag pill that links to the tag's archive. */
 const Tag = ({ keyword, count, size, className }: TagProps) => (
-  <Link href={`/tags/${encodeURIComponent(keyword)}/1/`} className={styles.link}>
+  <Link href={routes.tag(keyword)} className={styles.link}>
     <TagPill keyword={keyword} count={count} size={size} className={className} />
   </Link>
 );

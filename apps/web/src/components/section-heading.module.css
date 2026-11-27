@@ -1,17 +1,10 @@
 .root {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-4);
   margin-bottom: var(--space-5);
 }
 .title {
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  letter-spacing: var(--tracking-tight);
 }
 .icon {
   width: 1rem;

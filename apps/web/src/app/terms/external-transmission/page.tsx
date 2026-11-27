@@ -1,3 +1,4 @@
+import { Heading, Text } from '@repo/ui';
 import Container from 'components/container';
 import type { Metadata } from 'next';
 import styles from '../../page.module.css';
@@ -18,10 +19,10 @@ export default function Page() {
   return (
     <Container as="article" size="narrow" className={styles.terms}>
       <header className={styles.termsHeader}>
-        <h1 className={styles.termsTitle}>外部送信に関する公表事項</h1>
-        <time dateTime="2023-06-20" className={styles.termsDate}>
+        <Heading level={1}>外部送信に関する公表事項</Heading>
+        <Text as="time" size="sm" tone="muted" dateTime="2023-06-20" className={styles.termsDate}>
           2023-06-20
-        </time>
+        </Text>
       </header>
       <div className="markdown-body">
         <h2>概要</h2>

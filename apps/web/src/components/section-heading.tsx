@@ -1,4 +1,4 @@
-import { cx } from '@repo/ui';
+import { cx, Heading, Stack } from '@repo/ui';
 import type { LucideIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
 import styles from './section-heading.module.css';
@@ -12,13 +12,19 @@ interface SectionHeadingProps {
 }
 
 const SectionHeading = ({ children, icon: Icon, action, className }: SectionHeadingProps) => (
-  <div className={cx(styles.root, className)}>
-    <h2 className={styles.title}>
+  <Stack
+    direction="row"
+    align="center"
+    justify="between"
+    gap={4}
+    className={cx(styles.root, className)}
+  >
+    <Heading level={2} className={styles.title}>
       {Icon && <Icon aria-hidden="true" className={styles.icon} />}
       {children}
-    </h2>
+    </Heading>
     {action}
-  </div>
+  </Stack>
 );
 
 export default SectionHeading;

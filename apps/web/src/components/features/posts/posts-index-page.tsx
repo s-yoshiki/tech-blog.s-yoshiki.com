@@ -1,5 +1,5 @@
 import type { Posts } from '@repo/blog-content';
-import { Button } from '@repo/ui';
+import { Button, Stack, Text } from '@repo/ui';
 import Container from 'components/container';
 import PageHeader from 'components/page-header';
 import PostsBand from 'components/posts-band';
@@ -32,7 +32,15 @@ const pageWindow = (current: number, total: number): PageItem[] => {
 };
 
 const Pagination = ({ current, total, basePath }: NonNullable<Props['pagination']>) => (
-  <nav className={styles.pagination} aria-label="ページネーション">
+  <Stack
+    as="nav"
+    direction="row"
+    align="center"
+    justify="center"
+    gap={1}
+    className={styles.pagination}
+    aria-label="ページネーション"
+  >
     <Button
       variant="outline"
       size="icon"
@@ -43,7 +51,7 @@ const Pagination = ({ current, total, basePath }: NonNullable<Props['pagination'
       <ChevronLeft size={16} />
     </Button>
 
-    <ul className={styles.pages}>
+    <Stack as="ul" direction="row" align="center" gap={1}>
       {pageWindow(current, total).map((page) =>
         typeof page === 'object' ? (
           <li key={`gap-${page.after}`} className={styles.gap}>
@@ -68,7 +76,7 @@ const Pagination = ({ current, total, basePath }: NonNullable<Props['pagination'
           </li>
         ),
       )}
-    </ul>
+    </Stack>
 
     <Button
       variant="outline"
@@ -81,7 +89,7 @@ const Pagination = ({ current, total, basePath }: NonNullable<Props['pagination'
     >
       <ChevronRight size={16} />
     </Button>
-  </nav>
+  </Stack>
 );
 
 export default function PostsIndexPage({ title, posts, badge, pagination }: Props) {
@@ -92,9 +100,9 @@ export default function PostsIndexPage({ title, posts, badge, pagination }: Prop
         back={{ href: '/', label: 'Articles' }}
         aside={badge ? <TagPill keyword={badge} size="md" /> : undefined}
       >
-        <p className={styles.count}>
+        <Text tone="muted" size="sm" className={styles.count}>
           {posts.length} 件{pagination && ` ・ ${pagination.current} / ${pagination.total} ページ`}
-        </p>
+        </Text>
       </PageHeader>
 
       <Container className={styles.body}>

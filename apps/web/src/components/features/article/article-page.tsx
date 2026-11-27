@@ -1,9 +1,12 @@
-import type {
-  IGroupByItems,
-  IGroupByYearMonthItems,
-  Posts,
-  TableOfContentsItem,
+import {
+  type DateString,
+  type IGroupByItems,
+  type IGroupByYearMonthItems,
+  type Posts,
+  type TableOfContentsItem,
+  toDateString,
 } from '@repo/blog-content';
+import { Heading, Stack, Text } from '@repo/ui';
 import RelationAds from 'components/ads/relations-ads';
 import AIGeneratedBadge from 'components/ai-generated-badge';
 import Container from 'components/container';
@@ -58,7 +61,7 @@ const estimateReadingMinutes = (html: string): number => {
   return Math.max(1, Math.ceil(text.length / 500));
 };
 
-const isOlderThanTwoYears = (publishedOn: string): boolean => {
+const isOlderThanTwoYears = (publishedOn: DateString): boolean => {
   const threshold = new Date();
   threshold.setUTCFullYear(threshold.getUTCFullYear() - 2);
   return new Date(`${publishedOn}T00:00:00Z`) < threshold;
@@ -66,7 +69,7 @@ const isOlderThanTwoYears = (publishedOn: string): boolean => {
 
 export default function ArticlePage({ post, latest, popular, recommends, tags, dates }: Props) {
   const readingMinutes = estimateReadingMinutes(post.readingText);
-  const publishedOn = post.date.split(' ')[0];
+  const publishedOn = toDateString(post.date);
   const isOlderArticle = isOlderThanTwoYears(publishedOn);
 
   return (
@@ -75,46 +78,48 @@ export default function ArticlePage({ post, latest, popular, recommends, tags, d
       <header className={styles.header}>
         <Container className={styles.headerInner}>
           <nav aria-label="パンくずリスト">
-            <ol className={styles.crumbs}>
+            <Stack as="ol" direction="row" align="center" gap={1} className={styles.crumbs}>
               <li>
                 <Link href="/">Articles</Link>
               </li>
               <ChevronRight aria-hidden="true" className={styles.crumbIcon} />
               <li aria-current="page">{post.title}</li>
-            </ol>
+            </Stack>
           </nav>
 
-          <div className={styles.titleRow}>
+          <Stack direction="row" align="start" gap={4}>
             <span className={styles.cover}>
               <img alt="" aria-hidden="true" src={post.coverImage} width={40} height={40} />
             </span>
             <div>
-              <h1 className={styles.title}>{post.title}</h1>
-              <div className={styles.meta}>
-                <span className={styles.metaItem}>
+              <Heading level={1} className={styles.title}>
+                {post.title}
+              </Heading>
+              <Stack direction="row" wrap align="center" gap={5} className={styles.meta}>
+                <Text as="span" size="sm" tone="muted" className={styles.metaItem}>
                   <CalendarDays aria-hidden="true" className={styles.metaIcon} />
                   <time dateTime={publishedOn}>{publishedOn}</time>
-                </span>
-                <span className={styles.metaItem}>
+                </Text>
+                <Text as="span" size="sm" tone="muted" className={styles.metaItem}>
                   <Clock3 aria-hidden="true" className={styles.metaIcon} />約 {readingMinutes} 分
-                </span>
-              </div>
+                </Text>
+              </Stack>
               {post.aiGenerated && (
                 <div className={styles.badge}>
                   <AIGeneratedBadge />
                 </div>
               )}
             </div>
-          </div>
+          </Stack>
 
           {post.tags.length > 0 && (
-            <ul className={styles.tags}>
+            <Stack as="ul" direction="row" wrap gap={2} className={styles.tags}>
               {post.tags.slice(0, 8).map((tag) => (
                 <li key={tag}>
                   <Tag keyword={tag} size="md" />
                 </li>
               ))}
-            </ul>
+            </Stack>
           )}
         </Container>
       </header>

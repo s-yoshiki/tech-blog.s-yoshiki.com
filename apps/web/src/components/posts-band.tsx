@@ -1,4 +1,5 @@
 import type { Posts } from '@repo/blog-content';
+import { routes } from 'lib/routes';
 import Card from './card';
 import styles from './posts-band.module.css';
 
@@ -7,7 +8,7 @@ export const PostItem = ({ post }: { post: Posts }) => (
     <Card
       title={post.title}
       date={post.date}
-      href={`${post.path}/`}
+      href={routes.post(post.path)}
       src={post.coverImage}
       tags={post.tags}
       aiGenerated={post.aiGenerated}

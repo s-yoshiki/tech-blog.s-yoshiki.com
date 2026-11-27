@@ -1,3 +1,5 @@
+import type { PostPath } from '../types/primitives';
+
 export const POPULAR_POST_PATHS = [
   '/entry/303',
   '/entry/177',
@@ -11,4 +13,4 @@ export const POPULAR_POST_PATHS = [
   '/entry/250',
   '/entry/317',
   '/entry/294',
-] as const;
+] as const satisfies readonly PostPath[];

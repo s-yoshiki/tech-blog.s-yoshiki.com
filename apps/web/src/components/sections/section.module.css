@@ -33,13 +33,6 @@
   border-radius: var(--radius-lg);
   background: var(--color-bg);
 }
-.tagList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  padding: 0;
-  list-style: none;
-}
 
 @media (min-width: 64rem) {
   .split {

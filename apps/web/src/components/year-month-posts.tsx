@@ -1,5 +1,6 @@
-import type { IGroupByYearMonthItems } from '@repo/blog-content';
+import { type IGroupByYearMonthItems, splitYearMonth } from '@repo/blog-content';
 import { ChevronRight } from 'lucide-react';
+import { routes } from 'lib/routes';
 import Link from 'next/link';
 import styles from './year-month-posts.module.css';
 
@@ -23,21 +24,19 @@ const YearMonthPosts = ({ items }: Props) => (
           </summary>
           <ul className={styles.months}>
             <li>
-              <Link href={`/date/${year.name}/`} className={styles.month}>
+              <Link href={routes.year(year.name)} className={styles.month}>
                 {year.name}年のすべて
                 <span className={styles.count}>{year.counts}</span>
               </Link>
             </li>
-            {year.months.map((month) => {
-              const key = month.name.split('-')[1];
-              return (
-                <li key={month.name}>
-                  <Link href={`/date/${year.name}/${key}/`} className={styles.month}>
-                    {Number(key)}月<span className={styles.count}>{month.counts}</span>
-                  </Link>
-                </li>
-              );
-            })}
+            {year.months.map((month) => (
+              <li key={month.name}>
+                <Link href={routes.month(month.name)} className={styles.month}>
+                  {Number(splitYearMonth(month.name).month)}月
+                  <span className={styles.count}>{month.counts}</span>
+                </Link>
+              </li>
+            ))}
           </ul>
         </details>
       </li>

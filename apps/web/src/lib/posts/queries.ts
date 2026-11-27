@@ -1,3 +1,4 @@
+import { getPostIdFromPath, parsePostPath } from '@repo/blog-content';
 import PostsManager from './manager';
 
 const POSTS_PER_PAGE = 20;
@@ -10,8 +11,9 @@ export const getHomePageData = () => ({
 });
 
 export const getArticlePageData = (id: string) => {
-  const post = PostsManager.findByPath(`/entry/${id}`);
-  if (!post.path) return null;
+  const path = parsePostPath(id);
+  const post = path && PostsManager.findByPath(path);
+  if (!post) return null;
   return {
     post,
     latest: PostsManager.getData().slice(0, 15),
@@ -44,6 +46,4 @@ export const getTagParams = () =>
 
 export const getDateParams = () => PostsManager.getCountsGroupYearMonth();
 export const getAllPostIds = () =>
-  PostsManager.getData().map((post) => ({
-    id: post.path.split('/').pop() as string,
-  }));
+  PostsManager.getData().map((post) => ({ id: String(getPostIdFromPath(post.path)) }));

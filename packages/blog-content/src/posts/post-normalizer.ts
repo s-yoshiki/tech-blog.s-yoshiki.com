@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Posts } from '../types/entry.interface';
+import { getPostIdFromPath } from '../types/primitives';
 
 const THUMBNAIL_DIR = 'images/thumbnail';
 const FALLBACK_THUMBNAIL = 'no-image.png';
@@ -34,11 +35,4 @@ export const normalizePost = (post: Posts, options: PostNormalizationOptions): P
   tags: [...new Set(post.tags)],
 });
 
-export const getPostId = (post: Posts): number => Number(post.path.split('/').pop());
-
-export const getYearKey = (date: string): string => String(new Date(date).getFullYear());
-
-export const getYearMonthKey = (date: string): string => {
-  const value = new Date(date);
-  return `${value.getFullYear()}-${String(value.getMonth() + 1).padStart(2, '0')}`;
-};
+export const getPostId = (post: Posts): number => getPostIdFromPath(post.path);

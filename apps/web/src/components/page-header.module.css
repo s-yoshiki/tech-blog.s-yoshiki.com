@@ -12,16 +12,3 @@
 .back a:hover {
   color: var(--color-text);
 }
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-}
-.title {
-  font-size: var(--text-3xl);
-  font-weight: 700;
-  letter-spacing: var(--tracking-tight);
-  line-height: var(--leading-tight);
-}

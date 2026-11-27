@@ -1,7 +1,13 @@
 import type { Posts } from '../types/entry.interface';
-import { getYearKey, getYearMonthKey } from './post-normalizer';
+import { getYearKey, getYearMonthKey, type YearKey, type YearMonthKey } from '../types/primitives';
+import type { PostPath } from '../types/primitives';
 
-const addToGroup = (groups: Map<string, Posts[]>, key: string, post: Posts, prepend = false) => {
+const addToGroup = <Key extends string>(
+  groups: Map<Key, Posts[]>,
+  key: Key,
+  post: Posts,
+  prepend = false,
+) => {
   const posts = groups.get(key) ?? [];
   if (prepend) {
     posts.unshift(post);
@@ -12,10 +18,10 @@ const addToGroup = (groups: Map<string, Posts[]>, key: string, post: Posts, prep
 };
 
 export class PostIndex {
-  private readonly byPath = new Map<string, Posts>();
+  private readonly byPath = new Map<PostPath, Posts>();
   private readonly byTag = new Map<string, Posts[]>();
-  private readonly byYear = new Map<string, Posts[]>();
-  private readonly byYearMonth = new Map<string, Posts[]>();
+  private readonly byYear = new Map<YearKey, Posts[]>();
+  private readonly byYearMonth = new Map<YearMonthKey, Posts[]>();
   private readonly tagNames = new Set<string>();
   private oldestYear = new Date().getFullYear();
 
@@ -41,7 +47,7 @@ export class PostIndex {
     this.oldestYear = Math.min(this.oldestYear, Number(year));
   }
 
-  public findByPath(path: string): Posts | undefined {
+  public findByPath(path: PostPath): Posts | undefined {
     return this.byPath.get(path);
   }
 
@@ -49,24 +55,23 @@ export class PostIndex {
     return this.byTag.get(tag) ?? [];
   }
 
-  public findByYear(year: string | number): Posts[] {
-    return this.byYear.get(String(year)) ?? [];
+  public findByYear(year: YearKey): Posts[] {
+    return this.byYear.get(year) ?? [];
   }
 
-  public findByYearMonth(year: string | number, month: string | number): Posts[] {
-    const monthKey = String(Number(month)).padStart(2, '0');
-    return this.byYearMonth.get(`${year}-${monthKey}`) ?? [];
+  public findByYearMonth(key: YearMonthKey): Posts[] {
+    return this.byYearMonth.get(key) ?? [];
   }
 
   public getByTag(): Map<string, Posts[]> {
     return this.byTag;
   }
 
-  public getByYear(): Map<string, Posts[]> {
+  public getByYear(): Map<YearKey, Posts[]> {
     return this.byYear;
   }
 
-  public getByYearMonth(): Map<string, Posts[]> {
+  public getByYearMonth(): Map<YearMonthKey, Posts[]> {
     return this.byYearMonth;
   }
 

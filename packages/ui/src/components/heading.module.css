@@ -1,0 +1,17 @@
+.heading {
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
+}
+.heading[data-size='sm'] {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: var(--leading-snug);
+}
+.heading[data-size='lg'] {
+  font-size: var(--text-xl);
+  font-weight: 700;
+}
+.heading[data-size='xl'] {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+}

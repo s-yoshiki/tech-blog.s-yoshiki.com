@@ -5,15 +5,10 @@
   padding-block: var(--space-7);
 }
 .crumbs {
-  display: flex;
   min-width: 0;
-  align-items: center;
-  gap: var(--space-1);
   margin: 0 0 var(--space-5);
-  padding: 0;
   color: var(--color-text-muted);
   font-size: var(--text-sm);
-  list-style: none;
 }
 .crumbs a:hover {
   color: var(--color-text);
@@ -27,11 +22,6 @@
   width: 0.875rem;
   height: 0.875rem;
   flex-shrink: 0;
-}
-.titleRow {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-4);
 }
 .cover {
   display: none;
@@ -52,19 +42,9 @@
 }
 .title {
   max-width: 48rem;
-  font-size: var(--text-3xl);
-  font-weight: 700;
-  letter-spacing: var(--tracking-tight);
-  line-height: var(--leading-tight);
 }
 .meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-2) var(--space-5);
   margin-top: var(--space-4);
-  color: var(--color-text-muted);
-  font-size: var(--text-sm);
 }
 .metaItem {
   display: flex;
@@ -79,12 +59,7 @@
   margin-top: var(--space-4);
 }
 .tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
   margin-top: var(--space-5);
-  padding: 0;
-  list-style: none;
 }
 .layout {
   display: grid;

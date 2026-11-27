@@ -41,21 +41,6 @@
 .meta {
   position: relative;
   z-index: 1;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--space-2);
-}
-.metaMain {
-  display: flex;
-  min-width: 0;
-  align-items: center;
-  gap: var(--space-2);
-}
-.date {
-  color: var(--color-text-muted);
-  font-size: var(--text-xs);
-  font-variant-numeric: tabular-nums;
 }
 .arrow {
   width: 0.875rem;
@@ -96,10 +81,6 @@
 .tags {
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.375rem;
   margin-top: var(--space-3);
-  padding: 0;
-  list-style: none;
+  gap: 0.375rem;
 }

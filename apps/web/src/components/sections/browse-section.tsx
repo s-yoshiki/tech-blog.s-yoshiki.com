@@ -1,4 +1,5 @@
 import type { IGroupByItems, IGroupByYearMonthItems } from '@repo/blog-content';
+import { Stack } from '@repo/ui';
 import Container from 'components/container';
 import SectionHeading from 'components/section-heading';
 import Tag from 'components/tag';
@@ -17,13 +18,13 @@ const BrowseSection = ({ tags, dates }: BrowseSectionProps) => (
     <Container className={styles.split}>
       <div>
         <SectionHeading icon={Hash}>タグから探す</SectionHeading>
-        <ul className={styles.tagList}>
+        <Stack as="ul" direction="row" wrap gap={2}>
           {tags.map((tag) => (
             <li key={tag.name}>
               <Tag keyword={tag.name} count={tag.counts} size="md" />
             </li>
           ))}
-        </ul>
+        </Stack>
       </div>
       <div>
         <SectionHeading icon={CalendarDays}>アーカイブ</SectionHeading>

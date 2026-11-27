@@ -1,3 +1,4 @@
+import { Heading, Stack } from '@repo/ui';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import Container from './container';
@@ -21,10 +22,10 @@ const PageHeader = ({ title, back, size = 'wide', aside, children }: Props) => (
           <Link href={back.href}>← {back.label}</Link>
         </nav>
       )}
-      <div className={styles.row}>
-        <h1 className={styles.title}>{title}</h1>
+      <Stack direction="row" wrap align="center" justify="between" gap={3}>
+        <Heading level={1}>{title}</Heading>
         {aside}
-      </div>
+      </Stack>
       {children}
     </Container>
   </header>

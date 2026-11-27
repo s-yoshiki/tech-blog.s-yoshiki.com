@@ -1,20 +1,22 @@
+import type { PostDate, PostPath, YearKey, YearMonthKey } from './primitives';
+
 export interface Posts {
   title: string;
-  path: string;
-  date: string;
+  path: PostPath;
+  date: PostDate;
   coverImage: string;
   tags: string[];
   aiGenerated: boolean;
   filepath: string;
 }
 
-export interface IGroupByItems {
-  name: string;
+export interface IGroupByItems<Name extends string = string> {
+  name: Name;
   counts: number;
 }
 
 export interface IGroupByYearMonthItems {
-  name: string;
+  name: YearKey;
   counts: number;
-  months: IGroupByItems[];
+  months: IGroupByItems<YearMonthKey>[];
 }

@@ -1,4 +1,6 @@
+import { type PostDate, toDateString } from '@repo/blog-content';
 import AIGeneratedBadge from 'components/ai-generated-badge';
+import { Stack, Text } from '@repo/ui';
 import Tag from 'components/tag';
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
@@ -7,13 +9,11 @@ import styles from './card.module.css';
 interface CardProps {
   src: string;
   title: string;
-  date: string;
+  date: PostDate;
   href: string;
   tags: string[];
   aiGenerated: boolean;
 }
-
-const getYMD = (arg: string) => arg.split(' ')[0];
 
 /**
  * Cover images here are technology logos, not photographs, so they are shown
@@ -34,15 +34,15 @@ const Card = ({ src, title, date, href, tags, aiGenerated }: CardProps) => (
     </span>
 
     <div className={styles.body}>
-      <div className={styles.meta}>
-        <div className={styles.metaMain}>
-          <time dateTime={getYMD(date)} className={styles.date}>
-            {getYMD(date)}
-          </time>
+      <Stack direction="row" align="start" justify="between" gap={2} className={styles.meta}>
+        <Stack direction="row" align="center" gap={2}>
+          <Text as="time" size="xs" tone="muted" numeric dateTime={toDateString(date)}>
+            {toDateString(date)}
+          </Text>
           {aiGenerated && <AIGeneratedBadge compact />}
-        </div>
+        </Stack>
         <ArrowUpRight aria-hidden="true" className={styles.arrow} />
-      </div>
+      </Stack>
 
       <h3 className={styles.title}>
         {/* Stretched so the whole card is the click target; the tag links below
@@ -53,13 +53,13 @@ const Card = ({ src, title, date, href, tags, aiGenerated }: CardProps) => (
       </h3>
 
       {tags.length > 0 && (
-        <ul className={styles.tags}>
+        <Stack as="ul" direction="row" wrap gap={2} className={styles.tags}>
           {tags.slice(0, 3).map((tag) => (
             <li key={tag}>
               <Tag keyword={tag} />
             </li>
           ))}
-        </ul>
+        </Stack>
       )}
     </div>
   </article>
