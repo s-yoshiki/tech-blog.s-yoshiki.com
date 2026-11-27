@@ -1,9 +1,12 @@
 import type { Posts } from '@repo/blog-content';
 import { Button } from '@repo/ui';
+import Container from 'components/container';
+import PageHeader from 'components/page-header';
 import PostsBand from 'components/posts-band';
 import { TagPill } from 'components/tag';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
+import styles from './posts-index-page.module.css';
 
 type PageItem = number | { type: 'gap'; after: number };
 
@@ -29,85 +32,75 @@ const pageWindow = (current: number, total: number): PageItem[] => {
 };
 
 const Pagination = ({ current, total, basePath }: NonNullable<Props['pagination']>) => (
-  <nav className="flex items-center justify-center gap-1" aria-label="ページネーション">
-    {current > 1 ? (
-      <Button variant="outline" size="icon" asChild>
-        <Link href={`${basePath}/${current - 1}/`} rel="prev" aria-label="前のページ">
-          <ChevronLeft className="size-4" />
-        </Link>
-      </Button>
-    ) : (
-      <Button variant="outline" size="icon" disabled aria-label="前のページ">
-        <ChevronLeft className="size-4" />
-      </Button>
-    )}
+  <nav className={styles.pagination} aria-label="ページネーション">
+    <Button
+      variant="outline"
+      size="icon"
+      aria-label="前のページ"
+      disabled={current <= 1}
+      render={current > 1 ? <Link href={`${basePath}/${current - 1}/`} rel="prev" /> : undefined}
+    >
+      <ChevronLeft size={16} />
+    </Button>
 
-    <ul className="flex items-center gap-1">
+    <ul className={styles.pages}>
       {pageWindow(current, total).map((page) =>
         typeof page === 'object' ? (
-          <li key={`gap-${page.after}`} className="px-1 text-muted-foreground">
+          <li key={`gap-${page.after}`} className={styles.gap}>
             …
           </li>
         ) : (
           <li key={page}>
-            <Button variant={page === current ? 'default' : 'ghost'} size="icon" asChild>
-              <Link
-                href={`${basePath}/${page}/`}
-                aria-current={page === current ? 'page' : undefined}
-                aria-label={`${page}ページ目`}
-                className="tabular-nums"
-              >
-                {page}
-              </Link>
+            <Button
+              variant={page === current ? 'solid' : 'ghost'}
+              size="icon"
+              className={styles.pageLink}
+              aria-label={`${page}ページ目`}
+              render={
+                <Link
+                  href={`${basePath}/${page}/`}
+                  aria-current={page === current ? 'page' : undefined}
+                />
+              }
+            >
+              {page}
             </Button>
           </li>
         ),
       )}
     </ul>
 
-    {current < total ? (
-      <Button variant="outline" size="icon" asChild>
-        <Link href={`${basePath}/${current + 1}/`} rel="next" aria-label="次のページ">
-          <ChevronRight className="size-4" />
-        </Link>
-      </Button>
-    ) : (
-      <Button variant="outline" size="icon" disabled aria-label="次のページ">
-        <ChevronRight className="size-4" />
-      </Button>
-    )}
+    <Button
+      variant="outline"
+      size="icon"
+      aria-label="次のページ"
+      disabled={current >= total}
+      render={
+        current < total ? <Link href={`${basePath}/${current + 1}/`} rel="next" /> : undefined
+      }
+    >
+      <ChevronRight size={16} />
+    </Button>
   </nav>
 );
 
 export default function PostsIndexPage({ title, posts, badge, pagination }: Props) {
   return (
     <>
-      <div className="border-border border-b">
-        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14">
-          <nav aria-label="パンくずリスト" className="mb-5">
-            <Link href="/" className="rounded text-muted-foreground text-sm hover:text-foreground">
-              ← Articles
-            </Link>
-          </nav>
-          <div className="flex flex-wrap items-center gap-3">
-            <h1 className="font-bold text-2xl tracking-tight sm:text-3xl">{title}</h1>
-            {badge && <TagPill keyword={badge} size="md" />}
-          </div>
-          <p className="mt-2 text-muted-foreground text-sm">
-            {posts.length} 件
-            {pagination && ` ・ ${pagination.current} / ${pagination.total} ページ`}
-          </p>
-        </div>
-      </div>
+      <PageHeader
+        title={title}
+        back={{ href: '/', label: 'Articles' }}
+        aside={badge ? <TagPill keyword={badge} size="md" /> : undefined}
+      >
+        <p className={styles.count}>
+          {posts.length} 件{pagination && ` ・ ${pagination.current} / ${pagination.total} ページ`}
+        </p>
+      </PageHeader>
 
-      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
+      <Container className={styles.body}>
         <PostsBand posts={posts} />
-        {pagination && pagination.total > 1 && (
-          <div className="mt-10">
-            <Pagination {...pagination} />
-          </div>
-        )}
-      </div>
+        {pagination && pagination.total > 1 && <Pagination {...pagination} />}
+      </Container>
     </>
   );
 }

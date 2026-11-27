@@ -6,7 +6,7 @@ import ThemeScript from 'components/layout/theme-script';
 import { siteMetaData } from 'config/site-config';
 import type { Metadata, Viewport } from 'next';
 import 'styles/globals.css';
-import 'styles/github-markdown.css';
+import styles from './layout.module.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetaData.siteUrl),
@@ -42,15 +42,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <AdsenseScript />
         <PageViewTracker />
-        <a
-          href="#main"
-          className="-translate-x-1/2 sr-only left-1/2 z-100 rounded-lg bg-primary px-4 py-2 font-medium text-primary-foreground text-sm focus:not-sr-only focus:fixed focus:top-3"
-        >
+        <a href="#main" className={styles.skip}>
           本文へスキップ
         </a>
-        <div className="flex min-h-screen flex-col">
+        <div className={styles.shell}>
           <Header title={siteMetaData.title} />
-          <main id="main" className="flex-1">
+          <main id="main" className={styles.main}>
             {children}
           </main>
           <Footer title={siteMetaData.title} />

@@ -1,22 +1,25 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { type RefObject, useEffect } from 'react';
 
-/** Scroll progress (0–1) through the element with the given id. */
-export const useReadingProgress = (targetId: string): number => {
-  const [progress, setProgress] = useState(0);
-
+/**
+ * Writes the scroll progress (0–1) through `targetId` to a CSS custom property
+ * on `barRef`. Updating the style directly keeps scroll handling off React's
+ * render path entirely.
+ */
+export const useReadingProgress = (targetId: string, barRef: RefObject<HTMLElement | null>) => {
   useEffect(() => {
     const target = document.getElementById(targetId);
-    if (!target) return;
+    const bar = barRef.current;
+    if (!target || !bar) return;
 
     let frame = 0;
     const update = () => {
       frame = 0;
       const rect = target.getBoundingClientRect();
       const scrollable = rect.height - window.innerHeight;
-      const next = scrollable <= 0 ? 1 : Math.min(1, Math.max(0, -rect.top / scrollable));
-      setProgress(next);
+      const progress = scrollable <= 0 ? 1 : Math.min(1, Math.max(0, -rect.top / scrollable));
+      bar.style.setProperty('--progress', progress.toFixed(4));
     };
     const schedule = () => {
       if (!frame) frame = requestAnimationFrame(update);
@@ -30,7 +33,5 @@ export const useReadingProgress = (targetId: string): number => {
       window.removeEventListener('scroll', schedule);
       window.removeEventListener('resize', schedule);
     };
-  }, [targetId]);
-
-  return progress;
+  }, [targetId, barRef]);
 };

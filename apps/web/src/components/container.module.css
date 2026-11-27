@@ -1,0 +1,11 @@
+.container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.container[data-size='wide'] {
+  max-width: var(--container-wide);
+}
+.container[data-size='narrow'] {
+  max-width: var(--container-narrow);
+}

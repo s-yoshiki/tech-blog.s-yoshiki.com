@@ -1,4 +1,6 @@
+import Container from 'components/container';
 import type { Metadata } from 'next';
+import styles from '../../page.module.css';
 
 export const metadata: Metadata = { title: '外部送信に関する公表事項' };
 
@@ -14,10 +16,10 @@ const collected = [
 
 export default function Page() {
   return (
-    <article className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
-      <header className="border-border border-b pb-8">
-        <h1 className="font-bold text-2xl tracking-tight sm:text-3xl">外部送信に関する公表事項</h1>
-        <time dateTime="2023-06-20" className="mt-3 block text-muted-foreground text-sm">
+    <Container as="article" size="narrow" className={styles.terms}>
+      <header className={styles.termsHeader}>
+        <h1 className={styles.termsTitle}>外部送信に関する公表事項</h1>
+        <time dateTime="2023-06-20" className={styles.termsDate}>
           2023-06-20
         </time>
       </header>
@@ -52,6 +54,6 @@ export default function Page() {
           </section>
         ))}
       </div>
-    </article>
+    </Container>
   );
 }

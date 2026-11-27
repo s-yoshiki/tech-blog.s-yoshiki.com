@@ -4,6 +4,7 @@ import { GOOGLE_ADSENSE_CLIENT } from 'config/google';
 import { usePathname } from 'next/navigation';
 import type { CSSProperties } from 'react';
 import { useEffect } from 'react';
+import styles from './ads.module.css';
 
 interface AdsenseProps {
   layout?: string;
@@ -30,10 +31,7 @@ const Ads = (props: AdsenseProps) => {
   }, [pathname]);
 
   return (
-    <div
-      key={pathname}
-      className="mx-auto h-full max-h-lg max-w-4xl content-center rounded-xl bg-muted"
-    >
+    <div key={pathname} className={styles.slot}>
       <ins
         className="adsbygoogle"
         style={props.style}

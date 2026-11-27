@@ -1,12 +1,12 @@
-'use client';
-
 import { Button } from '@repo/ui';
+import Container from 'components/container';
 import GithubIcon from 'components/icons/github';
 import XIcon from 'components/icons/x';
 import Search from 'components/search';
 import { Search as SearchIcon } from 'lucide-react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import styles from './header.module.css';
+import NavLink from './nav-link';
 import ThemeToggle from './theme-toggle';
 
 interface HeaderProp {
@@ -18,75 +18,64 @@ const navItems = [
   { href: '/about/', label: 'About' },
 ];
 
-const Header = ({ title }: HeaderProp) => {
-  const pathname = usePathname();
+const Header = ({ title }: HeaderProp) => (
+  <header className={styles.header}>
+    <Container className={styles.inner}>
+      <Link href="/" className={styles.brand}>
+        <span className={styles.logo}>404</span>
+        <span className={styles.title}>{title}</span>
+      </Link>
 
-  return (
-    <header className="sticky top-0 z-50 border-border border-b bg-background/85 backdrop-blur-md">
-      <div className="mx-auto flex h-(--header-height) max-w-7xl items-center gap-3 px-4 sm:px-6">
-        <Link
-          href="/"
-          className="flex shrink-0 items-center gap-2.5 rounded-lg font-semibold tracking-tight"
+      <Search variant="compact" className={styles.search} />
+
+      <nav className={styles.nav} aria-label="メインナビゲーション">
+        {navItems.map((item) => (
+          <NavLink key={item.href} href={item.href}>
+            {item.label}
+          </NavLink>
+        ))}
+        {/* The inline field is hidden on small screens, so keep a way in. */}
+        <Button
+          variant="ghost"
+          size="icon"
+          className={styles.mobileSearch}
+          render={<Link href="/#search" aria-label="記事を検索" />}
         >
-          <span className="grid size-7 place-items-center rounded-lg bg-primary font-mono text-[11px] text-primary-foreground">
-            404
-          </span>
-          <span className="hidden truncate text-sm sm:inline">{title}</span>
-        </Link>
-
-        <Search variant="compact" className="mx-auto hidden max-w-sm md:block" />
-
-        <nav
-          className="ml-auto flex items-center gap-0.5 md:ml-0"
-          aria-label="メインナビゲーション"
-        >
-          {navItems.map((item) => {
-            const isCurrent = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
-            return (
-              <Button
-                key={item.href}
-                variant="ghost"
-                size="sm"
-                asChild
-                className={isCurrent ? 'text-foreground' : undefined}
-              >
-                <Link href={item.href} aria-current={isCurrent ? 'page' : undefined}>
-                  {item.label}
-                </Link>
-              </Button>
-            );
-          })}
-          {/* The inline field is hidden below md, so keep a way in from mobile. */}
-          <Button variant="ghost" size="icon" asChild className="md:hidden">
-            <Link href="/#search" aria-label="記事を検索">
-              <SearchIcon className="size-4" />
-            </Link>
-          </Button>
-          <ThemeToggle />
-          <Button variant="ghost" size="icon" asChild className="hidden sm:inline-flex">
+          <SearchIcon size={16} />
+        </Button>
+        <ThemeToggle />
+        <Button
+          variant="ghost"
+          size="icon"
+          className={styles.hideOnMobile}
+          render={
             <a
               href="https://x.com/s_yoshiki_dev"
               target="_blank"
               rel="noreferrer"
               aria-label="X (新しいタブで開く)"
-            >
-              <XIcon className="size-4" />
-            </a>
-          </Button>
-          <Button variant="ghost" size="icon" asChild>
+            />
+          }
+        >
+          <XIcon width={16} height={16} />
+        </Button>
+        <Button
+          variant="ghost"
+          size="icon"
+          render={
             <a
               href="https://github.com/s-yoshiki"
               target="_blank"
               rel="noreferrer"
               aria-label="GitHub (新しいタブで開く)"
-            >
-              <GithubIcon className="size-4" />
-            </a>
-          </Button>
-        </nav>
-      </div>
-    </header>
-  );
-};
+            />
+          }
+        >
+          <GithubIcon width={16} height={16} />
+        </Button>
+      </nav>
+    </Container>
+  </header>
+);
 
 export default Header;

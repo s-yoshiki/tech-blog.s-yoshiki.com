@@ -1,0 +1,48 @@
+.section {
+  border-top: 1px solid var(--color-border);
+}
+.section[data-first] {
+  border-top: 0;
+}
+.section[data-muted] {
+  background: var(--color-surface);
+}
+.inner {
+  padding-block: var(--space-7);
+}
+/* Long, below-the-fold sections are skipped by layout/paint until scrolled near. */
+.section[data-deferred] {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 40rem;
+}
+.split {
+  display: grid;
+  gap: var(--space-7);
+  padding-block: var(--space-7);
+}
+.panel {
+  padding: var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+.authorCard {
+  max-width: 36rem;
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+}
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 64rem) {
+  .split {
+    grid-template-columns: minmax(0, 1fr) 20rem;
+  }
+}

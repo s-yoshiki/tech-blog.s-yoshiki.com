@@ -1,0 +1,9 @@
+.slot {
+  height: 100%;
+  max-width: 56rem;
+  max-height: 32rem;
+  margin-inline: auto;
+  align-content: center;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-sunken);
+}

@@ -1,17 +1,18 @@
 import type { Posts } from '@repo/blog-content';
+import Container from 'components/container';
 import PostsBand from 'components/posts-band';
 import SectionHeading from 'components/section-heading';
-import { cn } from '@repo/ui';
 import type { LucideIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
+import styles from './section.module.css';
 
 interface PostsSectionProps {
   title: string;
   icon: LucideIcon;
   posts: Posts[];
-  /** alternate (card-coloured) background to separate stacked sections */
+  /** alternate background to separate stacked sections */
   muted?: boolean;
-  /** first section on a page has no top divider */
+  /** the first section on a page has no top divider and is never deferred */
   first?: boolean;
   action?: ReactNode;
   children?: ReactNode;
@@ -28,14 +29,19 @@ const PostsSection = ({
   children,
 }: PostsSectionProps) =>
   posts.length ? (
-    <section className={cn(!first && 'border-border border-t', muted && 'bg-card')}>
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
+    <section
+      className={styles.section}
+      data-first={first || undefined}
+      data-muted={muted || undefined}
+      data-deferred={first ? undefined : ''}
+    >
+      <Container className={styles.inner}>
         <SectionHeading icon={icon} action={action}>
           {title}
         </SectionHeading>
         <PostsBand posts={posts} />
         {children}
-      </div>
+      </Container>
     </section>
   ) : null;
 
