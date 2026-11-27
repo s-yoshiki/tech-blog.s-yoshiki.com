@@ -4,12 +4,14 @@ path: "/entry/105"
 date: "2019-01-26 12:29:51"
 coverImage: "../../../images/thumbnail/php-logo.jpg"
 author: "s-yoshiki"
-tags: ["未分類","php","smarty","ページネーション","ページング"]
+tags: ["未分類","php","smarty","ページング"]
 ---
 
 ## 概要
 
 PHPで簡単なページング処理を書いてみました。
+
+> Smartyを使わないシンプル版は [PHPで簡単ページング処理を実装する サンプルコード](/entry/107) を参照してください。
 
 ## 環境
 

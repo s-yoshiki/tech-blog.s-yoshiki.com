@@ -4,17 +4,18 @@ path: "/entry/107"
 date: "2019-01-26 13:56:59"
 coverImage: "../../../images/thumbnail/php-logo.jpg"
 author: "s-yoshiki"
-tags: ["php","ページネーション","ページング"]
+tags: ["php","ページング"]
 ---
 
 ## 概要
 
 PHPで簡単なページング処理を書いてみました。
 
+Smartyを使ったテンプレート版は [PHP + Smartyで超簡単なページング処理とサンプルコード](/entry/105) を参照してください。
+
 ## 環境
 
 PHP 7.1.19
-Smarty 3.1.33
 
 ## 作るもの
 

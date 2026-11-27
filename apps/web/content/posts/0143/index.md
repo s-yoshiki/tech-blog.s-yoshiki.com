@@ -4,7 +4,7 @@ path: "/entry/143"
 date: "2019-06-24 23:37:38"
 coverImage: "../../../images/thumbnail/console-image.png"
 author: "s-yoshiki"
-tags: ["linux","ssh","mac","proxy","プロキシ","wsl","shell","踏み台"]
+tags: ["linux","ssh","mac","proxy","wsl","shell","踏み台"]
 ---
 
 ## 概要
