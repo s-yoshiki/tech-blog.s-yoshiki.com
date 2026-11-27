@@ -18,7 +18,7 @@ interface Props {
 const pageWindow = (current: number, total: number): PageItem[] => {
   if (total <= 7) return Array.from({ length: total }, (_, index) => index + 1);
   const pages = new Set([1, total, current - 1, current, current + 1]);
-  const sorted = [...pages].filter((page) => page >= 1 && page <= total).sort((a, b) => a - b);
+  const sorted = [...pages].filter((page) => page >= 1 && page <= total).toSorted((a, b) => a - b);
   return sorted.flatMap((page, index) => {
     const previousPage = sorted[index - 1];
     if (previousPage !== undefined && page - previousPage > 1) {

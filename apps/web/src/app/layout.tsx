@@ -6,7 +6,7 @@ import ThemeScript from 'components/layout/theme-script';
 import { siteMetaData } from 'config/site-config';
 import type { Metadata, Viewport } from 'next';
 import 'styles/globals.css';
-import 'styles/gtihub-markdown.css';
+import 'styles/github-markdown.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetaData.siteUrl),
