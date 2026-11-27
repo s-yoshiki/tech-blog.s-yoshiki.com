@@ -1,7 +1,9 @@
 import path from 'node:path';
 import { markdownFileToHtml as markdownToHtml } from '@repo/blog-content';
+import Container from 'components/container';
+import PageHeader from 'components/page-header';
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import styles from '../../page.module.css';
 
 export const metadata: Metadata = { title: 'Portfolio' };
 
@@ -11,21 +13,10 @@ export default async function Page() {
   });
   return (
     <article>
-      <header className="border-border border-b">
-        <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
-          <nav aria-label="パンくずリスト" className="mb-5">
-            <Link
-              href="/about/"
-              className="rounded text-muted-foreground text-sm hover:text-foreground"
-            >
-              ← About
-            </Link>
-          </nav>
-          <h1 className="font-bold text-3xl tracking-tight">Portfolio</h1>
-        </div>
-      </header>
-      <div
-        className="markdown-body mx-auto max-w-3xl px-4 py-10 sm:px-6"
+      <PageHeader title="Portfolio" size="narrow" back={{ href: '/about/', label: 'About' }} />
+      <Container
+        size="narrow"
+        className={`markdown-body ${styles.prose}`}
         dangerouslySetInnerHTML={{ __html: content.html }}
       />
     </article>

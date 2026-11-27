@@ -1,13 +1,14 @@
 'use client';
 
-import { Button, cn } from '@repo/ui';
+import { Button, cx, Input } from '@repo/ui';
 import { search as navigateToSearch } from 'lib/inner-search';
 import { Search as SearchIcon } from 'lucide-react';
 import { useId, useState } from 'react';
+import styles from './search.module.css';
 
 interface SearchProps {
   onSearch?: (arg: string) => void;
-  /** `hero` is the large landing-page field, `compact` the one in the header */
+  /** `hero` is the large field on content pages, `compact` the one in the header */
   variant?: 'hero' | 'compact';
   className?: string;
 }
@@ -24,31 +25,27 @@ const Search = ({ onSearch, variant = 'hero', className }: SearchProps) => {
   };
 
   return (
-    <search id={isHero ? 'search' : undefined} className={cn('block w-full', className)}>
-      <form onSubmit={submit} className="relative w-full">
-        <label htmlFor={inputId} className="sr-only">
+    <search
+      id={isHero ? 'search' : undefined}
+      data-variant={variant}
+      className={cx(styles.root, className)}
+    >
+      <form onSubmit={submit} className={styles.form}>
+        <label htmlFor={inputId} className="visually-hidden">
           記事を検索
         </label>
-        <SearchIcon
-          aria-hidden="true"
-          className={cn(
-            '-translate-y-1/2 pointer-events-none absolute top-1/2 left-3 text-muted-foreground',
-            isHero ? 'size-5' : 'size-4',
-          )}
-        />
-        <input
+        <SearchIcon aria-hidden="true" className={styles.icon} />
+        <Input
           id={inputId}
           type="search"
           value={value}
           onChange={(event) => setValue(event.target.value)}
           placeholder="記事を検索"
-          className={cn(
-            'w-full rounded-lg border border-input bg-card text-foreground outline-none transition-colors placeholder:text-muted-foreground hover:border-border-strong',
-            isHero ? 'h-12 pr-24 pl-11 text-[15px]' : 'h-9 pr-3 pl-9 text-sm',
-          )}
+          size={isHero ? 'lg' : 'md'}
+          className={styles.input}
         />
         {isHero && (
-          <Button type="submit" size="sm" className="-translate-y-1/2 absolute top-1/2 right-2">
+          <Button type="submit" size="sm" className={styles.submit}>
             検索
           </Button>
         )}

@@ -1,4 +1,5 @@
 import PostsIndexPage from 'components/features/posts/posts-index-page';
+import { routes } from 'lib/routes';
 import { getTagPageData, getTagParams } from 'lib/posts/queries';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -22,7 +23,7 @@ export default async function Page({ params }: Props) {
       title="タグの記事"
       badge={decodeURIComponent(tag)}
       posts={posts}
-      pagination={{ current, total: pageCount, basePath: `/tags/${tag}` }}
+      pagination={{ current, total: pageCount, basePath: routes.tagBase(decodeURIComponent(tag)) }}
     />
   );
 }

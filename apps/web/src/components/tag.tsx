@@ -1,6 +1,8 @@
-import { cn } from '@repo/ui';
+import { cx } from '@repo/ui';
 import { getTagColor } from 'lib/tag-brand-colors';
+import { routes } from 'lib/routes';
 import Link from 'next/link';
+import styles from './tag.module.css';
 
 interface TagProps {
   keyword: string;
@@ -10,46 +12,26 @@ interface TagProps {
   className?: string;
 }
 
-const sizes = {
-  sm: 'h-6 gap-1.5 px-2 text-[11px]',
-  md: 'h-7 gap-2 px-2.5 text-xs',
-} as const;
-
-/**
- * A tag rendered as a native pill. Previously these were <img> badges served by
- * img.shields.io, which meant one third-party request per tag (~45 on the home
- * page), no dark-mode support and layout shift while they loaded.
- */
+/** A tag rendered as a native pill (no third-party badge images). */
 export const TagPill = ({ keyword, count, size = 'sm', className }: TagProps) => {
   const color = getTagColor(keyword);
   return (
-    <span
-      className={cn(
-        'inline-flex items-center rounded-md border border-border bg-muted font-medium text-muted-foreground transition-colors',
-        sizes[size],
-        className,
-      )}
-    >
+    <span data-size={size} className={cx(styles.pill, className)}>
       <span
         aria-hidden="true"
-        className="size-1.5 shrink-0 rounded-full bg-current"
+        className={styles.dot}
         style={color ? { backgroundColor: color } : undefined}
       />
       {keyword}
-      {count !== undefined && <span className="tabular-nums opacity-60">{count}</span>}
+      {count !== undefined && <span className={styles.count}>{count}</span>}
     </span>
   );
 };
 
 /** A tag pill that links to the tag's archive. */
 const Tag = ({ keyword, count, size, className }: TagProps) => (
-  <Link href={`/tags/${encodeURIComponent(keyword)}/1/`} className="inline-flex rounded-md">
-    <TagPill
-      keyword={keyword}
-      count={count}
-      size={size}
-      className={cn('hover:border-border-strong hover:text-foreground', className)}
-    />
+  <Link href={routes.tag(keyword)} className={styles.link}>
+    <TagPill keyword={keyword} count={count} size={size} className={className} />
   </Link>
 );
 

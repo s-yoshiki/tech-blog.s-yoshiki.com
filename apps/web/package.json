@@ -9,8 +9,8 @@
     "export": "next build --turbopack",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
-    "format": "oxfmt src tools package.json next.config.mjs postcss.config.mjs tsconfig.json knip.jsonc",
-    "format:check": "oxfmt --check src tools package.json next.config.mjs postcss.config.mjs tsconfig.json knip.jsonc",
+    "format": "oxfmt src tools package.json next.config.mjs tsconfig.json knip.jsonc",
+    "format:check": "oxfmt --check src tools package.json next.config.mjs tsconfig.json knip.jsonc",
     "typecheck": "tsc --noEmit",
     "textlint": "textlint --rule no-mix-dearu-desumasu --rule max-ten --rule spellcheck-tech-word ./content",
     "generate:redirects": "node tools/redirect/generater.js"
@@ -29,12 +29,9 @@
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "@tailwindcss/postcss": "catalog:",
     "@types/mdx": "catalog:",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
-    "postcss": "catalog:",
-    "tailwindcss": "catalog:",
     "textlint": "catalog:",
     "textlint-rule-max-ten": "catalog:",
     "textlint-rule-no-mix-dearu-desumasu": "catalog:",

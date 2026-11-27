@@ -1,23 +1,25 @@
 import type { Posts } from '@repo/blog-content';
+import { routes } from 'lib/routes';
 import Card from './card';
+import styles from './posts-band.module.css';
 
-interface EntryBandProp {
-  posts: Posts[];
-}
+export const PostItem = ({ post }: { post: Posts }) => (
+  <li className={styles.item}>
+    <Card
+      title={post.title}
+      date={post.date}
+      href={routes.post(post.path)}
+      src={post.coverImage}
+      tags={post.tags}
+      aiGenerated={post.aiGenerated}
+    />
+  </li>
+);
 
-const Band = ({ posts }: EntryBandProp) => (
-  <ul className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+const Band = ({ posts }: { posts: Posts[] }) => (
+  <ul className={styles.grid}>
     {posts.map((post) => (
-      <li key={post.path} className="flex">
-        <Card
-          title={post.title}
-          date={post.date}
-          href={`${post.path}/`}
-          src={post.coverImage}
-          tags={post.tags}
-          aiGenerated={post.aiGenerated}
-        />
-      </li>
+      <PostItem key={post.path} post={post} />
     ))}
   </ul>
 );

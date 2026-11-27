@@ -1,27 +1,30 @@
-import { cn } from '@repo/ui';
+import { cx, Heading, Stack } from '@repo/ui';
 import type { LucideIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
+import styles from './section-heading.module.css';
 
 interface SectionHeadingProps {
   children: ReactNode;
   icon?: LucideIcon;
-  /** rendered on the trailing edge, e.g. a "see all" link */
+  /** rendered on the trailing edge, e.g. a count */
   action?: ReactNode;
   className?: string;
 }
 
-/**
- * Section titles used to render as a <div>, which left every page with a single
- * <h1> and no intermediate landmarks for screen readers.
- */
 const SectionHeading = ({ children, icon: Icon, action, className }: SectionHeadingProps) => (
-  <div className={cn('mb-5 flex items-center justify-between gap-4', className)}>
-    <h2 className="flex items-center gap-2 font-semibold text-[15px] text-foreground tracking-tight">
-      {Icon && <Icon aria-hidden="true" className="size-4 text-primary" />}
+  <Stack
+    direction="row"
+    align="center"
+    justify="between"
+    gap={4}
+    className={cx(styles.root, className)}
+  >
+    <Heading level={2} className={styles.title}>
+      {Icon && <Icon aria-hidden="true" className={styles.icon} />}
       {children}
-    </h2>
+    </Heading>
     {action}
-  </div>
+  </Stack>
 );
 
 export default SectionHeading;

@@ -1,15 +1,17 @@
 import Author from 'components/author';
+import Container from 'components/container';
 import SectionHeading from 'components/section-heading';
 import { UserRound } from 'lucide-react';
+import styles from './section.module.css';
 
 const AuthorSection = () => (
-  <section className="border-border border-t bg-card">
-    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
+  <section className={styles.section} data-muted="" data-deferred="">
+    <Container className={styles.inner}>
       <SectionHeading icon={UserRound}>著者について</SectionHeading>
-      <div className="max-w-xl rounded-xl border border-border bg-background p-6">
+      <div className={styles.authorCard}>
         <Author />
       </div>
-    </div>
+    </Container>
   </section>
 );
 

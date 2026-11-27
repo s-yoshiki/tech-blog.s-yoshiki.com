@@ -1,0 +1,13 @@
+.root {
+  margin-bottom: var(--space-5);
+}
+.title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.icon {
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-accent);
+}

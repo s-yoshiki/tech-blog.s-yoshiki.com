@@ -1,0 +1,16 @@
+.body {
+  padding-block: var(--space-7);
+}
+.count {
+  margin-top: var(--space-2);
+}
+.pagination {
+  margin-top: var(--space-7);
+}
+.gap {
+  padding-inline: var(--space-1);
+  color: var(--color-text-muted);
+}
+.pageLink {
+  font-variant-numeric: tabular-nums;
+}

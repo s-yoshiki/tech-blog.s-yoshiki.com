@@ -1,0 +1,36 @@
+.text[data-size='xs'] {
+  font-size: var(--text-xs);
+}
+.text[data-size='sm'] {
+  font-size: var(--text-sm);
+}
+.text[data-size='base'] {
+  font-size: var(--text-base);
+}
+.text[data-size='lg'] {
+  font-size: var(--text-lg);
+}
+
+.text[data-tone='muted'] {
+  color: var(--color-text-muted);
+}
+.text[data-tone='accent'] {
+  color: var(--color-accent);
+}
+
+.text[data-weight='regular'] {
+  font-weight: 400;
+}
+.text[data-weight='medium'] {
+  font-weight: 500;
+}
+.text[data-weight='semibold'] {
+  font-weight: 600;
+}
+.text[data-weight='bold'] {
+  font-weight: 700;
+}
+
+.text[data-numeric] {
+  font-variant-numeric: tabular-nums;
+}

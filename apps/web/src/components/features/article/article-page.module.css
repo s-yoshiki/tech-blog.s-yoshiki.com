@@ -1,0 +1,128 @@
+.header {
+  border-bottom: 1px solid var(--color-border);
+}
+.headerInner {
+  padding-block: var(--space-7);
+}
+.crumbs {
+  min-width: 0;
+  margin: 0 0 var(--space-5);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+.crumbs a:hover {
+  color: var(--color-text);
+}
+.crumbs [aria-current] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.crumbIcon {
+  width: 0.875rem;
+  height: 0.875rem;
+  flex-shrink: 0;
+}
+.cover {
+  display: none;
+  width: 3.5rem;
+  height: 3.5rem;
+  flex-shrink: 0;
+  place-items: center;
+  overflow: hidden;
+  padding: var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-sunken);
+}
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.title {
+  max-width: 48rem;
+}
+.meta {
+  margin-top: var(--space-4);
+}
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+.metaIcon {
+  width: 1rem;
+  height: 1rem;
+}
+.badge {
+  margin-top: var(--space-4);
+}
+.tags {
+  margin-top: var(--space-5);
+}
+.layout {
+  display: grid;
+  align-items: start;
+  gap: var(--space-7);
+  padding-block: var(--space-7);
+}
+.main {
+  min-width: 0;
+}
+.notice {
+  display: flex;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+  padding: var(--space-4);
+  border: 1px solid;
+  border-radius: var(--radius-lg);
+  font-size: var(--text-sm);
+}
+.notice[data-tone='ai'] {
+  border-color: var(--color-ai-border);
+  background: var(--color-ai-subtle);
+  color: var(--color-ai);
+}
+.notice[data-tone='warning'] {
+  border-color: color-mix(in srgb, var(--color-warning) 40%, transparent);
+  background: var(--color-warning-subtle);
+  color: var(--color-text);
+}
+.notice[data-tone='warning'] .noticeIcon {
+  color: var(--color-warning);
+}
+.noticeIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+.content {
+  max-width: none;
+}
+.ads {
+  margin-top: var(--space-7);
+}
+.recommend {
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+.recommendInner {
+  padding-block: var(--space-7);
+}
+.searchWrap {
+  max-width: 36rem;
+  margin: 0 auto var(--space-7);
+}
+
+@media (min-width: 40rem) {
+  .cover {
+    display: grid;
+  }
+}
+@media (min-width: 64rem) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) 15rem;
+  }
+}

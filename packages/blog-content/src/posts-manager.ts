@@ -4,24 +4,15 @@ import { PostIndex } from './posts/post-index';
 import { getPostId, normalizePost } from './posts/post-normalizer';
 import { selectRecommendedPosts } from './posts/post-selectors';
 import type { IGroupByItems, IGroupByYearMonthItems, Posts } from './types/entry.interface';
+import { type PostPath, type YearKey, type YearMonthKey, toYearMonthKey } from './types/primitives';
 
 export interface PostsManagerOptions {
   basePath: string;
   postsDirectory: string;
   publicThumbnailDirectory: string;
   postSampleSize?: number;
-  popularPostPaths?: readonly string[];
+  popularPostPaths?: readonly PostPath[];
 }
-
-const EMPTY_POST: Posts = {
-  title: '',
-  path: '',
-  date: '',
-  coverImage: '',
-  tags: [],
-  aiGenerated: false,
-  filepath: '',
-};
 
 export class PostsManager {
   private readonly data: Posts[];
@@ -40,8 +31,8 @@ export class PostsManager {
     return this.data;
   }
 
-  public findByPath(path: string): Posts {
-    return this.index.findByPath(path) ?? { ...EMPTY_POST };
+  public findByPath(path: PostPath): Posts | undefined {
+    return this.index.findByPath(path);
   }
 
   public findByTag(tag: string): Posts[] {
@@ -65,11 +56,11 @@ export class PostsManager {
     return this.index.getTagNames();
   }
 
-  public findByYearMonth(year: string | number, month: string | number): Posts[] {
-    return this.index.findByYearMonth(year, month);
+  public findByYearMonth(key: YearMonthKey): Posts[] {
+    return this.index.findByYearMonth(key);
   }
 
-  public findByYear(year: string | number): Posts[] {
+  public findByYear(year: YearKey): Posts[] {
     return this.index.findByYear(year);
   }
 
@@ -78,25 +69,25 @@ export class PostsManager {
     for (let year = this.getPostsStartYear(); year <= new Date().getFullYear(); year++) {
       const months = Array.from({ length: 12 }, (_, index) => index + 1)
         .map((month) => ({
-          name: `${year}-${String(month).padStart(2, '0')}`,
-          counts: this.findByYearMonth(year, month).length,
+          name: toYearMonthKey(year, month),
+          counts: this.findByYearMonth(toYearMonthKey(year, month)).length,
         }))
         .filter(({ counts }) => counts > 0)
         .reverse();
       dates.unshift({
-        name: String(year),
-        counts: this.findByYear(year).length,
+        name: String(year) as YearKey,
+        counts: this.findByYear(String(year) as YearKey).length,
         months,
       });
     }
     return dates;
   }
 
-  public getAllGroupByYear(): Map<string, Posts[]> {
+  public getAllGroupByYear(): Map<YearKey, Posts[]> {
     return this.index.getByYear();
   }
 
-  public getAllGroupByYearMonth(): Map<string, Posts[]> {
+  public getAllGroupByYearMonth(): Map<YearMonthKey, Posts[]> {
     return this.index.getByYearMonth();
   }
 
@@ -106,7 +97,7 @@ export class PostsManager {
 
   public getPopularPosts(): Posts[] {
     const paths = this.options.popularPostPaths ?? POPULAR_POST_PATHS;
-    return paths.map((postPath) => this.findByPath(postPath));
+    return paths.flatMap((postPath) => this.findByPath(postPath) ?? []);
   }
 
   public getRecommendsPosts(tags: string[], maxCount = 12): Posts[] {

@@ -1,0 +1,36 @@
+.root {
+  display: block;
+  width: 100%;
+}
+.form {
+  position: relative;
+  width: 100%;
+}
+.icon {
+  position: absolute;
+  top: 50%;
+  left: var(--space-3);
+  z-index: 1;
+  width: 1rem;
+  height: 1rem;
+  translate: 0 -50%;
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+.root[data-variant='hero'] .icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.form .input[data-size] {
+  padding-left: 2.25rem;
+}
+.root[data-variant='hero'] .form .input[data-size] {
+  padding-left: 2.75rem;
+  padding-right: 6rem;
+}
+.submit {
+  position: absolute;
+  top: 50%;
+  right: var(--space-2);
+  translate: 0 -50%;
+}

@@ -3,6 +3,7 @@
 import { Button } from '@repo/ui';
 import { Check, Copy, TriangleAlert } from 'lucide-react';
 import { useCopyToClipboard } from 'hooks/use-copy-to-clipboard';
+import styles from './copy-character-button.module.css';
 
 interface Props {
   codePoint: string;
@@ -29,14 +30,14 @@ export default function CopyCharacterButton({ codePoint }: Props) {
   return (
     <Button
       aria-label={`${label}の実体文字をコピー`}
-      className="min-w-24"
+      className={styles.button}
       onClick={() => void copy(character)}
       size="sm"
       title={`${label}の実体文字をコピー`}
       type="button"
       variant="outline"
     >
-      <Icon aria-hidden="true" className="size-3.5" />
+      <Icon aria-hidden="true" size={14} />
       {text}
     </Button>
   );

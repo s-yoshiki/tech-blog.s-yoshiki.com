@@ -1,11 +1,15 @@
-import type {
-  IGroupByItems,
-  IGroupByYearMonthItems,
-  Posts,
-  TableOfContentsItem,
+import {
+  type DateString,
+  type IGroupByItems,
+  type IGroupByYearMonthItems,
+  type Posts,
+  type TableOfContentsItem,
+  toDateString,
 } from '@repo/blog-content';
+import { Heading, Stack, Text } from '@repo/ui';
 import RelationAds from 'components/ads/relations-ads';
 import AIGeneratedBadge from 'components/ai-generated-badge';
+import Container from 'components/container';
 import PostsBand from 'components/posts-band';
 import AuthorSection from 'components/sections/author-section';
 import BrowseSection from 'components/sections/browse-section';
@@ -25,8 +29,10 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
-import ReadingProgress from './reading-progress';
+import styles from './article-page.module.css';
+import InlineTableOfContents from './inline-table-of-contents';
 import TableOfContents from './table-of-contents';
+import ReadingProgress from './reading-progress';
 import XEmbeds from './x-embeds';
 
 type Article = Posts & {
@@ -55,7 +61,7 @@ const estimateReadingMinutes = (html: string): number => {
   return Math.max(1, Math.ceil(text.length / 500));
 };
 
-const isOlderThanTwoYears = (publishedOn: string): boolean => {
+const isOlderThanTwoYears = (publishedOn: DateString): boolean => {
   const threshold = new Date();
   threshold.setUTCFullYear(threshold.getUTCFullYear() - 2);
   return new Date(`${publishedOn}T00:00:00Z`) < threshold;
@@ -63,126 +69,113 @@ const isOlderThanTwoYears = (publishedOn: string): boolean => {
 
 export default function ArticlePage({ post, latest, popular, recommends, tags, dates }: Props) {
   const readingMinutes = estimateReadingMinutes(post.readingText);
-  const publishedOn = post.date.split(' ')[0];
+  const publishedOn = toDateString(post.date);
   const isOlderArticle = isOlderThanTwoYears(publishedOn);
 
   return (
     <article>
       <ReadingProgress targetId="article-content" />
-      <header className="border-border border-b">
-        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14">
-          <nav aria-label="パンくずリスト" className="mb-6">
-            <ol className="flex items-center gap-1 text-muted-foreground text-sm">
+      <header className={styles.header}>
+        <Container className={styles.headerInner}>
+          <nav aria-label="パンくずリスト">
+            <Stack as="ol" direction="row" align="center" gap={1} className={styles.crumbs}>
               <li>
-                <Link href="/" className="rounded hover:text-foreground">
-                  Articles
-                </Link>
+                <Link href="/">Articles</Link>
               </li>
-              <ChevronRight aria-hidden="true" className="size-3.5" />
-              <li aria-current="page" className="truncate">
-                {post.title}
-              </li>
-            </ol>
+              <ChevronRight aria-hidden="true" className={styles.crumbIcon} />
+              <li aria-current="page">{post.title}</li>
+            </Stack>
           </nav>
 
-          <div className="flex items-start gap-4">
-            <span className="hidden size-14 shrink-0 place-items-center overflow-hidden rounded-xl border border-border bg-muted p-2 sm:grid">
-              <img
-                alt=""
-                aria-hidden="true"
-                className="size-full object-contain"
-                src={post.coverImage}
-              />
+          <Stack direction="row" align="start" gap={4}>
+            <span className={styles.cover}>
+              <img alt="" aria-hidden="true" src={post.coverImage} width={40} height={40} />
             </span>
-            <div className="min-w-0">
-              <h1 className="max-w-3xl font-bold text-2xl leading-tight tracking-tight sm:text-4xl">
+            <div>
+              <Heading level={1} className={styles.title}>
                 {post.title}
-              </h1>
-              <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-muted-foreground text-sm">
-                <span className="flex items-center gap-1.5">
-                  <CalendarDays aria-hidden="true" className="size-4" />
+              </Heading>
+              <Stack direction="row" wrap align="center" gap={5} className={styles.meta}>
+                <Text as="span" size="sm" tone="muted" className={styles.metaItem}>
+                  <CalendarDays aria-hidden="true" className={styles.metaIcon} />
                   <time dateTime={publishedOn}>{publishedOn}</time>
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <Clock3 aria-hidden="true" className="size-4" />約 {readingMinutes} 分
-                </span>
-              </div>
+                </Text>
+                <Text as="span" size="sm" tone="muted" className={styles.metaItem}>
+                  <Clock3 aria-hidden="true" className={styles.metaIcon} />約 {readingMinutes} 分
+                </Text>
+              </Stack>
               {post.aiGenerated && (
-                <div className="mt-4">
+                <div className={styles.badge}>
                   <AIGeneratedBadge />
                 </div>
               )}
             </div>
-          </div>
+          </Stack>
 
           {post.tags.length > 0 && (
-            <ul className="mt-6 flex flex-wrap gap-2">
+            <Stack as="ul" direction="row" wrap gap={2} className={styles.tags}>
               {post.tags.slice(0, 8).map((tag) => (
                 <li key={tag}>
                   <Tag keyword={tag} size="md" />
                 </li>
               ))}
-            </ul>
+            </Stack>
           )}
-        </div>
+        </Container>
       </header>
 
-      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
-        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_240px]">
-          <div className="min-w-0">
-            {post.aiGenerated && (
-              <aside
-                aria-label="AI生成記事についての説明"
-                className="mb-8 flex items-start gap-3 rounded-xl border border-ai-border bg-ai-surface/70 p-4 text-sm text-ai-foreground"
-              >
-                <Bot aria-hidden="true" className="mt-0.5 size-5 shrink-0" />
-                <p>
-                  この記事は生成AIを活用して作成されています。内容は公開時点の情報をもとにしているため、
-                  最新の仕様や重要な判断については公式ドキュメントも確認してください。
-                </p>
-              </aside>
-            )}
-            {isOlderArticle && (
-              <aside
-                aria-label="古い記事についての注意"
-                className="mb-8 flex gap-3 rounded-xl border border-warning/40 bg-warning/10 p-4 text-sm"
-              >
-                <TriangleAlert aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-warning" />
-                <p>
-                  この記事は公開から2年以上経過しています。画面、料金、ライブラリや
-                  サービスの仕様が現在と異なる可能性があるため、公式資料も併せて確認してください。
-                </p>
-              </aside>
-            )}
-            <TableOfContents items={post.toc} variant="inline" />
-            {post.contentHtml === undefined ? (
-              <div id="article-content" className="markdown-body max-w-none">
-                {post.content}
-              </div>
-            ) : (
-              <div
-                id="article-content"
-                className="markdown-body max-w-none"
-                dangerouslySetInnerHTML={{ __html: post.contentHtml }}
-              />
-            )}
-            <XEmbeds containerId="article-content" />
-            <div className="mt-10">
-              <RelationAds />
+      <Container className={styles.layout}>
+        <div className={styles.main}>
+          {post.aiGenerated && (
+            <aside aria-label="AI生成記事についての説明" className={styles.notice} data-tone="ai">
+              <Bot aria-hidden="true" className={styles.noticeIcon} />
+              <p>
+                この記事は生成AIを活用して作成されています。内容は公開時点の情報をもとにしているため、
+                最新の仕様や重要な判断については公式ドキュメントも確認してください。
+              </p>
+            </aside>
+          )}
+          {isOlderArticle && (
+            <aside
+              aria-label="古い記事についての注意"
+              className={styles.notice}
+              data-tone="warning"
+            >
+              <TriangleAlert aria-hidden="true" className={styles.noticeIcon} />
+              <p>
+                この記事は公開から2年以上経過しています。画面、料金、ライブラリや
+                サービスの仕様が現在と異なる可能性があるため、公式資料も併せて確認してください。
+              </p>
+            </aside>
+          )}
+          <InlineTableOfContents items={post.toc} />
+          {post.contentHtml === undefined ? (
+            <div id="article-content" className={`markdown-body ${styles.content}`}>
+              {post.content}
             </div>
+          ) : (
+            <div
+              id="article-content"
+              className={`markdown-body ${styles.content}`}
+              dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+            />
+          )}
+          <XEmbeds containerId="article-content" />
+          <div className={styles.ads}>
+            <RelationAds />
           </div>
-          <TableOfContents items={post.toc} variant="sidebar" />
         </div>
-      </div>
+        <TableOfContents items={post.toc} />
+      </Container>
 
-      <section className="border-border border-t bg-card">
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-          <div className="mx-auto mb-10 max-w-xl">
+      <section className={styles.recommend}>
+        <Container className={styles.recommendInner}>
+          <div className={styles.searchWrap}>
             <Search />
           </div>
           <SectionHeading icon={Sparkles}>おすすめの記事</SectionHeading>
           <PostsBand posts={recommends} />
-        </div>
+        </Container>
       </section>
 
       <PostsSection title="最新の記事" icon={Newspaper} posts={latest} />
